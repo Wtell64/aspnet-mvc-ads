@@ -35,11 +35,11 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
       //apply entitiy configurations
       modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-      modelBuilder.Entity<Advert>()
-        .HasOne(a => a.User)
-        .WithMany(u => u.Adverts)
-        .HasForeignKey(a => a.UserId)
-        .OnDelete(DeleteBehavior.Restrict);
+      //modelBuilder.Entity<Advert>()
+      //  .HasOne(a => a.User)
+      //  .WithMany(u => u.Adverts)
+      //  .HasForeignKey(a => a.UserId)
+      //  .OnDelete(DeleteBehavior.Restrict);
 
       modelBuilder.Entity<AdvertComment>()
           .HasOne(ac => ac.User)
@@ -52,6 +52,8 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
           .WithMany(a => a.AdvertComments)
           .HasForeignKey(ac => ac.AdvertId)
           .OnDelete(DeleteBehavior.Restrict);
+
+
     }
 
     public override int SaveChanges()

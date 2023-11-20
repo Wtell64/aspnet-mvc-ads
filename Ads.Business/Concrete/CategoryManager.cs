@@ -1,5 +1,6 @@
 ﻿using Ads.Business.Abstract;
 using Ads.Business.Constants;
+using Ads.Core.Entities.Abstract;
 using Ads.Dal.Abstract;
 using Ads.Entities.Concrete;
 using App.Core.Utilities.Results;
@@ -105,7 +106,17 @@ namespace Ads.Business.Concrete
 
     public IResult Save()
     {
-      throw new NotImplementedException();
+      try
+      {
+
+
+        _categoryDal.Save();
+        return new SuccessResult(Messages.CategoryAdded);
+      }
+      catch (Exception e)
+      {
+        return new ErrorResult(e.Message);
+      }
     }
 
     public Task<IResult> SaveAsync()

@@ -13,5 +13,7 @@ namespace Ads.Business.Dtos.Category
   public int Id { get; set; }
   [DisplayName("Kategori Adı")]
   public string Name { get; set; }
+
+  public string Description { get; set; }
   }
 }

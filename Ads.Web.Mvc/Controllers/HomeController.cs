@@ -15,7 +15,16 @@ namespace Ads.Web.Mvc.Controllers
 
     public IActionResult Index()
     {
-      return View();
+      try
+      {
+
+        return View();
+      }
+      catch (Exception ex)
+      {
+        _logger.LogInformation("Index de hat olustu");
+        throw;
+      }
     }
 
 

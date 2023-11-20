@@ -1,5 +1,6 @@
 using Ads.Business.Extentions;
 using Ads.Dal.Extentions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,17 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddBusinessServices();
+
+var logger = new LoggerConfiguration()
+.ReadFrom.Configuration(builder.Configuration)   //loglamaya nerden baslicam
+.Enrich.FromLogContext()
+.CreateLogger();
+
+builder.Logging.ClearProviders(); //loglamanin sahibi degilsin
+builder.Logging.AddSerilog(logger); //bu isi logger yapicak
+// builder.Logging.AddConsole();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

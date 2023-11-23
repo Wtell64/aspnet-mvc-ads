@@ -1,4 +1,5 @@
 ﻿using Ads.Business.Dtos.Category;
+using Ads.Business.Dtos.Setting;
 using Ads.Entities.Concrete;
 using AutoMapper;
 using System;
@@ -11,9 +12,10 @@ namespace Ads.Business.Mapping
 {
   public class MappingProfile : Profile
   {
-        public MappingProfile()
-        {
-            CreateMap<Category,CategoryViewDto>().ReverseMap();
-        }
+    public MappingProfile()
+    {
+      CreateMap<Category, CategoryViewDto>().ReverseMap();
+      CreateMap<Setting, SettingViewDto>().ReverseMap();
     }
+  }
 }

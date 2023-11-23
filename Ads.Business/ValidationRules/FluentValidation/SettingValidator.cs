@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Ads.Business.ValidationRules.FluentValidation
 {
-  public class CategoryValidator : AbstractValidator<Category>
+  public class SettingValidator : AbstractValidator<Setting>
   {
-    public CategoryValidator()
+    public SettingValidator() 
     {
-      RuleFor(t => t.Name).NotEmpty().WithMessage("Kategori ismi boş geçilemez");
+      RuleFor(t=>t.User).NotEmpty().WithMessage("Kullanıcı boş olamaz");
     }
   }
 }

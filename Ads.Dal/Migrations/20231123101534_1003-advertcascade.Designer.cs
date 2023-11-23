@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ads.Dal.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231117144057_1001_first")]
-    partial class _1001_first
+    [Migration("20231123101534_1003-advertcascade")]
+    partial class _1003advertcascade
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -335,7 +335,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.User", "User")
                         .WithMany("Adverts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -346,7 +346,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
                         .WithMany("AdvertComments")
                         .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Ads.Entities.Concrete.User", "User")

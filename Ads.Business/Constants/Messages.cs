@@ -12,6 +12,12 @@
     public static string AdvertNotSaved = "Advert Kayit Edilemedi";
     public static string ValidationResultNull = "Doğrulama işlemi gerçekleştirilemedi";
 
+    public static string SettingUpdated = "Ayarlar Güncellendi.";
+    public static string SuccessfullySaved = "Başarıyla Kaydedildi.";
+    public static string SettingDeleted = "Ayarlar Silindi.";
+    public static string SettingNotFound = "Ayarlar bulunamadı";
+
+
     public static string CategoryUpdated = "Kategori Güncellendi.";
     public static string CategoryDeleted = "Kategori Silindi";
     public static string CategoryNotFound = "Kategori Bulunamadı";
@@ -51,6 +57,7 @@
     public static string AdvertImageNotSaved = "Advert Image Kayit Edilemedi";
     public static string AdvertImageNotUpdated = "Advert Image Güncellenemedi";
     public static string AdvertImageUpdated = "Advert Image Güncellendi";
+
 
   }
 

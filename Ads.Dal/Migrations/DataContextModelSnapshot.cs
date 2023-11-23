@@ -587,7 +587,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
                         .WithMany("AdvertComments")
                         .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")

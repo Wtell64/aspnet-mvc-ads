@@ -6,6 +6,7 @@ using System.Reflection;
 
 namespace Ads.Dal.Concrete.EntityFramework.Context
 {
+
 	public class DataContext : IdentityDbContext<AppUser, AppRole, int, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
 	{
 		public DataContext()
@@ -97,4 +98,5 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
 			return await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 		}
 	}
+
 }

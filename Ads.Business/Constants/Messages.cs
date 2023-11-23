@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ads.Business.Constants
+﻿namespace Ads.Business.Constants
 {
   public static class Messages
   {
@@ -17,6 +11,13 @@ namespace Ads.Business.Constants
     public static string AdvertSaved = "Advert Kaydedildi";
     public static string AdvertNotSaved = "Advert Kayit Edilemedi";
     public static string ValidationResultNull = "Doğrulama işlemi gerçekleştirilemedi";
+
+    public static string PageAdded = "Sayfa Eklendi";
+    public static string PageDeleted = "Sayfa Silindi";
+    public static string ListEmpty = "Liste Boş";
+    public static string PageNotFound = "Sayfa bulunamadı";
+    public static string NoPage = "Sayfa yok";
+
     public static string CountFound = "Sayim Tamamlandi";
     public static string CountNotFound = "Sayim Yapilirken Bir Hata Oluştu";
     public static string AdvertNotUpdated = "Advert Güncellenemedi";
@@ -40,5 +41,6 @@ namespace Ads.Business.Constants
     public static string AdvertImageNotSaved = "Advert Image Kayit Edilemedi";
     public static string AdvertImageNotUpdated = "Advert Image Güncellenemedi";
     public static string AdvertImageUpdated = "Advert Image Güncellendi";
+
   }
 }

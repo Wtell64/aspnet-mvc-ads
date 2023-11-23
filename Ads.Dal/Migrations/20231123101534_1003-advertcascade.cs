@@ -5,20 +5,20 @@
 namespace Ads.Dal.Migrations
 {
     /// <inheritdoc />
-    public partial class _1002_ikinci : Migration
+    public partial class _1003advertcascade : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Adverts_Users_UserId",
-                table: "Adverts");
+                name: "FK_AdvertComments_Adverts_AdvertId",
+                table: "AdvertComments");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Adverts_Users_UserId",
-                table: "Adverts",
-                column: "UserId",
-                principalTable: "Users",
+                name: "FK_AdvertComments_Adverts_AdvertId",
+                table: "AdvertComments",
+                column: "AdvertId",
+                principalTable: "Adverts",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -27,14 +27,14 @@ namespace Ads.Dal.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Adverts_Users_UserId",
-                table: "Adverts");
+                name: "FK_AdvertComments_Adverts_AdvertId",
+                table: "AdvertComments");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Adverts_Users_UserId",
-                table: "Adverts",
-                column: "UserId",
-                principalTable: "Users",
+                name: "FK_AdvertComments_Adverts_AdvertId",
+                table: "AdvertComments",
+                column: "AdvertId",
+                principalTable: "Adverts",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }

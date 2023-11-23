@@ -20,6 +20,10 @@ namespace Ads.Dal.Extentions
 
       services.AddScoped<ICategoryDal, EFCategoryDal>();
 
+      services.AddScoped<IAdvertDal, EfAdvertDal>();
+      services.AddScoped<IAdvertCommentDal, EfAdvertCommentDal>();
+      services.AddScoped<IAdvertImageDal, EfAdvertImageDal>();
+
       return services;
     }
   }

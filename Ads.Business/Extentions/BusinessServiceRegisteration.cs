@@ -19,9 +19,15 @@ namespace Ads.Business.Extentions
     {
       //services
       services.AddScoped<ICategoryService, CategoryManager>();
+      services.AddScoped<IAdvertService, AdvertManager>();
+      services.AddScoped<IAdvertCommentService, AdvertCommentManager>();
+      services.AddScoped<IAdvertImageService, AdvertImageManager>();
 
       //validators
       services.AddScoped<IValidator<Category>, CategoryValidator>();
+      services.AddScoped<IValidator<Advert>, AdvertValidator>();
+      services.AddScoped<IValidator<AdvertComment>, AdvertCommentValidator>();
+      services.AddScoped<IValidator<AdvertImage>, AdvertImageValidator>();
 
 
       services.AddAutoMapper(typeof(MappingProfile));

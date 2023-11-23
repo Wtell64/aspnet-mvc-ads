@@ -53,7 +53,11 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
           .HasForeignKey(ac => ac.AdvertId)
           .OnDelete(DeleteBehavior.Restrict);
 
-
+      modelBuilder.Entity<Advert>()
+      .HasMany(a => a.AdvertComments)
+      .WithOne(ac => ac.Advert)
+      .HasForeignKey(ac => ac.AdvertId)
+      .OnDelete(DeleteBehavior.Cascade);
     }
 
     public override int SaveChanges()

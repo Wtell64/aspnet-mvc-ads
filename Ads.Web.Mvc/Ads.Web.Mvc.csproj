@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Advert\Deneme.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,6 +30,18 @@
   <ItemGroup>
     <ProjectReference Include="..\Ads.Business\Ads.Business.csproj" />
     <ProjectReference Include="..\Ads.Dal\Ads.Dal.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Advert\Deneme.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Advert\Deneme.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Advert\Deneme.cshtml" />
   </ItemGroup>
 
 </Project>

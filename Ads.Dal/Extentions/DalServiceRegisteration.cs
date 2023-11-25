@@ -4,11 +4,6 @@ using Ads.Dal.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ads.Dal.Extentions
 {
@@ -23,6 +18,8 @@ namespace Ads.Dal.Extentions
       services.AddScoped<IAdvertDal, EfAdvertDal>();
       services.AddScoped<IAdvertCommentDal, EfAdvertCommentDal>();
       services.AddScoped<IAdvertImageDal, EfAdvertImageDal>();
+
+      services.AddScoped<IPageDal, EfPageDal>();
 
       return services;
     }

@@ -72,7 +72,15 @@ namespace Ads.Business.Concrete
 
     public IDataResult<int> CountWhere(Expression<Func<Category, bool>> filter)
     {
-      throw new NotImplementedException();
+      try
+      {
+        var count = _categoryDal.CountWhere(filter);
+        return new SuccessDataResult<int>(count);
+      }
+      catch (Exception e)
+      {
+       return new ErrorDataResult<int>(e.Message);
+      }
     }
 
     public async Task<IDataResult<int>> CountWhereAsync(Expression<Func<Category, bool>> filter)

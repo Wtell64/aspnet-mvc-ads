@@ -24,7 +24,7 @@ namespace Ads.Business.Extentions
       services.AddScoped<IValidator<Advert>, AdvertValidator>();
       services.AddScoped<IValidator<AdvertComment>, AdvertCommentValidator>();
       services.AddScoped<IValidator<AdvertImage>, AdvertImageValidator>();
-
+      services.AddScoped<IValidator<Page>, PageValidator>();
 
       services.AddAutoMapper(typeof(MappingProfile));
 

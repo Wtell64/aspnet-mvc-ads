@@ -117,19 +117,13 @@ namespace Ads.Business.Concrete
     public IResult DeleteById(int id)
     {
       try
-      {       
-        var entity = _settingDal.FindById(id);
-        if (entity == null)
-        {
-          return new ErrorResult(Messages.SettingNotFound);
-        }
-        _settingDal.Delete(entity);
-        return new SuccessResult(Messages.SettingDeleted);
-        
+      {
+        _settingDal.DeleteById(id);
+        return new SuccessDataResult<Category>(Messages.CategoryDeleted);
       }
       catch (Exception e)
       {
-        return new ErrorResult(e.Message);
+        return new ErrorDataResult<Category>(e.Message);
       }
     }
 

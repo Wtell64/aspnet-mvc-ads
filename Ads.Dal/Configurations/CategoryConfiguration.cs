@@ -6,11 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bogus;
 
 namespace Ads.Dal.Configurations
 {
   public class CategoryConfiguration : IEntityTypeConfiguration<Category>
   {
+    private static int startId = 1;
+
     public void Configure(EntityTypeBuilder<Category> builder)
     {
       builder.HasKey(c => c.Id);
@@ -24,10 +27,27 @@ namespace Ads.Dal.Configurations
       //      .HasForeignKey(pc => pc.CategoryId)
       //      .OnDelete(DeleteBehavior.Restrict);
 
-      builder.HasData(
-        new Category { Id = 1, Name = "Gazlı içeçek", Description= "Deneme" }
+      
 
-      );
-    }
+    var categoryFaker = new Faker<Category>("tr")
+    .RuleFor(p => p.Id, f => startId++)
+    .RuleFor(p => p.Name, f => f.Commerce.Categories(1)[0])
+    .RuleFor(p => p.Description, f => f.Commerce.ProductDescription())
+    //.RuleFor(p => p.SurName, f => f.Person.LastName)
+    //.RuleFor(p => p.ImageUrl, f => emptyImageUrl)
+    //.RuleFor(p => p.CardNumber, f => f.Random.String(12, 15, '0', '9'))
+    //.RuleFor(p => p.StudentSchoolNumber, f => f.Random.String(2, 5, '0', '9'))
+    //.RuleFor(p => p.SchoolClassId, f => f.PickRandom(schoolClasses).Id)
+    ;
+
+    var generatedStudents = categoryFaker.Generate(10);
+
+    builder.HasData(generatedStudents);
+
+
+
+
+
+  }
   }
 }

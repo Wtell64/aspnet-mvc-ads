@@ -57,7 +57,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Adverts");
+                    b.ToTable("Adverts", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.AdvertComment", b =>
@@ -96,7 +96,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AdvertComments");
+                    b.ToTable("AdvertComments", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.AdvertImage", b =>
@@ -130,7 +130,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("AdvertId");
 
-                    b.ToTable("AdvertImages");
+                    b.ToTable("AdvertImages", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Category", b =>
@@ -163,7 +163,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -208,7 +208,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("CategoryAdverts");
+                    b.ToTable("CategoryAdverts", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppRole", b =>
@@ -530,7 +530,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pages");
+                    b.ToTable("Pages", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Setting", b =>
@@ -568,7 +568,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Advert", b =>
@@ -587,7 +587,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
                         .WithMany("AdvertComments")
                         .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")

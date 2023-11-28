@@ -33,28 +33,59 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
 			//apply entitiy configurations
 			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-			//modelBuilder.Entity<Advert>()
-			//  .HasOne(a => a.User)
-			//  .WithMany(u => u.Adverts)
-			//  .HasForeignKey(a => a.UserId)
-			//  .OnDelete(DeleteBehavior.Restrict);
+      //modelBuilder.Entity<Advert>()
+      //  .HasOne(a => a.User)
+      //  .WithMany(u => u.Adverts)
+      //  .HasForeignKey(a => a.UserId)
+      //  .OnDelete(DeleteBehavior.Restrict);
 
-			modelBuilder.Entity<AdvertComment>()
-					.HasOne(ac => ac.User)
-					.WithMany(u => u.AdvertComments) // Updated navigation property name
-					.HasForeignKey(ac => ac.UserId)
-					.OnDelete(DeleteBehavior.Restrict);
+      modelBuilder.Entity<Advert>()
+          .HasMany(a => a.AdvertComments)
+          .WithOne(ac => ac.Advert)
+          .OnDelete(DeleteBehavior.Cascade);
 
-			modelBuilder.Entity<AdvertComment>()
-					.HasOne(ac => ac.Advert)
-					.WithMany(a => a.AdvertComments)
-					.HasForeignKey(ac => ac.AdvertId)
-					.OnDelete(DeleteBehavior.Restrict);
+      modelBuilder.Entity<Advert>()
+          .HasMany(a => a.AdvertImages)
+          .WithOne(ai => ai.Advert)
+          .OnDelete(DeleteBehavior.Cascade);
 
+      modelBuilder.Entity<AdvertComment>()
+    .HasOne(ac => ac.Advert)
+    .WithMany(a => a.AdvertComments)
+    .HasForeignKey(ac => ac.AdvertId)
+    .OnDelete(DeleteBehavior.Restrict);
 
-		}
+      modelBuilder.Entity<AdvertImage>()
+          .HasOne(ai => ai.Advert)
+          .WithMany(a => a.AdvertImages)
+          .HasForeignKey(ai => ai.AdvertId)
+          .OnDelete(DeleteBehavior.Restrict);
 
-		public override int SaveChanges()
+      modelBuilder.Entity<AppUser>()
+    .HasMany(u => u.Adverts)
+    .WithOne(a => a.User)
+    .OnDelete(DeleteBehavior.Cascade);
+
+      modelBuilder.Entity<Advert>()
+      .HasOne(a => a.User)
+      .WithMany(u => u.Adverts)
+      .HasForeignKey(a => a.UserId)
+      .OnDelete(DeleteBehavior.Restrict);
+
+      modelBuilder.Entity<Category>()
+    .HasMany(c => c.CategoryAdverts)
+    .WithOne(ca => ca.Category)
+    .OnDelete(DeleteBehavior.Cascade);
+
+      modelBuilder.Entity<CategoryAdvert>()
+      .HasOne(ca => ca.Advert)
+      .WithMany(a => a.CategoryAdverts)
+      .HasForeignKey(ca => ca.AdvertId)
+      .OnDelete(DeleteBehavior.Restrict);
+
+    }
+
+    public override int SaveChanges()
 		{
 			var entries = ChangeTracker
 				.Entries()

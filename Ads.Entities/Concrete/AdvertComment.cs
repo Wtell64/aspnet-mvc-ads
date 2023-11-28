@@ -1,4 +1,5 @@
 ﻿using Ads.Entities.Concrete.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ads.Entities.Concrete
 {
@@ -10,7 +11,7 @@ namespace Ads.Entities.Concrete
 
 		public int AdvertId { get; set; }
 		public Advert Advert { get; set; }
-
+		
 		public int UserId { get; set; }
 		public AppUser User { get; set; }
 

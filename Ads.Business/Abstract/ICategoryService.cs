@@ -1,13 +1,7 @@
 ﻿using Ads.Entities.Concrete;
 using App.Core.Utilities.Results;
 using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ads.Business.Abstract
 {
@@ -31,7 +25,7 @@ namespace Ads.Business.Abstract
     Task<IDataResult<TDto>> GetAsync<TDto>(Expression<Func<Category, bool>> filter, string includeProperties = "");
     Task<IDataResult<IEnumerable<TDto>>> GetListAsync<TDto>(Expression<Func<Category, bool>> filter = null, Func<IQueryable<Category>, IOrderedQueryable<Category>> orderBy = null, string includeProperties = "");
 
- Task<IDataResult<TDto>> AddAsync<TDto>(TDto dto);
+    Task<IDataResult<TDto>> AddAsync<TDto>(TDto dto);
     Task<IResult> SaveAsync();
     Task<IDataResult<int>> CountWhereAsync(Expression<Func<Category, bool>> filter);
   }

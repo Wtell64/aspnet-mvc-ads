@@ -3,7 +3,8 @@ using Ads.Entities.Concrete;
 
 namespace Ads.Dal.Abstract
 {
-  public interface IAdvertCommentDal : IEntityRepository<AdvertComment>
+  public interface IAddressDal : IEntityRepository<Address>
   {
+
   }
 }

@@ -25,7 +25,7 @@
     public static string CategoryFound = "Kategori bulundu";
 
     public static string SaveSuccess = "Kayıt Başarılı";
-		public static string SaveFailed = "Kayıt Başarısız";
+    public static string SaveFailed = "Kayıt Başarısız";
 
 
     public static string PageAdded = "Sayfa Eklendi";
@@ -58,7 +58,20 @@
     public static string AdvertImageNotUpdated = "Advert Image Güncellenemedi";
     public static string AdvertImageUpdated = "Advert Image Güncellendi";
 
+    public static string AddressAdded = "Adres Eklendi";
+    public static string AddressDeleted = "Adres Silindi";
+    public static string AddressNotFound = "Adres bulunamadı";
+    public static string NoAddress = "Adres yok";
 
+    public static string CityAdded = "Şehir Eklendi";
+    public static string CityDeleted = "Şehir Silindi";
+    public static string CityNotFound = "Şehir bulunamadı";
+    public static string NoCity = "Şehir yok";
+
+    public static string DistrictAdded = "İlçe Eklendi";
+    public static string DistrictDeleted = "İlçe Silindi";
+    public static string DistrictNotFound = "İlçe bulunamadı";
+    public static string NoDistrict = "İlçe yok";
   }
 
 }

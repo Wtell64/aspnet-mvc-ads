@@ -1,12 +1,7 @@
 ﻿using Ads.Entities.Concrete;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bogus;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ads.Dal.Configurations
 {
@@ -27,27 +22,22 @@ namespace Ads.Dal.Configurations
       //      .HasForeignKey(pc => pc.CategoryId)
       //      .OnDelete(DeleteBehavior.Restrict);
 
-      
 
-    var categoryFaker = new Faker<Category>("tr")
-    .RuleFor(p => p.Id, f => startId++)
-    .RuleFor(p => p.Name, f => f.Commerce.Categories(1)[0])
-    .RuleFor(p => p.Description, f => f.Commerce.ProductDescription())
-    //.RuleFor(p => p.SurName, f => f.Person.LastName)
-    //.RuleFor(p => p.ImageUrl, f => emptyImageUrl)
-    //.RuleFor(p => p.CardNumber, f => f.Random.String(12, 15, '0', '9'))
-    //.RuleFor(p => p.StudentSchoolNumber, f => f.Random.String(2, 5, '0', '9'))
-    //.RuleFor(p => p.SchoolClassId, f => f.PickRandom(schoolClasses).Id)
-    ;
+      var categoryFaker = new Faker<Category>("tr")
+      .RuleFor(p => p.Id, f => startId++)
+      .RuleFor(p => p.Name, f => f.Commerce.Categories(1)[0])
+      .RuleFor(p => p.Description, f => f.Commerce.ProductDescription())
+      //.RuleFor(p => p.SurName, f => f.Person.LastName)
+      //.RuleFor(p => p.ImageUrl, f => emptyImageUrl)
+      //.RuleFor(p => p.CardNumber, f => f.Random.String(12, 15, '0', '9'))
+      //.RuleFor(p => p.StudentSchoolNumber, f => f.Random.String(2, 5, '0', '9'))
+      //.RuleFor(p => p.SchoolClassId, f => f.PickRandom(schoolClasses).Id)
+      ;
 
-    var generatedStudents = categoryFaker.Generate(10);
+      var generatedCategories = categoryFaker.Generate(10);
 
-    builder.HasData(generatedStudents);
+      builder.HasData(generatedCategories);
 
-
-
-
-
-  }
+    }
   }
 }

@@ -18,6 +18,10 @@ namespace Ads.Business.Extentions
       services.AddScoped<IAdvertCommentService, AdvertCommentManager>();
       services.AddScoped<IAdvertImageService, AdvertImageManager>();
       services.AddScoped<IPageService, PageManager>();
+      services.AddScoped<IAddressService, AddressManager>();
+      services.AddScoped<ICityService, CityManager>();
+      services.AddScoped<IDistrictService, DistrictManager>();
+
 
       //validators
       services.AddScoped<IValidator<Category>, CategoryValidator>();
@@ -25,6 +29,9 @@ namespace Ads.Business.Extentions
       services.AddScoped<IValidator<AdvertComment>, AdvertCommentValidator>();
       services.AddScoped<IValidator<AdvertImage>, AdvertImageValidator>();
       services.AddScoped<IValidator<Page>, PageValidator>();
+      services.AddScoped<IValidator<Address>, AddressValidator>();
+      services.AddScoped<IValidator<City>, CityValidator>();
+      services.AddScoped<IValidator<District>, DistrictValidator>();
 
       services.AddAutoMapper(typeof(MappingProfile));
 

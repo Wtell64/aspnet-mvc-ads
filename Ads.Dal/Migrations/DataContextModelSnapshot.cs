@@ -22,6 +22,150 @@ namespace Ads.Dal.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Ads.Entities.Concrete.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DetailedAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PostCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Address");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 11,
+                            Country = "Suudi Arabistan",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Sevgi Sokak 08b, Trabzon, Panama",
+                            IsActive = true,
+                            PostCode = "20279",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Country = "Cibuti",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Gül Sokak 870, Şırnak, Saint Martin, Fransa",
+                            IsActive = true,
+                            PostCode = "69208",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Country = "Samoa",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Namık Kemal Caddesi 82b, Giresun, Tayvan",
+                            IsActive = true,
+                            PostCode = "50025",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Country = "Avusturya",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Okul Sokak 53, Kars, Slovakya",
+                            IsActive = true,
+                            PostCode = "47104",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Country = "Seyşeller",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Yunus Emre Sokak 06b, Manisa, Finlandiya",
+                            IsActive = true,
+                            PostCode = "09802",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Country = "Hırvatistan",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "İsmet Attila Caddesi 7, Ağrı, Fransız Polinezyası",
+                            IsActive = true,
+                            PostCode = "02684",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Country = "Cezayir",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Dağınık Evler Sokak 74a, Çorum, Guatemala",
+                            IsActive = true,
+                            PostCode = "88059",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Country = "Kosova",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Ali Çetinkaya Caddesi 85, Eskişehir, Danimarka",
+                            IsActive = true,
+                            PostCode = "31215",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Country = "Japonya",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Dar Sokak 42a, Düzce, Senegal",
+                            IsActive = true,
+                            PostCode = "58703",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Country = "Lübnan",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailedAddress = "Ali Çetinkaya Caddesi 57a, Yozgat, Japonya",
+                            IsActive = true,
+                            PostCode = "17502",
+                            UserId = 0
+                        });
+                });
+
             modelBuilder.Entity("Ads.Entities.Concrete.Advert", b =>
                 {
                     b.Property<int>("Id")
@@ -43,6 +187,9 @@ namespace Ads.Dal.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -57,7 +204,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Adverts", (string)null);
+                    b.ToTable("Adverts");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.AdvertComment", b =>
@@ -96,7 +243,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AdvertComments", (string)null);
+                    b.ToTable("AdvertComments");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.AdvertImage", b =>
@@ -130,7 +277,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("AdvertId");
 
-                    b.ToTable("AdvertImages", (string)null);
+                    b.ToTable("AdvertImages");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Category", b =>
@@ -163,16 +310,88 @@ namespace Ads.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 11,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Deneme",
+                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
                             IsActive = true,
-                            Name = "Gazlı içeçek"
+                            Name = "Kids"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+                            IsActive = true,
+                            Name = "Sports"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+                            IsActive = true,
+                            Name = "Sports"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+                            IsActive = true,
+                            Name = "Music"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+                            IsActive = true,
+                            Name = "Shoes"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+                            IsActive = true,
+                            Name = "Beauty"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The Football Is Good For Training And Recreational Purposes",
+                            IsActive = true,
+                            Name = "Automotive"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+                            IsActive = true,
+                            Name = "Industrial"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+                            IsActive = true,
+                            Name = "Tools"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The Football Is Good For Training And Recreational Purposes",
+                            IsActive = true,
+                            Name = "Toys"
                         });
                 });
 
@@ -208,7 +427,1319 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("CategoryAdverts", (string)null);
+                    b.ToTable("CategoryAdverts");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("City");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Eskişehir"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "İstanbul"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Ankara"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "İzmir"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Adana"
+                        });
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.District", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("District");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 151,
+                            CityId = 65,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            CityId = 68,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            CityId = 72,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            CityId = 53,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            CityId = 77,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            CityId = 27,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            CityId = 60,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            CityId = 48,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            CityId = 32,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 160,
+                            CityId = 18,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 161,
+                            CityId = 58,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 162,
+                            CityId = 52,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 163,
+                            CityId = 51,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 164,
+                            CityId = 72,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 165,
+                            CityId = 43,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 166,
+                            CityId = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 167,
+                            CityId = 24,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 168,
+                            CityId = 48,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 169,
+                            CityId = 35,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 170,
+                            CityId = 67,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 171,
+                            CityId = 37,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 172,
+                            CityId = 15,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 173,
+                            CityId = 54,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 174,
+                            CityId = 11,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 175,
+                            CityId = 58,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 176,
+                            CityId = 32,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 177,
+                            CityId = 69,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 178,
+                            CityId = 50,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 179,
+                            CityId = 79,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 180,
+                            CityId = 26,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 181,
+                            CityId = 46,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 182,
+                            CityId = 72,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 183,
+                            CityId = 38,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 184,
+                            CityId = 11,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 185,
+                            CityId = 62,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 186,
+                            CityId = 35,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 187,
+                            CityId = 32,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 188,
+                            CityId = 26,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 189,
+                            CityId = 50,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 190,
+                            CityId = 30,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 191,
+                            CityId = 59,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 192,
+                            CityId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 193,
+                            CityId = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 194,
+                            CityId = 61,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 195,
+                            CityId = 79,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 196,
+                            CityId = 46,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 197,
+                            CityId = 66,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 198,
+                            CityId = 7,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 199,
+                            CityId = 5,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 200,
+                            CityId = 58,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 201,
+                            CityId = 80,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 202,
+                            CityId = 12,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 203,
+                            CityId = 9,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 204,
+                            CityId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 205,
+                            CityId = 49,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 206,
+                            CityId = 50,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 207,
+                            CityId = 33,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 208,
+                            CityId = 75,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 209,
+                            CityId = 40,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 210,
+                            CityId = 77,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 211,
+                            CityId = 69,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 212,
+                            CityId = 50,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 213,
+                            CityId = 61,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 214,
+                            CityId = 61,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 215,
+                            CityId = 26,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 216,
+                            CityId = 36,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 217,
+                            CityId = 72,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 218,
+                            CityId = 40,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 219,
+                            CityId = 47,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 220,
+                            CityId = 65,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 221,
+                            CityId = 30,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 222,
+                            CityId = 51,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 223,
+                            CityId = 13,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 224,
+                            CityId = 72,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 225,
+                            CityId = 30,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 226,
+                            CityId = 47,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 227,
+                            CityId = 74,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 228,
+                            CityId = 20,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 229,
+                            CityId = 27,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 230,
+                            CityId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 231,
+                            CityId = 74,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 232,
+                            CityId = 43,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 233,
+                            CityId = 8,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 234,
+                            CityId = 41,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 235,
+                            CityId = 54,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 236,
+                            CityId = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 237,
+                            CityId = 18,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 238,
+                            CityId = 26,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 239,
+                            CityId = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 240,
+                            CityId = 56,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 241,
+                            CityId = 34,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 242,
+                            CityId = 23,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 243,
+                            CityId = 26,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 244,
+                            CityId = 12,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 245,
+                            CityId = 12,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 246,
+                            CityId = 74,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 247,
+                            CityId = 61,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 248,
+                            CityId = 68,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 249,
+                            CityId = 35,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 250,
+                            CityId = 40,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 251,
+                            CityId = 48,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 252,
+                            CityId = 60,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 253,
+                            CityId = 51,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 254,
+                            CityId = 11,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 255,
+                            CityId = 75,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 256,
+                            CityId = 59,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 257,
+                            CityId = 78,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 258,
+                            CityId = 11,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 259,
+                            CityId = 56,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 260,
+                            CityId = 43,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 261,
+                            CityId = 47,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 262,
+                            CityId = 31,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 263,
+                            CityId = 27,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 264,
+                            CityId = 58,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 265,
+                            CityId = 28,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 266,
+                            CityId = 62,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 267,
+                            CityId = 65,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 268,
+                            CityId = 9,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 269,
+                            CityId = 31,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 270,
+                            CityId = 42,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 271,
+                            CityId = 16,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 272,
+                            CityId = 5,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 273,
+                            CityId = 57,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 274,
+                            CityId = 61,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 275,
+                            CityId = 76,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 276,
+                            CityId = 25,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 277,
+                            CityId = 11,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 278,
+                            CityId = 40,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 279,
+                            CityId = 81,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 280,
+                            CityId = 69,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 281,
+                            CityId = 22,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 282,
+                            CityId = 17,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 283,
+                            CityId = 27,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 284,
+                            CityId = 39,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 285,
+                            CityId = 59,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 286,
+                            CityId = 27,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 287,
+                            CityId = 13,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 288,
+                            CityId = 16,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 289,
+                            CityId = 46,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 290,
+                            CityId = 27,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 291,
+                            CityId = 51,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        },
+                        new
+                        {
+                            Id = 292,
+                            CityId = 14,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 293,
+                            CityId = 30,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Berkshire"
+                        },
+                        new
+                        {
+                            Id = 294,
+                            CityId = 51,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 295,
+                            CityId = 25,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Buckinghamshire"
+                        },
+                        new
+                        {
+                            Id = 296,
+                            CityId = 26,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Avon"
+                        },
+                        new
+                        {
+                            Id = 297,
+                            CityId = 59,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Bedfordshire"
+                        },
+                        new
+                        {
+                            Id = 298,
+                            CityId = 48,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 299,
+                            CityId = 40,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Borders"
+                        },
+                        new
+                        {
+                            Id = 300,
+                            CityId = 72,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Cambridgeshire"
+                        });
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppRole", b =>
@@ -244,21 +1775,21 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "665c4847-fbbc-4372-9792-80f1af75c56f",
+                            ConcurrencyStamp = "df633107-e39c-4a34-8590-316ed0f910d7",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "8f4557de-91d9-4f14-95ec-ee287bbfa0d3",
+                            ConcurrencyStamp = "63a9a309-72d3-4cad-9a43-a0095a5e63b4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "b66190f5-abe6-4f69-9871-9389889c4826",
+                            ConcurrencyStamp = "f4b88756-79e8-471b-ae4c-ad85cbb9f56a",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -371,7 +1902,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cc0797f1-998f-4632-b2a4-e36c89368da3",
+                            ConcurrencyStamp = "7a897afe-2b40-4579-93bc-46d47b5fef55",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "SuperAdmin",
@@ -379,10 +1910,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKJcrLl7KJb7j+5nu+h0LgSLY39slflZUkD02LQG+ZGAMZI7nFGBYzabqqTmUo0lPg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENh9QLGVWeWRS1EyZIsjfwCZFC5/0PdkA/eIBromkm8oDoT+g7J/lyZARXp+685Png==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f7ea99f0-b53c-4762-af0b-75b8ced0e05c",
+                            SecurityStamp = "7a4131f2-9a39-4e50-8c89-137fef3a33cd",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -390,7 +1921,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d04785a0-8a2c-4d34-a484-6749f3d2d176",
+                            ConcurrencyStamp = "6c4c0e7a-94eb-4f33-b141-6f5d043828d8",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -398,10 +1929,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELvfJttlQq2mZ8g7JIkNTjy8OESF1RMnoRGxBUc1KrBzXCX7CTQTT2tVbU0CJpQGsQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECLBwaRhVQjVYOr+h1mUMfn0znsSqL8RD/o9fnuI3Wf/XXln1xx4aK/O7xvc05FyGw==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "33cfe3f7-117c-4b66-b09c-7539804802ea",
+                            SecurityStamp = "f178b882-ec53-426a-9cf9-e066c4c01913",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -530,7 +2061,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pages", (string)null);
+                    b.ToTable("Pages");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Setting", b =>
@@ -552,7 +2083,7 @@ namespace Ads.Dal.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -562,13 +2093,24 @@ namespace Ads.Dal.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(400)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Settings", (string)null);
+                    b.ToTable("Settings");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.Address", b =>
+                {
+                    b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
+                        .WithMany("Addresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Advert", b =>
@@ -576,7 +2118,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
                         .WithMany("Adverts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -593,7 +2135,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
                         .WithMany("AdvertComments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Advert");
@@ -606,7 +2148,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
                         .WithMany("AdvertImages")
                         .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Advert");
@@ -617,7 +2159,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
                         .WithMany("CategoryAdverts")
                         .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Ads.Entities.Concrete.Category", "Category")
@@ -629,6 +2171,28 @@ namespace Ads.Dal.Migrations
                     b.Navigation("Advert");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
+                {
+                    b.HasOne("Ads.Entities.Concrete.Address", "Address")
+                        .WithMany("Cities")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.District", b =>
+                {
+                    b.HasOne("Ads.Entities.Concrete.City", "City")
+                        .WithMany("Districts")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppRoleClaim", b =>
@@ -693,6 +2257,11 @@ namespace Ads.Dal.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Ads.Entities.Concrete.Address", b =>
+                {
+                    b.Navigation("Cities");
+                });
+
             modelBuilder.Entity("Ads.Entities.Concrete.Advert", b =>
                 {
                     b.Navigation("AdvertComments");
@@ -707,8 +2276,15 @@ namespace Ads.Dal.Migrations
                     b.Navigation("CategoryAdverts");
                 });
 
+            modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
+                {
+                    b.Navigation("Districts");
+                });
+
             modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppUser", b =>
                 {
+                    b.Navigation("Addresses");
+
                     b.Navigation("AdvertComments");
 
                     b.Navigation("Adverts");

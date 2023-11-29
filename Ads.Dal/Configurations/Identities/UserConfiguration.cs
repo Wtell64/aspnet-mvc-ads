@@ -23,7 +23,6 @@ namespace Ads.Dal.Configurations.Identities
 
 			// Limit the size of columns to use efficient database types
 			builder.Property(u => u.UserName).HasMaxLength(100);
-			builder.Property(u => u.Address).HasMaxLength(200);
 			builder.Property(u => u.PhoneNumber).HasColumnType("varchar(20)");
 			builder.Property(u => u.NormalizedUserName).HasMaxLength(256);
 			builder.Property(u => u.Email).HasColumnType("varchar(200)");

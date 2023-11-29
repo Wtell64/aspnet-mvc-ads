@@ -17,12 +17,12 @@ namespace Ads.Dal.Configurations
        new District { Id = 2, Name = "Tepebaşı", CityId = 1 },
        new District { Id = 3, Name = "Beşiktaş", CityId = 2 },
        new District { Id = 4, Name = "Beyoğlu", CityId = 2 },
-       new District { Id = 3, Name = "Çankaya", CityId = 3 },
-       new District { Id = 4, Name = "Sincan", CityId = 3 },
-       new District { Id = 5, Name = "Bayraklı", CityId = 4 },
-       new District { Id = 5, Name = "Foça", CityId = 4 },
-       new District { Id = 5, Name = "Çukurova", CityId = 5 },
-       new District { Id = 5, Name = "Seyhan", CityId = 5 }
+       new District { Id = 5, Name = "Çankaya", CityId = 3 },
+       new District { Id = 6, Name = "Sincan", CityId = 3 },
+       new District { Id = 7, Name = "Bayraklı", CityId = 4 },
+       new District { Id = 8, Name = "Foça", CityId = 4 },
+       new District { Id = 9, Name = "Çukurova", CityId = 5 },
+       new District { Id = 10, Name = "Seyhan", CityId = 5 }
        );
     }
   }

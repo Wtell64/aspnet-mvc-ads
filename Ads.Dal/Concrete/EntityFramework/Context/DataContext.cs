@@ -33,50 +33,21 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       //apply entitiy configurations
-      modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+      
 
-      //modelBuilder.Entity<Advert>()
-      //  .HasOne(a => a.User)
-      //  .WithMany(u => u.Adverts)
-      //  .HasForeignKey(a => a.UserId)
-      //  .OnDelete(DeleteBehavior.Restrict);
-
-      modelBuilder.Entity<Advert>()
-          .HasMany(a => a.AdvertComments)
-          .WithOne(ac => ac.Advert)
-          .OnDelete(DeleteBehavior.Cascade);
-
-      modelBuilder.Entity<Advert>()
-          .HasMany(a => a.AdvertImages)
-          .WithOne(ai => ai.Advert)
-          .OnDelete(DeleteBehavior.Cascade);
-
-      modelBuilder.Entity<AdvertComment>()
-    .HasOne(ac => ac.Advert)
-    .WithMany(a => a.AdvertComments)
-    .HasForeignKey(ac => ac.AdvertId)
-    .OnDelete(DeleteBehavior.Restrict);
-
-      modelBuilder.Entity<AdvertImage>()
-          .HasOne(ai => ai.Advert)
-          .WithMany(a => a.AdvertImages)
-          .HasForeignKey(ai => ai.AdvertId)
-          .OnDelete(DeleteBehavior.Restrict);
 
       modelBuilder.Entity<AppUser>()
     .HasMany(u => u.Adverts)
     .WithOne(a => a.User)
+    .HasForeignKey(a => a.UserId)
     .OnDelete(DeleteBehavior.Cascade);
 
-      modelBuilder.Entity<Advert>()
-      .HasOne(a => a.User)
-      .WithMany(u => u.Adverts)
-      .HasForeignKey(a => a.UserId)
-      .OnDelete(DeleteBehavior.Restrict);
+
 
       modelBuilder.Entity<Category>()
     .HasMany(c => c.CategoryAdverts)
     .WithOne(ca => ca.Category)
+    .HasForeignKey(a => a.CategoryId)
     .OnDelete(DeleteBehavior.Cascade);
 
       modelBuilder.Entity<CategoryAdvert>()
@@ -84,6 +55,13 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
       .WithMany(a => a.CategoryAdverts)
       .HasForeignKey(ca => ca.AdvertId)
       .OnDelete(DeleteBehavior.Restrict);
+
+      modelBuilder.Entity<AppUser>().HasData
+      (
+        new AppUser { Id = 3, Email = "deneme", FirstName = "deneme", LastName = "deneme" }
+      );
+
+      modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
     }
 

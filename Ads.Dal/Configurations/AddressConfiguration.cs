@@ -22,6 +22,8 @@ namespace Ads.Dal.Configurations
       .RuleFor(p => p.Country, f => f.Address.Country())
       .RuleFor(p => p.PostCode, f => f.Address.ZipCode())
       .RuleFor(p => p.DetailedAddress, f => f.Address.FullAddress())
+      .RuleFor(p => p.UserId, 3)
+      .RuleFor(p => p.CityId, 3)
       ;
 
       var generatedAddress = addressFaker.Generate(10);

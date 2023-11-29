@@ -12,7 +12,10 @@ namespace Ads.Entities.Concrete
     public string DetailedAddress { get; set; }
 
     //Relationship
-    public virtual ICollection<City> Cities { get; set; }
+  
+
+    public City City { get; set; }
+    public int CityId { get; set; }
 
     public AppUser User { get; set; }
     public int UserId { get; set; }

@@ -9,7 +9,6 @@ namespace Ads.Entities.Concrete
     public virtual ICollection<District> Districts { get; set; }
 
     //Relationships
-    public Address Address { get; set; }
-    public int AddressId { get; set; }
+    public virtual ICollection<Address> Adresses { get; set; }
   }
 }

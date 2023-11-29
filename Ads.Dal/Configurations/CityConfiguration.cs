@@ -14,7 +14,7 @@ namespace Ads.Dal.Configurations
 
       builder.HasData(
       new City { Id = 1, Name = "Eskişehir" },
-      new City { Id = 2, Name = "İstanbul" },
+      new City { Id = 2, Name = "İstanbul"},
       new City { Id = 3, Name = "Ankara" },
       new City { Id = 4, Name = "İzmir" },
       new City { Id = 5, Name = "Adana" }

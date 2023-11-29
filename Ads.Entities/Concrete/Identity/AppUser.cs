@@ -8,7 +8,6 @@ namespace Ads.Entities.Concrete.Identity
 		// Adres tabloları eklenecek
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
-		public string? Address { get; set; }
 
 		//Relationships
 		public virtual ICollection<Advert> Adverts { get; set; }

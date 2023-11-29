@@ -13,7 +13,10 @@ namespace Ads.Business.ValidationRules.FluentValidation
   {
     public AdvertCommentValidator()
     {
-      RuleFor(t => t.Comment).NotEmpty().WithMessage("Yorum boş geçilemez");
+      RuleFor(t => t.Comment).NotEmpty().WithMessage("Comment cannot be empty.");
+      RuleFor(ac => ac.AdvertId).GreaterThan(0).WithMessage("AdvertId must be greater than 0.");
+      RuleFor(ac => ac.UserId).GreaterThan(0).WithMessage("UserId must be greater than 0.");
+      RuleFor(d => d.IsActive).NotNull().WithMessage("IsActive must not be null.");
     }
   }
 }

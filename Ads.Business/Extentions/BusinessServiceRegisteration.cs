@@ -21,6 +21,7 @@ namespace Ads.Business.Extentions
       services.AddScoped<IAddressService, AddressManager>();
       services.AddScoped<ICityService, CityManager>();
       services.AddScoped<IDistrictService, DistrictManager>();
+      services.AddScoped<ISettingService, SettingManager>();
 
 
       //validators
@@ -32,6 +33,7 @@ namespace Ads.Business.Extentions
       services.AddScoped<IValidator<Address>, AddressValidator>();
       services.AddScoped<IValidator<City>, CityValidator>();
       services.AddScoped<IValidator<District>, DistrictValidator>();
+      services.AddScoped<IValidator<Setting>, SettingValidator>();
 
       services.AddAutoMapper(typeof(MappingProfile));
 

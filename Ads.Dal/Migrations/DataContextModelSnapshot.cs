@@ -66,7 +66,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
 
                     b.HasData(
                         new
@@ -222,7 +222,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Adverts");
+                    b.ToTable("Adverts", (string)null);
 
                     b.HasData(
                         new
@@ -363,7 +363,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AdvertComments");
+                    b.ToTable("AdvertComments", (string)null);
 
                     b.HasData(
                         new
@@ -534,7 +534,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("AdvertId");
 
-                    b.ToTable("AdvertImages");
+                    b.ToTable("AdvertImages", (string)null);
 
                     b.HasData(
                         new
@@ -809,7 +809,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -926,7 +926,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("CategoryAdverts");
+                    b.ToTable("CategoryAdverts", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
@@ -955,7 +955,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities");
+                    b.ToTable("Cities", (string)null);
 
                     b.HasData(
                         new
@@ -1026,7 +1026,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Districts");
+                    b.ToTable("Districts", (string)null);
 
                     b.HasData(
                         new
@@ -1439,7 +1439,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pages");
+                    b.ToTable("Pages", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Setting", b =>
@@ -1477,7 +1477,7 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Address", b =>

@@ -1,5 +1,4 @@
 ﻿using Ads.Business.Abstract;
-using Ads.Business.Dtos.Category;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Web.Mvc.Controllers
@@ -11,13 +10,11 @@ namespace Ads.Web.Mvc.Controllers
     {
       _categoryService = categoryService;
     }
-    [Route("/category/category-slug")]
+    [Route("/Category/{category-slug}-{id}")]
     public IActionResult Index(int id, int page) //id = category id, page = sayfalanma
     {
       return View();
     }
-
-
   }
 }
 

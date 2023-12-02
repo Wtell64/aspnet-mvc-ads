@@ -1,0 +1,21 @@
+﻿@model IEnumerable< Ads.Entities.Concrete.Category>
+
+<div class="content-block">
+	<h1>Buy & Sell Near You </h1>
+	<p>Join the millions who buy and sell from each other <br> everyday in local communities around the world</p>
+	<div class="short-popular-category-list text-center">
+		<h2>Popular Category</h2>
+		<ul class="list-inline">
+			@if(Model != null && Model.Count()> 0)
+			{
+				@foreach (var category in Model)
+				{
+					//TODO: iconlar için bootstrap icon kullanılabilir. icon class ismi de category tablosunda string olarak tutulur.
+					<li class="list-inline-item">
+						<a asp-area="" asp-controller="Category" asp-action="Index" asp-route-category-slug="@category.Name" asp-route-id="@category.Id"><i class="fa fa-bed"></i> @category.Name</a>
+					</li>
+				}
+			}	
+		</ul>
+	</div>
+</div>

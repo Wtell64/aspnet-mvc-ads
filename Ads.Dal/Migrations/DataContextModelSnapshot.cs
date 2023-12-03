@@ -73,110 +73,110 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 11,
                             CityId = 3,
-                            Country = "Libya",
+                            Country = "Lüksemburg",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Menekşe Sokak 31, Amasya, Rusya Federasyonu",
+                            DetailedAddress = "Fatih Sokak  29c, Edirne, Afganistan",
                             IsActive = true,
-                            PostCode = "43629",
+                            PostCode = "93790",
                             UserId = 3
                         },
                         new
                         {
                             Id = 12,
                             CityId = 3,
-                            Country = "Irak",
+                            Country = "Liberya",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "İsmet Attila Caddesi 75b, Bursa, Malavi",
+                            DetailedAddress = "Harman Altı Sokak 542, Burdur, Saint Pierre ve Miquelon, Fransa",
                             IsActive = true,
-                            PostCode = "66314",
+                            PostCode = "96795",
                             UserId = 3
                         },
                         new
                         {
                             Id = 13,
                             CityId = 3,
-                            Country = "Cibuti",
+                            Country = "Belize",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Afyon Kaya Sokak 55c, Ardahan, Danimarka",
+                            DetailedAddress = "Sarıkaya Caddesi 44c, Erzurum, Mauritius",
                             IsActive = true,
-                            PostCode = "85479",
+                            PostCode = "59571",
                             UserId = 3
                         },
                         new
                         {
                             Id = 14,
                             CityId = 3,
-                            Country = "Togo",
+                            Country = "Tayland",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Tevfik Fikret Caddesi 329, Bilecik, Antigua ve Barbuda",
+                            DetailedAddress = "Kocatepe Caddesi 334, Aydın, Porto Riko, Amerika",
                             IsActive = true,
-                            PostCode = "55328",
+                            PostCode = "67601",
                             UserId = 3
                         },
                         new
                         {
                             Id = 15,
                             CityId = 3,
-                            Country = "Mauritius",
+                            Country = "Zambiya",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Lütfi Karadirek Caddesi 11, Aksaray, Vanuatu",
+                            DetailedAddress = "Okul Sokak 94a, Kütahya, Ekvator Ginesi",
                             IsActive = true,
-                            PostCode = "38517",
+                            PostCode = "28210",
                             UserId = 3
                         },
                         new
                         {
                             Id = 16,
                             CityId = 3,
-                            Country = "Kongo",
+                            Country = "Montserrat",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Harman Altı Sokak 49a, Manisa, Surinam",
+                            DetailedAddress = "Ergenekon Sokak   26, K.maraş, Guatemala",
                             IsActive = true,
-                            PostCode = "01196",
+                            PostCode = "43419",
                             UserId = 3
                         },
                         new
                         {
                             Id = 17,
                             CityId = 3,
-                            Country = "Kırgızistan",
+                            Country = "Bhutan",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Barış Sokak 6, Siirt, Santa Lucia",
+                            DetailedAddress = "Kocatepe Caddesi 41c, Rize, Şili",
                             IsActive = true,
-                            PostCode = "43446",
+                            PostCode = "84717",
                             UserId = 3
                         },
                         new
                         {
                             Id = 18,
                             CityId = 3,
-                            Country = "Somali",
+                            Country = "Guatemala",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Namık Kemal Caddesi 04c, Sakarya, Japonya",
+                            DetailedAddress = "Yunus Emre Sokak 076, Adıyaman, Amerikan Samoa",
                             IsActive = true,
-                            PostCode = "89244",
+                            PostCode = "21793",
                             UserId = 3
                         },
                         new
                         {
                             Id = 19,
                             CityId = 3,
-                            Country = "Venezuela",
+                            Country = "İspanya",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Sarıkaya Caddesi 380, Adıyaman, Nijer",
+                            DetailedAddress = "İsmet Paşa Caddesi 39c, Erzurum, Kanarya Adaları",
                             IsActive = true,
-                            PostCode = "41626",
+                            PostCode = "24012",
                             UserId = 3
                         },
                         new
                         {
                             Id = 20,
                             CityId = 3,
-                            Country = "Antigua ve Barbuda",
+                            Country = "Macaristan",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Bahçe Sokak 3, Hakkari, Tanzanya",
+                            DetailedAddress = "Namık Kemal Caddesi 49, Çorum, Guatemala",
                             IsActive = true,
-                            PostCode = "57964",
+                            PostCode = "58799",
                             UserId = 3
                         });
                 });
@@ -792,7 +792,7 @@ namespace Ads.Dal.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -813,21 +813,69 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 11,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+                            Description = "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
                             IsActive = true,
-                            Name = "Tools"
+                            Name = "Sports"
                         },
                         new
                         {
                             Id = 12,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                            Description = "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+                            IsActive = true,
+                            Name = "Shoes"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+                            IsActive = true,
+                            Name = "Industrial"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+                            IsActive = true,
+                            Name = "Sports"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+                            IsActive = true,
+                            Name = "Baby"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+                            IsActive = true,
+                            Name = "Shoes"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The Football Is Good For Training And Recreational Purposes",
                             IsActive = true,
                             Name = "Home"
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 18,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+                            IsActive = true,
+                            Name = "Toys"
+                        },
+                        new
+                        {
+                            Id = 19,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
                             IsActive = true,
@@ -835,74 +883,20 @@ namespace Ads.Dal.Migrations
                         },
                         new
                         {
-                            Id = 14,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
-                            IsActive = true,
-                            Name = "Home"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            IsActive = true,
-                            Name = "Tools"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
-                            IsActive = true,
-                            Name = "Games"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
-                            IsActive = true,
-                            Name = "Tools"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
-                            IsActive = true,
-                            Name = "Shoes"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            IsActive = true,
-                            Name = "Automotive"
-                        },
-                        new
-                        {
                             Id = 20,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+                            Description = "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
                             IsActive = true,
-                            Name = "Games"
+                            Name = "Tools"
                         });
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.CategoryAdvert", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AdvertId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -911,17 +905,18 @@ namespace Ads.Dal.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId", "AdvertId");
 
                     b.HasIndex("AdvertId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("CategoryAdverts");
                 });
@@ -1141,21 +1136,21 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "a7434017-b625-44b1-a703-8a325826771d",
+                            ConcurrencyStamp = "f1cd2356-42e8-4c3d-a199-66f681a2374c",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "0eace13d-9d3a-48a7-b93c-22d608b46610",
+                            ConcurrencyStamp = "52f8a1e9-8dbf-4397-a57a-a180189a4835",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "2dcfc899-d8fe-44de-8fb0-463891b6904d",
+                            ConcurrencyStamp = "87d77974-67cb-4875-b333-772fac33d6cd",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1264,7 +1259,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e21a45dd-b1a6-4798-a002-e45eb2a2b526",
+                            ConcurrencyStamp = "97288704-5dd6-476b-9793-059b1b78c725",
                             Email = "deneme",
                             EmailConfirmed = false,
                             FirstName = "deneme",
@@ -1277,7 +1272,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7fe640f8-a54c-4906-ac35-10712e50c83f",
+                            ConcurrencyStamp = "24e1d48e-9de9-4c98-b7fe-00e061a8d722",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "SuperAdmin",
@@ -1285,10 +1280,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPTCzFNnSGrZbGcA+b9HasrDXldcgqGXC2NZFhyxEIMXZT61RhEgTMgQkr/tlSz4Tw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHJlPKnVmSDLyX7uuTOblnLMG1VtpiLePb/LQXMgwDFZ0q9ZMOKVBO8aFUh2PHMl8Q==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "187f7df2-74ab-41c9-a311-213221b5246a",
+                            SecurityStamp = "4f70a53e-0d92-4c7f-b7ae-87b58f9bd4de",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -1296,7 +1291,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "318c95b4-c687-4f71-848e-84eecfa27575",
+                            ConcurrencyStamp = "2ee9e57e-371b-4818-ab3b-a012cf0c3fff",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -1304,10 +1299,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEYMQLfFHfDuF0a2MWnPdV3zAvNE5yUZVhTfHlO8ggT79NV5zrBGUAo2rKcXpYR44Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEFzaq+B8USyXy7aHHMPCyIvwpn7/E7YRZvd1g4KAU8LHcAj6EvK5iXb601UMqVM1Q==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bed5e817-99d0-43ce-845f-c2824ea8706d",
+                            SecurityStamp = "1c6ab19a-1ce4-4ab0-b27c-0d8edd31487e",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });

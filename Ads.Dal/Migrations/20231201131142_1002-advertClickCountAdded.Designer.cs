@@ -4,6 +4,7 @@ using Ads.Dal.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ads.Dal.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231201131142_1002-advertClickCountAdded")]
+    partial class _1002advertClickCountAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +76,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 11,
                             CityId = 3,
-
                             Country = "Afganistan",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DetailedAddress = "Harman Yolu Sokak  56a, Isparta, Arnavutluk",
@@ -85,123 +87,99 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 12,
                             CityId = 3,
-
-                            Country = "Liberya",
+                            Country = "Amerikan Samoa",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Harman Altı Sokak 542, Burdur, Saint Pierre ve Miquelon, Fransa",
+                            DetailedAddress = "Kerimoğlu Sokak 1, Isparta, Fiji",
                             IsActive = true,
-                            PostCode = "96795",
-
+                            PostCode = "35466",
                             UserId = 3
                         },
                         new
                         {
                             Id = 13,
                             CityId = 3,
-
-                            Country = "Belize",
+                            Country = "Bosna Hersek",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Sarıkaya Caddesi 44c, Erzurum, Mauritius",
+                            DetailedAddress = "Bahçe Sokak 94, Tokat, Virgin Adaları, İngiltere",
                             IsActive = true,
-                            PostCode = "59571",
-
+                            PostCode = "54322",
                             UserId = 3
                         },
                         new
                         {
                             Id = 14,
                             CityId = 3,
-
-                            Country = "Tayland",
+                            Country = "Güney Georgia ve Güney Sandviç Adaları, İngiltere",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Kocatepe Caddesi 334, Aydın, Porto Riko, Amerika",
+                            DetailedAddress = "Sıran Söğüt Sokak 69b, Düzce, Antigua ve Barbuda",
                             IsActive = true,
-                            PostCode = "67601",
-
+                            PostCode = "60190",
                             UserId = 3
                         },
                         new
                         {
                             Id = 15,
                             CityId = 3,
-
-                            Country = "Zambiya",
+                            Country = "Kuzey Maryana Adaları",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Okul Sokak 94a, Kütahya, Ekvator Ginesi",
+                            DetailedAddress = "Güven Yaka Sokak 06, Batman, Namibia",
                             IsActive = true,
-                            PostCode = "28210",
-
+                            PostCode = "91143",
                             UserId = 3
                         },
                         new
                         {
                             Id = 16,
                             CityId = 3,
-
-                            Country = "Montserrat",
+                            Country = "Guatemala",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Ergenekon Sokak   26, K.maraş, Guatemala",
+                            DetailedAddress = "Ali Çetinkaya Caddesi 80c, Niğde, Folkland Adaları, İngiltere",
                             IsActive = true,
-                            PostCode = "43419",
-
+                            PostCode = "83069",
                             UserId = 3
                         },
                         new
                         {
                             Id = 17,
                             CityId = 3,
-
-                            Country = "Bhutan",
+                            Country = "Nepal",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Kocatepe Caddesi 41c, Rize, Şili",
+                            DetailedAddress = "Tevfik Fikret Caddesi 78c, Erzincan, Kenya",
                             IsActive = true,
-                            PostCode = "84717",
-
+                            PostCode = "32229",
                             UserId = 3
                         },
                         new
                         {
                             Id = 18,
                             CityId = 3,
-
-                            Country = "Guatemala",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Yunus Emre Sokak 076, Adıyaman, Amerikan Samoa",
-                            IsActive = true,
-                            PostCode = "21793",
-
                             Country = "Fransız Güney Eyaletleri (Kerguelen Adaları)",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DetailedAddress = "Namık Kemal Caddesi 609, Mardin, Somali",
                             IsActive = true,
                             PostCode = "63143",
-
                             UserId = 3
                         },
                         new
                         {
                             Id = 19,
                             CityId = 3,
-
-                            Country = "İspanya",
+                            Country = "Bulgaristan",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "İsmet Paşa Caddesi 39c, Erzurum, Kanarya Adaları",
+                            DetailedAddress = "İsmet Paşa Caddesi 708, Kars, Kamboçya",
                             IsActive = true,
-                            PostCode = "24012",
-
+                            PostCode = "94005",
                             UserId = 3
                         },
                         new
                         {
                             Id = 20,
                             CityId = 3,
-
                             Country = "Letonya",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DetailedAddress = "Dağınık Evler Sokak 11, Erzincan, Norveç",
                             IsActive = true,
                             PostCode = "84735",
-
                             UserId = 3
                         });
                 });
@@ -820,7 +798,7 @@ namespace Ads.Dal.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -841,41 +819,33 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 11,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+                            Description = "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
                             IsActive = true,
-                            Name = "Sports"
-
+                            Name = "Books"
                         },
                         new
                         {
                             Id = 12,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+                            Description = "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
                             IsActive = true,
-                            Name = "Shoes"
-
+                            Name = "Garden"
                         },
                         new
                         {
                             Id = 13,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+                            Description = "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
                             IsActive = true,
-                            Name = "Industrial"
-
+                            Name = "Garden"
                         },
                         new
                         {
                             Id = 14,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
                             Description = "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
                             IsActive = true,
                             Name = "Games"
-
                         },
                         new
                         {
@@ -883,68 +853,62 @@ namespace Ads.Dal.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
                             IsActive = true,
-
-                            Name = "Baby"
-
+                            Name = "Games"
                         },
                         new
                         {
                             Id = 16,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+                            Description = "The Football Is Good For Training And Recreational Purposes",
                             IsActive = true,
-                            Name = "Shoes"
-
+                            Name = "Grocery"
                         },
                         new
                         {
                             Id = 17,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "The Football Is Good For Training And Recreational Purposes",
+                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
                             IsActive = true,
-                            Name = "Home"
-
+                            Name = "Computers"
                         },
                         new
                         {
                             Id = 18,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
                             IsActive = true,
-                            Name = "Toys"
-
+                            Name = "Electronics"
                         },
                         new
                         {
                             Id = 19,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                            Description = "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
                             IsActive = true,
-                            Name = "Baby"
-
+                            Name = "Home"
                         },
                         new
                         {
                             Id = 20,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-
-                            Description = "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+                            Description = "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
                             IsActive = true,
-                            Name = "Tools"
-
+                            Name = "Shoes"
                         });
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.CategoryAdvert", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("AdvertId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -953,18 +917,17 @@ namespace Ads.Dal.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CategoryId", "AdvertId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AdvertId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("CategoryAdverts");
                 });
@@ -1184,27 +1147,21 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-
-                            ConcurrencyStamp = "f1cd2356-42e8-4c3d-a199-66f681a2374c",
-
+                            ConcurrencyStamp = "39f05cb9-a745-499b-b793-06340d01df4d",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = 2,
-
-                            ConcurrencyStamp = "52f8a1e9-8dbf-4397-a57a-a180189a4835",
-
+                            ConcurrencyStamp = "d633ec03-3a62-4599-ac15-ea0e92f54375",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 3,
-
-                            ConcurrencyStamp = "87d77974-67cb-4875-b333-772fac33d6cd",
-
+                            ConcurrencyStamp = "2ff9a13a-3f09-4285-83d2-e84c9dd7aeb6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1313,9 +1270,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-
-                            ConcurrencyStamp = "97288704-5dd6-476b-9793-059b1b78c725",
-
+                            ConcurrencyStamp = "f295bf2f-9924-47b7-9d16-772abfbcfc54",
                             Email = "deneme",
                             EmailConfirmed = false,
                             FirstName = "deneme",
@@ -1328,9 +1283,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-
-                            ConcurrencyStamp = "24e1d48e-9de9-4c98-b7fe-00e061a8d722",
-
+                            ConcurrencyStamp = "286c3c02-891f-41dd-9ba1-120a960e77a4",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "SuperAdmin",
@@ -1338,12 +1291,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-
-                            PasswordHash = "AQAAAAIAAYagAAAAEHJlPKnVmSDLyX7uuTOblnLMG1VtpiLePb/LQXMgwDFZ0q9ZMOKVBO8aFUh2PHMl8Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFs7CJQu5Kfn/GQdftdtTzEJW6otaY2O6PVUlQF7QHBXryEewRYVRAb6a8gspUtnHQ==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "4f70a53e-0d92-4c7f-b7ae-87b58f9bd4de",
-
+                            SecurityStamp = "64ec2f6e-c09c-40d9-9cf7-d33ec55beb8b",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -1351,9 +1302,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-
-                            ConcurrencyStamp = "2ee9e57e-371b-4818-ab3b-a012cf0c3fff",
-
+                            ConcurrencyStamp = "038ed4a8-7c58-4e80-99a0-c0f83ba56698",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -1361,11 +1310,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEFzaq+B8USyXy7aHHMPCyIvwpn7/E7YRZvd1g4KAU8LHcAj6EvK5iXb601UMqVM1Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI9XtI5Din+dhgIuFYqBw+gfMho4olAcas1y3J3xnicnoPlI3TcRVxMcjUhXDObwRQ==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1c6ab19a-1ce4-4ab0-b27c-0d8edd31487e",
-
+                            SecurityStamp = "1256e442-b70b-41f3-96af-3e24b26ee29b",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });

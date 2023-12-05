@@ -12,7 +12,10 @@ namespace Ads.Business.ValidationRules.FluentValidation
   {
     public SettingValidator() 
     {
-      RuleFor(t=>t.User).NotEmpty().WithMessage("Kullanıcı boş olamaz");
+      RuleFor(t=>t.User).NotEmpty().WithMessage("Can not be empty.");
+      RuleFor(t => t.Name).NotEmpty().WithMessage("Can not be empty.");
+      RuleFor(t => t.Value).NotEmpty().WithMessage("Can not be empty.");
+
     }
   }
 }

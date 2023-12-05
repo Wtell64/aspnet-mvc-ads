@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ads.Dal.Migrations
 {
     /// <inheritdoc />
-    public partial class _1001ilk : Migration
+    public partial class _1002deneme : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -63,7 +63,7 @@ namespace Ads.Dal.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(300)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -382,10 +382,9 @@ namespace Ads.Dal.Migrations
                 name: "CategoryAdverts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     AdvertId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -393,7 +392,7 @@ namespace Ads.Dal.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryAdverts", x => x.Id);
+                    table.PrimaryKey("PK_CategoryAdverts", x => new { x.CategoryId, x.AdvertId });
                     table.ForeignKey(
                         name: "FK_CategoryAdverts_Adverts_AdvertId",
                         column: x => x.AdvertId,
@@ -413,9 +412,9 @@ namespace Ads.Dal.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "a7434017-b625-44b1-a703-8a325826771d", "Superadmin", "SUPERADMIN" },
-                    { 2, "0eace13d-9d3a-48a7-b93c-22d608b46610", "Admin", "ADMIN" },
-                    { 3, "2dcfc899-d8fe-44de-8fb0-463891b6904d", "User", "USER" }
+                    { 1, "f1cd2356-42e8-4c3d-a199-66f681a2374c", "Superadmin", "SUPERADMIN" },
+                    { 2, "52f8a1e9-8dbf-4397-a57a-a180189a4835", "Admin", "ADMIN" },
+                    { 3, "87d77974-67cb-4875-b333-772fac33d6cd", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -423,9 +422,9 @@ namespace Ads.Dal.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "7fe640f8-a54c-4906-ac35-10712e50c83f", "superadmin@gmail.com", true, "SuperAdmin", "SuperAdmin", false, null, "SUPERADMIN@GMAIL.COM", "SUPERADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEPTCzFNnSGrZbGcA+b9HasrDXldcgqGXC2NZFhyxEIMXZT61RhEgTMgQkr/tlSz4Tw==", "+000000000", true, "187f7df2-74ab-41c9-a311-213221b5246a", false, "superadmin@gmail.com" },
-                    { 2, 0, "318c95b4-c687-4f71-848e-84eecfa27575", "admin@gmail.com", false, "Admin", "Admin", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEEYMQLfFHfDuF0a2MWnPdV3zAvNE5yUZVhTfHlO8ggT79NV5zrBGUAo2rKcXpYR44Q==", "+000000000", false, "bed5e817-99d0-43ce-845f-c2824ea8706d", false, "admin@gmail.com" },
-                    { 3, 0, "e21a45dd-b1a6-4798-a002-e45eb2a2b526", "deneme", false, "deneme", "deneme", false, null, null, null, null, null, false, null, false, null }
+                    { 1, 0, "24e1d48e-9de9-4c98-b7fe-00e061a8d722", "superadmin@gmail.com", true, "SuperAdmin", "SuperAdmin", false, null, "SUPERADMIN@GMAIL.COM", "SUPERADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEHJlPKnVmSDLyX7uuTOblnLMG1VtpiLePb/LQXMgwDFZ0q9ZMOKVBO8aFUh2PHMl8Q==", "+000000000", true, "4f70a53e-0d92-4c7f-b7ae-87b58f9bd4de", false, "superadmin@gmail.com" },
+                    { 2, 0, "2ee9e57e-371b-4818-ab3b-a012cf0c3fff", "admin@gmail.com", false, "Admin", "Admin", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEEFzaq+B8USyXy7aHHMPCyIvwpn7/E7YRZvd1g4KAU8LHcAj6EvK5iXb601UMqVM1Q==", "+000000000", false, "1c6ab19a-1ce4-4ab0-b27c-0d8edd31487e", false, "admin@gmail.com" },
+                    { 3, 0, "97288704-5dd6-476b-9793-059b1b78c725", "deneme", false, "deneme", "deneme", false, null, null, null, null, null, false, null, false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -433,16 +432,16 @@ namespace Ads.Dal.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "IsActive", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design", true, "Tools", null },
-                    { 12, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016", true, "Home", null },
-                    { 13, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016", true, "Baby", null },
-                    { 14, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design", true, "Home", null },
-                    { 15, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J", true, "Tools", null },
-                    { 16, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart", true, "Games", null },
-                    { 17, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive", true, "Tools", null },
-                    { 18, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", true, "Shoes", null },
-                    { 19, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J", true, "Automotive", null },
-                    { 20, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J", true, "Games", null }
+                    { 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit", true, "Sports", null },
+                    { 12, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit", true, "Shoes", null },
+                    { 13, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", true, "Industrial", null },
+                    { 14, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", true, "Sports", null },
+                    { 15, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality", true, "Baby", null },
+                    { 16, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals", true, "Shoes", null },
+                    { 17, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Football Is Good For Training And Recreational Purposes", true, "Home", null },
+                    { 18, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart", true, "Toys", null },
+                    { 19, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016", true, "Baby", null },
+                    { 20, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality", true, "Tools", null }
                 });
 
             migrationBuilder.InsertData(
@@ -462,16 +461,16 @@ namespace Ads.Dal.Migrations
                 columns: new[] { "Id", "CityId", "Country", "CreatedDate", "DeletedDate", "DetailedAddress", "IsActive", "PostCode", "UpdatedDate", "UserId" },
                 values: new object[,]
                 {
-                    { 11, 3, "Libya", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Menekşe Sokak 31, Amasya, Rusya Federasyonu", true, "43629", null, 3 },
-                    { 12, 3, "Irak", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "İsmet Attila Caddesi 75b, Bursa, Malavi", true, "66314", null, 3 },
-                    { 13, 3, "Cibuti", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Afyon Kaya Sokak 55c, Ardahan, Danimarka", true, "85479", null, 3 },
-                    { 14, 3, "Togo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tevfik Fikret Caddesi 329, Bilecik, Antigua ve Barbuda", true, "55328", null, 3 },
-                    { 15, 3, "Mauritius", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Lütfi Karadirek Caddesi 11, Aksaray, Vanuatu", true, "38517", null, 3 },
-                    { 16, 3, "Kongo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Harman Altı Sokak 49a, Manisa, Surinam", true, "01196", null, 3 },
-                    { 17, 3, "Kırgızistan", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Barış Sokak 6, Siirt, Santa Lucia", true, "43446", null, 3 },
-                    { 18, 3, "Somali", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Namık Kemal Caddesi 04c, Sakarya, Japonya", true, "89244", null, 3 },
-                    { 19, 3, "Venezuela", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sarıkaya Caddesi 380, Adıyaman, Nijer", true, "41626", null, 3 },
-                    { 20, 3, "Antigua ve Barbuda", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bahçe Sokak 3, Hakkari, Tanzanya", true, "57964", null, 3 }
+                    { 11, 3, "Lüksemburg", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Fatih Sokak  29c, Edirne, Afganistan", true, "93790", null, 3 },
+                    { 12, 3, "Liberya", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Harman Altı Sokak 542, Burdur, Saint Pierre ve Miquelon, Fransa", true, "96795", null, 3 },
+                    { 13, 3, "Belize", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sarıkaya Caddesi 44c, Erzurum, Mauritius", true, "59571", null, 3 },
+                    { 14, 3, "Tayland", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Kocatepe Caddesi 334, Aydın, Porto Riko, Amerika", true, "67601", null, 3 },
+                    { 15, 3, "Zambiya", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Okul Sokak 94a, Kütahya, Ekvator Ginesi", true, "28210", null, 3 },
+                    { 16, 3, "Montserrat", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ergenekon Sokak   26, K.maraş, Guatemala", true, "43419", null, 3 },
+                    { 17, 3, "Bhutan", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Kocatepe Caddesi 41c, Rize, Şili", true, "84717", null, 3 },
+                    { 18, 3, "Guatemala", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Yunus Emre Sokak 076, Adıyaman, Amerikan Samoa", true, "21793", null, 3 },
+                    { 19, 3, "İspanya", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "İsmet Paşa Caddesi 39c, Erzurum, Kanarya Adaları", true, "24012", null, 3 },
+                    { 20, 3, "Macaristan", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Namık Kemal Caddesi 49, Çorum, Guatemala", true, "58799", null, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -649,11 +648,6 @@ namespace Ads.Dal.Migrations
                 name: "IX_CategoryAdverts_AdvertId",
                 table: "CategoryAdverts",
                 column: "AdvertId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CategoryAdverts_CategoryId",
-                table: "CategoryAdverts",
-                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Districts_CityId",

@@ -43,19 +43,6 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
     .OnDelete(DeleteBehavior.Cascade);
 
 
-
-      modelBuilder.Entity<Category>()
-    .HasMany(c => c.CategoryAdverts)
-    .WithOne(ca => ca.Category)
-    .HasForeignKey(a => a.CategoryId)
-    .OnDelete(DeleteBehavior.Cascade);
-
-      modelBuilder.Entity<CategoryAdvert>()
-      .HasOne(ca => ca.Advert)
-      .WithMany(a => a.CategoryAdverts)
-      .HasForeignKey(ca => ca.AdvertId)
-      .OnDelete(DeleteBehavior.Restrict);
-
       modelBuilder.Entity<AppUser>().HasData
       (
         new AppUser { Id = 3, Email = "deneme", FirstName = "deneme", LastName = "deneme" }

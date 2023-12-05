@@ -12,7 +12,15 @@ namespace Ads.Business.ValidationRules.FluentValidation
   {
     public CategoryValidator()
     {
-      RuleFor(t => t.Name).NotEmpty().WithMessage("Kategori ismi boş geçilemez");
+      RuleFor(n => n.Name).NotEmpty().MaximumLength(100).WithMessage("Category name cannot be empty.");
+
+      RuleFor(d => d.Description).NotEmpty().MaximumLength(300).WithMessage("Description cannot be empty");
+
+      RuleFor(d => d.Description).MaximumLength(300).WithMessage("Description cannot exceed 300 characters.");
+
+      RuleFor(ca => ca.CategoryAdverts).NotEmpty().WithMessage("At least one Category must be associated with the Advert.");
+
+      RuleFor(c => c.IsActive).NotNull().WithMessage("IsActive must not be null");
     }
   }
 }

@@ -94,6 +94,10 @@ namespace Ads.Core.Dal.Concrete.EntityFramework
     }
     public int CountWhere(Expression<Func<TEntity, bool>> filter)
     {
+      if(filter == null)
+      {
+        return _context.Set<TEntity>().Count();
+      }
       return _context.Set<TEntity>().Where(filter).Count();
     }
     //Async	

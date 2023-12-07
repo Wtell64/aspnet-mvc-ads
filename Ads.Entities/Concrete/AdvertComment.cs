@@ -7,6 +7,8 @@ namespace Ads.Entities.Concrete
 	{
 		public string Comment { get; set; }
 
+		public int StarCount { get; set; } = 3;
+
 		//Relationships
 
 		public int AdvertId { get; set; }

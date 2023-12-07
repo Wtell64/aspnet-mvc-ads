@@ -14,17 +14,15 @@ namespace Ads.Dal.Extentions
       services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DBConStr")));
 
       services.AddScoped<ICategoryDal, EFCategoryDal>();
-
       services.AddScoped<IAdvertDal, EfAdvertDal>();
       services.AddScoped<IAdvertCommentDal, EfAdvertCommentDal>();
       services.AddScoped<IAdvertImageDal, EfAdvertImageDal>();
-
       services.AddScoped<IPageDal, EfPageDal>();
-
       services.AddScoped<IAddressDal, EfAddressDal>();
       services.AddScoped<ICityDal, EfCityDal>();
       services.AddScoped<IDistrictDal, EfDisctrictDal>();
-
+      services.AddScoped<ISubcategoryAdvertDal,EfSubcategoryAdvertDal>();
+      services.AddScoped<ISubcategoryDal, EfSubcategoryDal>();
       services.AddScoped<ISettingDal, EfSettingDal>();
 
       return services;

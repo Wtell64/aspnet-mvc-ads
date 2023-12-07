@@ -14,7 +14,6 @@ namespace Ads.Business.ValidationRules.FluentValidation
     public AdvertImageValidator()
     {
       RuleFor(t => t.ImagePath).NotEmpty().WithMessage("Image path cannot be empty.");
-      RuleFor(ai => ai.AdvertId).GreaterThan(0).WithMessage("AdvertId must be greater than 0.");
       RuleFor(d => d.IsActive).NotNull().WithMessage("IsActive must not be null.");
     }
   }

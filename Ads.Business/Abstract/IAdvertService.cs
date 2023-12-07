@@ -25,6 +25,10 @@ namespace Ads.Business.Abstract
     IResult Save();
     IDataResult<int> CountWhere(Expression<Func<Advert, bool>> filter);
 
+    IDataResult<TDto> AddAndSave<TDto>(TDto dto);
+
+    IDataResult<TDto> AddAdvertCategory<TDto>(TDto dto);
+
     //Asnyc
     Task<IDataResult<TDto>> FindByIdAsync<TDto>(int id);
     Task<IDataResult<TDto>> GetAsync<TDto>(Expression<Func<Advert, bool>> filter, string includeProperties = "");
@@ -33,5 +37,9 @@ namespace Ads.Business.Abstract
     Task<IDataResult<TDto>> AddAsync<TDto>(TDto dto);
     Task<IResult> SaveAsync();
     Task<IDataResult<int>> CountWhereAsync(Expression<Func<Advert, bool>> filter);
+
+    Task<IDataResult<TDto>> AddAndSaveAsync<TDto>(TDto dto);
+
+    Task<IDataResult<TDto>> AddAdvertCategoryAsync<TDto>(TDto dto);
   }
 }

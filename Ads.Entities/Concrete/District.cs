@@ -8,5 +8,7 @@ namespace Ads.Entities.Concrete
     //Relationships
     public City City { get; set; }
     public int CityId { get; set; }
+
+    public virtual ICollection<Address> Addresses { get; set; }
   }
 }

@@ -12,7 +12,8 @@ namespace Ads.Entities.Concrete
     public string DetailedAddress { get; set; }
 
     //Relationship
-  
+    public District District { get; set; }
+    public int DistrictId { get; set; }
 
     public City City { get; set; }
     public int CityId { get; set; }

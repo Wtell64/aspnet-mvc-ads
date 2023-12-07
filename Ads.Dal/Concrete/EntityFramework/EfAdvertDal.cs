@@ -2,6 +2,7 @@
 using Ads.Dal.Abstract;
 using Ads.Dal.Concrete.EntityFramework.Context;
 using Ads.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,13 @@ namespace Ads.Dal.Concrete.EntityFramework
     private DataContext _dbContext;
 
     public EfAdvertDal(DataContext dbContext) : base(dbContext) 
-    { 
+    {
       _dbContext = dbContext;
+    }
+
+    public Advert GetLastAddedEntity()
+    {
+      return _dbContext.Adverts.OrderByDescending(a => a.Id).FirstOrDefault();
     }
   }
 }

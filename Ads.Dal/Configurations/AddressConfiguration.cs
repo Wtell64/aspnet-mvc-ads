@@ -1,5 +1,4 @@
 ﻿using Ads.Entities.Concrete;
-using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,8 +6,7 @@ namespace Ads.Dal.Configurations
 {
   public class AddressConfiguration : IEntityTypeConfiguration<Address>
   {
-    //TODO: kaç kullanıcı üretileceğini bilmediğim için UserID vermedim. User oluşturulduktan sonra burasının oluşturulması gerekiyor, user confige taşıyabiliriz.
-    private static int startId = 1;
+
 
     public void Configure(EntityTypeBuilder<Address> builder)
     {
@@ -17,18 +15,19 @@ namespace Ads.Dal.Configurations
       builder.Property(c => c.PostCode).IsRequired().HasColumnType("nvarchar(20)");
       builder.Property(c => c.DetailedAddress).IsRequired().HasColumnType("nvarchar(300)");
 
-      var addressFaker = new Faker<Address>("tr")
-      .RuleFor(p => p.Id, f => startId++)
-      .RuleFor(p => p.Country, f => f.Address.Country())
-      .RuleFor(p => p.PostCode, f => f.Address.ZipCode())
-      .RuleFor(p => p.DetailedAddress, f => f.Address.FullAddress())
-      .RuleFor(p => p.UserId, 3)
-      .RuleFor(p => p.CityId, 3)
-      ;
+			builder
+      .HasOne(ac => ac.District)
+      .WithMany(u => u.Addresses)
+      .HasForeignKey(ac => ac.DistrictId)
+      .OnDelete(DeleteBehavior.Restrict);
 
-      var generatedAddress = addressFaker.Generate(10);
-
-      builder.HasData(generatedAddress);
+			builder.HasData(
+      new Address{ Id = 1, UserId = 3, CityId = 1, DistrictId = 1, PostCode = "341449", Country = "Türkiye", DetailedAddress ="Emin Sokak" },
+      new Address { Id = 2, UserId = 4, CityId = 2, DistrictId = 3, PostCode = "25123", Country = "Türkiye", DetailedAddress = "Kerem Sokak Kus Apartmani" },
+			new Address { Id = 3, UserId = 5, CityId = 4, DistrictId = 7, PostCode = "26120", Country = "Türkiye", DetailedAddress = "Reşadiye cami üstü" },
+			new Address { Id = 4, UserId = 6, CityId = 1, DistrictId = 2, PostCode = "341449", Country = "Türkiye", DetailedAddress = "Akşemsettin Mahallesi" },
+			new Address { Id = 5, UserId = 7, CityId = 3, DistrictId = 6, Country = "Türkiye", PostCode = "06810", DetailedAddress = "Odabaşı Cd." }
+			);
     }
   }
 }

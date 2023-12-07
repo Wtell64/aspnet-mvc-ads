@@ -1,0 +1,46 @@
+﻿@model Ads.Business.Dtos.Category.CategoryViewDto
+<section class=" section">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Section title -->
+				<div class="section-title">
+					<h2>All Categories</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, provident!</p>
+				</div>
+				<div class="row">
+					<!-- Category list -->
+					@if (Model != null && Model.Categories.Count() > 0)
+						{
+							@foreach (var category in Model.Categories)
+							{
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						
+						<div class="category-block">
+								
+							<div class="header">
+							
+								<i class="fa fa-laptop icon-bg-1"></i>
+
+										<h4>@category.Name</h4>
+							</div>
+							<ul class="category-list">
+								
+										<li><a asp-area="" asp-controller="Home" asp-action="Index">Sub1 <span>93</span></a></li>
+										<li><a asp-area="" asp-controller="Home" asp-action="Index">Sub2 <span>93</span></a></li>
+										<li><a asp-area="" asp-controller="Home" asp-action="Index">Sub3 <span>93</span></a></li>
+								
+							</ul>
+						</div>
+							
+							</div>
+						}
+					} <!-- /Category List -->
+			
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Container End -->
+</section>

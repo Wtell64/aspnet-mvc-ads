@@ -6,6 +6,7 @@ namespace Ads.Entities.Concrete
 	{
 		public string Name { get; set; }
 		public string Value { get; set; }
+		public bool DarkMode { get; set; } = false;
 
 		//Relationships
 

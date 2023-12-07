@@ -1,4 +1,4 @@
-﻿using Ads.Business.Abstract;
+using Ads.Business.Abstract;
 using Ads.Business.Dtos.Advert;
 using Ads.Business.Dtos.AdvertComment;
 using Ads.Business.Dtos.AdvertImage;

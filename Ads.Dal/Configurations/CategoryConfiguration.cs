@@ -2,6 +2,7 @@
 using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace Ads.Dal.Configurations
 {
@@ -13,6 +14,7 @@ namespace Ads.Dal.Configurations
     {
       builder.HasKey(c => c.Id);
       builder.Property(c => c.Name).IsRequired().HasColumnType("nvarchar(100)");
+
       builder.Property(c => c.Description).IsRequired().HasColumnType("nvarchar(200)");
 
       builder.HasData(
@@ -25,8 +27,6 @@ namespace Ads.Dal.Configurations
 			new Category { Id = 7, IconClass = "fa fa-paw icon-bg-7", Name = "Pet Ürünleri", Description = "Evcil Hayvanlarınız İçin Herşey" },
 			new Category { Id = 8, IconClass = "fa fa-laptop icon-bg-8", Name = "Hizmetler", Description = "Aradığınız hizmetler burada !" }
       );
-
-
 		}
   }
 }

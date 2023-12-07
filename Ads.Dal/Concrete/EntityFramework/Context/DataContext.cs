@@ -33,31 +33,6 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      //apply entitiy configurations
-      
-
-
-    //  modelBuilder.Entity<AppUser>()
-    //.HasMany(u => u.Adverts)
-    //.WithOne(a => a.User)
-    //.HasForeignKey(a => a.UserId)
-    //.OnDelete(DeleteBehavior.Cascade);
-
-
-
-    //  modelBuilder.Entity<Category>()
-    //.HasMany(c => c.CategoryAdverts)
-    //.WithOne(ca => ca.Category)
-    //.HasForeignKey(a => a.CategoryId)
-    //.OnDelete(DeleteBehavior.Cascade);
-
-    //  modelBuilder.Entity<SubcategoryAdvert>()
-    //  .HasOne(ca => ca.Advert)
-    //  .WithMany(a => a.CategoryAdverts)
-    //  .HasForeignKey(ca => ca.AdvertId)
-    //  .OnDelete(DeleteBehavior.Restrict);
-
-
 
       modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 

@@ -24,4 +24,5 @@ namespace Ads.Dal.Configurations
 				new Setting { Id = 4, UserId = 1, Name = "DarkMode", Value = "0" });
 		}
 	}
+
 }

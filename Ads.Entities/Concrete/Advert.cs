@@ -1,6 +1,8 @@
+
 ﻿using Ads.Entities.Concrete.Enums;
 using Ads.Entities.Concrete.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Ads.Entities.Concrete
 {
@@ -8,15 +10,10 @@ namespace Ads.Entities.Concrete
 	{
 		public string Title { get; set; }
 		public string Description { get; set; }
-		
-		public int Price { get; set; }
-
-		public int ClickCount { get; set; }
-		
-
-
 		public AdvertConditionEnum ConditionEnum { get; set; }
-
+		public int Price { get; set; }
+		public int? ClickCount { get; set; }
+    
 		//Relationship
 		public virtual ICollection<SubcategoryAdvert> SubcategoryAdverts { get; set; }
 		public virtual ICollection<AdvertImage> AdvertImages { get; set; }

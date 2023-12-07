@@ -25,6 +25,7 @@ namespace Ads.Business.Mapping
       CreateMap<Advert, AdvertSearchDto>().ReverseMap();
       CreateMap<AdvertComment, AdvertCommentViewDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertImageViewDto>().ReverseMap();
+      CreateMap<SubCategory, SubCategoryViewDto>().ReverseMap();
 
       CreateMap<Advert,AdvertAddDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertAddDto>().ReverseMap();

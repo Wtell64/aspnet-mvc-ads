@@ -24,7 +24,14 @@
     public static string CategoryListed = "Kategoriler Listelendi";
     public static string CategoryFound = "Kategori bulundu";
 
-    public static string SaveSuccess = "Kayıt Başarılı";
+		public static string SubCategoryUpdated = "Alt Kategori Güncellendi.";
+		public static string SubCategoryDeleted = "Alt Kategori Silindi";
+		public static string SubCategoryNotFound = "Alt Kategori Bulunamadı";
+		public static string SubCategoryListed = "Alt Kategoriler Listelendi";
+		public static string SubCategoryFound = "Alt Kategori bulundu";
+		public static string SubCategoryAdded = "Alt Kategori Eklendi";
+
+		public static string SaveSuccess = "Kayıt Başarılı";
     public static string SaveFailed = "Kayıt Başarısız";
 
 

@@ -25,7 +25,7 @@ namespace App.Core.Utilities.Results
             
         }
 
-        public SuccessDataResult() : base(default,true)
+        public SuccessDataResult(FluentValidation.Results.ValidationResult validationResult) : base(default,true)
         {
             
         }

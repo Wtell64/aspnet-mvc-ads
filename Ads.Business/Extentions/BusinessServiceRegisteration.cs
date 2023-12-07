@@ -14,6 +14,7 @@ namespace Ads.Business.Extentions
     {
       //services
       services.AddScoped<ICategoryService, CategoryManager>();
+      services.AddScoped<ISubCategoryService, SubCategoryManager>();
       services.AddScoped<IAdvertService, AdvertManager>();
       services.AddScoped<IAdvertCommentService, AdvertCommentManager>();
       services.AddScoped<IAdvertImageService, AdvertImageManager>();

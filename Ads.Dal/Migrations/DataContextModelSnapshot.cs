@@ -47,6 +47,9 @@ namespace Ads.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -64,120 +67,73 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Addresses");
 
                     b.HasData(
                         new
                         {
-                            Id = 11,
-                            CityId = 3,
-                            Country = "Libya",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Menekşe Sokak 31, Amasya, Rusya Federasyonu",
+                            Id = 1,
+                            CityId = 1,
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(1713),
+                            DetailedAddress = "Emin Sokak",
+                            DistrictId = 1,
                             IsActive = true,
-                            PostCode = "43629",
+                            PostCode = "341449",
                             UserId = 3
                         },
                         new
                         {
-                            Id = 12,
-                            CityId = 3,
-                            Country = "Irak",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "İsmet Attila Caddesi 75b, Bursa, Malavi",
+                            Id = 2,
+                            CityId = 2,
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(1732),
+                            DetailedAddress = "Kerem Sokak Kus Apartmani",
+                            DistrictId = 3,
                             IsActive = true,
-                            PostCode = "66314",
-                            UserId = 3
+                            PostCode = "25123",
+                            UserId = 4
                         },
                         new
                         {
-                            Id = 13,
-                            CityId = 3,
-                            Country = "Cibuti",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Afyon Kaya Sokak 55c, Ardahan, Danimarka",
+                            Id = 3,
+                            CityId = 4,
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(1734),
+                            DetailedAddress = "Reşadiye cami üstü",
+                            DistrictId = 7,
                             IsActive = true,
-                            PostCode = "85479",
-                            UserId = 3
+                            PostCode = "26120",
+                            UserId = 5
                         },
                         new
                         {
-                            Id = 14,
-                            CityId = 3,
-                            Country = "Togo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Tevfik Fikret Caddesi 329, Bilecik, Antigua ve Barbuda",
+                            Id = 4,
+                            CityId = 1,
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(1735),
+                            DetailedAddress = "Akşemsettin Mahallesi",
+                            DistrictId = 2,
                             IsActive = true,
-                            PostCode = "55328",
-                            UserId = 3
+                            PostCode = "341449",
+                            UserId = 6
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 5,
                             CityId = 3,
-                            Country = "Mauritius",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Lütfi Karadirek Caddesi 11, Aksaray, Vanuatu",
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(1736),
+                            DetailedAddress = "Odabaşı Cd.",
+                            DistrictId = 6,
                             IsActive = true,
-                            PostCode = "38517",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CityId = 3,
-                            Country = "Kongo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Harman Altı Sokak 49a, Manisa, Surinam",
-                            IsActive = true,
-                            PostCode = "01196",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CityId = 3,
-                            Country = "Kırgızistan",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Barış Sokak 6, Siirt, Santa Lucia",
-                            IsActive = true,
-                            PostCode = "43446",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CityId = 3,
-                            Country = "Somali",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Namık Kemal Caddesi 04c, Sakarya, Japonya",
-                            IsActive = true,
-                            PostCode = "89244",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CityId = 3,
-                            Country = "Venezuela",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Sarıkaya Caddesi 380, Adıyaman, Nijer",
-                            IsActive = true,
-                            PostCode = "41626",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CityId = 3,
-                            Country = "Antigua ve Barbuda",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Bahçe Sokak 3, Hakkari, Tanzanya",
-                            IsActive = true,
-                            PostCode = "57964",
-                            UserId = 3
+                            PostCode = "06810",
+                            UserId = 7
                         });
                 });
 
@@ -188,6 +144,12 @@ namespace Ads.Dal.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClickCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConditionEnum")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -225,102 +187,770 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A stylish black lamp for your home.",
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5783),
+                            Description = "Siyah az kullanılmıs laptop",
                             IsActive = true,
-                            Price = 40,
-                            Title = "Black Lamp",
+                            Price = 140,
+                            Title = "Siyah Laptop",
                             UserId = 3
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A sturdy wooden table perfect for dining or work.",
+                            ClickCount = 0,
+                            ConditionEnum = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5789),
+                            Description = "Beyaz laptop. İhtiyacım olduğu için satıyorum",
                             IsActive = true,
-                            Price = 80,
-                            Title = "Wooden Table",
-                            UserId = 3
+                            Price = 250,
+                            Title = "Beyaz Laptop",
+                            UserId = 4
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Comfortable red chair for your living room.",
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5790),
+                            Description = "2013 model İphone",
                             IsActive = true,
-                            Price = 30,
-                            Title = "Red Chair",
-                            UserId = 3
+                            Price = 340,
+                            Title = "Iphone Telefon",
+                            UserId = 5
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Professional camera kit for photography enthusiasts.",
+                            ClickCount = 0,
+                            ConditionEnum = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5791),
+                            Description = "Android telefon en iyi telefondur",
                             IsActive = true,
-                            Price = 500,
-                            Title = "Camera Kit",
-                            UserId = 3
+                            Price = 240,
+                            Title = "Android Telefon",
+                            UserId = 7
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A spacious bookshelf to organize your books.",
+                            ClickCount = 0,
+                            ConditionEnum = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5792),
+                            Description = "Samsung Android Tablet. Sahibinden satılıktır",
                             IsActive = true,
-                            Price = 60,
-                            Title = "Bookshelf",
-                            UserId = 3
+                            Price = 220,
+                            Title = "Android Tablet",
+                            UserId = 4
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "High-quality coffee maker for coffee lovers.",
+                            ClickCount = 0,
+                            ConditionEnum = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5793),
+                            Description = "Kardeşimin ipadini satıyoruz. Üstünde az çizik vardır",
                             IsActive = true,
-                            Price = 100,
-                            Title = "Coffee Maker",
-                            UserId = 3
+                            Price = 180,
+                            Title = "İPhone Tablet IPad",
+                            UserId = 6
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Keep your desk tidy with this organizer.",
+                            ClickCount = 0,
+                            ConditionEnum = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5794),
+                            Description = "Led ekran televizyon. 20 cm e 50 cm. Az kullanılmış",
                             IsActive = true,
-                            Price = 25,
-                            Title = "Desk Organizer",
-                            UserId = 3
+                            Price = 540,
+                            Title = "Led Ekran",
+                            UserId = 6
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Convenient smartphone stand for hands-free use.",
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5795),
+                            Description = "17 inch ekranımı satıyorum",
                             IsActive = true,
-                            Price = 15,
-                            Title = "Smartphone Stand",
+                            Price = 40,
+                            Title = "Pc Ekranı",
                             UserId = 3
                         },
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Elegant leather wallet for your essentials.",
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5796),
+                            Description = "Ayşin kafede ev yemekleri seni çağırıyor",
                             IsActive = true,
-                            Price = 50,
-                            Title = "Leather Wallet",
-                            UserId = 3
+                            Price = 400,
+                            Title = "Ayşin Kafe",
+                            UserId = 5
                         },
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Stay fit with this advanced fitness tracker.",
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5797),
+                            Description = "Kafe Paranoma, dünyaca ünlü kahve çeşitleri burada",
                             IsActive = true,
-                            Price = 60,
-                            Title = "Fitness Tracker",
+                            Price = 470,
+                            Title = "Cafe Paranoma",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5798),
+                            Description = "Mcdonals seni çağırıyor",
+                            IsActive = true,
+                            Price = 200,
+                            Title = "Mcdonalds",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5799),
+                            Description = "Tostumu yiyen başka bişey yemez",
+                            IsActive = true,
+                            Price = 120,
+                            Title = "Tostçu Erol",
                             UserId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5800),
+                            Description = "Her tür yemek bulunur",
+                            IsActive = true,
+                            Price = 30,
+                            Title = "Restoran Eskargo",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5801),
+                            Description = "Yeşim restoranda her şey var",
+                            IsActive = true,
+                            Price = 140,
+                            Title = "Yeşim Restoran",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5802),
+                            Description = "Yemekler bizden sorulur",
+                            IsActive = true,
+                            Price = 340,
+                            Title = "Ayşe Teyze Restoran",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ClickCount = 0,
+                            ConditionEnum = 0,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5803),
+                            Description = "Bodrum un eşsiz yemek lezzetleri burada",
+                            IsActive = true,
+                            Price = 120,
+                            Title = "Bodrum Ev Yemekleri",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5804),
+                            Description = "10 numara arsa!",
+                            IsActive = true,
+                            Price = 40,
+                            Title = "20 metrekare, denize karşı ",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5805),
+                            Description = "İstediğini ek, biç.",
+                            IsActive = true,
+                            Price = 75,
+                            Title = "30x35 arsa, sahibinden.",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5806),
+                            Description = "Kullanıma hazır spor salonu.",
+                            IsActive = true,
+                            Price = 40,
+                            Title = "Her türlü alet mevcut",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5807),
+                            Description = "Ben olsam düşünmeden alırım.",
+                            IsActive = true,
+                            Price = 25,
+                            Title = "3 kuşaktır işlettiğimiz spor salonu satılık.",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5808),
+                            Description = "Dahiliye dahil.",
+                            IsActive = true,
+                            Price = 100000,
+                            Title = "Hastane satılır mı demeyin, satılır.",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5809),
+                            Description = "Çok da alet yok ama iş görür.",
+                            IsActive = true,
+                            Price = 165,
+                            Title = "Küçük klinik, her türlü hastaya bi bakarsınız.",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5809),
+                            Description = "Hiç düşünmeden kirala dayıoğlu. ",
+                            IsActive = true,
+                            Price = 270,
+                            Title = "İstanbulun gözde semti Bağcılarda 0+0 daire",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5810),
+                            Description = "Parası olmayan aramasın lütfen.",
+                            IsActive = true,
+                            Price = 375,
+                            Title = "3+1 fıstık gibi aileye daire.",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5811),
+                            Description = "Yaz, kış giyilir. Sıcak tutar.",
+                            IsActive = true,
+                            Price = 85,
+                            Title = "Siyah Atlet",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5812),
+                            Description = "Biraz rahatsız eder ama, ortamlarda en şık sen olursun!",
+                            IsActive = true,
+                            Price = 185,
+                            Title = "Slip Don",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5813),
+                            Description = "Al ve teklif et!",
+                            IsActive = true,
+                            Price = 30,
+                            Title = "Altın Yüzük",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5815),
+                            Description = "Çok şık, çok güzel!",
+                            IsActive = true,
+                            Price = 45,
+                            Title = "Gümüş Bileklik",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5816),
+                            Description = "Çocuğunuzun kafası sıccacık!",
+                            IsActive = true,
+                            Price = 20,
+                            Title = "Bere",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5817),
+                            Description = "Bebeniz kar oynasın.",
+                            IsActive = true,
+                            Price = 45,
+                            Title = "Eldiven",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 31,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5818),
+                            Description = "Her işinizi bununla yapın.",
+                            IsActive = true,
+                            Price = 50,
+                            Title = "SoftMicro 360",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5819),
+                            Description = "Müzik dinlemek ister misin?",
+                            IsActive = true,
+                            Price = 65,
+                            Title = "Stopify",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5820),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 400,
+                            Title = "Vergi Ödeme",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5821),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 500,
+                            Title = "Fatura Kesme",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5822),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 200,
+                            Title = "Hızlı Çözüm",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 36,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5823),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 300,
+                            Title = "Yedek Malzeme",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 37,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5824),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 200,
+                            Title = "Matematik",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 38,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5824),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 300,
+                            Title = "Türkçe",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 39,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5825),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 1000,
+                            Title = "Bina",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 40,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5826),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 760,
+                            Title = "Daire",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 41,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5827),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 5000,
+                            Title = "Büyük Otobüs",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 42,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5828),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 3000,
+                            Title = "Küçük Otobüs",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 43,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5829),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 5000,
+                            Title = "SUV",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 44,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5830),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 3000,
+                            Title = "Sedan",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 45,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5831),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 500,
+                            Title = "Scooter",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 46,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5832),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 350,
+                            Title = "Adventure",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 47,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5834),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 10000,
+                            Title = "Yelkenli",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 48,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5835),
+                            Description = "Lorem Ipsum is simply dummy text of the printing",
+                            IsActive = true,
+                            Price = 15000,
+                            Title = "Kamaralı ",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 49,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5835),
+                            Description = "Kediniz için şık tasma",
+                            IsActive = true,
+                            Price = 100,
+                            Title = "Kedi Tasması",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 50,
+                            ClickCount = 0,
+                            ConditionEnum = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5836),
+                            Description = "10+2 Kilogram Kedi Kumu",
+                            IsActive = true,
+                            Price = 120,
+                            Title = "Kedi Kumu",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 51,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5864),
+                            Description = "Köpeğiniz için şık tasma",
+                            IsActive = true,
+                            Price = 100,
+                            Title = "Köpek Tasması",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 52,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5866),
+                            Description = "10+2 Kilogram Kuru Köpek Maması",
+                            IsActive = true,
+                            Price = 900,
+                            Title = "Kuru Köpek Maması",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 55,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5867),
+                            Description = "1 Kilogram Balık Maması",
+                            IsActive = true,
+                            Price = 200,
+                            Title = "Balık Maması",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 56,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5867),
+                            Description = "Büyük boy akvaryum",
+                            IsActive = true,
+                            Price = 1500,
+                            Title = "Akvaryum",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 53,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5869),
+                            Description = "1 Kilogram Kuş Yemi",
+                            IsActive = true,
+                            Price = 150,
+                            Title = "Kuş Yemi",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 54,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5869),
+                            Description = "Suluk ve dalları olan kuş kafesi",
+                            IsActive = true,
+                            Price = 500,
+                            Title = "Kafes",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 57,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5870),
+                            Description = "Detaylı ev temizliği",
+                            IsActive = true,
+                            Price = 700,
+                            Title = "Ev Temizliği",
+                            UserId = 5
+                        },
+                        new
+                        {
+                            Id = 58,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5871),
+                            Description = "Detaylı ofis temizliği",
+                            IsActive = true,
+                            Price = 2500,
+                            Title = "Ofis Temizliği",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 59,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5872),
+                            Description = "Detaylı İç-Dış Yıkama",
+                            IsActive = true,
+                            Price = 300,
+                            Title = "İç-Dış Yıkama",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 60,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5873),
+                            Description = "Oto-Kuaför Servisi",
+                            IsActive = true,
+                            Price = 1200,
+                            Title = "Oto-Kuaför",
+                            UserId = 6
+                        },
+                        new
+                        {
+                            Id = 61,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5874),
+                            Description = "Takım elbiselerinizi 1 günde tertemiz yapıyoruz.",
+                            IsActive = true,
+                            Price = 200,
+                            Title = "Takım Elbiseler için Kuru Temizleme",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 62,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5875),
+                            Description = "Giyecekleriniz için hızlı kuru temizleme servisi",
+                            IsActive = true,
+                            Price = 50,
+                            Title = "Diğer Kuru Temizleme",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 63,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5876),
+                            Description = "İçine girince güzel.",
+                            IsActive = true,
+                            Price = 3500,
+                            Title = "Tabut",
+                            UserId = 7
+                        },
+                        new
+                        {
+                            Id = 64,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(5877),
+                            Description = "Hayır duası için ...",
+                            IsActive = true,
+                            Price = 7500,
+                            Title = "Cenaze Yemeği",
+                            UserId = 7
                         });
                 });
 
@@ -348,6 +978,9 @@ namespace Ads.Dal.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int>("StarCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -367,136 +1000,71 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AdvertId = 1,
-                            Comment = "Great product, highly recommended!",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Comment = "Kargo hızlı geldi. Çok memnun kaldım",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(4297),
                             IsActive = true,
+                            StarCount = 5,
                             UserId = 3
                         },
                         new
                         {
                             Id = 2,
-                            AdvertId = 2,
-                            Comment = "Interesting features. I might consider buying it.",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AdvertId = 3,
+                            Comment = "Ürün hiç beklediğim gibi değildi. Hiç beğenmedim",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(4303),
                             IsActive = true,
+                            StarCount = 1,
                             UserId = 3
                         },
                         new
                         {
                             Id = 3,
                             AdvertId = 3,
-                            Comment = "Not sure about the price. Is there any discount?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Comment = "Ürün çok kötüydü. Hiç beğenmedim",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(4304),
                             IsActive = true,
-                            UserId = 3
+                            StarCount = 2,
+                            UserId = 4
                         },
                         new
                         {
                             Id = 4,
-                            AdvertId = 4,
-                            Comment = "Love the design! Where can I find more details?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AdvertId = 2,
+                            Comment = "Bu nasıl bir ürün, ben böyle bir şey görmemişim.",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(4305),
                             IsActive = true,
-                            UserId = 3
+                            StarCount = 1,
+                            UserId = 4
                         },
                         new
                         {
                             Id = 5,
-                            AdvertId = 5,
-                            Comment = "This is exactly what I've been looking for!",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AdvertId = 2,
+                            Comment = "Ürün görüldüğü gibiydi.",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(4306),
                             IsActive = true,
-                            UserId = 3
+                            StarCount = 4,
+                            UserId = 7
                         },
                         new
                         {
                             Id = 6,
-                            AdvertId = 6,
-                            Comment = "Any warranty information available?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AdvertId = 3,
+                            Comment = "Güzel paketlenmişti.",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(4307),
                             IsActive = true,
-                            UserId = 3
+                            StarCount = 4,
+                            UserId = 5
                         },
                         new
                         {
                             Id = 7,
-                            AdvertId = 7,
-                            Comment = "I have a similar product, and it's fantastic!",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            AdvertId = 6,
+                            Comment = "Fiyat performans bekledik fos çıktı !",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(4308),
                             IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AdvertId = 8,
-                            Comment = "Can you provide more details about the specifications?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AdvertId = 9,
-                            Comment = "Do you ship internationally?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AdvertId = 10,
-                            Comment = "Impressive! I'll share this with my friends.",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 11,
-                            AdvertId = 1,
-                            Comment = "How long is the battery life?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 12,
-                            AdvertId = 2,
-                            Comment = "Is there a demo video available?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 13,
-                            AdvertId = 3,
-                            Comment = "I'd like to see more pictures of the product.",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 14,
-                            AdvertId = 4,
-                            Comment = "What colors are available?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AdvertId = 5,
-                            Comment = "Can you offer a discount for bulk orders?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
+                            StarCount = 3,
+                            UserId = 5
                         });
                 });
 
@@ -538,240 +1106,1536 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AdvertId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/lamp",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7190),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 2,
                             AdvertId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/lamp",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7197),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 3,
                             AdvertId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/lamp",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7198),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 4,
                             AdvertId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/table",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7198),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 5,
                             AdvertId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/table",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7199),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 6,
                             AdvertId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/table",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7232),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 7,
                             AdvertId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7233),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 8,
                             AdvertId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7233),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 9,
                             AdvertId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7234),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 10,
                             AdvertId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7235),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 11,
                             AdvertId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7236),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 12,
                             AdvertId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7236),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 13,
                             AdvertId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7236),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 14,
                             AdvertId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7237),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 15,
                             AdvertId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7237),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 16,
                             AdvertId = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7238),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 17,
                             AdvertId = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7238),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 18,
                             AdvertId = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7239),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 19,
                             AdvertId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7240),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 20,
                             AdvertId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7240),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 21,
                             AdvertId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7240),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 22,
                             AdvertId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7241),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 23,
                             AdvertId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7241),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 24,
                             AdvertId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7242),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 25,
                             AdvertId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7242),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 26,
                             AdvertId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7242),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 27,
                             AdvertId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7243),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 28,
                             AdvertId = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7243),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 29,
                             AdvertId = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7243),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
                         new
                         {
                             Id = 30,
                             AdvertId = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7244),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 31,
+                            AdvertId = 11,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7244),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 32,
+                            AdvertId = 11,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7244),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 33,
+                            AdvertId = 11,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7245),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 34,
+                            AdvertId = 12,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7246),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 35,
+                            AdvertId = 12,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7247),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 36,
+                            AdvertId = 12,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7247),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 37,
+                            AdvertId = 13,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7247),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 38,
+                            AdvertId = 13,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7248),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 39,
+                            AdvertId = 13,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7248),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 40,
+                            AdvertId = 14,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7249),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 41,
+                            AdvertId = 14,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7249),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 42,
+                            AdvertId = 14,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7249),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 43,
+                            AdvertId = 15,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7250),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 44,
+                            AdvertId = 15,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7250),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 45,
+                            AdvertId = 15,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7250),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 46,
+                            AdvertId = 16,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7251),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 47,
+                            AdvertId = 16,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7251),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 48,
+                            AdvertId = 16,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7252),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 49,
+                            AdvertId = 17,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7252),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 50,
+                            AdvertId = 17,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7252),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 51,
+                            AdvertId = 17,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7253),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 52,
+                            AdvertId = 18,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7253),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 53,
+                            AdvertId = 18,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7253),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 54,
+                            AdvertId = 18,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7254),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 55,
+                            AdvertId = 19,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7254),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 56,
+                            AdvertId = 19,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7254),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 57,
+                            AdvertId = 19,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7255),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 58,
+                            AdvertId = 20,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7255),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 59,
+                            AdvertId = 20,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7256),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 60,
+                            AdvertId = 20,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7256),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 61,
+                            AdvertId = 21,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7256),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 62,
+                            AdvertId = 21,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7257),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 63,
+                            AdvertId = 21,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7257),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 64,
+                            AdvertId = 22,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7257),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 65,
+                            AdvertId = 22,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7258),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 66,
+                            AdvertId = 22,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7259),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 67,
+                            AdvertId = 23,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7259),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 68,
+                            AdvertId = 23,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7260),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 69,
+                            AdvertId = 23,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7260),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 70,
+                            AdvertId = 24,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7260),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 71,
+                            AdvertId = 24,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7261),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 72,
+                            AdvertId = 24,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7261),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 73,
+                            AdvertId = 25,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7261),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 74,
+                            AdvertId = 25,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7262),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 75,
+                            AdvertId = 25,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7262),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 76,
+                            AdvertId = 26,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7312),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 77,
+                            AdvertId = 26,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7313),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 78,
+                            AdvertId = 26,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7313),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 79,
+                            AdvertId = 27,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7314),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 80,
+                            AdvertId = 27,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7314),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 81,
+                            AdvertId = 27,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7315),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 82,
+                            AdvertId = 28,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7315),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 83,
+                            AdvertId = 28,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7315),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 84,
+                            AdvertId = 28,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7316),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 85,
+                            AdvertId = 29,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7316),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 86,
+                            AdvertId = 29,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7317),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 87,
+                            AdvertId = 29,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7317),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 88,
+                            AdvertId = 30,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7317),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 89,
+                            AdvertId = 30,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7318),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 90,
+                            AdvertId = 30,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7318),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 91,
+                            AdvertId = 31,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7319),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 92,
+                            AdvertId = 31,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7319),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 93,
+                            AdvertId = 31,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7319),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 94,
+                            AdvertId = 32,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7320),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 95,
+                            AdvertId = 32,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7320),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 96,
+                            AdvertId = 32,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7320),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 97,
+                            AdvertId = 33,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7321),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 98,
+                            AdvertId = 33,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7321),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 99,
+                            AdvertId = 33,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7321),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 100,
+                            AdvertId = 34,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7322),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 101,
+                            AdvertId = 34,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7322),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 102,
+                            AdvertId = 34,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7322),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 103,
+                            AdvertId = 35,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7323),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 104,
+                            AdvertId = 35,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7323),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 105,
+                            AdvertId = 35,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7324),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 106,
+                            AdvertId = 36,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7324),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 107,
+                            AdvertId = 36,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7324),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 108,
+                            AdvertId = 36,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7325),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 109,
+                            AdvertId = 37,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7325),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 110,
+                            AdvertId = 37,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7325),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 111,
+                            AdvertId = 37,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7326),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 112,
+                            AdvertId = 38,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7326),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 113,
+                            AdvertId = 38,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7326),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 114,
+                            AdvertId = 38,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7327),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 115,
+                            AdvertId = 39,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7327),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 116,
+                            AdvertId = 39,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7328),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 117,
+                            AdvertId = 39,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7328),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 118,
+                            AdvertId = 40,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7328),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 119,
+                            AdvertId = 40,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7329),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 120,
+                            AdvertId = 40,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7329),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 121,
+                            AdvertId = 41,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7329),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 122,
+                            AdvertId = 41,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7330),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 123,
+                            AdvertId = 41,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7330),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 124,
+                            AdvertId = 42,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7330),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 125,
+                            AdvertId = 42,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7331),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 126,
+                            AdvertId = 42,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7331),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 127,
+                            AdvertId = 43,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7332),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 128,
+                            AdvertId = 43,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7332),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 129,
+                            AdvertId = 43,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7332),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 130,
+                            AdvertId = 44,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7333),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 131,
+                            AdvertId = 44,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7334),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 132,
+                            AdvertId = 44,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7334),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 133,
+                            AdvertId = 45,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7335),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 134,
+                            AdvertId = 45,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7335),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 135,
+                            AdvertId = 45,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7335),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 136,
+                            AdvertId = 46,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7336),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 137,
+                            AdvertId = 46,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7336),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 138,
+                            AdvertId = 46,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7336),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 139,
+                            AdvertId = 47,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7337),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 140,
+                            AdvertId = 47,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7337),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 141,
+                            AdvertId = 47,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7337),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 142,
+                            AdvertId = 48,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7338),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 143,
+                            AdvertId = 48,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7338),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 144,
+                            AdvertId = 48,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7339),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 145,
+                            AdvertId = 49,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7339),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 146,
+                            AdvertId = 49,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7382),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 147,
+                            AdvertId = 49,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7382),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 148,
+                            AdvertId = 50,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7383),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 149,
+                            AdvertId = 50,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7383),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 150,
+                            AdvertId = 50,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7383),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 151,
+                            AdvertId = 51,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7384),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 152,
+                            AdvertId = 51,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7384),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 153,
+                            AdvertId = 51,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7385),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 154,
+                            AdvertId = 52,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7385),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 155,
+                            AdvertId = 52,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7386),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 156,
+                            AdvertId = 52,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7386),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 157,
+                            AdvertId = 53,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7386),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 158,
+                            AdvertId = 53,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7387),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 159,
+                            AdvertId = 53,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7387),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 160,
+                            AdvertId = 54,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7387),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 161,
+                            AdvertId = 54,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7388),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 162,
+                            AdvertId = 54,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7388),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 163,
+                            AdvertId = 55,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7389),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 164,
+                            AdvertId = 55,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7389),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 165,
+                            AdvertId = 55,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7389),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 166,
+                            AdvertId = 56,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7390),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 167,
+                            AdvertId = 56,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7390),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 168,
+                            AdvertId = 56,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7390),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 169,
+                            AdvertId = 57,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7391),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 170,
+                            AdvertId = 57,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7391),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 171,
+                            AdvertId = 57,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7391),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 172,
+                            AdvertId = 58,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7392),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 173,
+                            AdvertId = 58,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7392),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 174,
+                            AdvertId = 58,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7392),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 175,
+                            AdvertId = 59,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7393),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 176,
+                            AdvertId = 59,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7393),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 177,
+                            AdvertId = 59,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7394),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 178,
+                            AdvertId = 60,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7394),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 179,
+                            AdvertId = 60,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7394),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 180,
+                            AdvertId = 60,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7395),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 181,
+                            AdvertId = 61,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7395),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 182,
+                            AdvertId = 61,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7395),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 183,
+                            AdvertId = 61,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7396),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 184,
+                            AdvertId = 62,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7396),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 185,
+                            AdvertId = 62,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7396),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 186,
+                            AdvertId = 62,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7397),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 187,
+                            AdvertId = 63,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7397),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 188,
+                            AdvertId = 63,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7398),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 189,
+                            AdvertId = 63,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7398),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 190,
+                            AdvertId = 64,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7398),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 191,
+                            AdvertId = 64,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7399),
+                            ImagePath = "http://via.placeholder.com/610x400",
+                            IsActive = true
+                        },
+                        new
+                        {
+                            Id = 192,
+                            AdvertId = 64,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(7399),
+                            ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         });
                 });
@@ -794,6 +2658,10 @@ namespace Ads.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("IconClass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -811,119 +2679,76 @@ namespace Ads.Dal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 11,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8793),
+                            Description = "Elektronik araçların satıldığı kategoridir",
+                            IconClass = "fa fa-laptop icon-bg-1",
                             IsActive = true,
-                            Name = "Tools"
+                            Name = "Elektronik"
                         },
                         new
                         {
-                            Id = 12,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8799),
+                            Description = "Restoranlarınız ile ilgili reklamları burda verebilirsiniz",
+                            IconClass = "fa fa-apple icon-bg-2",
                             IsActive = true,
-                            Name = "Home"
+                            Name = "Restoran"
                         },
                         new
                         {
-                            Id = 13,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8800),
+                            Description = "Ev,arsa,dükkan.",
+                            IconClass = "fa fa-home icon-bg-3",
                             IsActive = true,
-                            Name = "Baby"
+                            Name = "Emlak"
                         },
                         new
                         {
-                            Id = 14,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+                            Id = 4,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8801),
+                            Description = "7'den 70'e tüm ürünler.",
+                            IconClass = "fa fa-shopping-basket icon-bg-4",
                             IsActive = true,
-                            Name = "Home"
+                            Name = "Alışveriş"
                         },
                         new
                         {
-                            Id = 15,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+                            Id = 5,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8802),
+                            Description = "Kendi mesleğine göre ilan verebilirsin.",
+                            IconClass = "fa fa-briefcase icon-bg-5",
                             IsActive = true,
-                            Name = "Tools"
+                            Name = "Meslekler"
                         },
                         new
                         {
-                            Id = 16,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+                            Id = 6,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8803),
+                            Description = "Aradığın araçlar burada",
+                            IconClass = "fa fa-car icon-bg-6",
                             IsActive = true,
-                            Name = "Games"
+                            Name = "Araçlar"
                         },
                         new
                         {
-                            Id = 17,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+                            Id = 7,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8803),
+                            Description = "Evcil Hayvanlarınız İçin Herşey",
+                            IconClass = "fa fa-paw icon-bg-7",
                             IsActive = true,
-                            Name = "Tools"
+                            Name = "Pet Ürünleri"
                         },
                         new
                         {
-                            Id = 18,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+                            Id = 8,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 683, DateTimeKind.Local).AddTicks(8804),
+                            Description = "Aradığınız hizmetler burada !",
+                            IconClass = "fa fa-laptop icon-bg-8",
                             IsActive = true,
-                            Name = "Shoes"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            IsActive = true,
-                            Name = "Automotive"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            IsActive = true,
-                            Name = "Games"
+                            Name = "Hizmetler"
                         });
-                });
-
-            modelBuilder.Entity("Ads.Entities.Concrete.CategoryAdvert", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AdvertId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdvertId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("CategoryAdverts");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
@@ -958,35 +2783,35 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(143),
                             IsActive = true,
                             Name = "Eskişehir"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(147),
                             IsActive = true,
                             Name = "İstanbul"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(148),
                             IsActive = true,
                             Name = "Ankara"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(149),
                             IsActive = true,
                             Name = "İzmir"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(149),
                             IsActive = true,
                             Name = "Adana"
                         });
@@ -1030,7 +2855,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1473),
                             IsActive = true,
                             Name = "Odunpazarı"
                         },
@@ -1038,7 +2863,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             CityId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1477),
                             IsActive = true,
                             Name = "Tepebaşı"
                         },
@@ -1046,7 +2871,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 3,
                             CityId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1478),
                             IsActive = true,
                             Name = "Beşiktaş"
                         },
@@ -1054,7 +2879,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 4,
                             CityId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1479),
                             IsActive = true,
                             Name = "Beyoğlu"
                         },
@@ -1062,7 +2887,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 5,
                             CityId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1479),
                             IsActive = true,
                             Name = "Çankaya"
                         },
@@ -1070,7 +2895,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 6,
                             CityId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1480),
                             IsActive = true,
                             Name = "Sincan"
                         },
@@ -1078,7 +2903,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 7,
                             CityId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1481),
                             IsActive = true,
                             Name = "Bayraklı"
                         },
@@ -1086,7 +2911,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 8,
                             CityId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1481),
                             IsActive = true,
                             Name = "Foça"
                         },
@@ -1094,7 +2919,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 9,
                             CityId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1482),
                             IsActive = true,
                             Name = "Çukurova"
                         },
@@ -1102,7 +2927,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 10,
                             CityId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 684, DateTimeKind.Local).AddTicks(1483),
                             IsActive = true,
                             Name = "Seyhan"
                         });
@@ -1141,21 +2966,21 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "a7434017-b625-44b1-a703-8a325826771d",
+                            ConcurrencyStamp = "2d4fb357-4b9c-47dc-be7e-04a65f175456",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "0eace13d-9d3a-48a7-b93c-22d608b46610",
+                            ConcurrencyStamp = "4594033f-06e8-4871-b07d-c1e6009ea3a9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "2dcfc899-d8fe-44de-8fb0-463891b6904d",
+                            ConcurrencyStamp = "3cab1159-1129-4d10-946c-ac1b0162efbd",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1200,6 +3025,12 @@ namespace Ads.Dal.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasColumnType("varchar(200)");
 
@@ -1209,6 +3040,13 @@ namespace Ads.Dal.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -1243,6 +3081,9 @@ namespace Ads.Dal.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -1262,33 +3103,23 @@ namespace Ads.Dal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 3,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e21a45dd-b1a6-4798-a002-e45eb2a2b526",
-                            Email = "deneme",
-                            EmailConfirmed = false,
-                            FirstName = "deneme",
-                            LastName = "deneme",
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7fe640f8-a54c-4906-ac35-10712e50c83f",
+                            ConcurrencyStamp = "cc6ad2a7-104b-434f-9a29-0d4a67d14e04",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 686, DateTimeKind.Local).AddTicks(8859),
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "SuperAdmin",
+                            ImagePath = "deneme",
+                            IsActive = true,
                             LastName = "SuperAdmin",
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPTCzFNnSGrZbGcA+b9HasrDXldcgqGXC2NZFhyxEIMXZT61RhEgTMgQkr/tlSz4Tw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHJMhR9toc2GRcmrQk4s0+tYUCaK6WLbbIV6bBhmiSmHsxwTlzwAvvZLmTsFDk0G0g==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "187f7df2-74ab-41c9-a311-213221b5246a",
+                            SecurityStamp = "aa0f44cd-dbe9-4907-906c-c5f3e0d49b9c",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -1296,20 +3127,133 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "318c95b4-c687-4f71-848e-84eecfa27575",
+                            ConcurrencyStamp = "bf1ff727-935a-4e85-91d0-d8ae2d917ba8",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 740, DateTimeKind.Local).AddTicks(1572),
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
+                            ImagePath = "deneme",
+                            IsActive = true,
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEYMQLfFHfDuF0a2MWnPdV3zAvNE5yUZVhTfHlO8ggT79NV5zrBGUAo2rKcXpYR44Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAUgkaVLdlj1l5/i9zp9ryJL/3OXCMhHp+6BfTrs0wW4adzL19T6+oZh1W/hXlO+cw==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bed5e817-99d0-43ce-845f-c2824ea8706d",
+                            SecurityStamp = "c0851805-cace-4d17-9dd7-4682c785bd7a",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d563b96b-58be-416c-8d34-051ed9f90fd2",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 795, DateTimeKind.Local).AddTicks(7553),
+                            Email = "arasmentese96@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Aras",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Menteşe",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "arasmentese96@GMAIL.COM",
+                            NormalizedUserName = "arasmentese96@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAED4V/jOw7WHCQtKZpkeG6+cWXpFdJw41Cy7ZT8ZpraLQ7hkeydK5EoZQ1c+pSTMocQ==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "89b84c58-53be-4a27-883a-1d7b07e9cb6f",
+                            TwoFactorEnabled = false,
+                            UserName = "arasmentese96@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7a567a7f-61b7-4789-b697-6ec8788d6ff3",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 850, DateTimeKind.Local).AddTicks(9552),
+                            Email = "elif@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Elif",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Sakçı Tuncer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ELIF@GMAIL.COM",
+                            NormalizedUserName = "ELIF@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJXuYv8JPze89Mh7nJFIsuZNqRtEVR8z1RNBr0f5eec31CWQCjStIY2K/zbF9X4neA==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1eba0b69-2bd6-4958-a8d6-7f0b6f473735",
+                            TwoFactorEnabled = false,
+                            UserName = "elif@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "61e446e6-dd05-45e9-ab63-c73abae263b6",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 905, DateTimeKind.Local).AddTicks(7861),
+                            Email = "ismailycer@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "İsmail",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Yücer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ISMAILYCER@GMAIL.COM",
+                            NormalizedUserName = "ISMAILYCER@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJ92XhnGOVn6TYAOWx62SvdmSfII9RwljDsfMsTbMFcJsbQKFxfPd774KfGtPL7dmQ==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e606d9b6-dbc6-4c77-9c68-5f893673d2c5",
+                            TwoFactorEnabled = false,
+                            UserName = "ismailycer@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2a7e6b83-9df7-4f07-a79e-5fa75dcbea79",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 16, 960, DateTimeKind.Local).AddTicks(5479),
+                            Email = "muratcanagic@hotmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Muratcan",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Agıç",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MURATCANAGIC@HOTMAIL.COM",
+                            NormalizedUserName = "MURATCANAGIC@HOTMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIL/t8G9ZFfKCJPnTpHtxv/sVL4z9qVfPQ9dEaGdVu2aM69XgUDlEanmwnuUwuzIcg==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5448ce71-010f-49a9-9e9f-9b97cab3d4fc",
+                            TwoFactorEnabled = false,
+                            UserName = "muratcanagic@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1a11660f-3457-49d5-aa66-34263ac65d3a",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 23, DateTimeKind.Local).AddTicks(6353),
+                            Email = "ridvankesken@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Rıdvan",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Kesken",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "RIDVANKESKEN@GMAIL.COM",
+                            NormalizedUserName = "RIDVANKESKEN@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM3/Pnu/q3AOFRvWP/TGXmqFotAnNZz1/JecuIAjDjTiZqco120JBhe8sAhPRjilcw==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "fd6c65f2-084f-422f-a7fb-588a8d6991c3",
+                            TwoFactorEnabled = false,
+                            UserName = "ridvankesken@gmail.com"
                         });
                 });
 
@@ -1384,6 +3328,31 @@ namespace Ads.Dal.Migrations
                         {
                             UserId = 2,
                             RoleId = 2
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 4,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 5,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 6,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 7,
+                            RoleId = 3
                         });
                 });
 
@@ -1437,6 +3406,24 @@ namespace Ads.Dal.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "Bizim Hakkımızda Herşey Burada",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(5080),
+                            IsActive = true,
+                            Title = "Hakkımızda"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "Bize Ulaşın ve Soru Sorun",
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(5084),
+                            IsActive = true,
+                            Title = "Bize Ulaşın"
+                        });
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Setting", b =>
@@ -1475,6 +3462,885 @@ namespace Ads.Dal.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(6258),
+                            IsActive = true,
+                            Name = "MaxPostPerPage",
+                            UserId = 1,
+                            Value = "50"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(6260),
+                            IsActive = true,
+                            Name = "MaxPostPerPage",
+                            UserId = 2,
+                            Value = "20"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(6261),
+                            IsActive = true,
+                            Name = "MaxPostPerPage",
+                            UserId = 3,
+                            Value = "10"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(6262),
+                            IsActive = true,
+                            Name = "DarkMode",
+                            UserId = 1,
+                            Value = "0"
+                        });
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.Subcategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Subcategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8438),
+                            IsActive = true,
+                            Name = "Laptop"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8439),
+                            IsActive = true,
+                            Name = "Telefon"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8440),
+                            IsActive = true,
+                            Name = "Tablet"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8441),
+                            IsActive = true,
+                            Name = "Ekran"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8442),
+                            IsActive = true,
+                            Name = "Kafe"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8442),
+                            IsActive = true,
+                            Name = "Fast Food"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8443),
+                            IsActive = true,
+                            Name = "Restoran"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8443),
+                            IsActive = true,
+                            Name = "Yöresel Yemekler"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8444),
+                            IsActive = true,
+                            Name = "Arsa"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8445),
+                            IsActive = true,
+                            Name = "Spor Salonu"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8445),
+                            IsActive = true,
+                            Name = "Hastane"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8446),
+                            IsActive = true,
+                            Name = "Ev"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 4,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8446),
+                            IsActive = true,
+                            Name = "Erkek Giysileri"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 4,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8447),
+                            IsActive = true,
+                            Name = "Aksesuarlar"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 4,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8448),
+                            IsActive = true,
+                            Name = "Çocuk Giysileri"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 4,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8448),
+                            IsActive = true,
+                            Name = "Yazılım"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CategoryId = 5,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8449),
+                            IsActive = true,
+                            Name = "Muhasebe"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoryId = 5,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8450),
+                            IsActive = true,
+                            Name = "Kombi Tamiri"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoryId = 5,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8450),
+                            IsActive = true,
+                            Name = "Özel Ders"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryId = 5,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8451),
+                            IsActive = true,
+                            Name = "Boyacı"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CategoryId = 6,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8452),
+                            IsActive = true,
+                            Name = "Otobüs"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CategoryId = 6,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8452),
+                            IsActive = true,
+                            Name = "Araç"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CategoryId = 6,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8453),
+                            IsActive = true,
+                            Name = "Motorsiklet"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CategoryId = 6,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8453),
+                            IsActive = true,
+                            Name = "Yat"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CategoryId = 7,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8454),
+                            IsActive = true,
+                            Name = "Kedi Ürünleri"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CategoryId = 7,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8455),
+                            IsActive = true,
+                            Name = "Köpek Ürünleri"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CategoryId = 7,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8455),
+                            IsActive = true,
+                            Name = "Kuş Ürünleri"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CategoryId = 7,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8456),
+                            IsActive = true,
+                            Name = "Balık Ürünleri"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CategoryId = 8,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8456),
+                            IsActive = true,
+                            Name = "Temizlik"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CategoryId = 8,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8457),
+                            IsActive = true,
+                            Name = "Araba Yıkama"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CategoryId = 8,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8458),
+                            IsActive = true,
+                            Name = "Kuru Temizleme"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CategoryId = 8,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(8458),
+                            IsActive = true,
+                            Name = "Cenaze"
+                        });
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.SubcategoryAdvert", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AdvertId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SubcategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertId");
+
+                    b.HasIndex("SubcategoryId");
+
+                    b.ToTable("SubcategoryAdverts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AdvertId = 1,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7260),
+                            IsActive = true,
+                            SubcategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AdvertId = 2,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7262),
+                            IsActive = true,
+                            SubcategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AdvertId = 3,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7263),
+                            IsActive = true,
+                            SubcategoryId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AdvertId = 4,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7264),
+                            IsActive = true,
+                            SubcategoryId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AdvertId = 5,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7264),
+                            IsActive = true,
+                            SubcategoryId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AdvertId = 6,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7265),
+                            IsActive = true,
+                            SubcategoryId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AdvertId = 7,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7266),
+                            IsActive = true,
+                            SubcategoryId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AdvertId = 8,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7266),
+                            IsActive = true,
+                            SubcategoryId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AdvertId = 9,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7267),
+                            IsActive = true,
+                            SubcategoryId = 5
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AdvertId = 10,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7268),
+                            IsActive = true,
+                            SubcategoryId = 5
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AdvertId = 11,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7268),
+                            IsActive = true,
+                            SubcategoryId = 6
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AdvertId = 12,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7269),
+                            IsActive = true,
+                            SubcategoryId = 6
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AdvertId = 13,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7269),
+                            IsActive = true,
+                            SubcategoryId = 7
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AdvertId = 14,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7270),
+                            IsActive = true,
+                            SubcategoryId = 7
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AdvertId = 15,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7271),
+                            IsActive = true,
+                            SubcategoryId = 8
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AdvertId = 16,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7271),
+                            IsActive = true,
+                            SubcategoryId = 8
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AdvertId = 17,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7272),
+                            IsActive = true,
+                            SubcategoryId = 9
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AdvertId = 18,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7273),
+                            IsActive = true,
+                            SubcategoryId = 9
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AdvertId = 19,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7273),
+                            IsActive = true,
+                            SubcategoryId = 10
+                        },
+                        new
+                        {
+                            Id = 20,
+                            AdvertId = 20,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7274),
+                            IsActive = true,
+                            SubcategoryId = 10
+                        },
+                        new
+                        {
+                            Id = 21,
+                            AdvertId = 21,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7275),
+                            IsActive = true,
+                            SubcategoryId = 11
+                        },
+                        new
+                        {
+                            Id = 22,
+                            AdvertId = 22,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7276),
+                            IsActive = true,
+                            SubcategoryId = 11
+                        },
+                        new
+                        {
+                            Id = 23,
+                            AdvertId = 23,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7276),
+                            IsActive = true,
+                            SubcategoryId = 12
+                        },
+                        new
+                        {
+                            Id = 24,
+                            AdvertId = 24,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7277),
+                            IsActive = true,
+                            SubcategoryId = 12
+                        },
+                        new
+                        {
+                            Id = 25,
+                            AdvertId = 25,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7278),
+                            IsActive = true,
+                            SubcategoryId = 13
+                        },
+                        new
+                        {
+                            Id = 26,
+                            AdvertId = 26,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7278),
+                            IsActive = true,
+                            SubcategoryId = 13
+                        },
+                        new
+                        {
+                            Id = 27,
+                            AdvertId = 27,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7279),
+                            IsActive = true,
+                            SubcategoryId = 14
+                        },
+                        new
+                        {
+                            Id = 28,
+                            AdvertId = 28,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7309),
+                            IsActive = true,
+                            SubcategoryId = 14
+                        },
+                        new
+                        {
+                            Id = 29,
+                            AdvertId = 29,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7310),
+                            IsActive = true,
+                            SubcategoryId = 15
+                        },
+                        new
+                        {
+                            Id = 30,
+                            AdvertId = 30,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7310),
+                            IsActive = true,
+                            SubcategoryId = 15
+                        },
+                        new
+                        {
+                            Id = 31,
+                            AdvertId = 31,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7311),
+                            IsActive = true,
+                            SubcategoryId = 16
+                        },
+                        new
+                        {
+                            Id = 32,
+                            AdvertId = 32,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7312),
+                            IsActive = true,
+                            SubcategoryId = 16
+                        },
+                        new
+                        {
+                            Id = 33,
+                            AdvertId = 33,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7312),
+                            IsActive = true,
+                            SubcategoryId = 17
+                        },
+                        new
+                        {
+                            Id = 34,
+                            AdvertId = 34,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7313),
+                            IsActive = true,
+                            SubcategoryId = 17
+                        },
+                        new
+                        {
+                            Id = 35,
+                            AdvertId = 35,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7313),
+                            IsActive = true,
+                            SubcategoryId = 18
+                        },
+                        new
+                        {
+                            Id = 36,
+                            AdvertId = 36,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7314),
+                            IsActive = true,
+                            SubcategoryId = 18
+                        },
+                        new
+                        {
+                            Id = 37,
+                            AdvertId = 37,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7315),
+                            IsActive = true,
+                            SubcategoryId = 19
+                        },
+                        new
+                        {
+                            Id = 38,
+                            AdvertId = 38,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7315),
+                            IsActive = true,
+                            SubcategoryId = 19
+                        },
+                        new
+                        {
+                            Id = 39,
+                            AdvertId = 39,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7316),
+                            IsActive = true,
+                            SubcategoryId = 20
+                        },
+                        new
+                        {
+                            Id = 40,
+                            AdvertId = 40,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7316),
+                            IsActive = true,
+                            SubcategoryId = 20
+                        },
+                        new
+                        {
+                            Id = 41,
+                            AdvertId = 41,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7317),
+                            IsActive = true,
+                            SubcategoryId = 21
+                        },
+                        new
+                        {
+                            Id = 42,
+                            AdvertId = 42,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7318),
+                            IsActive = true,
+                            SubcategoryId = 21
+                        },
+                        new
+                        {
+                            Id = 43,
+                            AdvertId = 43,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7318),
+                            IsActive = true,
+                            SubcategoryId = 22
+                        },
+                        new
+                        {
+                            Id = 44,
+                            AdvertId = 44,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7319),
+                            IsActive = true,
+                            SubcategoryId = 22
+                        },
+                        new
+                        {
+                            Id = 45,
+                            AdvertId = 45,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7319),
+                            IsActive = true,
+                            SubcategoryId = 23
+                        },
+                        new
+                        {
+                            Id = 46,
+                            AdvertId = 46,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7320),
+                            IsActive = true,
+                            SubcategoryId = 23
+                        },
+                        new
+                        {
+                            Id = 47,
+                            AdvertId = 47,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7321),
+                            IsActive = true,
+                            SubcategoryId = 24
+                        },
+                        new
+                        {
+                            Id = 48,
+                            AdvertId = 48,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7321),
+                            IsActive = true,
+                            SubcategoryId = 24
+                        },
+                        new
+                        {
+                            Id = 49,
+                            AdvertId = 49,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7322),
+                            IsActive = true,
+                            SubcategoryId = 25
+                        },
+                        new
+                        {
+                            Id = 50,
+                            AdvertId = 50,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7322),
+                            IsActive = true,
+                            SubcategoryId = 25
+                        },
+                        new
+                        {
+                            Id = 51,
+                            AdvertId = 51,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7323),
+                            IsActive = true,
+                            SubcategoryId = 26
+                        },
+                        new
+                        {
+                            Id = 52,
+                            AdvertId = 52,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7324),
+                            IsActive = true,
+                            SubcategoryId = 26
+                        },
+                        new
+                        {
+                            Id = 53,
+                            AdvertId = 53,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7324),
+                            IsActive = true,
+                            SubcategoryId = 27
+                        },
+                        new
+                        {
+                            Id = 54,
+                            AdvertId = 54,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7325),
+                            IsActive = true,
+                            SubcategoryId = 27
+                        },
+                        new
+                        {
+                            Id = 55,
+                            AdvertId = 55,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7326),
+                            IsActive = true,
+                            SubcategoryId = 28
+                        },
+                        new
+                        {
+                            Id = 56,
+                            AdvertId = 56,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7326),
+                            IsActive = true,
+                            SubcategoryId = 28
+                        },
+                        new
+                        {
+                            Id = 57,
+                            AdvertId = 57,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7327),
+                            IsActive = true,
+                            SubcategoryId = 29
+                        },
+                        new
+                        {
+                            Id = 58,
+                            AdvertId = 58,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7327),
+                            IsActive = true,
+                            SubcategoryId = 29
+                        },
+                        new
+                        {
+                            Id = 59,
+                            AdvertId = 59,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7328),
+                            IsActive = true,
+                            SubcategoryId = 30
+                        },
+                        new
+                        {
+                            Id = 60,
+                            AdvertId = 60,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7329),
+                            IsActive = true,
+                            SubcategoryId = 30
+                        },
+                        new
+                        {
+                            Id = 61,
+                            AdvertId = 61,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7329),
+                            IsActive = true,
+                            SubcategoryId = 31
+                        },
+                        new
+                        {
+                            Id = 62,
+                            AdvertId = 62,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7330),
+                            IsActive = true,
+                            SubcategoryId = 31
+                        },
+                        new
+                        {
+                            Id = 63,
+                            AdvertId = 63,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7330),
+                            IsActive = true,
+                            SubcategoryId = 32
+                        },
+                        new
+                        {
+                            Id = 64,
+                            AdvertId = 64,
+                            CreatedDate = new DateTime(2023, 12, 7, 10, 15, 17, 78, DateTimeKind.Local).AddTicks(7331),
+                            IsActive = true,
+                            SubcategoryId = 32
+                        });
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Address", b =>
@@ -1485,13 +4351,21 @@ namespace Ads.Dal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
+                    b.HasOne("Ads.Entities.Concrete.District", "District")
                         .WithMany("Addresses")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("Ads.Entities.Concrete.Address", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("City");
+
+                    b.Navigation("District");
 
                     b.Navigation("User");
                 });
@@ -1501,7 +4375,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
                         .WithMany("Adverts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1531,29 +4405,10 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
                         .WithMany("AdvertImages")
                         .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Advert");
-                });
-
-            modelBuilder.Entity("Ads.Entities.Concrete.CategoryAdvert", b =>
-                {
-                    b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
-                        .WithMany("CategoryAdverts")
-                        .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ads.Entities.Concrete.Category", "Category")
-                        .WithMany("CategoryAdverts")
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Advert");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.District", b =>
@@ -1629,18 +4484,48 @@ namespace Ads.Dal.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Ads.Entities.Concrete.Subcategory", b =>
+                {
+                    b.HasOne("Ads.Entities.Concrete.Category", "Category")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.SubcategoryAdvert", b =>
+                {
+                    b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
+                        .WithMany("SubcategoryAdverts")
+                        .HasForeignKey("AdvertId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ads.Entities.Concrete.Subcategory", "Subcategory")
+                        .WithMany("SubcategoryAdverts")
+                        .HasForeignKey("SubcategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advert");
+
+                    b.Navigation("Subcategory");
+                });
+
             modelBuilder.Entity("Ads.Entities.Concrete.Advert", b =>
                 {
                     b.Navigation("AdvertComments");
 
                     b.Navigation("AdvertImages");
 
-                    b.Navigation("CategoryAdverts");
+                    b.Navigation("SubcategoryAdverts");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Category", b =>
                 {
-                    b.Navigation("CategoryAdverts");
+                    b.Navigation("Subcategories");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
@@ -1650,15 +4535,26 @@ namespace Ads.Dal.Migrations
                     b.Navigation("Districts");
                 });
 
-            modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppUser", b =>
+            modelBuilder.Entity("Ads.Entities.Concrete.District", b =>
                 {
                     b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppUser", b =>
+                {
+                    b.Navigation("Address")
+                        .IsRequired();
 
                     b.Navigation("AdvertComments");
 
                     b.Navigation("Adverts");
 
                     b.Navigation("Settings");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.Subcategory", b =>
+                {
+                    b.Navigation("SubcategoryAdverts");
                 });
 #pragma warning restore 612, 618
         }

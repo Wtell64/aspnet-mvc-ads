@@ -23,6 +23,31 @@ namespace Ads.Dal.Configurations.Identities
 			{
 				UserId = 2,
 				RoleId = 2
+			},
+			new AppUserRole
+			{
+				UserId = 3,
+				RoleId = 3
+			},
+			new AppUserRole
+			{
+				UserId = 4,
+				RoleId = 3
+			},
+			new AppUserRole
+			{
+				UserId = 5,
+				RoleId = 3
+			},
+			new AppUserRole
+			{
+				UserId = 6,
+				RoleId = 3
+			},
+			new AppUserRole
+			{
+				UserId = 7,
+				RoleId = 3
 			});
 		}
 	}

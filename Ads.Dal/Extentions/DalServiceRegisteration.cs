@@ -25,6 +25,11 @@ namespace Ads.Dal.Extentions
       services.AddScoped<ICityDal, EfCityDal>();
       services.AddScoped<IDistrictDal, EfDisctrictDal>();
 
+      services.AddScoped<ISubcategoryAdvertDal,EfSubcategoryAdvertDal>();
+      services.AddScoped<ISubcategoryDal, EfSubcategoryDal>();
+
+      services.AddScoped<ISettingDal, EfSettingDal>();
+
       return services;
     }
   }

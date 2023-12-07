@@ -22,11 +22,11 @@ namespace Ads.Business.ValidationRules.FluentValidation
 
       RuleFor(u => u.UserId).GreaterThan(0).WithMessage("UserId must be greater than 0.");
 
-      RuleFor(ca => ca.CategoryAdverts).NotEmpty().WithMessage("At least one category must be associated with the advert.");
+      //RuleFor(ca => ca.CategoryAdverts).NotEmpty().WithMessage("At least one category must be associated with the advert.");
 
-      RuleFor(ai => ai.AdvertImages).NotEmpty().WithMessage("At least one image must be associated with the advert.");
+      //RuleFor(ai => ai.AdvertImages).NotEmpty().WithMessage("At least one image must be associated with the advert.");
 
-      RuleFor(ac => ac.AdvertComments).NotEmpty().WithMessage("At least one comment must be associated with the advert.");
+      //RuleFor(ac => ac.AdvertComments).NotEmpty().WithMessage("At least one comment must be associated with the advert.");
       RuleFor(d => d.IsActive).NotNull().WithMessage("IsActive must not be null.");
     }
   }

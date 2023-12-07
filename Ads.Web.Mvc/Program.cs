@@ -1,4 +1,5 @@
 using Ads.Business.Extentions;
+using Ads.Core.Extensions;
 using Ads.Dal.Concrete.EntityFramework.Context;
 using Ads.Dal.Extentions;
 using Ads.Entities.Concrete.Identity;
@@ -12,6 +13,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddBusinessServices();
+builder.Services.AddCoreServices();
 
 var logger = new LoggerConfiguration()
 .ReadFrom.Configuration(builder.Configuration)   //loglamaya nerden baslicam

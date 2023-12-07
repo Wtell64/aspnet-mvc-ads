@@ -9,13 +9,19 @@ using System.Threading.Tasks;
 
 namespace Ads.Dal.Configurations
 {
-  public class SettingConfiguration : IEntityTypeConfiguration<Setting>
-  {
-    public void Configure(EntityTypeBuilder<Setting> builder)
-    {
-      builder.HasKey(c => c.Id);
-      builder.Property(c => c.Name).IsRequired().HasColumnType("nvarchar(200)");
-      builder.Property(c => c.Value).IsRequired().HasColumnType("nvarchar(400)");
-    }
-  }
+	public class SettingConfiguration : IEntityTypeConfiguration<Setting>
+	{
+		public void Configure(EntityTypeBuilder<Setting> builder)
+		{
+			builder.HasKey(c => c.Id);
+			builder.Property(c => c.Name).IsRequired().HasColumnType("nvarchar(200)");
+			builder.Property(c => c.Value).IsRequired().HasColumnType("nvarchar(400)");
+
+			builder.HasData(
+				new Setting { Id = 1, UserId = 1, Name = "MaxPostPerPage", Value = "50" },
+				new Setting { Id = 2, UserId = 2, Name = "MaxPostPerPage", Value = "20" },
+				new Setting { Id = 3, UserId = 3, Name = "MaxPostPerPage", Value = "10" },
+				new Setting { Id = 4, UserId = 1, Name = "DarkMode", Value = "0" });
+		}
+	}
 }

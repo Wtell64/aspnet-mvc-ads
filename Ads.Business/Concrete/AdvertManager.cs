@@ -15,20 +15,24 @@ namespace Ads.Business.Concrete
     private readonly IMapper _mapper;
     private readonly IValidator<Advert> _validator;
     private readonly IAdvertDal _advertDal;
+    private readonly ISubcategoryAdvertDal _subcategoryAdvertDal;
 
 
-    public AdvertManager(IAdvertDal advertDal, IMapper mapper, IValidator<Advert> validator)
+    public AdvertManager(IAdvertDal advertDal, IMapper mapper, IValidator<Advert> validator, ISubcategoryAdvertDal categoryAdvertDal)
     {
       _advertDal = advertDal;
       _mapper = mapper;
       _validator = validator;
-
+			_subcategoryAdvertDal = categoryAdvertDal;
     }
     public IDataResult<TDto> Add<TDto>(TDto dto)
     {
       try
       {
         var entity = _mapper.Map<Advert>(dto);
+        //TODO: sil
+        entity.UserId = 3;
+
 
         var validationResult = _validator.Validate(entity);
         if (!validationResult.IsValid)
@@ -39,7 +43,102 @@ namespace Ads.Business.Concrete
         _advertDal.Add(entity);
 
 
+
         return new SuccessDataResult<TDto>(dto, Messages.AdvertAdded);
+      }
+      catch (Exception ex)
+      {
+
+        return new ErrorDataResult<TDto>(ex.Message);
+      }
+    }
+
+    public IDataResult<TDto> AddAdvertCategory<TDto>(TDto dto)
+    {
+      try
+      {
+        var entity = _mapper.Map<SubcategoryAdvert>(dto);
+
+				_subcategoryAdvertDal.Add(entity);
+
+        return new SuccessDataResult<TDto>(dto, Messages.CategoryAdvertAdded);
+      }
+      catch (Exception ex)
+      {
+
+        return new ErrorDataResult<TDto>(ex.Message);
+      }
+    }
+
+    public async Task<IDataResult<TDto>> AddAdvertCategoryAsync<TDto>(TDto dto)
+    {
+      try
+      {
+        var entity = _mapper.Map<SubcategoryAdvert>(dto);
+
+        await _subcategoryAdvertDal.AddAsync(entity);
+
+        return new SuccessDataResult<TDto>(dto, Messages.CategoryAdvertAdded);
+      }
+      catch (Exception ex)
+      {
+
+        return new ErrorDataResult<TDto>(ex.Message);
+      }
+    }
+
+    public IDataResult<TDto> AddAndSave<TDto>(TDto dto)
+    {
+      try
+      {
+        var entity = _mapper.Map<Advert>(dto);
+        //TODO: sil
+        entity.UserId = 3;
+
+
+        var validationResult = _validator.Validate(entity);
+        if (!validationResult.IsValid)
+        {
+          return new ErrorDataResult<TDto>(dto, Messages.ValidationResultNull);
+        }
+
+        _advertDal.Add(entity);
+        _advertDal.Save();
+        Advert advert = _advertDal.GetLastAddedEntity();
+
+        var newAdded = _mapper.Map<TDto>(advert);
+
+        return new SuccessDataResult<TDto>(newAdded, Messages.AdvertAdded);
+      }
+      catch (Exception ex)
+      {
+
+        return new ErrorDataResult<TDto>(ex.Message);
+      }
+    }
+
+    public async Task<IDataResult<TDto>> AddAndSaveAsync<TDto>(TDto dto)
+    {
+      try
+      {
+        var entity = _mapper.Map<Advert>(dto);
+
+        //TODO: sil
+        entity.UserId = 3;
+
+        var validationResult = await _validator.ValidateAsync(entity);
+        if (!validationResult.IsValid)
+        {
+          return new ErrorDataResult<TDto>(dto, Messages.ValidationResultNull);
+        }
+
+        _advertDal.Add(entity);
+        _advertDal.Save();
+        Advert advert = _advertDal.GetLastAddedEntity();
+
+        var newAdded = _mapper.Map<TDto>(advert);
+
+        return new SuccessDataResult<TDto>(newAdded, Messages.AdvertAdded);
       }
       catch (Exception ex)
       {
@@ -54,13 +153,18 @@ namespace Ads.Business.Concrete
       {
         var entity = _mapper.Map<Advert>(dto);
 
+        //TODO: sil
+        entity.UserId = 3;
+
         var validationResult = await _validator.ValidateAsync(entity);
         if (!validationResult.IsValid)
         {
           return new ErrorDataResult<TDto>(dto, Messages.ValidationResultNull);
         }
 
-        await _advertDal.AddAsync(entity);
+        _advertDal.Add(entity);
+
+
         return new SuccessDataResult<TDto>(dto, Messages.AdvertAdded);
       }
       catch (Exception ex)

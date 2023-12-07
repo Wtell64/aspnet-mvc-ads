@@ -36,6 +36,8 @@ namespace Ads.Business.Concrete
       {
         var entity = _mapper.Map<AdvertImage>(dto);
 
+        
+
         var validationResult = _validator.Validate(entity);
         if (!validationResult.IsValid)
         {

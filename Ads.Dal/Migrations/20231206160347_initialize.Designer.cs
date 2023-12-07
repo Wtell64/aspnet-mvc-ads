@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ads.Dal.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231129125143_1001-ilk")]
-    partial class _1001ilk
+    [Migration("20231206160347_initialize")]
+    partial class initialize
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,9 @@ namespace Ads.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -67,119 +70,24 @@ namespace Ads.Dal.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Addresses");
 
                     b.HasData(
                         new
                         {
-                            Id = 11,
-                            CityId = 3,
-                            Country = "Libya",
+                            Id = 1,
+                            CityId = 1,
+                            Country = "Türkiye",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Menekşe Sokak 31, Amasya, Rusya Federasyonu",
+                            DetailedAddress = "Emin Sokak",
+                            DistrictId = 1,
                             IsActive = true,
-                            PostCode = "43629",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CityId = 3,
-                            Country = "Irak",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "İsmet Attila Caddesi 75b, Bursa, Malavi",
-                            IsActive = true,
-                            PostCode = "66314",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CityId = 3,
-                            Country = "Cibuti",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Afyon Kaya Sokak 55c, Ardahan, Danimarka",
-                            IsActive = true,
-                            PostCode = "85479",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CityId = 3,
-                            Country = "Togo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Tevfik Fikret Caddesi 329, Bilecik, Antigua ve Barbuda",
-                            IsActive = true,
-                            PostCode = "55328",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CityId = 3,
-                            Country = "Mauritius",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Lütfi Karadirek Caddesi 11, Aksaray, Vanuatu",
-                            IsActive = true,
-                            PostCode = "38517",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CityId = 3,
-                            Country = "Kongo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Harman Altı Sokak 49a, Manisa, Surinam",
-                            IsActive = true,
-                            PostCode = "01196",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CityId = 3,
-                            Country = "Kırgızistan",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Barış Sokak 6, Siirt, Santa Lucia",
-                            IsActive = true,
-                            PostCode = "43446",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CityId = 3,
-                            Country = "Somali",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Namık Kemal Caddesi 04c, Sakarya, Japonya",
-                            IsActive = true,
-                            PostCode = "89244",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CityId = 3,
-                            Country = "Venezuela",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Sarıkaya Caddesi 380, Adıyaman, Nijer",
-                            IsActive = true,
-                            PostCode = "41626",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CityId = 3,
-                            Country = "Antigua ve Barbuda",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DetailedAddress = "Bahçe Sokak 3, Hakkari, Tanzanya",
-                            IsActive = true,
-                            PostCode = "57964",
+                            PostCode = "341449",
                             UserId = 3
                         });
                 });
@@ -191,6 +99,12 @@ namespace Ads.Dal.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClickCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConditionEnum")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -228,101 +142,13 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
+                            ClickCount = 0,
+                            ConditionEnum = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A stylish black lamp for your home.",
+                            Description = "Çok dekoratif ve her ev için gerekli bir lamba",
                             IsActive = true,
                             Price = 40,
-                            Title = "Black Lamp",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A sturdy wooden table perfect for dining or work.",
-                            IsActive = true,
-                            Price = 80,
-                            Title = "Wooden Table",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Comfortable red chair for your living room.",
-                            IsActive = true,
-                            Price = 30,
-                            Title = "Red Chair",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Professional camera kit for photography enthusiasts.",
-                            IsActive = true,
-                            Price = 500,
-                            Title = "Camera Kit",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A spacious bookshelf to organize your books.",
-                            IsActive = true,
-                            Price = 60,
-                            Title = "Bookshelf",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "High-quality coffee maker for coffee lovers.",
-                            IsActive = true,
-                            Price = 100,
-                            Title = "Coffee Maker",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Keep your desk tidy with this organizer.",
-                            IsActive = true,
-                            Price = 25,
-                            Title = "Desk Organizer",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Convenient smartphone stand for hands-free use.",
-                            IsActive = true,
-                            Price = 15,
-                            Title = "Smartphone Stand",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Elegant leather wallet for your essentials.",
-                            IsActive = true,
-                            Price = 50,
-                            Title = "Leather Wallet",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Stay fit with this advanced fitness tracker.",
-                            IsActive = true,
-                            Price = 60,
-                            Title = "Fitness Tracker",
+                            Title = "Siyah Lamba",
                             UserId = 3
                         });
                 });
@@ -351,6 +177,9 @@ namespace Ads.Dal.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int>("StarCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -370,135 +199,10 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AdvertId = 1,
-                            Comment = "Great product, highly recommended!",
+                            Comment = "Kargo hızlı geldi. Çok memnun kaldım",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AdvertId = 2,
-                            Comment = "Interesting features. I might consider buying it.",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AdvertId = 3,
-                            Comment = "Not sure about the price. Is there any discount?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AdvertId = 4,
-                            Comment = "Love the design! Where can I find more details?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AdvertId = 5,
-                            Comment = "This is exactly what I've been looking for!",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AdvertId = 6,
-                            Comment = "Any warranty information available?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AdvertId = 7,
-                            Comment = "I have a similar product, and it's fantastic!",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AdvertId = 8,
-                            Comment = "Can you provide more details about the specifications?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AdvertId = 9,
-                            Comment = "Do you ship internationally?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AdvertId = 10,
-                            Comment = "Impressive! I'll share this with my friends.",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 11,
-                            AdvertId = 1,
-                            Comment = "How long is the battery life?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 12,
-                            AdvertId = 2,
-                            Comment = "Is there a demo video available?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 13,
-                            AdvertId = 3,
-                            Comment = "I'd like to see more pictures of the product.",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 14,
-                            AdvertId = 4,
-                            Comment = "What colors are available?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AdvertId = 5,
-                            Comment = "Can you offer a discount for bulk orders?",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            StarCount = 5,
                             UserId = 3
                         });
                 });
@@ -560,222 +264,6 @@ namespace Ads.Dal.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImagePath = "http://via.placeholder.com/610x400/lamp",
                             IsActive = true
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AdvertId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/table",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AdvertId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/table",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AdvertId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "http://via.placeholder.com/610x400/table",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AdvertId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AdvertId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AdvertId = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AdvertId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 11,
-                            AdvertId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 12,
-                            AdvertId = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 13,
-                            AdvertId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 14,
-                            AdvertId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AdvertId = 5,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 16,
-                            AdvertId = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 17,
-                            AdvertId = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 18,
-                            AdvertId = 6,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 19,
-                            AdvertId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 20,
-                            AdvertId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 21,
-                            AdvertId = 7,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 22,
-                            AdvertId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 23,
-                            AdvertId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 24,
-                            AdvertId = 8,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 25,
-                            AdvertId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 26,
-                            AdvertId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 27,
-                            AdvertId = 9,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 28,
-                            AdvertId = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image1.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 29,
-                            AdvertId = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image2.jpg",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            Id = 30,
-                            AdvertId = 10,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "https://example.com/image3.jpg",
-                            IsActive = true
                         });
                 });
 
@@ -797,6 +285,10 @@ namespace Ads.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("IconClass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -814,119 +306,13 @@ namespace Ads.Dal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 11,
+                            Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+                            Description = "Elektronik araçların satıldığı kategoridir",
+                            IconClass = "fa-laptop",
                             IsActive = true,
-                            Name = "Tools"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
-                            IsActive = true,
-                            Name = "Home"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
-                            IsActive = true,
-                            Name = "Baby"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
-                            IsActive = true,
-                            Name = "Home"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            IsActive = true,
-                            Name = "Tools"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
-                            IsActive = true,
-                            Name = "Games"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
-                            IsActive = true,
-                            Name = "Tools"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
-                            IsActive = true,
-                            Name = "Shoes"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            IsActive = true,
-                            Name = "Automotive"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
-                            IsActive = true,
-                            Name = "Games"
+                            Name = "Elektronik"
                         });
-                });
-
-            modelBuilder.Entity("Ads.Entities.Concrete.CategoryAdvert", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AdvertId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdvertId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("CategoryAdverts");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
@@ -1144,21 +530,21 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "a7434017-b625-44b1-a703-8a325826771d",
+                            ConcurrencyStamp = "e2adf4ef-c512-41ab-95cf-2a17985042d1",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "0eace13d-9d3a-48a7-b93c-22d608b46610",
+                            ConcurrencyStamp = "5e2e08e6-a9d0-418b-ac79-6367a6832129",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "2dcfc899-d8fe-44de-8fb0-463891b6904d",
+                            ConcurrencyStamp = "1f16518c-092b-4b4c-970c-be03b1150071",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1203,6 +589,12 @@ namespace Ads.Dal.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasColumnType("varchar(200)");
 
@@ -1212,6 +604,13 @@ namespace Ads.Dal.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -1246,6 +645,9 @@ namespace Ads.Dal.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -1265,33 +667,23 @@ namespace Ads.Dal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 3,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e21a45dd-b1a6-4798-a002-e45eb2a2b526",
-                            Email = "deneme",
-                            EmailConfirmed = false,
-                            FirstName = "deneme",
-                            LastName = "deneme",
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false
-                        },
-                        new
-                        {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7fe640f8-a54c-4906-ac35-10712e50c83f",
+                            ConcurrencyStamp = "a0fadcd7-2dd0-493c-b5ae-d2ab4de563f4",
+                            CreatedDate = new DateTime(2023, 12, 6, 19, 3, 46, 945, DateTimeKind.Local).AddTicks(417),
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "SuperAdmin",
+                            ImagePath = "deneme",
+                            IsActive = true,
                             LastName = "SuperAdmin",
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPTCzFNnSGrZbGcA+b9HasrDXldcgqGXC2NZFhyxEIMXZT61RhEgTMgQkr/tlSz4Tw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPdkhzgH5eEsQ47rxHglFm6v0Zwa1Yxx7ROx/Wuix/c5b2G4jOQ0M9o1sMOshE+/Ng==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "187f7df2-74ab-41c9-a311-213221b5246a",
+                            SecurityStamp = "793696f6-65c1-4778-b712-95e0aa34a97a",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -1299,20 +691,133 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "318c95b4-c687-4f71-848e-84eecfa27575",
+                            ConcurrencyStamp = "bd2f6059-1cb7-495f-833f-f7703c2020a9",
+                            CreatedDate = new DateTime(2023, 12, 6, 19, 3, 47, 4, DateTimeKind.Local).AddTicks(1974),
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
+                            ImagePath = "deneme",
+                            IsActive = true,
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEYMQLfFHfDuF0a2MWnPdV3zAvNE5yUZVhTfHlO8ggT79NV5zrBGUAo2rKcXpYR44Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGMsgTvMS+lLaK1/qfV/yUk3mB5CGJWwAqkrKEDR2I5GKKNZAbHShfS7P3fQQMhUDQ==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bed5e817-99d0-43ce-845f-c2824ea8706d",
+                            SecurityStamp = "f1580594-4ec6-4f47-b97e-a5d289e9f93b",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "43439769-b0f8-4747-a1c5-992729a3573f",
+                            CreatedDate = new DateTime(2023, 12, 6, 19, 3, 47, 75, DateTimeKind.Local).AddTicks(3402),
+                            Email = "arasmentese96@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Aras",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Menteşe",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "arasmentese96@GMAIL.COM",
+                            NormalizedUserName = "arasmentese96@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAENqf8gojg+rA5hG7FLTLNVOFTf5Y+0iRkR0RaUBQ2Pz/m03pg3XKTCoHV9qIKacDNQ==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0b39c0de-941a-4f4f-9a6e-e34330853c0e",
+                            TwoFactorEnabled = false,
+                            UserName = "arasmentese96@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f0da9d67-868e-41a2-94c4-d68c413c90ff",
+                            CreatedDate = new DateTime(2023, 12, 6, 19, 3, 47, 133, DateTimeKind.Local).AddTicks(6114),
+                            Email = "elif@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Elif",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Sakçı Tuncer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ELIF@GMAIL.COM",
+                            NormalizedUserName = "ELIF@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDlxzZ+4yKz8kLArF/Ks3gCmOqBBIMMnpsPcLCL2O+5J1lKthP1Ba82Z09i8GfklMg==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "619b0e18-258f-4f8b-9159-da6cd0d702f8",
+                            TwoFactorEnabled = false,
+                            UserName = "elif@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7fa5aa6f-0406-467a-82a1-b319792e9a87",
+                            CreatedDate = new DateTime(2023, 12, 6, 19, 3, 47, 189, DateTimeKind.Local).AddTicks(1499),
+                            Email = "ismailycer@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "İsmail",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Yücer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ISMAILYCER@GMAIL.COM",
+                            NormalizedUserName = "ISMAILYCER@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEAqbL+yldmonCvHlYXKmte9mDlCVdpUP2z/WVuxYbv3kuUagJO7u2Ah5oJYRT+btg==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "cd39a9da-8ce1-42eb-8f6d-4abdd86bbfc7",
+                            TwoFactorEnabled = false,
+                            UserName = "ismailycer@gmail.com"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "41162ca8-7c7b-42d6-b54b-954c6e8e8e03",
+                            CreatedDate = new DateTime(2023, 12, 6, 19, 3, 47, 247, DateTimeKind.Local).AddTicks(7248),
+                            Email = "muratcanagic@hotmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Muratcan",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Agıç",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MURATCANAGIC@HOTMAIL.COM",
+                            NormalizedUserName = "MURATCANAGIC@HOTMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELrnNrCTctzWiWC+VuIZsPRSgWjFWCEk1+eR9WHJnE8fVhTX2dZpsvLxI5i5usosug==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c3a57ed5-4adc-440b-8231-e2c9ef637707",
+                            TwoFactorEnabled = false,
+                            UserName = "muratcanagic@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "dac8446b-2e64-47cf-8af1-46fbf05264c6",
+                            CreatedDate = new DateTime(2023, 12, 6, 19, 3, 47, 301, DateTimeKind.Local).AddTicks(1184),
+                            Email = "ridvankesken@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Rıdvan",
+                            ImagePath = "deneme",
+                            IsActive = true,
+                            LastName = "Kesken",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "RIDVANKESKEN@GMAIL.COM",
+                            NormalizedUserName = "RIDVANKESKEN@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC2CkQ1kFHrcB6uJ8ieB6gy6QNRIODy/4RdcP1xrLp2qNNW9Uvhv1e0uTTirFukpfw==",
+                            PhoneNumber = "+000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b9f0ec73-9d09-45af-a42e-59ff385d40ef",
+                            TwoFactorEnabled = false,
+                            UserName = "ridvankesken@gmail.com"
                         });
                 });
 
@@ -1387,6 +892,31 @@ namespace Ads.Dal.Migrations
                         {
                             UserId = 2,
                             RoleId = 2
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 4,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 5,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 6,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 7,
+                            RoleId = 3
                         });
                 });
 
@@ -1440,6 +970,16 @@ namespace Ads.Dal.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "Bize Ulaşın",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Title = "About Us"
+                        });
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Setting", b =>
@@ -1478,6 +1018,133 @@ namespace Ads.Dal.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "MaxPostPerPage",
+                            UserId = 1,
+                            Value = "50"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "MaxPostPerPage",
+                            UserId = 2,
+                            Value = "20"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "MaxPostPerPage",
+                            UserId = 3,
+                            Value = "10"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "DarkMode",
+                            UserId = 1,
+                            Value = "0"
+                        });
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.Subcategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Subcategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Laptop"
+                        });
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.SubcategoryAdvert", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AdvertId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SubcategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertId");
+
+                    b.HasIndex("SubcategoryId");
+
+                    b.ToTable("SubcategoryAdverts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AdvertId = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            SubcategoryId = 1
+                        });
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Address", b =>
@@ -1488,13 +1155,21 @@ namespace Ads.Dal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
+                    b.HasOne("Ads.Entities.Concrete.District", "District")
                         .WithMany("Addresses")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("Ads.Entities.Concrete.Address", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("City");
+
+                    b.Navigation("District");
 
                     b.Navigation("User");
                 });
@@ -1504,7 +1179,7 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Identity.AppUser", "User")
                         .WithMany("Adverts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1534,29 +1209,10 @@ namespace Ads.Dal.Migrations
                     b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
                         .WithMany("AdvertImages")
                         .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Advert");
-                });
-
-            modelBuilder.Entity("Ads.Entities.Concrete.CategoryAdvert", b =>
-                {
-                    b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
-                        .WithMany("CategoryAdverts")
-                        .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ads.Entities.Concrete.Category", "Category")
-                        .WithMany("CategoryAdverts")
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Advert");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.District", b =>
@@ -1632,18 +1288,48 @@ namespace Ads.Dal.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Ads.Entities.Concrete.Subcategory", b =>
+                {
+                    b.HasOne("Ads.Entities.Concrete.Category", "Category")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.SubcategoryAdvert", b =>
+                {
+                    b.HasOne("Ads.Entities.Concrete.Advert", "Advert")
+                        .WithMany("SubcategoryAdverts")
+                        .HasForeignKey("AdvertId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ads.Entities.Concrete.Subcategory", "Subcategory")
+                        .WithMany("SubcategoryAdverts")
+                        .HasForeignKey("SubcategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advert");
+
+                    b.Navigation("Subcategory");
+                });
+
             modelBuilder.Entity("Ads.Entities.Concrete.Advert", b =>
                 {
                     b.Navigation("AdvertComments");
 
                     b.Navigation("AdvertImages");
 
-                    b.Navigation("CategoryAdverts");
+                    b.Navigation("SubcategoryAdverts");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.Category", b =>
                 {
-                    b.Navigation("CategoryAdverts");
+                    b.Navigation("Subcategories");
                 });
 
             modelBuilder.Entity("Ads.Entities.Concrete.City", b =>
@@ -1653,15 +1339,26 @@ namespace Ads.Dal.Migrations
                     b.Navigation("Districts");
                 });
 
-            modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppUser", b =>
+            modelBuilder.Entity("Ads.Entities.Concrete.District", b =>
                 {
                     b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.Identity.AppUser", b =>
+                {
+                    b.Navigation("Address")
+                        .IsRequired();
 
                     b.Navigation("AdvertComments");
 
                     b.Navigation("Adverts");
 
                     b.Navigation("Settings");
+                });
+
+            modelBuilder.Entity("Ads.Entities.Concrete.Subcategory", b =>
+                {
+                    b.Navigation("SubcategoryAdverts");
                 });
 #pragma warning restore 612, 618
         }

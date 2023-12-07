@@ -56,6 +56,7 @@ namespace Ads.Dal.Configurations.Identities
 				PhoneNumberConfirmed = true,
 				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
+				ImagePath = "deneme"
 
 			};
 			superadmin.PasswordHash = CreatePasswordHash(superadmin, "123456");
@@ -73,10 +74,96 @@ namespace Ads.Dal.Configurations.Identities
 				PhoneNumberConfirmed = false,
 				EmailConfirmed = false,
 				SecurityStamp = Guid.NewGuid().ToString(),
+				ImagePath = "deneme"
 			};
 			admin.PasswordHash = CreatePasswordHash(admin, "123456");
 
-			builder.HasData(superadmin, admin);
+			var aras = new AppUser
+			{
+				Id = 3,
+				UserName = "arasmentese96@gmail.com",
+				NormalizedUserName = "arasmentese96@GMAIL.COM",
+				Email = "arasmentese96@gmail.com",
+				NormalizedEmail = "arasmentese96@GMAIL.COM",
+				PhoneNumber = "+000000000",
+				FirstName = "Aras",
+				LastName = "Menteşe",
+				PhoneNumberConfirmed = false,
+				EmailConfirmed = false,
+				SecurityStamp = Guid.NewGuid().ToString(),
+				ImagePath = "deneme"
+			};
+			aras.PasswordHash = CreatePasswordHash(aras, "123456");
+
+			var elif = new AppUser
+			{
+				Id = 4,
+				UserName = "elif@gmail.com",
+				NormalizedUserName = "ELIF@GMAIL.COM",
+				Email = "elif@gmail.com",
+				NormalizedEmail = "ELIF@GMAIL.COM",
+				PhoneNumber = "+000000000",
+				FirstName = "Elif",
+				LastName = "Sakçı Tuncer",
+				PhoneNumberConfirmed = false,
+				EmailConfirmed = false,
+				SecurityStamp = Guid.NewGuid().ToString(),
+				ImagePath = "deneme"
+			};
+			elif.PasswordHash = CreatePasswordHash(elif, "123456");
+
+			var ismail = new AppUser
+			{
+				Id = 5,
+				UserName = "ismailycer@gmail.com",
+				NormalizedUserName = "ISMAILYCER@GMAIL.COM",
+				Email = "ismailycer@gmail.com",
+				NormalizedEmail = "ISMAILYCER@GMAIL.COM",
+				PhoneNumber = "+000000000",
+				FirstName = "İsmail",
+				LastName = "Yücer",
+				PhoneNumberConfirmed = false,
+				EmailConfirmed = false,
+				SecurityStamp = Guid.NewGuid().ToString(),
+				ImagePath = "deneme"
+			};
+			ismail.PasswordHash = CreatePasswordHash(ismail, "123456");
+
+			var muratcan = new AppUser
+			{
+				Id = 6,
+				UserName = "muratcanagic@hotmail.com",
+				NormalizedUserName = "MURATCANAGIC@HOTMAIL.COM",
+				Email = "muratcanagic@hotmail.com",
+				NormalizedEmail = "MURATCANAGIC@HOTMAIL.COM",
+				PhoneNumber = "+000000000",
+				FirstName = "Muratcan",
+				LastName = "Agıç",
+				PhoneNumberConfirmed = false,
+				EmailConfirmed = false,
+				SecurityStamp = Guid.NewGuid().ToString(),
+				ImagePath = "deneme"
+			};
+			muratcan.PasswordHash = CreatePasswordHash(muratcan, "123456");
+
+			var ridvan = new AppUser
+			{
+				Id = 7,
+				UserName = "ridvankesken@gmail.com",
+				NormalizedUserName = "RIDVANKESKEN@GMAIL.COM",
+				Email = "ridvankesken@gmail.com",
+				NormalizedEmail = "RIDVANKESKEN@GMAIL.COM",
+				PhoneNumber = "+000000000",
+				FirstName = "Rıdvan",
+				LastName = "Kesken",
+				PhoneNumberConfirmed = false,
+				EmailConfirmed = false,
+				SecurityStamp = Guid.NewGuid().ToString(),
+				ImagePath = "deneme"
+			};
+			ridvan.PasswordHash = CreatePasswordHash(ridvan, "123456");
+
+			builder.HasData(superadmin, admin, aras, elif, ismail, muratcan, ridvan);
 
 		}
 		private string CreatePasswordHash(AppUser user, string password)

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Ads.Entities.Concrete
 {
-  public class CategoryAdvert : BaseEntity
+  public class SubcategoryAdvert : BaseEntity
   {
-  public int CategoryId { get; set; }
+  public int SubcategoryId { get; set; }
 
   public int AdvertId { get; set; }
 
   //Relationship
   public Advert Advert { get; set; }
-  public Category Category { get; set; }
+  public Subcategory Subcategory { get; set; }
   }
 }

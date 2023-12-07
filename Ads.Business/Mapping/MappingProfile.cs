@@ -9,6 +9,7 @@ using Ads.Business.Dtos.Category;
 
 using Ads.Entities.Concrete;
 using AutoMapper;
+using Ads.Business.Dtos.Subcategory;
 
 namespace Ads.Business.Mapping
 {
@@ -21,9 +22,15 @@ namespace Ads.Business.Mapping
       CreateMap<Setting, SettingViewDto>().ReverseMap();
       
       CreateMap<Advert, AdvertViewDto>().ReverseMap();
+      CreateMap<Advert, AdvertSearchDto>().ReverseMap();
       CreateMap<AdvertComment, AdvertCommentViewDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertImageViewDto>().ReverseMap();
 
-    }
+      CreateMap<Advert,AdvertAddDto>().ReverseMap();
+      CreateMap<AdvertImage, AdvertAddDto>().ReverseMap();
+
+      CreateMap<SubcategoryAdvert, CategoryAdvertViewDto>().ReverseMap();
+			CreateMap<Subcategory, SubcategoryViewDto>().ReverseMap();
+		}
   }
 }

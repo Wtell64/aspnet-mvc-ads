@@ -1,4 +1,5 @@
-﻿using Ads.Entities.Concrete.Identity;
+﻿using Ads.Entities.Concrete.Enums;
+using Ads.Entities.Concrete.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ads.Entities.Concrete
@@ -10,9 +11,14 @@ namespace Ads.Entities.Concrete
 		
 		public int Price { get; set; }
 
+		public int ClickCount { get; set; }
+		
+
+
+		public AdvertConditionEnum ConditionEnum { get; set; }
 
 		//Relationship
-		public virtual ICollection<CategoryAdvert> CategoryAdverts { get; set; }
+		public virtual ICollection<SubcategoryAdvert> SubcategoryAdverts { get; set; }
 		public virtual ICollection<AdvertImage> AdvertImages { get; set; }
 
 		public virtual ICollection<AdvertComment> AdvertComments { get; set; }

@@ -12,6 +12,8 @@ namespace Ads.Entities.Concrete
    public string Name { get; set; }
    public string Description { get; set; }
 
-   public virtual ICollection<CategoryAdvert> CategoryAdverts { get; set; }
+   public string IconClass { get; set; }
+   public virtual ICollection<Subcategory> Subcategories { get; set; }
+   
   }
 }

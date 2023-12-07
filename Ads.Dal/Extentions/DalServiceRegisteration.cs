@@ -11,7 +11,7 @@ namespace Ads.Dal.Extentions
   {
     public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration configuration)
     {
-      services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DBConStr")));
+      services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DBConStr-ARAS")));
 
       services.AddScoped<ICategoryDal, EFCategoryDal>();
       services.AddScoped<IAdvertDal, EfAdvertDal>();

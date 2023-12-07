@@ -16,14 +16,14 @@ namespace Ads.Web.Mvc.ViewComponents
 
 		public IViewComponentResult Invoke()
 		{
-			var categories = _categoryService.GetList<Category>(null, null, "CategoryAdverts.Advert");
+			var categories = _categoryService.GetList<Category>(null, null, "SubcategoryAdverts.Advert");
 
-			var popularCategories = categories.Data
-						.OrderByDescending(category => category.CategoryAdverts.Sum(advert => advert.Advert.ClickCount))
-						.Take(5)
-						.ToList();
-
-			return View(popularCategories);
+			//var popularCategories = categories.Data
+			//			.OrderByDescending(category => category.SubcategoryAdverts.Sum(advert => advert.Advert.ClickCount))
+			//			.Take(5)
+			//			.ToList();
+			//popularCategories return
+			return View();
 		}
 	}
 }

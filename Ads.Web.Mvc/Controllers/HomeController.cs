@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 
+
 namespace Ads.Web.Mvc.Controllers
 {
   public class HomeController : Controller

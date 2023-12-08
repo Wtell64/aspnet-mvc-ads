@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <h3>Post Your ad</h3>
+            <h3>Reklamınızı Yaratın</h3>
             @if (TempData.ContainsKey("SuccessMessage"))
             {
               <div class="alert alert-success">
@@ -29,46 +29,46 @@
             }
           </div>
           <div class="col-lg-6">
-            <h6 class="font-weight-bold pt-4 pb-1">Title Of Ad:</h6>
-            <input type="text" class="border w-100 p-2 bg-white text-capitalize" asp-for="@Model.Title" placeholder="Ad title go There">
+            <h6 class="font-weight-bold pt-4 pb-1">Reklamın Adı:</h6>
+            <input type="text" class="border w-100 p-2 bg-white text-capitalize" asp-for="@Model.Title" placeholder="Reklamın Adını Girin">
             <span asp-validation-for="@Model.Title" class="text-danger"></span>
-            <h6 class="font-weight-bold pt-4 pb-1">Ad Type:</h6>
+            <h6 class="font-weight-bold pt-4 pb-1">Reklamın Türü:</h6>
             <div class="row px-3">
               <div class="col-lg-4 mr-lg-4 my-2 rounded bg-white">
                 <input type="radio" asp-for="@Model.AdType" value="personal" id="personal">
-                <label asp-for="@Model.AdType" class="py-2">Personal</label>
+                <label asp-for="@Model.AdType" class="py-2">Kişisel</label>
               </div>
               <div class="col-lg-4 mr-lg-4 my-2 rounded bg-white ">
                 <input type="radio" asp-for="@Model.AdType" value="business" id="business">
-                <label asp-for="@Model.AdType" class="py-2">Business</label>
+                <label asp-for="@Model.AdType" class="py-2">İş Yeri</label>
               </div>
               <span asp-validation-for="@Model.AdType" class="text-danger"></span>
             </div>
-            <h6 class="font-weight-bold pt-4 pb-1">Description:</h6>
-            <textarea id="" asp-for="@Model.Description" class="border p-3 w-100" rows="7" placeholder="Write details about your product"></textarea>
+            <h6 class="font-weight-bold pt-4 pb-1">Açıklama:</h6>
+            <textarea id="" asp-for="@Model.Description" class="border p-3 w-100" rows="7" placeholder="Ürünün açıklamasını buraya girin"></textarea>
             <span asp-validation-for="@Model.Description" class="text-danger"></span>
           </div>
           <div class="col-lg-6">
-            <h6 class="font-weight-bold pt-4 pb-1">Select Ad Category:</h6>
+            <h6 class="font-weight-bold pt-4 pb-1">Reklamın Kategorisi:</h6>
             <div class="col-lg-12">
 
-              <select asp-for="@Model.SelectedCategoryIds" id="choices-multiple-remove-button" multiple class="w-100 ">
+              <select asp-for="@Model.SelectedSubategoryIds" id="choices-multiple-remove-button" multiple class="w-100 ">
                 
                   @if (ViewBag.Categories != null)
                   {
-                    foreach (var item in ViewBag.Categories)
+                    foreach (var item in ViewBag.Subcategories)
                     {
                       <option value="@item.Value">@item.Text</option>
                     }
                   }
               </select>
-              <span asp-validation-for="@Model.SelectedCategoryIds" class="text-danger"></span>
+              <span asp-validation-for="@Model.SelectedSubategoryIds" class="text-danger"></span>
             </div>
             <div class="price">
-              <h6 class="font-weight-bold pt-4 pb-1">Item Price ($ USD):</h6>
+              <h6 class="font-weight-bold pt-4 pb-1">Ürünün Fiyatı:</h6>
               <div class="row px-3">
                 <div class="col-lg-4 mr-lg-4 rounded bg-white my-2 ">
-                  <input type="text" asp-for="@Model.Price" class="border-0 py-2 w-100 price" placeholder="Price"
+                  <input type="text" asp-for="@Model.Price" class="border-0 py-2 w-100 price" placeholder="Fiyat"
                          id="price">
 
                 </div>
@@ -76,7 +76,7 @@
                 <div class="col-lg-4 mrx-4 rounded bg-white my-2 ">
                   <input type="checkbox" asp-for="@Model.IsNegotiable" id="Negotiable">
 
-                  <label for="Negotiable" class="py-2">Negotiable</label>
+                  <label for="Negotiable" class="py-2">Pazarlık Edilebilir</label>
                 </div>
 
                 <span asp-validation-for="@Model.Price" class="text-danger"></span>
@@ -86,10 +86,10 @@
             <div class="choose-file text-center my-4 py-4 rounded">
               <label for="file-upload">
 
-                <span id="upload-status" style="color:#333" class="d-block font-weight-bold">Drop files anywhere to upload</span>
-                <span class="d-block">or</span>
-                <span class="d-block btn bg-primary text-white my-3 select-files">Upload Files</span>
-                <span class="d-block">Maximum upload file size: 1000 KB</span>
+                <span id="upload-status" style="color:#333" class="d-block font-weight-bold">Ürünün resimlerini buraya taşıyın</span>
+                <span class="d-block">veya</span>
+                <span class="d-block btn bg-primary text-white my-3 select-files">Resim Yükleyin</span>
+                <span class="d-block">Maximum dosya sınırı: 1000 KB</span>
 
 
                 <input type="file" asp-for="@Model.Files" class="form-control-file d-none" multiple id="file-upload">
@@ -104,19 +104,19 @@
       <fieldset class="border p-4 my-5 seller-information bg-gray">
         <div class="row">
           <div class="col-lg-12">
-            <h3>Seller Information</h3>
+            <h3>Satıcı Bilgileri</h3>
           </div>
           <div class="col-lg-6">
-            <h6 class="font-weight-bold pt-4 pb-1">Contact Name:</h6>
-            <input type="text" asp-for="@Model.ContactName" placeholder="Contact name" class="border w-100 p-2">
-            <h6 class="font-weight-bold pt-4 pb-1">Contact Number:</h6>
-            <input type="text" asp-for="@Model.ContactNumber" placeholder="Contact Number" class="border w-100 p-2">
+            <h6 class="font-weight-bold pt-4 pb-1">Satıcının Adı:</h6>
+            <input type="text" asp-for="@Model.ContactName" placeholder="Satıcının Adı" class="border w-100 p-2">
+            <h6 class="font-weight-bold pt-4 pb-1">Satıcının Numarası:</h6>
+            <input type="text" asp-for="@Model.ContactNumber" placeholder="Satıcının Numarası" class="border w-100 p-2">
           </div>
           <div class="col-lg-6">
-            <h6 class="font-weight-bold pt-4 pb-1">Contact Email:</h6>
-            <input type="email" asp-for="@Model.ContactEmail" placeholder="name@yourmail.com" class="border w-100 p-2">
-            <h6 class="font-weight-bold pt-4 pb-1">Contact Address:</h6>
-            <input type="text" asp-for="@Model.ContactAddress" placeholder="Your address" class="border w-100 p-2">
+            <h6 class="font-weight-bold pt-4 pb-1">Satıcının Emaili:</h6>
+            <input type="email" asp-for="@Model.ContactEmail" placeholder="name@email.com" class="border w-100 p-2">
+            <h6 class="font-weight-bold pt-4 pb-1">Satıcının Adresi:</h6>
+            <input type="text" asp-for="@Model.ContactAddress" placeholder="Satının Adresi" class="border w-100 p-2">
           </div>
         </div>
       </fieldset>
@@ -127,53 +127,36 @@
           <div class="col-lg-12">
 
             <h3 class="pb-3">
-              Make Your Ad Featured
+              Ürünün Durumu
               <span class="float-right">
                 <a class="text-right font-weight-normal text-success" href="#">
-                  What
-                  is featured ad ?
+                  Ürünün ne durumda?
                 </a>
               </span>
             </h3>
 
           </div>
           <div class="col-lg-6 my-3">
-            <span class="mb-3 d-block">Premium Ad Options:</span>
+            <span class="mb-3 d-block">Ürün Durumu:</span>
             <ul>
               <li>
-                <input type="radio" asp-for=@Model.FeaturedAdOption value="RegularAd" id="regular-ad">
-                <label for="regular-ad" class="font-weight-bold text-dark py-1">Regular Ad</label>
-                <span>$00.00</span>
+                <input type="radio" asp-for=@Model.ConditionEnum value="0" id="regular-ad">
+                <label for="regular-ad" class="font-weight-bold text-dark py-1">Belirtilmedi</label>
               </li>
               <li>
-                <input type="radio" id="Featured-Ads" asp-for=@Model.FeaturedAdOption value="FeaturedAds">
-                <label for="Featured-Ads" class="font-weight-bold text-dark py-1">Top Featured Ads</label>
-                <span>$59.00</span>
+                <input type="radio" id="Featured-Ads" asp-for=@Model.ConditionEnum value="1">
+                <label for="Featured-Ads" class="font-weight-bold text-dark py-1">Yeni</label>
               </li>
               <li>
-                <input type="radio" id="urgent-Ads" asp-for=@Model.FeaturedAdOption value="UrgentAds">
-                <label for="urgent-Ads" class="font-weight-bold text-dark py-1">Urgent Ads</label>
-                <span>$79.00</span>
+                <input type="radio" id="urgent-Ads" asp-for=@Model.ConditionEnum value="2">
+                <label for="urgent-Ads" class="font-weight-bold text-dark py-1">Az Kullanılmış</label>
+              </li>
+              <li>
+                <input type="radio" id="urgent-Ads" asp-for=@Model.ConditionEnum value="3">
+                <label for="urgent-Ads" class="font-weight-bold text-dark py-1">Kullanılmış</label>
               </li>
             </ul>
           </div>
-          @*  <div class="col-lg-6 my-3">
-          <span class="mb-3 d-block">Please select the preferred payment method:</span>
-          <ul>
-          <li>
-          <input type="radio" id="bank-transfer" name="adfeature">
-          <label for="bank-transfer" class="font-weight-bold text-dark py-1">Direct Bank Transfer</label>
-          </li>
-          <li>
-          <input type="radio" id="Cheque-Payment" name="adfeature">
-          <label for="Cheque-Payment" class="font-weight-bold text-dark py-1">Cheque Payment</label>
-          </li>
-          <li>
-          <input type="radio" id="Credit-Card" name="adfeature">
-          <label for="Credit-Card" class="font-weight-bold text-dark py-1">Credit Card</label>
-          </li>
-          </ul>
-          </div> *@
         </div>
       </fieldset>
       <!-- ad-feature start -->
@@ -181,11 +164,11 @@
       <div class="checkbox d-inline-flex">
         <input type="checkbox" asp-for="@Model.AgreeToTerms" id="terms-condition" class="mt-1">
         <label for="terms-condition" class="ml-2">
-          By click you must agree with our
-          <span> <a class="text-success" href="terms-condition.html">Terms & Condition and Posting Rules.</a></span>
+          Buraya tıklayarak kullanıcı sözleşmesini onaylamış sayılıyorsunuz.
+          <span> <a class="text-success" href="terms-condition.html">Kullanıcı sözleşmesini okumak için tıklayın.</a></span>
         </label>
       </div>
-      <button type="submit" class="btn btn-primary d-block mt-2">Post Your Ad</button>
+      <button type="submit" class="btn btn-primary d-block mt-2">Reklamı Yayınla</button>
     </form>
   </div>
 </section>
@@ -210,8 +193,8 @@
       var multipleCancelButton = new Choices('#choices-multiple-remove-button', { //For Selecting Multiple Categories
         removeItemButton: true,
         maxItemCount: 5,
-        searchResultLimit: 20,
-        renderChoiceLimit: 20,
+        searchResultLimit: 100,
+        renderChoiceLimit: 100,
 
       });
 

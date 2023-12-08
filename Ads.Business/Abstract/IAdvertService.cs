@@ -27,7 +27,7 @@ namespace Ads.Business.Abstract
 
     IDataResult<TDto> AddAndSave<TDto>(TDto dto);
 
-    IDataResult<TDto> AddAdvertCategory<TDto>(TDto dto);
+    IDataResult<TDto> AddAdvertSubcategory<TDto>(TDto dto);
 
     //Asnyc
     Task<IDataResult<TDto>> FindByIdAsync<TDto>(int id);
@@ -40,6 +40,6 @@ namespace Ads.Business.Abstract
 
     Task<IDataResult<TDto>> AddAndSaveAsync<TDto>(TDto dto);
 
-    Task<IDataResult<TDto>> AddAdvertCategoryAsync<TDto>(TDto dto);
+    Task<IDataResult<TDto>> AddAdvertSubcategoryAsync<TDto>(TDto dto);
   }
 }

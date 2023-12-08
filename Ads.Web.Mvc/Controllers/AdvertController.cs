@@ -3,10 +3,13 @@ using Ads.Business.Dtos.Advert;
 using Ads.Business.Dtos.AdvertComment;
 using Ads.Business.Dtos.AdvertImage;
 using Ads.Entities.Concrete;
+using Ads.Entities.Concrete.Enums;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using System;
 using System.Globalization;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Ads.Web.Mvc.Controllers
 {
@@ -23,93 +26,97 @@ namespace Ads.Web.Mvc.Controllers
       _advertCommentService = advertCommentService;
       _advertImageService = advertImageService;
     }
-    public IActionResult Search(string query, string category = "", string location = "", int page = 1,decimal minPrice = 0, decimal maxPrice = 5000)
+    public IActionResult Search( string query, string category, string location , int page = 1,decimal minPrice = 0, decimal maxPrice = 5000, int condition = 999)
     {
-      //TODO: Now the address is taken from the user which can have many addresses. So the ad will show on all of them
-    //var adverts = _advertService.GetList<Advert>(filter: a => a.Price >= minPrice && a.Price <= maxPrice, includeProperties: "CategoryAdverts.Category,User.Addresses.City").Data;
+      var adverts = _advertService.GetList<Advert>(filter: a => a.Price >= minPrice && a.Price <= maxPrice, includeProperties: "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments").Data;
 
-    //  if (!string.IsNullOrEmpty(query))
-    //  {
-    //    adverts = adverts.Where(a => a.Title.Contains(query) || a.Description.Contains(query));
-    //  }
+      if (condition != 999)
+      {
+        adverts = adverts.Where(a => a.ConditionEnum == (AdvertConditionEnum)condition);
+      }
 
-      //if (!string.IsNullOrEmpty(category))
-      //{
-      //  adverts = adverts.Where(a => a.CategoryAdverts.Any(ca => ca.Category.Name == category));
-      //}
+      if (!string.IsNullOrEmpty(query))
+      {
+        adverts = adverts.Where(a => a.Title.Contains(query) || a.Description.Contains(query));
+      }
 
-      //if (!string.IsNullOrEmpty(location))
-      //{
-      //  adverts = adverts.Where(a => a.User.Addresses.Any(ca => ca.City.Name == location));
-      //}
+      if (!string.IsNullOrEmpty(category))
+      {
+        adverts = adverts.Where(a => a.SubcategoryAdverts.Any(ca => ca.Subcategory.Category.Name == category || ca.Subcategory.Name == category));
+      }
 
-      //var totalPostCount = adverts.Count();
-      //var postCountPerPage = 10; //10
-      //var pageCount = Math.Ceiling((double)totalPostCount / postCountPerPage);
-      //if (page <= 0) page = 1;
-      //if (page > pageCount) page = (int)pageCount;
+      if (!string.IsNullOrEmpty(location))
+      {
+        adverts = adverts.Where(a => a.User.Address != null && (a.User.Address.City.Name == location || a.User.Address.Country == location));
+      }
 
-      //ViewBag.PageCount = pageCount;
+      var totalPostCount = adverts.Count();
+      var postCountPerPage = 9; //10
+       var pageCount = Math.Ceiling((double)totalPostCount / postCountPerPage);
+      if (page <= 0) page = 1;
+      if (page > pageCount) page = (int)pageCount;
+
+      ViewBag.PageCount = pageCount;
+
+      //Setting up the viewbags for the data filtering on the sidebar
+
+      var subcategoryCounts = adverts
+          .SelectMany(a => a.SubcategoryAdverts.Select(ca => ca.Subcategory.Category.Name))
+          .GroupBy(name => name)
+          .Select(group => new { Subcategory = group.Key, Count = group.Count() })
+          .ToList();
+
+      ViewBag.Subcategories = subcategoryCounts;
+
+      var countryCounts = adverts
+        .Where(a => a.User != null && a.User.Address != null && a.User.Address.City != null)
+        .GroupBy(a => a.User.Address.City.Name)
+        .Select(group => new { Country = group.Key, Count = group.Count() })
+        .ToList();
+
+      ViewBag.Countries = countryCounts;
+
+      var conditions = adverts
+          .SelectMany(a => a.SubcategoryAdverts.Select(ca => ca.Subcategory.Category.Name))
+          .GroupBy(name => name)
+          .Select(group => new { Subcategory = group.Key, Count = group.Count() })
+          .ToList();
+
+      ViewBag.ConditionEnumValues = Enum.GetValues(typeof(AdvertConditionEnum))
+                                  .Cast<AdvertConditionEnum>()
+                                  .Select(e => new SelectListItem
+                                  {
+                                    Value = ((int)e).ToString(),
+                                    Text = e.ToString()
+                                  })
+                                  .ToList();
+
+      var advertsPageified = adverts
+      .Skip((page - 1) * postCountPerPage).Take(postCountPerPage);
+
+      ViewBag.AdvertCount = totalPostCount;
+      ViewBag.Query = query;
+      ViewBag.Category = category;
+      ViewBag.Location = location;
+      ViewBag.MinPrice = minPrice;
+      ViewBag.MaxPrice = maxPrice;
+      ViewBag.Condition = condition;
 
 
-
-      //// Get unique categories with counts
-      //var categoryCounts = adverts
-      //    .SelectMany(a => a.CategoryAdverts.Select(ca => ca.Category.Name))
-      //    .GroupBy(name => name)
-      //    .Select(group => new { Category = group.Key, Count = group.Count() })
-      //    .ToList();
-
-      //// Pass unique categories with counts to ViewBag
-      //ViewBag.Categories = categoryCounts;
-
-      //var countryCounts = adverts
-      //    .SelectMany(a => a.User.Addresses.Select(ca => ca.Country))
-      //    .Distinct()
-      //    .GroupBy(name => name)
-      //    .Select(group => new { Country = group.Key, Count = group.Count() })
-      //    .ToList();
-
-      //// Pass unique locations with counts to ViewBag
-      //ViewBag.Countries = countryCounts;
-
-
-      //var advertsPageified = adverts
-      //.Skip((page - 1) * postCountPerPage).Take(postCountPerPage);
-
-      ////ViewBag.Adverts = paginatedAdverts;
-      ////ViewBag.PageCount = pageCount;
-      ////ViewBag.CurrentPage = page;
-      //ViewBag.Query = query;
-      ////ViewBag.Category = category;
-      ////ViewBag.Location = location;
-      ////ViewBag.SortBy = sortBy;
-      //ViewBag.AdvertCount = totalPostCount;
-
-      
-
-      //return View(advertsPageified);
-      return View();
+      return View(advertsPageified);
+  
     }
     [HttpPost]
     public IActionResult Search(string query, string location, string category)
     {
-      return RedirectToAction("Search", new { query, location, category, page =1, minPrice = 0, maxPrice = 5000 });
+      return RedirectToAction("Search", new { query, location, category, page =1 });
     }
 
-    public IActionResult FilterByCountry(string location)
-    {
-      // Redirect to the Search action with the specified country
-      return RedirectToAction("Search", new { location });
-    }
-
-    public IActionResult FilterByCategory(string category)
+    public IActionResult ChangePage(int page, string query, string category, string location, decimal minPrice, decimal maxPrice, int condition )
     {
       // Redirect to the Search action with the specified category
-      return RedirectToAction("Search", new { category });
+      return RedirectToAction("Search", new { query, location, category, page, minPrice,  maxPrice,  condition });
     }
-
-
 
     [Route("/advert/title-slug")]
     public IActionResult Detail(int id)
@@ -121,4 +128,3 @@ namespace Ads.Web.Mvc.Controllers
 
   }
 }
-//make catehotu and stuff a link and add category to search

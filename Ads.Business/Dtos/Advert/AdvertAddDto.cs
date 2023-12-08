@@ -1,4 +1,5 @@
 ﻿using Ads.Entities.Concrete;
+using Ads.Entities.Concrete.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Ads.Business.Dtos.Advert
     public string Title { get; set; }
     public string AdType { get; set; }
     public string Description { get; set; }
-    public List<int> SelectedCategoryIds { get; set; }
+    public List<int> SelectedSubategoryIds { get; set; }
     public decimal Price { get; set; }
     public bool IsNegotiable { get; set; }
     public List<IFormFile> Files { get; set; }
@@ -23,9 +24,9 @@ namespace Ads.Business.Dtos.Advert
     public string ContactNumber { get; set; }
     public string ContactEmail { get; set; }
     public string ContactAddress { get; set; }
-    public string FeaturedAdOption { get; set; }
-    //public string PaymentMethod { get; set; }
-    
+		public AdvertConditionEnum ConditionEnum { get; set; }
+		//public string PaymentMethod { get; set; }
+    public int ClickCount = 0;
     public bool AgreeToTerms { get; set; }
 
     //public virtual ICollection<Ads.Entities.Concrete.AdvertImage> AdvertImages { get; set; }

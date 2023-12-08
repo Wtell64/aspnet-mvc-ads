@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Ads.Business.Dtos.Category
 {
-  public class CategoryAdvertViewDto : IDto
+  public class SubcategoryAdvertViewDto : IDto
   {
     public int Id { get; set; }
-    public int CategoryId { get; set; }
+    public int SubcategoryId { get; set; }
 
     public int AdvertId { get; set; }
   }

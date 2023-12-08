@@ -106,12 +106,12 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
 				if (entityUser.State == EntityState.Modified)
 				{
 					entityUser.Property("CreatedDate").IsModified = false;
-					((BaseEntity)entityUser.Entity).UpdatedDate = DateTime.Now;
+					((AppUser)entityUser.Entity).UpdatedDate = DateTime.Now;
 				}
 				if (entityUser.State == EntityState.Added)
 				{
-					((BaseEntity)entityUser.Entity).UpdatedDate = DateTime.Now;
-					((BaseEntity)entityUser.Entity).CreatedDate = DateTime.Now;
+					((AppUser)entityUser.Entity).UpdatedDate = DateTime.Now;
+					((AppUser)entityUser.Entity).CreatedDate = DateTime.Now;
 				}
 			}
 			return await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);

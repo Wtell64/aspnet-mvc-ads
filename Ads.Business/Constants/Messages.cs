@@ -73,7 +73,7 @@
     public static string DistrictNotFound = "İlçe bulunamadı";
     public static string NoDistrict = "İlçe yok";
 
-    public static string CategoryAdvertAdded = "Reklam Kategorisi Eklendi";
+    public static string SubcategoryAdvertAdded = "Reklam Ara Kategorisi Eklendi";
 
 		public static string SubcategoryUpdated = "Alt Kategori Güncellendi.";
 		public static string SubcategoryDeleted = "Alt Kategori Silindi";

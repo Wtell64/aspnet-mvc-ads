@@ -53,7 +53,7 @@ namespace Ads.Business.Concrete
       }
     }
 
-    public IDataResult<TDto> AddAdvertCategory<TDto>(TDto dto)
+    public IDataResult<TDto> AddAdvertSubcategory<TDto>(TDto dto)
     {
       try
       {
@@ -61,7 +61,7 @@ namespace Ads.Business.Concrete
 
 				_subcategoryAdvertDal.Add(entity);
 
-        return new SuccessDataResult<TDto>(dto, Messages.CategoryAdvertAdded);
+        return new SuccessDataResult<TDto>(dto, Messages.SubcategoryAdvertAdded);
       }
       catch (Exception ex)
       {
@@ -70,7 +70,7 @@ namespace Ads.Business.Concrete
       }
     }
 
-    public async Task<IDataResult<TDto>> AddAdvertCategoryAsync<TDto>(TDto dto)
+    public async Task<IDataResult<TDto>> AddAdvertSubcategoryAsync<TDto>(TDto dto)
     {
       try
       {
@@ -78,7 +78,7 @@ namespace Ads.Business.Concrete
 
         await _subcategoryAdvertDal.AddAsync(entity);
 
-        return new SuccessDataResult<TDto>(dto, Messages.CategoryAdvertAdded);
+        return new SuccessDataResult<TDto>(dto, Messages.SubcategoryAdvertAdded);
       }
       catch (Exception ex)
       {
@@ -125,7 +125,7 @@ namespace Ads.Business.Concrete
 
         //TODO: sil
         entity.UserId = 3;
-
+        
         var validationResult = await _validator.ValidateAsync(entity);
         if (!validationResult.IsValid)
         {

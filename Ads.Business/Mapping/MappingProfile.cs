@@ -26,10 +26,10 @@ namespace Ads.Business.Mapping
       CreateMap<AdvertComment, AdvertCommentViewDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertImageViewDto>().ReverseMap();
 
-      CreateMap<Advert,AdvertAddDto>().ReverseMap();
+      CreateMap<Advert, AdvertAddDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertAddDto>().ReverseMap();
 
-      CreateMap<SubcategoryAdvert, CategoryAdvertViewDto>().ReverseMap();
+      CreateMap<SubcategoryAdvert, SubcategoryAdvertViewDto>().ReverseMap();
 			CreateMap<Subcategory, SubcategoryViewDto>().ReverseMap();
 		}
   }

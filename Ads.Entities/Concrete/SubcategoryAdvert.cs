@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ads.Entities.Concrete
+﻿namespace Ads.Entities.Concrete
 {
-  public class SubcategoryAdvert : BaseEntity
+	public class SubcategoryAdvert : BaseEntity
   {
   public int SubcategoryId { get; set; }
 

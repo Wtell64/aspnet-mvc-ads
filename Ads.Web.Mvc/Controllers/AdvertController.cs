@@ -121,7 +121,11 @@ namespace Ads.Web.Mvc.Controllers
     [Route("/advert/title-slug")]
     public IActionResult Detail(int id)
     {
-      return View();
+			var advert = _advertService.Get<Advert>(a => a.Id == id, "User.Address.City,User.Address.District,AdvertComments.User,AdvertImages,SubcategoryAdverts.Subcategory");
+      advert.Data.ClickCount = advert.Data.ClickCount + 1;
+      _advertService.Update(advert.Data);
+      _advertService.Save();
+      return View(advert.Data);
     }
 
 

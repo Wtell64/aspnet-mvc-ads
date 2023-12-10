@@ -12,8 +12,8 @@ namespace Ads.Business.Concrete
 {
 	public class CategoryManager : ICategoryService
   {
-    private readonly ICategoryDal _categoryDal;
-    private readonly IMapper _mapper;
+    private readonly ICategoryDal _categoryDal; //category verileri çekmek için eklendi.
+    private readonly IMapper _mapper;  
     private readonly IValidator<Category> _validator;
     public CategoryManager(ICategoryDal categoryDal, IMapper mapper, IValidator<Category> validator)
     {

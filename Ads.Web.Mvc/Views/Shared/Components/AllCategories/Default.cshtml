@@ -32,7 +32,7 @@
 											{
 												foreach (var subcategory in subcategoryGroup)
 												{
-													<li><a asp-area="" asp-controller="Category" asp-action="Index">@subcategory.Name<span>@category.Subcategories.Count()</span></a></li>
+													<li><a asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@subcategory.Id" asp-route-category-slug="@subcategory.Name">@subcategory.Name<span>@subcategory.SubcategoryAdverts.Count()</span></a></li>
 												}
 
 											}

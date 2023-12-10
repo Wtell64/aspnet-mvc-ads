@@ -7,23 +7,25 @@ namespace Ads.Web.Mvc.ViewComponents
 {
 	public class AllCategoriesViewComponent:ViewComponent
 	{
-	 ICategoryService _categoryService;
-		
-		public AllCategoriesViewComponent(ICategoryService categoryService)
+	 private readonly ICategoryService _categoryService;
+	 private readonly IAdvertService _advertService;
+
+
+    public AllCategoriesViewComponent(ICategoryService categoryService, IAdvertService advertService)
+    {
+      _categoryService = categoryService;
+      _advertService = advertService;
+    }
+    public IViewComponentResult Invoke()
 		{
-			_categoryService = categoryService;
-			
-		}
-		public IViewComponentResult Invoke()
-		{
-			var categories = _categoryService.GetList<Category>(includeProperties: "Subcategories");
+			var categories = _categoryService.GetList<Category>(includeProperties: "Subcategories.SubcategoryAdverts");
 			
 
 			var categoryViewDto = new CategoryViewDto();
 			categoryViewDto.Categories = categories.Data;
-		
+     
 
-			return View(categoryViewDto);
+      return View(categoryViewDto);
 		}
 	}
 }

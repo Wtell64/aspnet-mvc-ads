@@ -12,7 +12,7 @@ namespace Ads.Entities.Concrete
 		public string Description { get; set; }
 		public AdvertConditionEnum ConditionEnum { get; set; }
 		public int Price { get; set; }
-		public int? ClickCount { get; set; }
+		public int? ClickCount { get; set; } = 0;
     
 		//Relationship
 		public virtual ICollection<SubcategoryAdvert> SubcategoryAdverts { get; set; }

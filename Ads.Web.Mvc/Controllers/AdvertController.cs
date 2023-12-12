@@ -109,7 +109,7 @@ namespace Ads.Web.Mvc.Controllers
     [HttpPost]
     public IActionResult Search(string query, string location, string category)
     {
-      return RedirectToAction("Search", new { query, location, category, page =1 });
+      return RedirectToAction("Search", new { query, location, category, page = 1 });
     }
 
     public IActionResult ChangePage(int page, string query, string category, string location, decimal minPrice, decimal maxPrice, int condition )

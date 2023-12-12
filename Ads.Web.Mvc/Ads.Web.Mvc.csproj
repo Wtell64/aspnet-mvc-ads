@@ -11,7 +11,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
     <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.0" />
   </ItemGroup>
@@ -19,10 +19,13 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\SuperAdmin\Controllers\" />
+    <Folder Include="Areas\SuperAdmin\Data\" />
+    <Folder Include="Areas\SuperAdmin\Models\" />
+    <Folder Include="Areas\SuperAdmin\Views\" />
     <Folder Include="Models\" />
     <Folder Include="Filters\" />
     <Folder Include="wwwroot\images\seedImages\" />
-    <Folder Include="wwwroot\template\" />
   </ItemGroup>
 
   <ItemGroup>

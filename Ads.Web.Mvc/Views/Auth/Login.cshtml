@@ -1,95 +1,123 @@
-﻿@model Ads.Business.Dtos.Users.UserLoginDto
-
+﻿@model Ads.Business.Dtos.Users.LoginDto
 
 @{
-  Layout = null;
+	Layout = null;
+	ViewData["Title"] = "Giriş Yap";
 }
+
+@section Scripts{
+	@await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - Ads.Web.Mvc</title>
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-  <link rel="stylesheet" href="~/Ads.Web.Mvc.styles.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Ads.Web.Mvc</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Ads.Web.Mvc.styles.css" asp-append-version="true" />
 
-  <!-- FAVICON -->
-  <link href="~/template/img/favicon.png" rel="shortcut icon">
-  <!-- PLUGINS CSS STYLE -->
-  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap-slider.css">
-  <!-- Font Awesome -->
-  <link href="~/template/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Owl Carousel -->
-  <link href="~/template/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
-  <link href="~/template/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
-  <!-- Fancy Box -->
-  <link href="~/template/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
-  <link href="~/template/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-  <!-- CUSTOM CSS -->
-  <link href="~/template/css/style.css" rel="stylesheet">
-
-
-
+	<!-- FAVICON -->
+	<link href="~/template/img/favicon.png" rel="shortcut icon">
+	<!-- PLUGINS CSS STYLE -->
+	<!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap-slider.css">
+	<!-- Font Awesome -->
+	<link href="~/template/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Owl Carousel -->
+	<link href="~/template/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+	<link href="~/template/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+	<!-- Fancy Box -->
+	<link href="~/template/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+	<link href="~/template/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	<!-- CUSTOM CSS -->
+	<link href="~/template/css/style.css" rel="stylesheet">
 </head>
 
 <body class="body-wrapper" style="height:100vh;">
+	<section class="login border-top-1 p-5"style="height:100vh; display:flex; align-items:center; justify-content:center">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6 col-md-10 ">
+					<div class="border border">
+						<h3 class="bg-gray p-4">Giriş Yap</h3>
 
+						@if (TempData["tokenMessage"] is not null)
+						{
+							<div class="alert alert-warning fw-bold">
+								@TempData["tokenMessage"]
+							</div>
+						}
 
+						<div asp-validation-summary="ModelOnly" class="alert alert-danger fw-bold" role="alert"></div>
 
-  <section class="login py-5 border-top-1" style="height:100%; display:flex; align-items:center; justify-content:center">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-8 ">
-          <div class="border border">
-            <h3 class="bg-gray p-4">Giriş Yap</h3>
-            <form asp-controller="Auth" asp-action="Login" asp-area="" method="post" >
-              <fieldset class="p-4">
-                <input asp-for="Email" type="text" placeholder="Email Adresi" class="border p-3 w-100 my-2">
-                <input asp-for="Password" type="password" placeholder="Şifre" class="border p-3 w-100 my-2">
-                <div class="loggedin-forgot">
-                  <input asp-for="RememberMe" type="checkbox" id="keep-me-logged-in">
-                  <label for="keep-me-logged-in" class="pt-3 pb-2">Beni Hatırla</label>
-                </div>
-                <button type="submit" class="d-block py-3 px-5 bg-primary text-white border-0 rounded font-weight-bold">Giriş Yap</button>
-                <a class="mt-3 d-block  text-primary" href="#">Şifreni mi unuttun?</a>
-                <a class="mt-3 d-inline-block text-primary" href="register.html">Kayıt ol</a>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+						<form asp-controller="Auth" asp-action="Login" asp-route-returUrl="@Context.Request.Query["redirectUrl"]" method="post" class="p-4">
 
+							<div class="row">
+								<div class="form-floating col-md-12 mb-3 ">
+									<input asp-for="Email" type="email" class="form-control" id="floatingInput" placeholder="E-mail">
+									<label asp-for="Email" class="mx-3" for="floatingInput">E-mail</label>
+									<span asp-validation-for="Email" class="text-danger fw-bold"></span>
+								</div>
 
+								<div class="form-floating col-md-12 mb-3 ">
+									<input asp-for="Password" type="password" class="form-control" id="floatingInput" placeholder="Şifre">
+									<label asp-for="Password" class="mx-3" for="floatingInput">Şifre</label>
+									<span asp-validation-for="Password" class="text-danger fw-bold"></span>
+								</div>
+							</div>
 
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="~/js/site.js" asp-append-version="true"></script>
+							<div class="row">
+								<div class="col mb-3">
+									<div class="form-check">
+										<input asp-for="RememberMe" class="form-check-input" type="checkbox" id="gridCheck">
+										<label class="form-check-label" for="gridCheck">Beni Hatırla</label>
+										<span asp-validation-for="RememberMe" class="text-danger fw-bold"></span>
+									</div>
+								</div>
 
-  <!-- JAVASCRIPTS -->
-  <script src="~/template/plugins/jQuery/jquery.min.js"></script>
-  <script src="~/template/plugins/bootstrap/js/popper.min.js"></script>
-  <script src="~/template/plugins/bootstrap/js/bootstrap.min.js"></script>
-  <script src="~/template/plugins/bootstrap/js/bootstrap-slider.js"></script>
-  <!-- tether js -->
-  <script src="~/template/plugins/tether/js/tether.min.js"></script>
-  <script src="~/template/plugins/raty/jquery.raty-fa.js"></script>
-  <script src="~/template/plugins/slick-carousel/slick/slick.min.js"></script>
-  <script src="~/template/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-  <script src="~/template/plugins/fancybox/jquery.fancybox.pack.js"></script>
-  <script src="~/template/plugins/smoothscroll/SmoothScroll.min.js"></script>
-  <!-- google map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
-  <script src="~/template/plugins/google-map/gmap.js"></script>
-  <script src="~/template/js/script.js"></script>
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary">Giriş Yap</button>
+								</div>
+							</div>
+
+							<a class="mt-3 d-block  text-primary" asp-controller="Auth" asp-action="ForgotPassword">Şifreni mi unuttun?</a>
+							<a class="mt-3 d-inline-block text-primary" asp-controller="Auth" asp-action="Register">Kayıt Ol</a>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	<!-- JAVASCRIPTS -->
+	<script src="~/template/plugins/jQuery/jquery.min.js"></script>
+	<script src="~/template/plugins/bootstrap/js/popper.min.js"></script>
+	<script src="~/template/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="~/template/plugins/bootstrap/js/bootstrap-slider.js"></script>
+	<!-- tether js -->
+	<script src="~/template/plugins/tether/js/tether.min.js"></script>
+	<script src="~/template/plugins/raty/jquery.raty-fa.js"></script>
+	<script src="~/template/plugins/slick-carousel/slick/slick.min.js"></script>
+	<script src="~/template/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="~/template/plugins/fancybox/jquery.fancybox.pack.js"></script>
+	<script src="~/template/plugins/smoothscroll/SmoothScroll.min.js"></script>
+	<!-- google map -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+	<script src="~/template/plugins/google-map/gmap.js"></script>
+	<script src="~/template/js/script.js"></script>
 
 </body>
 

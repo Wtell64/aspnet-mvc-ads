@@ -2,10 +2,12 @@
 
 namespace Ads.Business.Dtos.Category
 {
-	public class CategoryAdvertViewDto : IDto
-	{
-		public int Id { get; set; }
-		public int CategoryId { get; set; }
+
+  public class SubcategoryAdvertViewDto : IDto
+  {
+    public int Id { get; set; }
+    public int SubcategoryId { get; set; }
+
 
 		public int AdvertId { get; set; }
 	}

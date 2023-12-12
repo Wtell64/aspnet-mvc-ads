@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Ads.Entities.Concrete.Advert>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="section-title">
+				<h2>Trending Adds</h2>
+				<p>This adds are popular !</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<!-- offer 01 -->
+		<div class="col-lg-12">
+			<div class="trending-ads-slide">
+				@if (Model != null && Model.Count() > 0)
+				{
+					foreach (var advert in Model)
+					{
+						var imagePath = advert.AdvertImages.Count() > 0 ? advert.AdvertImages.FirstOrDefault().ImagePath : "http://via.placeholder.com/610x400/lamp";
+						<div class="col-sm-12 col-lg-4">
+							<!-- product card -->
+							<div class="product-item bg-light">
+								<div class="card">
+									<div class="thumb-content">
+										<!-- <div class="price">$200</div> -->
+										<a asp-controller="Advert" asp-action="Detail" asp-area="" asp-route-title-slug="@imagePath" asp-route-id="@advert.Id">
+											<img class="card-img-top img-fluid" src="@imagePath" alt="Card image cap">
+										</a>
+									</div>
+									<div class="card-body">
+										<h4 class="card-title"><a asp-controller="Advert" asp-action="Detail" asp-area="" asp-route-title-slug="@advert.Title" asp-route-id="@advert.Id">@advert.Title</a></h4>
+										<ul class="list-inline product-meta">
+											<li class="list-inline-item">
+												<a href="single.html">
+													<i class="fa fa-folder-open-o"></i>@if (advert.SubcategoryAdverts.Count > 0)
+													{
+														@String.Join(", ", advert.SubcategoryAdverts.Select(p => p.Subcategory.Name).ToArray())
+													}
+												</a>
+											</li>
+											<li class="list-inline-item">
+												<a href="#"><i class="fa fa-calendar"></i> @advert.CreatedDate.ToShortDateString()</a>
+											</li>
+										</ul>
+										<p class="card-text">@advert.Description</p>
+										<div class="product-ratings">
+											<ul class="list-inline">
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				}
+			</div>
+		</div>
+	</div>
+</div>
+

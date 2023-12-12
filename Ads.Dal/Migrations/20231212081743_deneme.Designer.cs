@@ -4,6 +4,7 @@ using Ads.Dal.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ads.Dal.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231212081743_deneme")]
+    partial class deneme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,9 +83,7 @@ namespace Ads.Dal.Migrations
                             Id = 1,
                             CityId = 1,
                             Country = "Türkiye",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(4199),
-
                             DetailedAddress = "Emin Sokak",
                             DistrictId = 1,
                             IsActive = true,
@@ -94,9 +95,7 @@ namespace Ads.Dal.Migrations
                             Id = 2,
                             CityId = 2,
                             Country = "Türkiye",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(4213),
-
                             DetailedAddress = "Kerem Sokak Kus Apartmani",
                             DistrictId = 3,
                             IsActive = true,
@@ -108,9 +107,7 @@ namespace Ads.Dal.Migrations
                             Id = 3,
                             CityId = 4,
                             Country = "Türkiye",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(4214),
-
                             DetailedAddress = "Reşadiye cami üstü",
                             DistrictId = 7,
                             IsActive = true,
@@ -122,9 +119,7 @@ namespace Ads.Dal.Migrations
                             Id = 4,
                             CityId = 1,
                             Country = "Türkiye",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(4215),
-
                             DetailedAddress = "Akşemsettin Mahallesi",
                             DistrictId = 2,
                             IsActive = true,
@@ -136,9 +131,7 @@ namespace Ads.Dal.Migrations
                             Id = 5,
                             CityId = 3,
                             Country = "Türkiye",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(4216),
-
                             DetailedAddress = "Odabaşı Cd.",
                             DistrictId = 6,
                             IsActive = true,
@@ -197,10 +190,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8318),
-
                             Description = "Siyah az kullanılmıs laptop",
                             IsActive = true,
                             Price = 140,
@@ -210,10 +202,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 2,
+                            ClickCount = 0,
                             ConditionEnum = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8324),
-
                             Description = "Beyaz laptop. İhtiyacım olduğu için satıyorum",
                             IsActive = true,
                             Price = 250,
@@ -223,10 +214,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 3,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8326),
-
                             Description = "2013 model İphone",
                             IsActive = true,
                             Price = 340,
@@ -236,10 +226,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 4,
+                            ClickCount = 0,
                             ConditionEnum = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8327),
-
                             Description = "Android telefon en iyi telefondur",
                             IsActive = true,
                             Price = 240,
@@ -249,10 +238,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 5,
+                            ClickCount = 0,
                             ConditionEnum = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8328),
-
                             Description = "Samsung Android Tablet. Sahibinden satılıktır",
                             IsActive = true,
                             Price = 220,
@@ -262,10 +250,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 6,
+                            ClickCount = 0,
                             ConditionEnum = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8329),
-
                             Description = "Kardeşimin ipadini satıyoruz. Üstünde az çizik vardır",
                             IsActive = true,
                             Price = 180,
@@ -275,10 +262,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 7,
+                            ClickCount = 0,
                             ConditionEnum = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8331),
-
                             Description = "Led ekran televizyon. 20 cm e 50 cm. Az kullanılmış",
                             IsActive = true,
                             Price = 540,
@@ -288,10 +274,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 8,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8331),
-
                             Description = "17 inch ekranımı satıyorum",
                             IsActive = true,
                             Price = 40,
@@ -301,10 +286,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 9,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8333),
-
                             Description = "Ayşin kafede ev yemekleri seni çağırıyor",
                             IsActive = true,
                             Price = 400,
@@ -314,10 +298,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 10,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8334),
-
                             Description = "Kafe Paranoma, dünyaca ünlü kahve çeşitleri burada",
                             IsActive = true,
                             Price = 470,
@@ -327,10 +310,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 11,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8335),
-
                             Description = "Mcdonals seni çağırıyor",
                             IsActive = true,
                             Price = 200,
@@ -340,10 +322,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 12,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8336),
-
                             Description = "Tostumu yiyen başka bişey yemez",
                             IsActive = true,
                             Price = 120,
@@ -353,10 +334,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 13,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8337),
-
                             Description = "Her tür yemek bulunur",
                             IsActive = true,
                             Price = 30,
@@ -366,10 +346,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 14,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8338),
-
                             Description = "Yeşim restoranda her şey var",
                             IsActive = true,
                             Price = 140,
@@ -379,10 +358,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 15,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8338),
-
                             Description = "Yemekler bizden sorulur",
                             IsActive = true,
                             Price = 340,
@@ -392,10 +370,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 16,
+                            ClickCount = 0,
                             ConditionEnum = 0,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8339),
-
                             Description = "Bodrum un eşsiz yemek lezzetleri burada",
                             IsActive = true,
                             Price = 120,
@@ -405,10 +382,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 17,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8341),
-
                             Description = "10 numara arsa!",
                             IsActive = true,
                             Price = 40,
@@ -418,10 +394,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 18,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8378),
-
                             Description = "İstediğini ek, biç.",
                             IsActive = true,
                             Price = 75,
@@ -431,10 +406,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 19,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8379),
-
                             Description = "Kullanıma hazır spor salonu.",
                             IsActive = true,
                             Price = 40,
@@ -444,10 +418,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 20,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8380),
-
                             Description = "Ben olsam düşünmeden alırım.",
                             IsActive = true,
                             Price = 25,
@@ -457,10 +430,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 21,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8381),
-
                             Description = "Dahiliye dahil.",
                             IsActive = true,
                             Price = 100000,
@@ -470,10 +442,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 22,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8382),
-
                             Description = "Çok da alet yok ama iş görür.",
                             IsActive = true,
                             Price = 165,
@@ -483,10 +454,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 23,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8383),
-
                             Description = "Hiç düşünmeden kirala dayıoğlu. ",
                             IsActive = true,
                             Price = 270,
@@ -496,10 +466,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 24,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8384),
-
                             Description = "Parası olmayan aramasın lütfen.",
                             IsActive = true,
                             Price = 375,
@@ -509,10 +478,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 25,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8385),
-
                             Description = "Yaz, kış giyilir. Sıcak tutar.",
                             IsActive = true,
                             Price = 85,
@@ -522,10 +490,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 26,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8386),
-
                             Description = "Biraz rahatsız eder ama, ortamlarda en şık sen olursun!",
                             IsActive = true,
                             Price = 185,
@@ -535,10 +502,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 27,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8387),
-
                             Description = "Al ve teklif et!",
                             IsActive = true,
                             Price = 30,
@@ -548,10 +514,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 28,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8388),
-
                             Description = "Çok şık, çok güzel!",
                             IsActive = true,
                             Price = 45,
@@ -561,10 +526,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 29,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8389),
-
                             Description = "Çocuğunuzun kafası sıccacık!",
                             IsActive = true,
                             Price = 20,
@@ -574,10 +538,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 30,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8390),
-
                             Description = "Bebeniz kar oynasın.",
                             IsActive = true,
                             Price = 45,
@@ -587,10 +550,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 31,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8391),
-
                             Description = "Her işinizi bununla yapın.",
                             IsActive = true,
                             Price = 50,
@@ -600,10 +562,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 32,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8392),
-
                             Description = "Müzik dinlemek ister misin?",
                             IsActive = true,
                             Price = 65,
@@ -613,10 +574,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 33,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8393),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 400,
@@ -626,10 +586,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 34,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8394),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 500,
@@ -639,10 +598,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 35,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8395),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 200,
@@ -652,10 +610,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 36,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8396),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 300,
@@ -665,10 +622,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 37,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8397),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 200,
@@ -678,10 +634,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 38,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8398),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 300,
@@ -691,10 +646,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 39,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8399),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 1000,
@@ -704,10 +658,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 40,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8400),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 760,
@@ -717,10 +670,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 41,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8401),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 5000,
@@ -730,10 +682,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 42,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8402),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 3000,
@@ -743,10 +694,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 43,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8403),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 5000,
@@ -756,10 +706,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 44,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8404),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 3000,
@@ -769,10 +718,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 45,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8405),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 500,
@@ -782,10 +730,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 46,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8406),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 350,
@@ -795,10 +742,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 47,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8407),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 10000,
@@ -808,10 +754,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 48,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8408),
-
                             Description = "Lorem Ipsum is simply dummy text of the printing",
                             IsActive = true,
                             Price = 15000,
@@ -821,10 +766,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 49,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8409),
-
                             Description = "Kediniz için şık tasma",
                             IsActive = true,
                             Price = 100,
@@ -834,10 +778,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 50,
+                            ClickCount = 0,
                             ConditionEnum = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8410),
-
                             Description = "10+2 Kilogram Kedi Kumu",
                             IsActive = true,
                             Price = 120,
@@ -847,10 +790,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 51,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8411),
-
                             Description = "Köpeğiniz için şık tasma",
                             IsActive = true,
                             Price = 100,
@@ -860,10 +802,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 52,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8412),
-
                             Description = "10+2 Kilogram Kuru Köpek Maması",
                             IsActive = true,
                             Price = 900,
@@ -873,10 +814,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 55,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8413),
-
                             Description = "1 Kilogram Balık Maması",
                             IsActive = true,
                             Price = 200,
@@ -886,10 +826,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 56,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8414),
-
                             Description = "Büyük boy akvaryum",
                             IsActive = true,
                             Price = 1500,
@@ -899,10 +838,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 53,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8415),
-
                             Description = "1 Kilogram Kuş Yemi",
                             IsActive = true,
                             Price = 150,
@@ -912,10 +850,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 54,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8416),
-
                             Description = "Suluk ve dalları olan kuş kafesi",
                             IsActive = true,
                             Price = 500,
@@ -925,10 +862,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 57,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8417),
-
                             Description = "Detaylı ev temizliği",
                             IsActive = true,
                             Price = 700,
@@ -938,10 +874,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 58,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8418),
-
                             Description = "Detaylı ofis temizliği",
                             IsActive = true,
                             Price = 2500,
@@ -951,10 +886,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 59,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8419),
-
                             Description = "Detaylı İç-Dış Yıkama",
                             IsActive = true,
                             Price = 300,
@@ -964,10 +898,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 60,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8420),
-
                             Description = "Oto-Kuaför Servisi",
                             IsActive = true,
                             Price = 1200,
@@ -977,10 +910,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 61,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8421),
-
                             Description = "Takım elbiselerinizi 1 günde tertemiz yapıyoruz.",
                             IsActive = true,
                             Price = 200,
@@ -990,10 +922,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 62,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8422),
-
                             Description = "Giyecekleriniz için hızlı kuru temizleme servisi",
                             IsActive = true,
                             Price = 50,
@@ -1003,10 +934,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 63,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8423),
-
                             Description = "İçine girince güzel.",
                             IsActive = true,
                             Price = 3500,
@@ -1016,10 +946,9 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 64,
+                            ClickCount = 0,
                             ConditionEnum = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(8424),
-
                             Description = "Hayır duası için ...",
                             IsActive = true,
                             Price = 7500,
@@ -1075,9 +1004,7 @@ namespace Ads.Dal.Migrations
                             Id = 1,
                             AdvertId = 1,
                             Comment = "Kargo hızlı geldi. Çok memnun kaldım",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(6764),
-
                             IsActive = true,
                             StarCount = 5,
                             UserId = 3
@@ -1087,9 +1014,7 @@ namespace Ads.Dal.Migrations
                             Id = 2,
                             AdvertId = 3,
                             Comment = "Ürün hiç beklediğim gibi değildi. Hiç beğenmedim",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(6769),
-
                             IsActive = true,
                             StarCount = 1,
                             UserId = 3
@@ -1099,9 +1024,7 @@ namespace Ads.Dal.Migrations
                             Id = 3,
                             AdvertId = 3,
                             Comment = "Ürün çok kötüydü. Hiç beğenmedim",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(6771),
-
                             IsActive = true,
                             StarCount = 2,
                             UserId = 4
@@ -1111,7 +1034,6 @@ namespace Ads.Dal.Migrations
                             Id = 4,
                             AdvertId = 2,
                             Comment = "Bu nasıl bir ürün, ben böyle bir şey görmemişim.",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(6772),
                             IsActive = true,
                             StarCount = 1,
@@ -1122,9 +1044,7 @@ namespace Ads.Dal.Migrations
                             Id = 5,
                             AdvertId = 2,
                             Comment = "Ürün görüldüğü gibiydi.",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(6772),
-
                             IsActive = true,
                             StarCount = 4,
                             UserId = 7
@@ -1134,9 +1054,7 @@ namespace Ads.Dal.Migrations
                             Id = 6,
                             AdvertId = 3,
                             Comment = "Güzel paketlenmişti.",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(6774),
-
                             IsActive = true,
                             StarCount = 4,
                             UserId = 5
@@ -1146,9 +1064,7 @@ namespace Ads.Dal.Migrations
                             Id = 7,
                             AdvertId = 6,
                             Comment = "Fiyat performans bekledik fos çıktı !",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(6775),
-
                             IsActive = true,
                             StarCount = 3,
                             UserId = 5
@@ -1193,9 +1109,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AdvertId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9893),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -1203,7 +1117,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             AdvertId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9900),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1212,7 +1125,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 3,
                             AdvertId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9901),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1221,7 +1133,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 4,
                             AdvertId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9902),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1230,7 +1141,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 5,
                             AdvertId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9903),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1239,7 +1149,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 6,
                             AdvertId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9905),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1248,7 +1157,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 7,
                             AdvertId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9905),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1265,7 +1173,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 9,
                             AdvertId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9907),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1274,7 +1181,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 10,
                             AdvertId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9908),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1283,7 +1189,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 11,
                             AdvertId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9908),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1331,7 +1236,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 17,
-                            AdvertId = 6
+                            AdvertId = 6,
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9912),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1340,7 +1245,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 18,
                             AdvertId = 6,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9913),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1349,7 +1253,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 19,
                             AdvertId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9913),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1358,7 +1261,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 20,
                             AdvertId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9914),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1367,7 +1269,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 21,
                             AdvertId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9914),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1384,7 +1285,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 23,
                             AdvertId = 8,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9915),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1738,7 +1638,6 @@ namespace Ads.Dal.Migrations
                             Id = 67,
                             AdvertId = 23,
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9971),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -1762,7 +1661,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 70,
                             AdvertId = 24,
-                           CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9972),
+                            CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9972),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -1899,7 +1798,6 @@ namespace Ads.Dal.Migrations
                             Id = 87,
                             AdvertId = 29,
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9981),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -1923,7 +1821,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 90,
                             AdvertId = 30,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9982),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1932,7 +1829,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 91,
                             AdvertId = 31,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9982),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -1998,7 +1894,6 @@ namespace Ads.Dal.Migrations
                             Id = 99,
                             AdvertId = 33,
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9986),
-                            
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2006,9 +1901,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 100,
                             AdvertId = 34,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9987),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2016,9 +1909,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 101,
                             AdvertId = 34,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9987),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2026,7 +1917,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 102,
                             AdvertId = 34,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9988),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2035,9 +1925,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 103,
                             AdvertId = 35,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9988),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2045,9 +1933,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 104,
                             AdvertId = 35,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9989),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2055,9 +1941,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 105,
                             AdvertId = 35,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9989),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2065,9 +1949,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 106,
                             AdvertId = 36,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9990),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2075,9 +1957,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 107,
                             AdvertId = 36,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9990),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2085,9 +1965,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 108,
                             AdvertId = 36,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9991),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2095,9 +1973,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 109,
                             AdvertId = 37,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9991),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2105,9 +1981,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 110,
                             AdvertId = 37,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9992),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2115,9 +1989,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 111,
                             AdvertId = 37,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9992),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2125,9 +1997,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 112,
                             AdvertId = 38,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9993),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2135,9 +2005,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 113,
                             AdvertId = 38,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9993),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2145,7 +2013,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 114,
                             AdvertId = 38,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9994),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2154,9 +2021,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 115,
                             AdvertId = 39,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(17),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2164,9 +2029,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 116,
                             AdvertId = 39,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(17),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2174,9 +2037,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 117,
                             AdvertId = 39,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(18),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2184,9 +2045,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 118,
                             AdvertId = 40,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(18),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2194,9 +2053,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 119,
                             AdvertId = 40,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(19),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2204,9 +2061,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 120,
                             AdvertId = 40,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(20),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2214,9 +2069,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 121,
                             AdvertId = 41,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(20),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2224,7 +2077,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 122,
                             AdvertId = 41,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(21),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2233,9 +2085,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 123,
                             AdvertId = 41,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(21),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2243,9 +2093,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 124,
                             AdvertId = 42,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(22),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2253,9 +2101,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 125,
                             AdvertId = 42,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(22),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2263,7 +2109,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 126,
                             AdvertId = 42,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(23),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2272,9 +2117,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 127,
                             AdvertId = 43,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(23),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2282,9 +2125,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 128,
                             AdvertId = 43,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(24),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2292,9 +2133,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 129,
                             AdvertId = 43,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(24),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2302,7 +2141,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 130,
                             AdvertId = 44,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(25),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2311,9 +2149,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 131,
                             AdvertId = 44,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(26),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2321,9 +2157,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 132,
                             AdvertId = 44,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(26),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2331,9 +2165,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 133,
                             AdvertId = 45,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(27),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2341,9 +2173,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 134,
                             AdvertId = 45,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(27),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2351,9 +2181,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 135,
                             AdvertId = 45,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(28),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2361,9 +2189,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 136,
                             AdvertId = 46,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(28),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2371,9 +2197,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 137,
                             AdvertId = 46,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(29),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2381,9 +2205,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 138,
                             AdvertId = 46,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(29),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2391,9 +2213,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 139,
                             AdvertId = 47,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(30),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2401,9 +2221,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 140,
                             AdvertId = 47,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(30),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2411,9 +2229,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 141,
                             AdvertId = 47,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(31),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2421,9 +2237,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 142,
                             AdvertId = 48,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(31),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2431,7 +2245,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 143,
                             AdvertId = 48,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(32),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2440,9 +2253,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 144,
                             AdvertId = 48,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(32),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2450,9 +2261,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 145,
                             AdvertId = 49,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(33),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2460,7 +2269,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 146,
                             AdvertId = 49,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(33),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2469,9 +2277,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 147,
                             AdvertId = 49,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(34),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2479,9 +2285,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 148,
                             AdvertId = 50,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(34),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2489,9 +2293,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 149,
                             AdvertId = 50,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(35),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2499,7 +2301,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 150,
                             AdvertId = 50,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(35),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2508,9 +2309,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 151,
                             AdvertId = 51,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(35),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2518,9 +2317,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 152,
                             AdvertId = 51,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(36),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2528,9 +2325,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 153,
                             AdvertId = 51,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(36),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2538,7 +2333,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 154,
                             AdvertId = 52,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(37),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2547,9 +2341,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 155,
                             AdvertId = 52,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(37),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2557,9 +2349,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 156,
                             AdvertId = 52,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(38),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2567,9 +2357,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 157,
                             AdvertId = 53,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(38),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2577,9 +2365,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 158,
                             AdvertId = 53,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(39),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2587,9 +2373,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 159,
                             AdvertId = 53,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(39),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2597,9 +2381,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 160,
                             AdvertId = 54,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(40),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2607,9 +2389,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 161,
                             AdvertId = 54,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(40),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2617,9 +2397,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 162,
                             AdvertId = 54,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(41),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2627,9 +2405,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 163,
                             AdvertId = 55,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(41),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2637,9 +2413,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 164,
                             AdvertId = 55,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(42),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2647,7 +2421,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 165,
                             AdvertId = 55,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(42),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2656,9 +2429,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 166,
                             AdvertId = 56,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(43),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2666,9 +2437,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 167,
                             AdvertId = 56,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(43),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2676,9 +2445,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 168,
                             AdvertId = 56,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(44),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2686,7 +2453,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 169,
                             AdvertId = 57,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(44),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2695,9 +2461,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 170,
                             AdvertId = 57,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(45),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2705,9 +2469,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 171,
                             AdvertId = 57,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(45),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2715,9 +2477,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 172,
                             AdvertId = 58,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(46),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2725,9 +2485,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 173,
                             AdvertId = 58,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(46),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2735,9 +2493,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 174,
                             AdvertId = 58,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(46),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2745,9 +2501,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 175,
                             AdvertId = 59,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(47),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2755,9 +2509,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 176,
                             AdvertId = 59,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(47),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2781,9 +2533,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 179,
                             AdvertId = 60,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(49),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2791,9 +2541,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 180,
                             AdvertId = 60,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(49),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2801,9 +2549,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 181,
                             AdvertId = 61,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(50),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2811,9 +2557,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 182,
                             AdvertId = 61,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(50),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2821,9 +2565,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 183,
                             AdvertId = 61,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(51),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2831,9 +2573,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 184,
                             AdvertId = 62,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(51),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2849,9 +2589,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 186,
                             AdvertId = 62,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(74),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2859,9 +2597,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 187,
                             AdvertId = 63,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(75),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2869,9 +2605,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 188,
                             AdvertId = 63,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(75),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2879,9 +2613,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 189,
                             AdvertId = 63,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(76),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2889,9 +2621,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 190,
                             AdvertId = 64,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(76),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         },
@@ -2899,7 +2629,6 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 191,
                             AdvertId = 64,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(77),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
@@ -2908,9 +2637,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 192,
                             AdvertId = 64,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(77),
-
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true
                         });
@@ -2956,9 +2683,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1623),
-
                             Description = "Elektronik araçların satıldığı kategoridir",
                             IconClass = "fa fa-laptop icon-bg-1",
                             IsActive = true,
@@ -2967,9 +2692,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1630),
-
                             Description = "Restoranlarınız ile ilgili reklamları burda verebilirsiniz",
                             IconClass = "fa fa-apple icon-bg-2",
                             IsActive = true,
@@ -2978,9 +2701,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1631),
-
                             Description = "Ev,arsa,dükkan.",
                             IconClass = "fa fa-home icon-bg-3",
                             IsActive = true,
@@ -2989,9 +2710,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1632),
-
                             Description = "7'den 70'e tüm ürünler.",
                             IconClass = "fa fa-shopping-basket icon-bg-4",
                             IsActive = true,
@@ -3000,9 +2719,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1633),
-
                             Description = "Kendi mesleğine göre ilan verebilirsin.",
                             IconClass = "fa fa-briefcase icon-bg-5",
                             IsActive = true,
@@ -3011,9 +2728,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 6,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1634),
-
                             Description = "Aradığın araçlar burada",
                             IconClass = "fa fa-car icon-bg-6",
                             IsActive = true,
@@ -3022,9 +2737,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1635),
-
                             Description = "Evcil Hayvanlarınız İçin Herşey",
                             IconClass = "fa fa-paw icon-bg-7",
                             IsActive = true,
@@ -3033,9 +2746,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 8,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(1635),
-
                             Description = "Aradığınız hizmetler burada !",
                             IconClass = "fa fa-laptop icon-bg-8",
                             IsActive = true,
@@ -3075,45 +2786,35 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(3065),
-
                             IsActive = true,
                             Name = "Eskişehir"
                         },
                         new
                         {
                             Id = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(3071),
-
                             IsActive = true,
                             Name = "İstanbul"
                         },
                         new
                         {
                             Id = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(3072),
-
                             IsActive = true,
                             Name = "Ankara"
                         },
                         new
                         {
                             Id = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(3073),
-
                             IsActive = true,
                             Name = "İzmir"
                         },
                         new
                         {
                             Id = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(3074),
-
                             IsActive = true,
                             Name = "Adana"
                         });
@@ -3157,9 +2858,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4488),
-
                             IsActive = true,
                             Name = "Odunpazarı"
                         },
@@ -3167,9 +2866,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             CityId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4493),
-
                             IsActive = true,
                             Name = "Tepebaşı"
                         },
@@ -3177,9 +2874,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 3,
                             CityId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4494),
-
                             IsActive = true,
                             Name = "Beşiktaş"
                         },
@@ -3187,9 +2882,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 4,
                             CityId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4494),
-
                             IsActive = true,
                             Name = "Beyoğlu"
                         },
@@ -3197,9 +2890,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 5,
                             CityId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4495),
-
                             IsActive = true,
                             Name = "Çankaya"
                         },
@@ -3207,9 +2898,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 6,
                             CityId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4496),
-
                             IsActive = true,
                             Name = "Sincan"
                         },
@@ -3217,9 +2906,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 7,
                             CityId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4497),
-
                             IsActive = true,
                             Name = "Bayraklı"
                         },
@@ -3227,9 +2914,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 8,
                             CityId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4498),
-
                             IsActive = true,
                             Name = "Foça"
                         },
@@ -3237,9 +2922,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 9,
                             CityId = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 102, DateTimeKind.Local).AddTicks(4498),
-
                             IsActive = true,
                             Name = "Çukurova"
                         },
@@ -3425,10 +3108,8 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "006663da-3773-4516-b336-c6c135f4b929",
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 105, DateTimeKind.Local).AddTicks(642),
-
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "SuperAdmin",
@@ -3438,12 +3119,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-
                             PasswordHash = "AQAAAAIAAYagAAAAEMAIwZkOfD49A+86mG0ttqdsjaPWsaEorwVumVhHy2D6DnGfaKRPHuRXO7GNJc5Ltw==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "d2893125-5f35-4793-bf0a-81f9a5e38f51",
-
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -3451,12 +3130,10 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "d96d13bc-a6b8-4dc6-b395-706ed0e8883f",
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 149, DateTimeKind.Local).AddTicks(2859),
-
                             Email = "admin@gmail.com",
-                            EmailConfirmed = true,
+                            EmailConfirmed = false,
                             FirstName = "Admin",
                             ImagePath = "deneme",
                             IsActive = true,
@@ -3464,12 +3141,10 @@ namespace Ads.Dal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-
                             PasswordHash = "AQAAAAIAAYagAAAAEIJB/420JFgUraB4YNwxDDhm0jXWoDrB95PGoyRYVM0QkBOfrP/kUffbiJxU44cP7A==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "2520580b-0e10-4ca7-a5d6-ca8048f1efe2",
-
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -3477,131 +3152,111 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "b1814690-bb5d-4a97-b14c-58c8d17d83e3",
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 193, DateTimeKind.Local).AddTicks(4716),
                             Email = "arasmentese96@gmail.com",
                             EmailConfirmed = false,
-
                             FirstName = "Aras",
                             ImagePath = "deneme",
                             IsActive = true,
                             LastName = "Menteşe",
                             LockoutEnabled = false,
-
                             NormalizedEmail = "arasmentese96@GMAIL.COM",
                             NormalizedUserName = "arasmentese96@GMAIL.COM",
                             PasswordHash = "AQAAAAIAAYagAAAAEHwtYlnD2LtzvigdXoyNNhfLnputXgaDvDILlKCFpRH5L4b7rgaUk+7ksIFfeu2k6w==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7831a780-5a3f-45d8-a3dc-b0e56883bbaf",
-
                             TwoFactorEnabled = false,
-                            UserName = "user1@gmail.com"
+                            UserName = "arasmentese96@gmail.com"
                         },
                         new
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "f6cb6ba6-0139-403e-9f7c-92fc76f7b90e",
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 237, DateTimeKind.Local).AddTicks(5929),
                             Email = "elif@gmail.com",
                             EmailConfirmed = false,
-
                             FirstName = "Elif",
                             ImagePath = "deneme",
                             IsActive = true,
                             LastName = "Sakçı Tuncer",
                             LockoutEnabled = false,
-
                             NormalizedEmail = "ELIF@GMAIL.COM",
                             NormalizedUserName = "ELIF@GMAIL.COM",
                             PasswordHash = "AQAAAAIAAYagAAAAEBeHYkLwAkra/DwqxiIxEG9SQC09+XL5MI1v4Uux33oRi/9h84K8UcG2FxayBm0Cgw==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "0dde8c49-bdad-41c0-9c26-8f45159ddc5a",
-
                             TwoFactorEnabled = false,
-                            UserName = "user2@gmail.com"
+                            UserName = "elif@gmail.com"
                         },
                         new
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "b14d4ddf-4307-42bf-ae98-9c03f3f95ade",
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 282, DateTimeKind.Local).AddTicks(752),
                             Email = "ismailycer@gmail.com",
                             EmailConfirmed = false,
-
                             FirstName = "İsmail",
                             ImagePath = "deneme",
                             IsActive = true,
                             LastName = "Yücer",
                             LockoutEnabled = false,
-
                             NormalizedEmail = "ISMAILYCER@GMAIL.COM",
                             NormalizedUserName = "ISMAILYCER@GMAIL.COM",
                             PasswordHash = "AQAAAAIAAYagAAAAEOxQCTZqdL99fgLwCd47w3djPfOryjLcqyC/ruPoelnCNkcbQlJq9PKBzx11HvN3cA==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "fcb3f7ff-9aaf-4915-a356-2330c0be29ac",
-
                             TwoFactorEnabled = false,
-                            UserName = "user3@gmail.com"
+                            UserName = "ismailycer@gmail.com"
                         },
                         new
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "ae82ca82-e3e9-4972-bc20-2342bbdfe347",
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 326, DateTimeKind.Local).AddTicks(2812),
                             Email = "muratcanagic@hotmail.com",
                             EmailConfirmed = false,
-
                             FirstName = "Muratcan",
                             ImagePath = "deneme",
                             IsActive = true,
                             LastName = "Agıç",
                             LockoutEnabled = false,
-
                             NormalizedEmail = "MURATCANAGIC@HOTMAIL.COM",
                             NormalizedUserName = "MURATCANAGIC@HOTMAIL.COM",
                             PasswordHash = "AQAAAAIAAYagAAAAEN7fW+fe3pbqDl5f9JGKZGcKkuakiC5grjnsBtzfzXw+HDM46qRROCTW2cUIfFyw5w==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "212fb2b5-b7dc-4260-8dd6-b189b9fa510c",
-
                             TwoFactorEnabled = false,
-                            UserName = "user4@gmail.com"
+                            UserName = "muratcanagic@hotmail.com"
                         },
                         new
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "5a5211fe-2e8f-4a3f-8b82-b4e839ce1feb",
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 370, DateTimeKind.Local).AddTicks(6070),
                             Email = "ridvankesken@gmail.com",
                             EmailConfirmed = false,
-
                             FirstName = "Rıdvan",
                             ImagePath = "deneme",
                             IsActive = true,
                             LastName = "Kesken",
                             LockoutEnabled = false,
-
                             NormalizedEmail = "RIDVANKESKEN@GMAIL.COM",
                             NormalizedUserName = "RIDVANKESKEN@GMAIL.COM",
                             PasswordHash = "AQAAAAIAAYagAAAAEM4fRi7D9iEVtdjarCAF1THmBnwlWK4JJ2Pf+syhLXVFaqTdlpvr88dFz3nZDlxpkg==",
                             PhoneNumber = "+000000000",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "9f3dcedc-f2a9-42fd-b258-62d86107023a",
-
                             TwoFactorEnabled = false,
-                            UserName = "user5@gmail.com"
+                            UserName = "ridvankesken@gmail.com"
                         });
                 });
 
@@ -3760,9 +3415,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             Content = "Bizim Hakkımızda Herşey Burada",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(2265),
-
                             IsActive = true,
                             Title = "Hakkımızda"
                         },
@@ -3770,9 +3423,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             Content = "Bize Ulaşın ve Soru Sorun",
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(2268),
-
                             IsActive = true,
                             Title = "Bize Ulaşın"
                         });
@@ -3822,9 +3473,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(3540),
-
                             DarkMode = false,
                             IsActive = true,
                             Name = "MaxPostPerPage",
@@ -3834,9 +3483,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(3544),
-
                             DarkMode = false,
                             IsActive = true,
                             Name = "MaxPostPerPage",
@@ -3846,9 +3493,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(3545),
-
                             DarkMode = false,
                             IsActive = true,
                             Name = "MaxPostPerPage",
@@ -3858,9 +3503,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(3545),
-
                             DarkMode = false,
                             IsActive = true,
                             Name = "DarkMode",
@@ -3907,9 +3550,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6038),
-
                             IsActive = true,
                             Name = "Laptop"
                         },
@@ -3917,9 +3558,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6041),
-
                             IsActive = true,
                             Name = "Telefon"
                         },
@@ -3927,9 +3566,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6041),
-
                             IsActive = true,
                             Name = "Tablet"
                         },
@@ -3937,9 +3574,7 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6042),
-
                             IsActive = true,
                             Name = "Ekran"
                         },
@@ -3947,19 +3582,15 @@ namespace Ads.Dal.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6079),
-
-IsActive = true,
+                            IsActive = true,
                             Name = "Kafe"
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6080),
-
                             IsActive = true,
                             Name = "Fast Food"
                         },
@@ -3967,9 +3598,7 @@ IsActive = true,
                         {
                             Id = 7,
                             CategoryId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6081),
-
                             IsActive = true,
                             Name = "Restoran"
                         },
@@ -3977,9 +3606,7 @@ IsActive = true,
                         {
                             Id = 8,
                             CategoryId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6082),
-
                             IsActive = true,
                             Name = "Yöresel Yemekler"
                         },
@@ -3987,9 +3614,7 @@ IsActive = true,
                         {
                             Id = 9,
                             CategoryId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6082),
-
                             IsActive = true,
                             Name = "Arsa"
                         },
@@ -3997,9 +3622,7 @@ IsActive = true,
                         {
                             Id = 10,
                             CategoryId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6083),
-
                             IsActive = true,
                             Name = "Spor Salonu"
                         },
@@ -4007,9 +3630,7 @@ IsActive = true,
                         {
                             Id = 11,
                             CategoryId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6084),
-
                             IsActive = true,
                             Name = "Hastane"
                         },
@@ -4017,9 +3638,7 @@ IsActive = true,
                         {
                             Id = 12,
                             CategoryId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6084),
-
                             IsActive = true,
                             Name = "Ev"
                         },
@@ -4027,9 +3646,7 @@ IsActive = true,
                         {
                             Id = 13,
                             CategoryId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6085),
-
                             IsActive = true,
                             Name = "Erkek Giysileri"
                         },
@@ -4037,9 +3654,7 @@ IsActive = true,
                         {
                             Id = 14,
                             CategoryId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6086),
-
                             IsActive = true,
                             Name = "Aksesuarlar"
                         },
@@ -4047,9 +3662,7 @@ IsActive = true,
                         {
                             Id = 15,
                             CategoryId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6086),
-
                             IsActive = true,
                             Name = "Çocuk Giysileri"
                         },
@@ -4057,9 +3670,7 @@ IsActive = true,
                         {
                             Id = 16,
                             CategoryId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6087),
-
                             IsActive = true,
                             Name = "Yazılım"
                         },
@@ -4067,9 +3678,7 @@ IsActive = true,
                         {
                             Id = 17,
                             CategoryId = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6087),
-
                             IsActive = true,
                             Name = "Muhasebe"
                         },
@@ -4077,9 +3686,7 @@ IsActive = true,
                         {
                             Id = 18,
                             CategoryId = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6088),
-
                             IsActive = true,
                             Name = "Kombi Tamiri"
                         },
@@ -4087,9 +3694,7 @@ IsActive = true,
                         {
                             Id = 19,
                             CategoryId = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6089),
-
                             IsActive = true,
                             Name = "Özel Ders"
                         },
@@ -4097,9 +3702,7 @@ IsActive = true,
                         {
                             Id = 20,
                             CategoryId = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6089),
-
                             IsActive = true,
                             Name = "Boyacı"
                         },
@@ -4107,9 +3710,7 @@ IsActive = true,
                         {
                             Id = 21,
                             CategoryId = 6,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6090),
-
                             IsActive = true,
                             Name = "Otobüs"
                         },
@@ -4117,9 +3718,7 @@ IsActive = true,
                         {
                             Id = 22,
                             CategoryId = 6,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6090),
-
                             IsActive = true,
                             Name = "Araç"
                         },
@@ -4127,9 +3726,7 @@ IsActive = true,
                         {
                             Id = 23,
                             CategoryId = 6,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6091),
-
                             IsActive = true,
                             Name = "Motorsiklet"
                         },
@@ -4137,9 +3734,7 @@ IsActive = true,
                         {
                             Id = 24,
                             CategoryId = 6,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6092),
-
                             IsActive = true,
                             Name = "Yat"
                         },
@@ -4147,9 +3742,7 @@ IsActive = true,
                         {
                             Id = 25,
                             CategoryId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6092),
-
                             IsActive = true,
                             Name = "Kedi Ürünleri"
                         },
@@ -4157,9 +3750,7 @@ IsActive = true,
                         {
                             Id = 26,
                             CategoryId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6093),
-
                             IsActive = true,
                             Name = "Köpek Ürünleri"
                         },
@@ -4167,9 +3758,7 @@ IsActive = true,
                         {
                             Id = 27,
                             CategoryId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6094),
-
                             IsActive = true,
                             Name = "Kuş Ürünleri"
                         },
@@ -4177,9 +3766,7 @@ IsActive = true,
                         {
                             Id = 28,
                             CategoryId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6094),
-
                             IsActive = true,
                             Name = "Balık Ürünleri"
                         },
@@ -4187,9 +3774,7 @@ IsActive = true,
                         {
                             Id = 29,
                             CategoryId = 8,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6095),
-
                             IsActive = true,
                             Name = "Temizlik"
                         },
@@ -4197,9 +3782,7 @@ IsActive = true,
                         {
                             Id = 30,
                             CategoryId = 8,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6095),
-
                             IsActive = true,
                             Name = "Araba Yıkama"
                         },
@@ -4207,9 +3790,7 @@ IsActive = true,
                         {
                             Id = 31,
                             CategoryId = 8,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6096),
-
                             IsActive = true,
                             Name = "Kuru Temizleme"
                         },
@@ -4217,9 +3798,7 @@ IsActive = true,
                         {
                             Id = 32,
                             CategoryId = 8,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(6097),
-
                             IsActive = true,
                             Name = "Cenaze"
                         });
@@ -4264,9 +3843,7 @@ IsActive = true,
                         {
                             Id = 1,
                             AdvertId = 1,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4707),
-
                             IsActive = true,
                             SubcategoryId = 1
                         },
@@ -4274,9 +3851,7 @@ IsActive = true,
                         {
                             Id = 2,
                             AdvertId = 2,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4709),
-
                             IsActive = true,
                             SubcategoryId = 1
                         },
@@ -4284,9 +3859,7 @@ IsActive = true,
                         {
                             Id = 3,
                             AdvertId = 3,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4709),
-
                             IsActive = true,
                             SubcategoryId = 2
                         },
@@ -4294,9 +3867,7 @@ IsActive = true,
                         {
                             Id = 4,
                             AdvertId = 4,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4710),
-
                             IsActive = true,
                             SubcategoryId = 2
                         },
@@ -4304,9 +3875,7 @@ IsActive = true,
                         {
                             Id = 5,
                             AdvertId = 5,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4711),
-
                             IsActive = true,
                             SubcategoryId = 3
                         },
@@ -4314,9 +3883,7 @@ IsActive = true,
                         {
                             Id = 6,
                             AdvertId = 6,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4711),
-
                             IsActive = true,
                             SubcategoryId = 3
                         },
@@ -4324,9 +3891,7 @@ IsActive = true,
                         {
                             Id = 7,
                             AdvertId = 7,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4712),
-
                             IsActive = true,
                             SubcategoryId = 4
                         },
@@ -4334,9 +3899,7 @@ IsActive = true,
                         {
                             Id = 8,
                             AdvertId = 8,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4713),
-
                             IsActive = true,
                             SubcategoryId = 4
                         },
@@ -4344,9 +3907,7 @@ IsActive = true,
                         {
                             Id = 9,
                             AdvertId = 9,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4713),
-
                             IsActive = true,
                             SubcategoryId = 5
                         },
@@ -4354,9 +3915,7 @@ IsActive = true,
                         {
                             Id = 10,
                             AdvertId = 10,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4714),
-
                             IsActive = true,
                             SubcategoryId = 5
                         },
@@ -4364,9 +3923,7 @@ IsActive = true,
                         {
                             Id = 11,
                             AdvertId = 11,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4714),
-
                             IsActive = true,
                             SubcategoryId = 6
                         },
@@ -4374,9 +3931,7 @@ IsActive = true,
                         {
                             Id = 12,
                             AdvertId = 12,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4715),
-
                             IsActive = true,
                             SubcategoryId = 6
                         },
@@ -4384,9 +3939,7 @@ IsActive = true,
                         {
                             Id = 13,
                             AdvertId = 13,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4716),
-
                             IsActive = true,
                             SubcategoryId = 7
                         },
@@ -4394,9 +3947,7 @@ IsActive = true,
                         {
                             Id = 14,
                             AdvertId = 14,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4716),
-
                             IsActive = true,
                             SubcategoryId = 7
                         },
@@ -4404,9 +3955,7 @@ IsActive = true,
                         {
                             Id = 15,
                             AdvertId = 15,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4717),
-
                             IsActive = true,
                             SubcategoryId = 8
                         },
@@ -4414,9 +3963,7 @@ IsActive = true,
                         {
                             Id = 16,
                             AdvertId = 16,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4718),
-
                             IsActive = true,
                             SubcategoryId = 8
                         },
@@ -4424,9 +3971,7 @@ IsActive = true,
                         {
                             Id = 17,
                             AdvertId = 17,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4718),
-
                             IsActive = true,
                             SubcategoryId = 9
                         },
@@ -4434,9 +3979,7 @@ IsActive = true,
                         {
                             Id = 18,
                             AdvertId = 18,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4719),
-
                             IsActive = true,
                             SubcategoryId = 9
                         },
@@ -4444,9 +3987,7 @@ IsActive = true,
                         {
                             Id = 19,
                             AdvertId = 19,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4719),
-
                             IsActive = true,
                             SubcategoryId = 10
                         },
@@ -4454,9 +3995,7 @@ IsActive = true,
                         {
                             Id = 20,
                             AdvertId = 20,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4720),
-
                             IsActive = true,
                             SubcategoryId = 10
                         },
@@ -4464,9 +4003,7 @@ IsActive = true,
                         {
                             Id = 21,
                             AdvertId = 21,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4721),
-
                             IsActive = true,
                             SubcategoryId = 11
                         },
@@ -4474,9 +4011,7 @@ IsActive = true,
                         {
                             Id = 22,
                             AdvertId = 22,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4721),
-
                             IsActive = true,
                             SubcategoryId = 11
                         },
@@ -4484,9 +4019,7 @@ IsActive = true,
                         {
                             Id = 23,
                             AdvertId = 23,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4722),
-
                             IsActive = true,
                             SubcategoryId = 12
                         },
@@ -4494,9 +4027,7 @@ IsActive = true,
                         {
                             Id = 24,
                             AdvertId = 24,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4723),
-
                             IsActive = true,
                             SubcategoryId = 12
                         },
@@ -4504,9 +4035,7 @@ IsActive = true,
                         {
                             Id = 25,
                             AdvertId = 25,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4723),
-
                             IsActive = true,
                             SubcategoryId = 13
                         },
@@ -4514,9 +4043,7 @@ IsActive = true,
                         {
                             Id = 26,
                             AdvertId = 26,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4724),
-
                             IsActive = true,
                             SubcategoryId = 13
                         },
@@ -4524,19 +4051,15 @@ IsActive = true,
                         {
                             Id = 27,
                             AdvertId = 27,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4724),
-
-IsActive = true,
+                            IsActive = true,
                             SubcategoryId = 14
                         },
                         new
                         {
                             Id = 28,
                             AdvertId = 28,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4725),
-
                             IsActive = true,
                             SubcategoryId = 14
                         },
@@ -4544,9 +4067,7 @@ IsActive = true,
                         {
                             Id = 29,
                             AdvertId = 29,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4725),
-
                             IsActive = true,
                             SubcategoryId = 15
                         },
@@ -4554,9 +4075,7 @@ IsActive = true,
                         {
                             Id = 30,
                             AdvertId = 30,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4726),
-
                             IsActive = true,
                             SubcategoryId = 15
                         },
@@ -4564,9 +4083,7 @@ IsActive = true,
                         {
                             Id = 31,
                             AdvertId = 31,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4727),
-
                             IsActive = true,
                             SubcategoryId = 16
                         },
@@ -4574,9 +4091,7 @@ IsActive = true,
                         {
                             Id = 32,
                             AdvertId = 32,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4727),
-
                             IsActive = true,
                             SubcategoryId = 16
                         },
@@ -4584,19 +4099,15 @@ IsActive = true,
                         {
                             Id = 33,
                             AdvertId = 33,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4728),
-
-IsActive = true,
+                            IsActive = true,
                             SubcategoryId = 17
                         },
                         new
                         {
                             Id = 34,
                             AdvertId = 34,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4728),
-
                             IsActive = true,
                             SubcategoryId = 17
                         },
@@ -4604,9 +4115,7 @@ IsActive = true,
                         {
                             Id = 35,
                             AdvertId = 35,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4729),
-
                             IsActive = true,
                             SubcategoryId = 18
                         },
@@ -4614,9 +4123,7 @@ IsActive = true,
                         {
                             Id = 36,
                             AdvertId = 36,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4730),
-
                             IsActive = true,
                             SubcategoryId = 18
                         },
@@ -4624,9 +4131,7 @@ IsActive = true,
                         {
                             Id = 37,
                             AdvertId = 37,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4730),
-
                             IsActive = true,
                             SubcategoryId = 19
                         },
@@ -4634,9 +4139,7 @@ IsActive = true,
                         {
                             Id = 38,
                             AdvertId = 38,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4731),
-
                             IsActive = true,
                             SubcategoryId = 19
                         },
@@ -4644,9 +4147,7 @@ IsActive = true,
                         {
                             Id = 39,
                             AdvertId = 39,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4731),
-
                             IsActive = true,
                             SubcategoryId = 20
                         },
@@ -4654,9 +4155,7 @@ IsActive = true,
                         {
                             Id = 40,
                             AdvertId = 40,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4732),
-
                             IsActive = true,
                             SubcategoryId = 20
                         },
@@ -4664,9 +4163,7 @@ IsActive = true,
                         {
                             Id = 41,
                             AdvertId = 41,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4733),
-
                             IsActive = true,
                             SubcategoryId = 21
                         },
@@ -4674,9 +4171,7 @@ IsActive = true,
                         {
                             Id = 42,
                             AdvertId = 42,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4733),
-
                             IsActive = true,
                             SubcategoryId = 21
                         },
@@ -4684,9 +4179,7 @@ IsActive = true,
                         {
                             Id = 43,
                             AdvertId = 43,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4734),
-
                             IsActive = true,
                             SubcategoryId = 22
                         },
@@ -4694,9 +4187,7 @@ IsActive = true,
                         {
                             Id = 44,
                             AdvertId = 44,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4734),
-
                             IsActive = true,
                             SubcategoryId = 22
                         },
@@ -4704,9 +4195,7 @@ IsActive = true,
                         {
                             Id = 45,
                             AdvertId = 45,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4735),
-
                             IsActive = true,
                             SubcategoryId = 23
                         },
@@ -4714,9 +4203,7 @@ IsActive = true,
                         {
                             Id = 46,
                             AdvertId = 46,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4767),
-
                             IsActive = true,
                             SubcategoryId = 23
                         },
@@ -4724,9 +4211,7 @@ IsActive = true,
                         {
                             Id = 47,
                             AdvertId = 47,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4769),
-
                             IsActive = true,
                             SubcategoryId = 24
                         },
@@ -4734,9 +4219,7 @@ IsActive = true,
                         {
                             Id = 48,
                             AdvertId = 48,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4769),
-
                             IsActive = true,
                             SubcategoryId = 24
                         },
@@ -4744,9 +4227,7 @@ IsActive = true,
                         {
                             Id = 49,
                             AdvertId = 49,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4770),
-
                             IsActive = true,
                             SubcategoryId = 25
                         },
@@ -4754,9 +4235,7 @@ IsActive = true,
                         {
                             Id = 50,
                             AdvertId = 50,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4770),
-
                             IsActive = true,
                             SubcategoryId = 25
                         },
@@ -4764,9 +4243,7 @@ IsActive = true,
                         {
                             Id = 51,
                             AdvertId = 51,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4771),
-
                             IsActive = true,
                             SubcategoryId = 26
                         },
@@ -4774,9 +4251,7 @@ IsActive = true,
                         {
                             Id = 52,
                             AdvertId = 52,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4772),
-
                             IsActive = true,
                             SubcategoryId = 26
                         },
@@ -4784,9 +4259,7 @@ IsActive = true,
                         {
                             Id = 53,
                             AdvertId = 53,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4772),
-
                             IsActive = true,
                             SubcategoryId = 27
                         },
@@ -4794,9 +4267,7 @@ IsActive = true,
                         {
                             Id = 54,
                             AdvertId = 54,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4773),
-
                             IsActive = true,
                             SubcategoryId = 27
                         },
@@ -4804,9 +4275,7 @@ IsActive = true,
                         {
                             Id = 55,
                             AdvertId = 55,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4774),
-
                             IsActive = true,
                             SubcategoryId = 28
                         },
@@ -4814,9 +4283,7 @@ IsActive = true,
                         {
                             Id = 56,
                             AdvertId = 56,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4774),
-
                             IsActive = true,
                             SubcategoryId = 28
                         },
@@ -4824,9 +4291,7 @@ IsActive = true,
                         {
                             Id = 57,
                             AdvertId = 57,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4775),
-
                             IsActive = true,
                             SubcategoryId = 29
                         },
@@ -4834,7 +4299,6 @@ IsActive = true,
                         {
                             Id = 58,
                             AdvertId = 58,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4775),
                             IsActive = true,
                             SubcategoryId = 29
@@ -4843,9 +4307,7 @@ IsActive = true,
                         {
                             Id = 59,
                             AdvertId = 59,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4776),
-
                             IsActive = true,
                             SubcategoryId = 30
                         },
@@ -4853,9 +4315,7 @@ IsActive = true,
                         {
                             Id = 60,
                             AdvertId = 60,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4776),
-
                             IsActive = true,
                             SubcategoryId = 30
                         },
@@ -4863,9 +4323,7 @@ IsActive = true,
                         {
                             Id = 61,
                             AdvertId = 61,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4777),
-
                             IsActive = true,
                             SubcategoryId = 31
                         },
@@ -4873,9 +4331,7 @@ IsActive = true,
                         {
                             Id = 62,
                             AdvertId = 62,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4778),
-
                             IsActive = true,
                             SubcategoryId = 31
                         },
@@ -4883,9 +4339,7 @@ IsActive = true,
                         {
                             Id = 63,
                             AdvertId = 63,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4778),
-
                             IsActive = true,
                             SubcategoryId = 32
                         },
@@ -4893,9 +4347,7 @@ IsActive = true,
                         {
                             Id = 64,
                             AdvertId = 64,
-
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 416, DateTimeKind.Local).AddTicks(4779),
-
                             IsActive = true,
                             SubcategoryId = 32
                         });

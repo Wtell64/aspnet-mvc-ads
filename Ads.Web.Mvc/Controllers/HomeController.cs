@@ -95,8 +95,8 @@ namespace Ads.Web.Mvc.Controllers
         {
           foreach (var file in dto.Files)
           {
-           string fileName = await _imageProcessor.SaveImageAsync(file, advertId); 
-           _advertImageService.Add(new AdvertImageViewDto() { AdvertId = advertId, ImagePath = fileName });
+           string fileName = await _imageProcessor.SaveImageAsync(file, advertId, "uploads"); 
+           _advertImageService.Add(new AdvertImageViewDto() { AdvertId = advertId, ImagePath = fileName});
            _advertImageService.Save();
           }
         }

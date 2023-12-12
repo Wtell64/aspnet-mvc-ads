@@ -15,7 +15,7 @@ namespace Ads.Core.Utilities.Images
       _environment = environment;
     }
 
-    public async Task<string> SaveImageAsync(IFormFile file, int advertId)
+    public async Task<string> SaveImageAsync(IFormFile file, int advertId, string path)
     {
       if (file.ContentType.StartsWith("image/"))
       {
@@ -47,7 +47,7 @@ namespace Ads.Core.Utilities.Images
 
             // Save the resized image
             var fileName = $"{advertId}_{Path.GetFileName(file.FileName)}";
-            var savePath = Path.Combine(_environment.WebRootPath, "uploads", fileName);
+            var savePath = Path.Combine(_environment.WebRootPath, path, fileName);
 
 
 

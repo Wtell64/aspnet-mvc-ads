@@ -1331,7 +1331,7 @@ namespace Ads.Dal.Migrations
                         new
                         {
                             Id = 17,
-                            AdvertId = 6
+                            AdvertId = 6,
                             CreatedDate = new DateTime(2023, 12, 12, 11, 17, 43, 101, DateTimeKind.Local).AddTicks(9912),
                             ImagePath = "http://via.placeholder.com/610x400",
                             IsActive = true

@@ -9,6 +9,6 @@ namespace Ads.Core.Utilities.Images
 {
   public interface IImageProcessor
   {
-    Task<string> SaveImageAsync(IFormFile file, int advertId);
+    Task<string> SaveImageAsync(IFormFile file, int advertId, string path);
   }
 }

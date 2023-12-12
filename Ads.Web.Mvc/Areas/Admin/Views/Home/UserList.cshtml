@@ -2,82 +2,83 @@
 
 @model IEnumerable<UserViewDto>
 
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>@ViewData["Title"] - Ads.Web.Mvc</title>
-		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-		<link rel="stylesheet" href="~/Ads.Web.Mvc.styles.css" asp-append-version="true" />
+<div class="container">
 
-		<!-- FAVICON -->
-		<link href="~/template/img/favicon.png" rel="shortcut icon">
-		<!-- PLUGINS CSS STYLE -->
-		<!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
-		<!-- Bootstrap -->
-		<link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap-slider.css">
-		<!-- Font Awesome -->
-		<link href="~/template/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<!-- Owl Carousel -->
-		<link href="~/template/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
-		<link href="~/template/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
-		<!-- Fancy Box -->
-		<link href="~/template/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
-		<link href="~/template/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-		<!-- CUSTOM CSS -->
-		<link href="~/template/css/style.css" rel="stylesheet">
-	</head>
+  <h1>Kullanıcı Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Blog" asp-action="Add">Add New</a>
+  <table class="table table-striped" id='myTable'>
+    <thead>
+      <tr>
+        <th>Action</th>
 
-	<body>
-		<div class="container">
+        <th>Kullanıcı Adı Soyadı</th>
+        <th>E-mail Adresi</th>
+      </tr>
+    </thead>
 
-			<h1>Kullanıcı Listesi</h1>
+    <tbody>
+      @foreach (var user in Model)
+      {
+        <tr>
+          <td>
+            <form method="post">
+              <a asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a> |
 
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Kullanıcı Adı Soyadı</th>
-						<th>E-mail Adresi</th>
-					</tr>
-				</thead>
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Blog" asp-action="Remove" asp-route-id="@user.Id">Delete</button> |
 
-				<tbody>
-					@foreach (var user in Model)
-					{
-						<tr>
-							<th>@user.Id</th>
-							<th>@user.FullName</th>
-							<th>@user.Email</th>
-						</tr>
-					}
-				</tbody>
-			</table>
+              <button type="submit" class="btn btn-warning" asp-area="Admin" asp-controller="Blog" asp-action="ImageIndex" asp-route-id="@user.Id">Images</button> |
 
-		</div>
+              <button type="submit" class="btn btn-success " asp-area="Admin" asp-controller="Blog" asp-action="CommentIndex" asp-route-id="@user.Id">Comments</button>
+            </form>
+          </td>
+          <td>@user.FullName</td>
+          <td>@user.Email</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 
-		<script src="~/lib/jquery/dist/jquery.min.js"></script>
-		<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="~/js/site.js" asp-append-version="true"></script>
+</div>
 
-		<!-- JAVASCRIPTS -->
-		<script src="~/template/plugins/jQuery/jquery.min.js"></script>
-		<script src="~/template/plugins/bootstrap/js/popper.min.js"></script>
-		<script src="~/template/plugins/bootstrap/js/bootstrap.min.js"></script>
-		<script src="~/template/plugins/bootstrap/js/bootstrap-slider.js"></script>
-		<!-- tether js -->
-		<script src="~/template/plugins/tether/js/tether.min.js"></script>
-		<script src="~/template/plugins/raty/jquery.raty-fa.js"></script>
-		<script src="~/template/plugins/slick-carousel/slick/slick.min.js"></script>
-		<script src="~/template/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-		<script src="~/template/plugins/fancybox/jquery.fancybox.pack.js"></script>
-		<script src="~/template/plugins/smoothscroll/SmoothScroll.min.js"></script>
-		<!-- google map -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
-		<script src="~/template/plugins/google-map/gmap.js"></script>
-		<script src="~/template/js/script.js"></script>
-	</body>
-</html>
+
+
+@section Scripts {
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+  @* 	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
+  <script>
+
+    $(document).ready(function () {
+      $('#myTable').DataTable(
+        {
+          pagingType: 'full_numbers',
+          language: {
+            info: '_PAGES_ sayfa arasından _PAGE_. sayfa gösteriliyor',
+            infoEmpty: 'Hiç kayıt bulunamadı',
+            infoFiltered: '(Toplam _MAX_ kayıt arasından filtrelendi.)',
+            lengthMenu: 'Sayfa başına _MENU_ kayıt göster',
+            zeroRecords: 'Aramaya uygun kayıt bulunamadı.',
+            search: "Ara",
+            paginate: {
+              "first": "İlk",
+              "last": "Son",
+              "next": "Sonraki",
+              "previous": "Önceki"
+            }
+          },
+
+          lengthMenu: [
+            [10, 20, 50, -1],
+            [10, 20, 50, 'Hepsi']
+          ]
+        }
+      );
+    });
+  </script>
+  <style type="text/css">
+    #tbllist_filter {
+      margin-bottom: 1%;
+    }
+  </style>
+
+}

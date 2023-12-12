@@ -1,4 +1,4 @@
-﻿@model IEnumerable< Ads.Entities.Concrete.Category>
+﻿@model IEnumerable<Ads.Entities.Concrete.Category>
 
 <div class="content-block">
 	<h1>Buy & Sell Near You </h1>
@@ -12,7 +12,7 @@
 				{
 					//TODO: iconlar için bootstrap icon kullanılabilir. icon class ismi de category tablosunda string olarak tutulur.
 					<li class="list-inline-item">
-						<a asp-area="" asp-controller="Category" asp-action="Index" asp-route-category-slug="@category.Name" asp-route-id="@category.Id"><i class="fa fa-bed"></i> @category.Name</a>
+						<a asp-area="" asp-controller="Category" asp-action="Index" asp-route-category-slug="@category.Name" asp-route-id="@category.Id"><i class="@category.IconClass"></i> @category.Name</a>
 					</li>
 				}
 			}	

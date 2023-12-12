@@ -72,7 +72,7 @@ namespace Ads.Dal.Configurations.Identities
 				FirstName = "Admin",
 				LastName = "Admin",
 				PhoneNumberConfirmed = false,
-				EmailConfirmed = false,
+				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
 				ImagePath = "deneme"
 			};
@@ -81,15 +81,15 @@ namespace Ads.Dal.Configurations.Identities
 			var aras = new AppUser
 			{
 				Id = 3,
-				UserName = "arasmentese96@gmail.com",
-				NormalizedUserName = "arasmentese96@GMAIL.COM",
-				Email = "arasmentese96@gmail.com",
-				NormalizedEmail = "arasmentese96@GMAIL.COM",
+				UserName = "user1@gmail.com",
+				NormalizedUserName = "USER1@GMAIL.COM",
+				Email = "user1@gmail.com",
+				NormalizedEmail = "USER1@GMAIL.COM",
 				PhoneNumber = "+000000000",
 				FirstName = "Aras",
 				LastName = "Menteşe",
 				PhoneNumberConfirmed = false,
-				EmailConfirmed = false,
+				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
 				ImagePath = "deneme"
 			};
@@ -98,15 +98,15 @@ namespace Ads.Dal.Configurations.Identities
 			var elif = new AppUser
 			{
 				Id = 4,
-				UserName = "elif@gmail.com",
-				NormalizedUserName = "ELIF@GMAIL.COM",
-				Email = "elif@gmail.com",
-				NormalizedEmail = "ELIF@GMAIL.COM",
+				UserName = "user2@gmail.com",
+				NormalizedUserName = "USER2@GMAIL.COM",
+				Email = "user2@gmail.com",
+				NormalizedEmail = "USER2@GMAIL.COM",
 				PhoneNumber = "+000000000",
 				FirstName = "Elif",
 				LastName = "Sakçı Tuncer",
 				PhoneNumberConfirmed = false,
-				EmailConfirmed = false,
+				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
 				ImagePath = "deneme"
 			};
@@ -115,15 +115,15 @@ namespace Ads.Dal.Configurations.Identities
 			var ismail = new AppUser
 			{
 				Id = 5,
-				UserName = "ismailycer@gmail.com",
-				NormalizedUserName = "ISMAILYCER@GMAIL.COM",
-				Email = "ismailycer@gmail.com",
-				NormalizedEmail = "ISMAILYCER@GMAIL.COM",
+				UserName = "user3@gmail.com",
+				NormalizedUserName = "USER3@GMAIL.COM",
+				Email = "user3@gmail.com",
+				NormalizedEmail = "USER3@GMAIL.COM",
 				PhoneNumber = "+000000000",
 				FirstName = "İsmail",
 				LastName = "Yücer",
 				PhoneNumberConfirmed = false,
-				EmailConfirmed = false,
+				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
 				ImagePath = "deneme"
 			};
@@ -132,15 +132,15 @@ namespace Ads.Dal.Configurations.Identities
 			var muratcan = new AppUser
 			{
 				Id = 6,
-				UserName = "muratcanagic@hotmail.com",
-				NormalizedUserName = "MURATCANAGIC@HOTMAIL.COM",
-				Email = "muratcanagic@hotmail.com",
-				NormalizedEmail = "MURATCANAGIC@HOTMAIL.COM",
+				UserName = "user4@gmail.com",
+				NormalizedUserName = "USER4@GMAIL.COM",
+				Email = "user4@gmail.com",
+				NormalizedEmail = "USER4@GMAIL.COM",
 				PhoneNumber = "+000000000",
 				FirstName = "Muratcan",
 				LastName = "Agıç",
 				PhoneNumberConfirmed = false,
-				EmailConfirmed = false,
+				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
 				ImagePath = "deneme"
 			};
@@ -149,15 +149,15 @@ namespace Ads.Dal.Configurations.Identities
 			var ridvan = new AppUser
 			{
 				Id = 7,
-				UserName = "ridvankesken@gmail.com",
-				NormalizedUserName = "RIDVANKESKEN@GMAIL.COM",
-				Email = "ridvankesken@gmail.com",
-				NormalizedEmail = "RIDVANKESKEN@GMAIL.COM",
+				UserName = "user5@gmail.com",
+				NormalizedUserName = "USER5@GMAIL.COM",
+				Email = "user5@gmail.com",
+				NormalizedEmail = "USER5@GMAIL.COM",
 				PhoneNumber = "+000000000",
 				FirstName = "Rıdvan",
 				LastName = "Kesken",
 				PhoneNumberConfirmed = false,
-				EmailConfirmed = false,
+				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
 				ImagePath = "deneme"
 			};

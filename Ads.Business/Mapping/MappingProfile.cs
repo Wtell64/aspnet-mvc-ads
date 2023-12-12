@@ -1,18 +1,17 @@
 
 
-using Ads.Business.Dtos.Setting;
-
-﻿using Ads.Business.Dtos.Advert;
+using Ads.Business.Dtos.Advert;
 using Ads.Business.Dtos.AdvertComment;
 using Ads.Business.Dtos.AdvertImage;
 using Ads.Business.Dtos.Category;
-
+using Ads.Business.Dtos.Setting;
+using Ads.Business.Dtos.Subcategory;
 using Ads.Entities.Concrete;
 using AutoMapper;
-using Ads.Business.Dtos.Subcategory;
 
 namespace Ads.Business.Mapping
 {
+
   public class MappingProfile : Profile
   {
     public MappingProfile()
@@ -30,7 +29,8 @@ namespace Ads.Business.Mapping
       CreateMap<AdvertImage, AdvertAddDto>().ReverseMap();
 
       CreateMap<SubcategoryAdvert, SubcategoryAdvertViewDto>().ReverseMap();
+
 			CreateMap<Subcategory, SubcategoryViewDto>().ReverseMap();
 		}
-  }
+	}
 }

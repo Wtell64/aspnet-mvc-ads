@@ -1,96 +1,201 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-    
-*@
+﻿
+@model Ads.Business.Dtos.Users.RegisterDto
+
 @{
-  Layout = null;
+	Layout = null;
+	ViewData["Title"] = "Kayıt Ol";
+}
+
+@section Scripts{
+	@await Html.PartialAsync("_ValidationScriptsPartial")
 }
 
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - Ads.Web.Mvc</title>
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-  <link rel="stylesheet" href="~/Ads.Web.Mvc.styles.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Ads.Web.Mvc</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Ads.Web.Mvc.styles.css" asp-append-version="true" />
 
-  <!-- FAVICON -->
-  <link href="~/template/img/favicon.png" rel="shortcut icon">
-  <!-- PLUGINS CSS STYLE -->
-  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap-slider.css">
-  <!-- Font Awesome -->
-  <link href="~/template/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Owl Carousel -->
-  <link href="~/template/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
-  <link href="~/template/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
-  <!-- Fancy Box -->
-  <link href="~/template/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
-  <link href="~/template/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-  <!-- CUSTOM CSS -->
-  <link href="~/template/css/style.css" rel="stylesheet">
-
-
-
+	<!-- FAVICON -->
+	<link href="~/template/img/favicon.png" rel="shortcut icon">
+	<!-- PLUGINS CSS STYLE -->
+	<!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/template/plugins/bootstrap/css/bootstrap-slider.css">
+	<!-- Font Awesome -->
+	<link href="~/template/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Owl Carousel -->
+	<link href="~/template/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+	<link href="~/template/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+	<!-- Fancy Box -->
+	<link href="~/template/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+	<link href="~/template/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	<!-- CUSTOM CSS -->
+	<link href="~/template/css/style.css" rel="stylesheet">
 </head>
 
 <body class="body-wrapper" style="height:100vh;">
 
+	<section class="login border-top-1 p-5" style="height:100vh; display:flex; align-items:center; justify-content:center">
+		<div class="container">
 
-  
-  <section class="login py-5 border-top-1" style="height:100%; display:flex; align-items:center; justify-content:center" >
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-8 ">
-          <div class="border border">
-            <h3 class="bg-gray p-4">Register Now</h3>
-            <form action="#">
-              <fieldset class="p-4">
-                <input type="email" placeholder="Email*" class="border p-3 w-100 my-2">
-                <input type="password" placeholder="Password*" class="border p-3 w-100 my-2">
-                <input type="password" placeholder="Confirm Password*" class="border p-3 w-100 my-2">
-                <div class="loggedin-forgot d-inline-flex my-3">
-                  <input type="checkbox" id="registering" >
-                  <label for="registering" class="px-2 mb-0">By registering, you accept our <a class="text-primary font-weight-bold" href="terms-condition.html">Terms & Conditions</a></label>
-                </div>
-                <button type="submit" class="d-block py-3 px-4 bg-primary text-white border-0 rounded font-weight-bold">Register Now</button>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+			<div class="row justify-content-center">
+				<div class="col-lg-6 col-md-10 ">
+					<div class="border border">
+						<h3 class="bg-gray p-4">Kayıt Ol</h3>
+
+						@if (TempData["RegisterSuccessMessage"] is not null)
+						{
+							<div class="alert alert-info p-2" role="alert">
+								@TempData["RegisterSuccessMessage"]
+							</div>
+						}
+
+						<div asp-validation-summary="ModelOnly" class="alert alert-danger fw-bold" role="alert"></div>
+
+						<form asp-controller="Auth" asp-action="Register" method="post" class="p-4">
+
+							<div class="row ">
+								<div class="form-floating col-md-6">
+									<input asp-for="FirstName" type="text" class="form-control" id="floatingInput" placeholder="Adın">
+									<label asp-for="FirstName" class="mx-3 mb-3" for="floatingInput">Adın</label>
+									<span asp-validation-for="FirstName" class="text-danger fw-bold"></span>
+								</div>
+
+								<div class="form-floating col-md-6 mb-3 ">
+									<input asp-for="LastName" type="text" class="form-control" id="floatingInput" placeholder="Soyadın">
+									<label asp-for="LastName" class="mx-3" for="floatingInput">Soyadın</label>
+									<span asp-validation-for="LastName" class="text-danger fw-bold"></span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-floating col-md-12 mb-3 ">
+									<input asp-for="Email" type="email" class="form-control" id="floatingInput" placeholder="E-mail">
+									<label asp-for="Email" class="mx-3" for="floatingInput">E-mail</label>
+									<span asp-validation-for="Email" class="text-danger fw-bold"></span>
+								</div>
+
+								<div class="form-floating col-md-12 mb-3 ">
+									<input asp-for="Password" type="password" class="form-control" id="floatingInput" placeholder="Şifre">
+									<label asp-for="Password" class="mx-3" for="floatingInput">Şifre</label>
+									<span asp-validation-for="Password" class="text-danger fw-bold"></span>
+								</div>
+
+								<div class="form-floating col-md-12 mb-3 ">
+									<input asp-for="PasswordConfirm" type="password" class="form-control" id="floatingInput" placeholder="Şifre Tekrar">
+									<label asp-for="PasswordConfirm" class="mx-3" for="floatingInput">Şifre Tekrar</label>
+									<span asp-validation-for="PasswordConfirm" class="text-danger fw-bold"></span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-floating col mb-3">
+									<select class="form-select" id="floatingSelect" aria-label="Country">
+										<option disabled selected value="1">Türkiye</option>
+									</select>
+									<label class="mx-3" for="floatingSelect">Ülke</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-floating col-md-6 mb-3">
+									<select asp-for="CityId" id="citiesId" for="CityId" class="form-select" aria-label="City" asp-items="@ViewBag.City">
+									</select>
+									<label class="mx-3" for="floatingSelect">Şehir</label>
+								</div>
+
+								<div class="form-floating col-md-6 mb-3">
+									<select asp-for="DistrictId" id="districtId" for="DistrictId" class="form-select" aria-label="District">
+									</select>
+									<label class="mx-3" for="floatingSelect">İlçe</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-floating col mb-3 ">
+									<textarea asp-for="DetailedAddress" class="form-control" id="floatingTextarea2"
+														style="height: 90px"></textarea>
+									<label class="mx-3" for="floatingTextarea2">Açık Adres</label>
+									<span asp-validation-for="DetailedAddress" class="text-danger fw-bold"></span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col mb-3">
+									<div class="form-check">
+										<input asp-for="TermAndCondition" class="form-check-input" type="checkbox" id="gridCheck">
+										<label class="form-check-label" for="gridCheck">Kayıt olarak kabul etmiş olursunuz <a class="text-primary font-weight-bold" asp-controller="Auth" asp-action="TermCondition">Şartlar & Koşullar</a></label>
+									</div>
+									<span asp-validation-for="TermAndCondition" class="text-danger fw-bold"></span>
+								</div>
+
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary">Kayıt Ol</button>
+								</div>
+
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
 
 
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script>
+	      $(document).ready(function () {
+	          getDistrictsByCityId();
+	      });
 
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="~/js/site.js" asp-append-version="true"></script>
+			$("#citiesId").change(function () {
+	          getDistrictsByCityId();
+	      });
 
-  <!-- JAVASCRIPTS -->
-  <script src="~/template/plugins/jQuery/jquery.min.js"></script>
-  <script src="~/template/plugins/bootstrap/js/popper.min.js"></script>
-  <script src="~/template/plugins/bootstrap/js/bootstrap.min.js"></script>
-  <script src="~/template/plugins/bootstrap/js/bootstrap-slider.js"></script>
-  <!-- tether js -->
-  <script src="~/template/plugins/tether/js/tether.min.js"></script>
-  <script src="~/template/plugins/raty/jquery.raty-fa.js"></script>
-  <script src="~/template/plugins/slick-carousel/slick/slick.min.js"></script>
-  <script src="~/template/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-  <script src="~/template/plugins/fancybox/jquery.fancybox.pack.js"></script>
-  <script src="~/template/plugins/smoothscroll/SmoothScroll.min.js"></script>
-  <!-- google map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
-  <script src="~/template/plugins/google-map/gmap.js"></script>
-  <script src="~/template/js/script.js"></script>
+	      function getDistrictsByCityId() {
+	          $.ajax({
+	              url: '@Url.Action("GetDistrictsByCityId", "Auth")',
+	              type: 'GET',
+	              data: {
+								cityId: $('#citiesId').val(),
+	              },
+	              success: function (data) {
+									$('#districtId').find('option').remove();
+	                  $(data).each(function (index, item) {
+										$('#districtId').append('<option value="' + item.id + '">' + item.name + '</option>');
+	                  });
+	              }
+	          });
+	      }
+		</script>
+	</section>
 
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	<!-- JAVASCRIPTS -->
+	<script src="~/template/plugins/jQuery/jquery.min.js"></script>
+	<script src="~/template/plugins/bootstrap/js/popper.min.js"></script>
+	<script src="~/template/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="~/template/plugins/bootstrap/js/bootstrap-slider.js"></script>
+	<!-- tether js -->
+	<script src="~/template/plugins/tether/js/tether.min.js"></script>
+	<script src="~/template/plugins/raty/jquery.raty-fa.js"></script>
+	<script src="~/template/plugins/slick-carousel/slick/slick.min.js"></script>
+	@*<script src="~/template/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>*@
+	<script src="~/template/plugins/fancybox/jquery.fancybox.pack.js"></script>
+	<script src="~/template/plugins/smoothscroll/SmoothScroll.min.js"></script>
+	<!-- google map -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+	<script src="~/template/plugins/google-map/gmap.js"></script>
+	<script src="~/template/js/script.js"></script>
 </body>
 
 </html>

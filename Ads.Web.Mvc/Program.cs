@@ -1,9 +1,6 @@
 using Ads.Business.Extentions;
 using Ads.Core.Extensions;
-using Ads.Dal.Concrete.EntityFramework.Context;
 using Ads.Dal.Extentions;
-using Ads.Entities.Concrete.Identity;
-using Microsoft.AspNetCore.Identity;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDataServices(builder.Configuration);
-builder.Services.AddBusinessServices();
+builder.Services.AddBusinessServices(builder.Configuration);
 builder.Services.AddCoreServices();
 
 var logger = new LoggerConfiguration()
@@ -22,35 +19,24 @@ var logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders(); //loglamanin sahibi degilsin
 builder.Logging.AddSerilog(logger); //bu isi logger yapicak
-                                    // builder.Logging.AddConsole();
+																		// builder.Logging.AddConsole();
 
 #region Identity
-builder.Services.AddSession();
-builder.Services.AddIdentity<AppUser, AppRole>(options =>
-{
-  options.Password.RequireNonAlphanumeric = false;
-  options.Password.RequireLowercase = false;
-  options.Password.RequireUppercase = false;
-})
-    .AddRoleManager<RoleManager<AppRole>>()
-    //.AddErrorDescriber<CustomIdentityErrorDescriber>()
-    .AddEntityFrameworkStores<DataContext>()
-    .AddDefaultTokenProviders();
 
-builder.Services.ConfigureApplicationCookie(config =>
+builder.Services.AddIdentityWithExtensions();
+
+builder.Services.ConfigureApplicationCookie(options =>
 {
-  config.LoginPath = new PathString("/Admin/Auth/Login");
-  config.LogoutPath = new PathString("/Admin/Auth/Logout");
-  config.Cookie = new CookieBuilder
-  {
-    Name = "AspNetMvcAds",
-    HttpOnly = true,
-    SameSite = SameSiteMode.Strict,
-    SecurePolicy = CookieSecurePolicy.SameAsRequest //Always 
-  };
-  config.SlidingExpiration = true;
-  config.ExpireTimeSpan = TimeSpan.FromDays(7);
-  config.AccessDeniedPath = new PathString("/Admin/Auth/AccessDenied"); // Yetkisiz biri girmeye çalýþtýðýnda çalýþacak kýsým.
+
+	var cookieBuilder = new CookieBuilder();
+	cookieBuilder.Name = "AspNetMvcAds.Web";
+
+	options.LoginPath = new PathString("/Home/Signin"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
+
+	options.Cookie = cookieBuilder;
+	options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie saklama ömrü.
+	options.SlidingExpiration = true; // Kullanýcý cookie ömrü bitmeden giriþ yaparsa üzerine eklemesini saðlar.
+
 });
 #endregion
 
@@ -59,44 +45,25 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-  app.UseExceptionHandler("/Home/Error");
-  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-  app.UseHsts();
+	app.UseExceptionHandler("/Home/Error");
+	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+	app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseSession(); // identity
 
 app.UseRouting();
 
 app.UseAuthentication();// identity
 app.UseAuthorization();
 
+app.MapControllerRoute(
+		name: "areas",
+		pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-//app.UseEndpoints(endpoints =>
-//{
-//	endpoints.MapControllerRoute(
-//			name: "admin",
-//			pattern: "admin/{controller=Home}/{action=Index}/{id?}",
-//			defaults: new { area = "Admin" }
-//	);
-//	endpoints.MapControllerRoute(
-//			name: "default",
-//			pattern: "{controller=Home}/{action=Index}/{id?}"
-//	);
-//});
-
-
-app.UseEndpoints(endpoints =>
-{
-  endpoints.MapAreaControllerRoute(
-  name: "Admin",
-  areaName: "Admin",
-  pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
-  );
-
-  endpoints.MapDefaultControllerRoute();
-});
+app.MapControllerRoute(
+		name: "default",
+		pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

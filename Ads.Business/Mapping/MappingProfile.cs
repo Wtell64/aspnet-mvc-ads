@@ -22,11 +22,14 @@ namespace Ads.Business.Mapping
       
       CreateMap<Advert, AdvertViewDto>().ReverseMap();
       CreateMap<Advert, AdvertSearchDto>().ReverseMap();
+      CreateMap<Advert,AdvertAdminAddDto>().ReverseMap();
       CreateMap<AdvertComment, AdvertCommentViewDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertImageViewDto>().ReverseMap();
-
+      CreateMap<AdvertComment,AdvertCommentAdminAddDto>().ReverseMap();
       CreateMap<Advert, AdvertAddDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertAddDto>().ReverseMap();
+      CreateMap<AdvertImage,AdvertImageAdminAddDto>().ReverseMap();
+
 
       CreateMap<SubcategoryAdvert, SubcategoryAdvertViewDto>().ReverseMap();
 

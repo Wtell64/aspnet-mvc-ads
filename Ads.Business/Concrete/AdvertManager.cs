@@ -87,6 +87,23 @@ namespace Ads.Business.Concrete
       }
     }
 
+    public  IDataResult<TDto> DeleteAdvertSubcategory<TDto>(TDto dto)
+    {
+      try
+      {
+        var entity = _mapper.Map<SubcategoryAdvert>(dto);
+
+        _subcategoryAdvertDal.Delete(entity);
+
+        return new SuccessDataResult<TDto>(dto, Messages.SubcategoryAdvertAdded);
+      }
+      catch (Exception ex)
+      {
+
+        return new ErrorDataResult<TDto>(ex.Message);
+      }
+    }
+
     public IDataResult<TDto> AddAndSave<TDto>(TDto dto)
     {
       try
@@ -249,6 +266,23 @@ namespace Ads.Business.Concrete
       }
     }
 
+    public IResult DeleteSubcategory<TDto>(TDto dto)
+    {
+      try
+      {
+        var entity = _mapper.Map<SubcategoryAdvert>(dto);
+
+        _subcategoryAdvertDal.Delete(entity);
+
+        return new SuccessDataResult<TDto>(dto, Messages.AdvertDeleted);
+      }
+      catch (Exception ex)
+      {
+
+        return new ErrorDataResult<TDto>(dto, ex.Message);
+      }
+    }
+
     public IResult DeleteById(int id)
     {
       try
@@ -356,6 +390,23 @@ namespace Ads.Business.Concrete
         var entities = await _advertDal.GetListAsync(filter, orderBy, includeProperties);
 
         var dtos = _mapper.Map<IEnumerable<Advert>, IEnumerable<TDto>>(entities);
+
+        return new SuccessDataResult<IEnumerable<TDto>>(dtos, Messages.AdvertFound);
+      }
+      catch (Exception ex)
+      {
+
+        return new ErrorDataResult<IEnumerable<TDto>>(ex.Message);
+      }
+    }
+
+    public async Task<IDataResult<IEnumerable<TDto>>> GetSubcategoryListAsync<TDto>(Expression<Func<SubcategoryAdvert, bool>> filter = null, Func<IQueryable<SubcategoryAdvert>, IOrderedQueryable<SubcategoryAdvert>> orderBy = null, string includeProperties = "")
+    {
+      try
+      {
+        var entities = await _subcategoryAdvertDal.GetListAsync(filter, orderBy, includeProperties);
+
+        var dtos = _mapper.Map<IEnumerable<SubcategoryAdvert>, IEnumerable<TDto>>(entities);
 
         return new SuccessDataResult<IEnumerable<TDto>>(dtos, Messages.AdvertFound);
       }

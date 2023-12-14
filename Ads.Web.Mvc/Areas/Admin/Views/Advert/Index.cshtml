@@ -1,5 +1,113 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model IEnumerable<Ads.Entities.Concrete.Advert>
+
+<div class="container-fluid">
+
+  <h1>Kullanıcı Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Advert" asp-action="Add">Reklam Ekle</a>
+  <table class="table table-striped" id='myTable'>
+    <thead>
+      <tr>
+        <th>İşlemler</th>
+
+        <th>Baslik</th>
+        <th>Kullanici</th>
+        <th>Kategoriler</th>
+        <th>Yaratilis Tarihi</th>
+        <th>Tanimi</th>
+        <th>Tiklanma Sayisi</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @foreach (var advert in Model)
+      {
+        <tr>
+          <td >
+            <form method="post">
+              <a asp-area="Admin" asp-controller="Advert" asp-action="Edit" asp-route-id="@advert.Id" class="btn btn-primary">Düzenle</a> |
+
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="Remove" asp-route-id="@advert.Id">Sil</button> |
+
+              <button type="submit" class="btn btn-warning" asp-area="Admin" asp-controller="Advert" asp-action="ImageIndex" asp-route-id="@advert.Id">Resimler</button> |
+
+              <button type="submit" class="btn btn-success " asp-area="Admin" asp-controller="Advert" asp-action="CommentIndex" asp-route-id="@advert.Id">Yorumlar</button>
+            </form>
+          </td>
+          <td>@advert.Title</td>
+          <td>@advert.User.FirstName @advert.User.LastName</td>
+          <th>
+            @foreach (var subcategory in advert.SubcategoryAdverts)
+            {
+              @subcategory.Subcategory.Name
+              @if (!subcategory.Equals(advert.SubcategoryAdverts.Last()))
+              {
+                @Html.Raw(", ")
+              }
+            }
+          </th>
+
+          <th>@advert.CreatedDate</th>
+          <th>
+            @if (advert.Description.Length > 23)
+            {
+              <p class="card-text">@advert.Description.Substring(0, 23) ...</p>
+            }
+            else
+            {
+              <p class="card-text">@advert.Description</p>
+            }
+          </th>
+          <td>@advert.ClickCount</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>
+
+
+
+@section Scripts {
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+  @* 	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
+  <script>
+
+    $(document).ready(function () {
+      $('#myTable').DataTable(
+        {
+          pagingType: 'full_numbers',
+          language: {
+            info: '_PAGES_ sayfa arasından _PAGE_. sayfa gösteriliyor',
+            infoEmpty: 'Hiç kayıt bulunamadı',
+            infoFiltered: '(Toplam _MAX_ kayıt arasından filtrelendi.)',
+            lengthMenu: 'Sayfa başına _MENU_ kayıt göster',
+            zeroRecords: 'Aramaya uygun kayıt bulunamadı.',
+            search: "Ara",
+            paginate: {
+              "first": "İlk",
+              "last": "Son",
+              "next": "Sonraki",
+              "previous": "Önceki"
+            }
+          },
+
+          lengthMenu: [
+            [10, 20, 50, -1],
+            [10, 20, 50, 'Hepsi']
+          ]
+        }
+      );
+    });
+  </script>
+  <style type="text/css">
+    #tbllist_filter {
+      margin-bottom: 1%;
+    }
+
+    #myTable td:first-child {
+      white-space: nowrap; /* Prevents wrapping to a new line */
+    }
+  </style>
+
 }

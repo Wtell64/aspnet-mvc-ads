@@ -1,0 +1,145 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Ads.Business.Dtos.Advert.AdvertCommentAdminAddDto
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="row">
+
+
+
+      <div class="card-body">
+
+        <h2>Reklam Yorumunu Düzelt</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (TempData.ContainsKey("SuccessMessage"))
+        {
+          <div class=" col-8 alert alert-success">
+            @TempData["SuccessMessage"]
+          </div>
+        }
+
+        @if (TempData.ContainsKey("ErrorMessage"))
+        {
+          <div class="col-8 alert alert-danger">
+            @TempData["ErrorMessage"]
+          </div>
+        }
+      </div>
+
+    </div>
+    <div class="card-body">
+
+      <form method="post">
+
+        <input type="number" value="@Model.Id" asp-for="@Model.Id" class="form-control" style="display:none" readonly />
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Yorumun içeriği: </label>
+              <input value="@Model.Comment" asp-for=@Model.Comment class="form-control" />
+              <span asp-validation-for="@Model.Comment" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Yorumu Yapan Kullanıcı: </label>
+              <div class="col-lg-12 p-0">
+
+                <select asp-for="@Model.UserId" id="choices-multiple-remove-button" class="w-100">
+                  @if (ViewBag.Users != null)
+                  {
+                    foreach (var item in ViewBag.Users)
+                    {
+                      <option value="@item.Value" selected="@(Model.UserId != null && item.Value.ToString() == Model.UserId.ToString())">@item.Text</option>
+                    }
+                  }
+                </select>
+
+
+
+
+
+                <span asp-validation-for="@Model.UserId" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Yorumun Puanı: </label>
+              <input id="starCountInput" type="number" value="@Model.StarCount" asp-for="@Model.StarCount" class="form-control"
+                     asp-attributes="{ min: 1, max: 5 }" max="5" min="0" />
+
+              <span asp-validation-for="@Model.StarCount" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+
+
+        <input type="number" value="@ViewBag.AdvertId" asp-for="@Model.AdvertId" class="form-control" style="display:none" readonly />
+
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group" style="margin-top:10px">
+              <button type="submit" asp-area="Admin" asp-controller="Advert" asp-action="CommentEdit" class="btn btn-success">Düzenle</button>
+              <a asp-area="Admin" asp-controller="Advert" asp-action="CommentIndex" asp-route-id="@ViewBag.AdvertId" class="btn btn-danger">Geri Dön</a>
+            </div>
+          </div>
+        </div>
+
+
+      </form>
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+@section Scripts {
+  <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+  <!-- Add these links in the head section -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+  <script>
+
+
+
+    $(document).ready(function () {
+
+      var multipleCancelButton = new Choices('#choices-multiple-remove-button', { //For Selecting Multiple Categories
+        removeItemButton: true,
+        maxItemCount: 1,
+        searchResultLimit: 100,
+        renderChoiceLimit: 100,
+
+      });
+
+      $(".nice-select").hide(); //To fix a bug wiwth Choices
+
+
+    });
+  </script>
+}
+
+<style>
+  .choices__list--multiple .choices__item {
+    background-color: #007bff !important
+  }
+
+</style>
+
+

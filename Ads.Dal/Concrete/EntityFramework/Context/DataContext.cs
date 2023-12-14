@@ -31,7 +31,9 @@ namespace Ads.Dal.Concrete.EntityFramework.Context
 		public DbSet<City> Cities { get; set; }
 		public DbSet<District> Districts { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 
 			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

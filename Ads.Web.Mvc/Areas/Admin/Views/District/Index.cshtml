@@ -1,32 +1,34 @@
-﻿@using Ads.Business.Dtos.City
+﻿@using Ads.Business.Dtos.District
 
 
-@model IEnumerable<CityViewDto>
+@model IEnumerable<DistrictViewDto>
 
-<div class="container">
-  <h1>Şehir Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="City" asp-action="Create">Yeni Şehir Ekle</a>
+<div class="container ">
+  <h1>İlçe Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="District" asp-action="Create" asp-route-cityId="@ViewBag.CityId">Yeni İlçe Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
-        <th>Değiştir/Sil/İlçeler</th>
-        <th><label asp-for="@Model.FirstOrDefault().Name ?? " Şehir Adı"></label></th>
+        <th>Değiştir/Sil</th>
+        <th><label asp-for="@Model.FirstOrDefault().Name ?? " İlçe Adı"></label></th>
       </tr>
     </thead>
     <tbody>
-      @foreach (var city in Model)
+      @foreach (var district in Model)
       {
         <tr>
           <td>
-            <a asp-area="Admin" asp-controller="City" asp-action="Edit" asp-route-id="@city.Id" class="btn btn-primary">Değiştir</a> |
-            <a asp-area="Admin" asp-controller="City" asp-action="Delete" asp-route-id="@city.Id" class="btn btn-danger">Sil</a> |
-            <a asp-area="Admin" asp-controller="District" asp-action="Index" asp-route-cityId="@city.Id" class="btn btn-warning">İlçeler</a>
+            <a asp-area="Admin" asp-controller="District" asp-action="Edit" asp-route-id="@district.Id" class="btn btn-primary">Değiştir</a> |
+            <a asp-area="Admin" asp-controller="District" asp-action="Delete" asp-route-id="@district.Id" class="btn btn-danger">Sil</a> |
           </td>
-          <td>@city.Name</td>
+          <td>@district.Name</td>
         </tr>
       }
     </tbody>
   </table>
+  <div class="d-flex mt-4 justify-content-end">
+    <a asp-area="Admin" asp-controller="City" asp-action="Index" class="btn btn-primary" style="width:150px">Listeye Dön</a>
+  </div>
 </div>
 
 

@@ -29,6 +29,9 @@ namespace Ads.Business.Abstract
 
     IDataResult<TDto> AddAdvertSubcategory<TDto>(TDto dto);
 
+    IDataResult<TDto> DeleteAdvertSubcategory<TDto>(TDto dto);
+
+    IResult DeleteSubcategory<TDto>(TDto dto);
     //Asnyc
     Task<IDataResult<TDto>> FindByIdAsync<TDto>(int id);
     Task<IDataResult<TDto>> GetAsync<TDto>(Expression<Func<Advert, bool>> filter, string includeProperties = "");
@@ -41,5 +44,7 @@ namespace Ads.Business.Abstract
     Task<IDataResult<TDto>> AddAndSaveAsync<TDto>(TDto dto);
 
     Task<IDataResult<TDto>> AddAdvertSubcategoryAsync<TDto>(TDto dto);
+
+    Task<IDataResult<IEnumerable<TDto>>> GetSubcategoryListAsync<TDto>(Expression<Func<SubcategoryAdvert, bool>> filter = null, Func<IQueryable<SubcategoryAdvert>, IOrderedQueryable<SubcategoryAdvert>> orderBy = null, string includeProperties = "");
   }
 }

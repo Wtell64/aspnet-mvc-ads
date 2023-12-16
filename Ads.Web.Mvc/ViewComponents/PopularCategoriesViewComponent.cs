@@ -18,10 +18,6 @@ namespace Ads.Web.Mvc.ViewComponents
     {
       var categories = _categoryService.GetList<Category>(null, null, "Subcategories.SubcategoryAdverts.Advert");
 
-      //var popularCategories = categories.Data
-      //      .OrderByDescending(category => category.CategoryAdverts.Sum(advert => advert.Advert.ClickCount))
-      //      .Take(5)
-      //      .ToList();
       var popularCategories = categories.Data
         .OrderByDescending(category => category.Subcategories
             .SelectMany(subcategory => subcategory.SubcategoryAdverts)

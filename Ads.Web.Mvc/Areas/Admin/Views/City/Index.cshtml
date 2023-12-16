@@ -1,45 +1,33 @@
-﻿@using Ads.Business.Dtos.Users
+﻿@using Ads.Business.Dtos.City
 
-@model IEnumerable<UserViewDto>
+
+@model IEnumerable<CityViewDto>
 
 <div class="container">
-
-  <h1>Kullanıcı Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Blog" asp-action="Add">Yeni Şehir Ekle</a>
+  <h1>Şehir Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="City" asp-action="Create">Yeni Şehir Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
-        <th>Action</th>
-
-        <th>Kullanıcı Adı Soyadı</th>
-        <th>E-mail Adresi</th>
+        <th>Değiştir/Sil/İlçeler</th>
+        <th><label asp-for="@Model.FirstOrDefault().Name ?? " Şehir Adı"></label></th>
       </tr>
     </thead>
-
     <tbody>
-      @foreach (var user in Model)
+      @foreach (var city in Model)
       {
         <tr>
           <td>
-            <form method="post">
-              <a asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a> |
-
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Blog" asp-action="Remove" asp-route-id="@user.Id">Delete</button> |
-
-              <button type="submit" class="btn btn-warning" asp-area="Admin" asp-controller="Blog" asp-action="ImageIndex" asp-route-id="@user.Id">Images</button> |
-
-              <button type="submit" class="btn btn-success " asp-area="Admin" asp-controller="Blog" asp-action="CommentIndex" asp-route-id="@user.Id">Comments</button>
-            </form>
+            <a asp-area="Admin" asp-controller="City" asp-action="Edit" asp-route-id="@city.Id" class="btn btn-primary">Değiştir</a> |
+            <a asp-area="Admin" asp-controller="City" asp-action="Delete" asp-route-id="@city.Id" class="btn btn-danger">Sil</a> |
+            <a asp-area="Admin" asp-controller="District" asp-action="Index" asp-route-cityId="@city.Id" class="btn btn-warning">İlçeler</a>
           </td>
-          <td>@user.FullName</td>
-          <td>@user.Email</td>
+          <td>@city.Name</td>
         </tr>
       }
     </tbody>
   </table>
-
 </div>
-
 
 
 @section Scripts {

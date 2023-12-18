@@ -1,0 +1,31 @@
+﻿@model Ads.Business.Dtos.Subcategory.SubcategoryViewDto
+
+<div class="row">
+  <div class="col-xxl-6">
+    <div class="card card-xxl-strecth mb-3 mb-xl-8">
+      <div class="card-header">
+        <h3>AltKategori Düzenle</h3>
+      </div>
+
+      <div class="card-body">
+        <form asp-area="Admin" asp-controller="Subcategory" asp-action="Edit" method="post">
+          <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label asp-for="Category.Id" class="form-label">Kategori</label>
+            <select asp-for="Category.Id" asp-items="@ViewBag.Categories" class="form-select">
+              <option value="">-- Kategori Seç --</option>
+            </select>
+            <span asp-validation-for="Category.Id" class="text-danger"></span>
+          </div>
+          
+          <a class="btn btn-secondary" asp-controller="Subcategory" asp-action="Index">Listeye Geri Dön</a>
+          <button type="submit" class="btn btn-success">Düzenle</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

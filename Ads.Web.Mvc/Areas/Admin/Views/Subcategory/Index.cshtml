@@ -1,34 +1,41 @@
-﻿@model IEnumerable<Ads.Business.Dtos.Category.CategoryViewDto>
+﻿
+@model IEnumerable<Ads.Business.Dtos.Subcategory.SubcategoryViewDto>
 
 
 <div class="container">
 
-  <h1>Kategori Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Category" asp-action="Create" >Kategori Ekle</a>
+  <h1>AltKategori Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Subcategory" asp-action="Create">AltKategori Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
         <th>İşlem</th>
-
+        <th>AltKategori Adı</th>
         <th>Kategori Adı</th>
-        <th>Açıklama</th>
       </tr>
     </thead>
 
     <tbody>
-      @foreach (var category in Model)
+      @foreach (var subcategory in Model)
       {
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-primary">Düzenle</a> |
+              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Edit" asp-route-id="@subcategory.Id" class="btn btn-primary">Düzenle</a> |
 
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id">Sil</button> |
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@subcategory.Id">Sil</button> |
+              
+
 
             </form>
           </td>
-          <td>@category.Name</td>
-          <td>@category.Description</td>
+          <td>@subcategory.Name</td>
+          <td>
+            @if (subcategory.Category != null)
+            {
+              @subcategory.Category.Name
+            }
+          </td>
         </tr>
       }
     </tbody>

@@ -25,10 +25,10 @@ namespace App.Core.Utilities.Results
             
         }
 
-        public SuccessDataResult(FluentValidation.Results.ValidationResult validationResult) : base(default,true)
-        {
+        //public SuccessDataResult(FluentValidation.Results.ValidationResult validationResult) : base(default,true)
+        //{
             
-        }
+        //}
 
 
   }

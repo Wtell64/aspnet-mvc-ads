@@ -19,8 +19,10 @@
 
     }
 
+
     /*       public SuccessDataResult(FluentValidation.Results.ValidationResult validationResult) : base(default,true)
            {
+
 
            }*/
 

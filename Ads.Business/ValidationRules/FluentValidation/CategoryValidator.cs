@@ -14,9 +14,10 @@ namespace Ads.Business.ValidationRules.FluentValidation
     {
       RuleFor(n => n.Name).NotEmpty().MaximumLength(100).WithMessage("Category name cannot be empty.");
 
-      RuleFor(d => d.Description).NotEmpty().MaximumLength(300).WithMessage("Description cannot be empty");
+      RuleFor(d => d.Description).NotEmpty().WithMessage("Description cannot be empty");
 
       RuleFor(d => d.Description).MaximumLength(300).WithMessage("Description cannot exceed 300 characters.");
+      RuleFor(d => d.IconClass).NotEmpty().WithMessage("Kategori ikonu boş olamaz");
 
       RuleFor(c => c.IsActive).NotNull().WithMessage("IsActive must not be null");
     }

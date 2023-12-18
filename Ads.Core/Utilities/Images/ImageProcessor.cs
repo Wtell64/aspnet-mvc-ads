@@ -14,6 +14,27 @@ namespace Ads.Core.Utilities.Images
     {
       _environment = environment;
     }
+    public async Task<bool> DeleteImageAsync(string filePath, string path)
+    {
+      filePath = Path.Combine(_environment.WebRootPath,path, filePath);
+
+      if (File.Exists(filePath))
+      {
+        try
+        {
+          File.Delete(filePath);
+          return true; // Deletion successful
+        }
+        catch (Exception ex)
+        {
+          // Log or handle the exception accordingly
+          throw new InvalidOperationException($"Error deleting image: {ex.Message}");
+        }
+      }
+
+      // File does not exist
+      return false;
+    }
 
     public async Task<string> SaveImageAsync(IFormFile file, int advertId, string path)
     {

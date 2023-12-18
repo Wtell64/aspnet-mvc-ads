@@ -1,38 +1,49 @@
-﻿@using Ads.Business.Dtos.Users
+﻿@model IEnumerable<Ads.Entities.Concrete.AdvertComment>
 
-@model IEnumerable<UserViewDto>
+<div class="container-fluid">
 
-<div class="container">
-
-  <h1>Kullanıcı Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Blog" asp-action="Add">Yeni Şehir Ekle</a>
+  <h1>Reklam Yorum Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Advert" asp-action="CommentAdd" asp-route-id="@ViewBag.AdvertId">Yorum Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
-        <th>Action</th>
+        <th>İşlemler</th>
+        <th>Kullanici</th>
+        <th>Yorum</th>
+        <th>Oluşturulma tarihi</th>
+        <th>Yenileme Tarihi</th>
+        <td>Puan</td>
 
-        <th>Kullanıcı Adı Soyadı</th>
-        <th>E-mail Adresi</th>
       </tr>
     </thead>
 
     <tbody>
-      @foreach (var user in Model)
+      @foreach (var comment in Model)
       {
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a> |
+              <a asp-area="Admin" asp-controller="Advert" asp-action="CommentEdit" asp-route-id="@comment.Id" class="btn btn-primary">Düzelt</a> |
 
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Blog" asp-action="Remove" asp-route-id="@user.Id">Delete</button> |
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="CommentRemove" asp-route-id="@comment.Id">Sil</button>
 
-              <button type="submit" class="btn btn-warning" asp-area="Admin" asp-controller="Blog" asp-action="ImageIndex" asp-route-id="@user.Id">Images</button> |
-
-              <button type="submit" class="btn btn-success " asp-area="Admin" asp-controller="Blog" asp-action="CommentIndex" asp-route-id="@user.Id">Comments</button>
             </form>
           </td>
-          <td>@user.FullName</td>
-          <td>@user.Email</td>
+          <td>@comment.Advert.User.FirstName @comment.Advert.User.LastName</td>
+          <td>@comment.Comment</td>
+          <td>@comment.CreatedDate</td>
+          @if (comment.UpdatedDate == null)
+          {
+            <td>Mevcut Degil</td>
+          }
+          else
+          {
+            <td>@comment.UpdatedDate</td>
+          }
+          
+          <td>@comment.StarCount</td>
+          
+          
         </tr>
       }
     </tbody>

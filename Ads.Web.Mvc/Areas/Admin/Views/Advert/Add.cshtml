@@ -1,0 +1,177 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Ads.Business.Dtos.Advert.AdvertAdminAddDto
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="row">
+      <div class="card-body">
+        <h2>Reklam Yarat</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (TempData.ContainsKey("SuccessMessage"))
+        {
+          <div class=" col-8 alert alert-success">
+            @TempData["SuccessMessage"]
+          </div>
+        }
+        @if (TempData.ContainsKey("ErrorMessage"))
+        {
+          <div class="col-8 alert alert-danger">
+            @TempData["ErrorMessage"]
+          </div>
+        }
+      </div>
+
+    </div>
+    <div class="card-body">
+
+      <form method="post">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Reklam Başlığı: </label>
+              <input value="" asp-for=@Model.Title class="form-control" />
+              <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Reklamın Kategorisi: </label>
+              <div class="col-lg-12 p-0">
+
+                <select asp-for="@Model.SelectedSubategoryIds" id="choices-multiple-remove-button" multiple class="w-100 ">
+
+                  @if (ViewBag.Subcategories != null)
+                  {
+                    foreach (var item in ViewBag.Subcategories)
+                    {
+                      <option value="@item.Value">@item.Text</option>
+                    }
+                  }
+                </select>
+                <span asp-validation-for="@Model.SelectedSubategoryIds" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Reklam Açıklaması: </label>
+              <textarea rows="5" value="" asp-for=@Model.Description class="form-control" id="editor"> </textarea>
+              <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 my-3">
+            <div class="form-group">
+              <span class="mb-3 d-block">Reklam Durumu: </span>
+              <ul style="list-style-type: none;">
+                <li>
+                  <input type="radio" asp-for=@Model.ConditionEnum value="0" id="regular-ad">
+                  <label for="regular-ad" class="font-weight-bold text-dark py-1">Belirtilmedi</label>
+                </li>
+                <li>
+                  <input type="radio" id="Featured-Ads" asp-for=@Model.ConditionEnum value="1">
+                  <label for="Featured-Ads" class="font-weight-bold text-dark py-1">Yeni</label>
+                </li>
+                <li>
+                  <input type="radio" id="urgent-Ads" asp-for=@Model.ConditionEnum value="2">
+                  <label for="urgent-Ads" class="font-weight-bold text-dark py-1">Az Kullanılmış</label>
+                </li>
+                <li>
+                  <input type="radio" id="urgent-Ads" asp-for=@Model.ConditionEnum value="3">
+                  <label for="urgent-Ads" class="font-weight-bold text-dark py-1">Kullanılmış</label>
+                </li>
+              </ul>
+              <span asp-validation-for="@Model.ConditionEnum" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Reklam Fiyatı: </label>
+              <input value="0" asp-for=@Model.Price class="form-control" />
+              <span asp-validation-for="@Model.Price" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Tıklanma Sayısı: </label>
+              <input type="number" value="0" asp-for=@Model.ClickCount class="form-control" />
+              <span asp-validation-for="@Model.ClickCount" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group" style="margin-top:10px">
+              <button type="submit" asp-area="Admin" asp-controller="Advert" asp-action="Add" class="btn btn-success">Ekle</button>
+              <a asp-area="Admin" asp-controller="Advert" asp-action="Index" class="btn btn-danger">Geri Dön</a>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+@section Scripts {
+  <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+  <!-- Add these links in the head section -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+  <script>
+
+
+
+    $(document).ready(function () {
+
+      var multipleCancelButton = new Choices('#choices-multiple-remove-button', { //For Selecting Multiple Categories
+        removeItemButton: true,
+        maxItemCount: 5,
+        searchResultLimit: 100,
+        renderChoiceLimit: 100,
+
+      });
+
+      $(".nice-select").hide(); //To fix a bug wiwth Choices
+    });
+  </script>
+}
+
+<style>
+  .choices__list--multiple .choices__item {
+    background-color: #007bff !important
+  }
+
+</style>
+
+

@@ -194,7 +194,7 @@ namespace Ads.Web.Mvc.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> UpdatePassword(string userId, string token)
+		public  ActionResult UpdatePassword(string userId, string token)
 		{
 			TempData["userId"] = userId;
 			TempData["token"] = token;

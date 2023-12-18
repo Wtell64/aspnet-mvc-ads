@@ -20,7 +20,6 @@ namespace Ads.Business.ValidationRules.FluentValidation
 
       RuleFor(p => p.Price).GreaterThan(0).WithMessage("Price must be greater than 0.");
 
-      RuleFor(u => u.UserId).GreaterThan(0).WithMessage("UserId must be greater than 0.");
 
       //RuleFor(ca => ca.CategoryAdverts).NotEmpty().WithMessage("At least one category must be associated with the advert.");
 

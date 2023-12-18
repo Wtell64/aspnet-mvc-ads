@@ -1,38 +1,46 @@
-﻿@using Ads.Business.Dtos.Users
+﻿@model IEnumerable<Ads.Entities.Concrete.AdvertImage>
 
-@model IEnumerable<UserViewDto>
+<div class="container-fluid">
 
-<div class="container">
-
-  <h1>Kullanıcı Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Blog" asp-action="Add">Yeni Şehir Ekle</a>
+  <h1>Reklam Resimleri Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Advert" asp-action="ImageAdd" asp-route-id="@ViewBag.AdvertId">Resim Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
-        <th>Action</th>
+        <th>İşlemler</th>
 
-        <th>Kullanıcı Adı Soyadı</th>
-        <th>E-mail Adresi</th>
+        <th>Oluşturulma tarihi</th>
+        <th>Resim</th>
+
       </tr>
     </thead>
 
     <tbody>
-      @foreach (var user in Model)
+      @foreach (var image in Model)
       {
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a> |
-
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Blog" asp-action="Remove" asp-route-id="@user.Id">Delete</button> |
-
-              <button type="submit" class="btn btn-warning" asp-area="Admin" asp-controller="Blog" asp-action="ImageIndex" asp-route-id="@user.Id">Images</button> |
-
-              <button type="submit" class="btn btn-success " asp-area="Admin" asp-controller="Blog" asp-action="CommentIndex" asp-route-id="@user.Id">Comments</button>
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="ImageRemove" asp-route-id="@image.Id">Sil</button>
             </form>
           </td>
-          <td>@user.FullName</td>
-          <td>@user.Email</td>
+          <td>@image.CreatedDate</td>
+          <td>
+          @if (Uri.IsWellFormedUriString(image.ImagePath, UriKind.Absolute))
+          {
+            <!-- If ImagePath is a URL -->
+            <img src="@image.ImagePath" alt="Image" width="40" height="40" />
+          }
+          else
+          {
+            <!-- If ImagePath is a local path -->
+            var localImagePath = Url.Content($"~/uploads/{image.ImagePath}");
+              <img src="@localImagePath" alt="Image" width="40" height="40" />
+          }
+          </td>
+
+
+
         </tr>
       }
     </tbody>

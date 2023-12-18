@@ -4,6 +4,8 @@ using Ads.Business.Dtos.Advert;
 using Ads.Business.Dtos.AdvertComment;
 using Ads.Business.Dtos.AdvertImage;
 using Ads.Business.Dtos.Category;
+using Ads.Business.Dtos.City;
+using Ads.Business.Dtos.District;
 using Ads.Business.Dtos.Setting;
 using Ads.Business.Dtos.Subcategory;
 using Ads.Entities.Concrete;
@@ -19,18 +21,27 @@ namespace Ads.Business.Mapping
       CreateMap<Category, CategoryViewDto>().ReverseMap();
 
       CreateMap<Setting, SettingViewDto>().ReverseMap();
-      
+
       CreateMap<Advert, AdvertViewDto>().ReverseMap();
       CreateMap<Advert, AdvertSearchDto>().ReverseMap();
+      CreateMap<Advert,AdvertAdminAddDto>().ReverseMap();
       CreateMap<AdvertComment, AdvertCommentViewDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertImageViewDto>().ReverseMap();
-
+      CreateMap<AdvertComment,AdvertCommentAdminAddDto>().ReverseMap();
       CreateMap<Advert, AdvertAddDto>().ReverseMap();
       CreateMap<AdvertImage, AdvertAddDto>().ReverseMap();
+      CreateMap<AdvertImage,AdvertImageAdminAddDto>().ReverseMap();
+
 
       CreateMap<SubcategoryAdvert, SubcategoryAdvertViewDto>().ReverseMap();
 
-			CreateMap<Subcategory, SubcategoryViewDto>().ReverseMap();
-		}
-	}
+      CreateMap<Subcategory, SubcategoryViewDto>().ReverseMap();
+
+      CreateMap<City, CityViewDto>().ReverseMap();
+      CreateMap<City, CityCreateOrEditDto>().ReverseMap();
+
+      CreateMap<District, DistrictViewDto>().ReverseMap();
+      CreateMap<District, DistrictCreateOrEditDto>().ReverseMap();
+    }
+  }
 }

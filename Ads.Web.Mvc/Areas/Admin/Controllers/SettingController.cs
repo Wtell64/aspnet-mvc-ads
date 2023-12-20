@@ -1,13 +1,110 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Ads.Business.Abstract;
+using Ads.Business.Dtos.Setting;
+using Ads.Entities.Concrete;
+using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
+  //ToDo : Same with AddressController
   [Area("Admin")]
   public class SettingController : Controller
   {
-    public IActionResult Index()
+    private readonly ISettingService _settingService;
+    private readonly UserManager<AppUser> _userManager;
+
+    public SettingController(ISettingService settingService, UserManager<AppUser> userManager)
+    {
+      _settingService = settingService;
+      _userManager = userManager;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Index()
+    {
+      var settings = await _settingService.GetListAsync<Setting>(includeProperties: "User");
+      return View(settings.Data);
+    }
+    [HttpGet]
+    public async Task<IActionResult> Add()
     {
       return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Add(SettingCRUDDto dto)
+    {
+      try
+      {
+        if (ModelState.IsValid)
+        {
+          await _settingService.AddAsync(dto);
+          await _settingService.SaveAsync();
+          TempData["SuccessMessage"] = "Ayarlar başarıyla keydedildi.";
+        }
+      }
+      catch (Exception)
+      {
+        ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
+        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+      }
+      return View();
+    }
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+      var settings = await _settingService.GetAsync<Setting>(a => a.Id == id);
+      SettingCRUDDto dto = new SettingCRUDDto()
+      {
+        Id = settings.Data.Id,
+        Name = settings.Data.Name,
+        Value = settings.Data.Value,
+        UserId = settings.Data.UserId
+      };
+      return View(dto);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Edit(SettingCRUDDto dto)
+    {
+      try
+      {
+        if (ModelState.IsValid)
+        {
+          _settingService.Update(dto);
+          await _settingService.SaveAsync();
+          TempData["SuccessMessage"] = "Ayarlar başarıyla güncellendi.";
+        }
+      }
+      catch (Exception)
+      {
+        ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
+        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+      }
+      return View(dto);
+    }
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+      var settings = await _settingService.GetAsync<Setting>(a => a.Id == id);
+      SettingCRUDDto dto = new SettingCRUDDto()
+      {
+        Id = settings.Data.Id,
+        Name = settings.Data.Name,
+        Value = settings.Data.Value,
+        UserId = settings.Data.UserId,
+      };
+      return View(dto);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Delete(SettingCRUDDto dto)
+    {
+      if (ModelState.IsValid)
+      {
+        _settingService.Delete(dto);
+        await _settingService.SaveAsync();
+      }
+      return RedirectToAction("Index", "Setting", new { area = "Admin" });
     }
   }
 }

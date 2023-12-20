@@ -1,0 +1,72 @@
+﻿@model Ads.Business.Dtos.Setting.SettingCRUDDto
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="row">
+      <div class="card-body">
+        <h2>Ayar Ekle</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (TempData.ContainsKey("SuccessMessage"))
+        {
+          <div class=" col-8 alert alert-success">
+            @TempData["SuccessMessage"]
+          </div>
+        }
+        @if (TempData.ContainsKey("ErrorMessage"))
+        {
+          <div class="col-8 alert alert-danger">
+            @TempData["ErrorMessage"]
+          </div>
+        }
+      </div>
+    </div>
+    <div class="card-body">
+      <form method="post">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Ayar ID: </label>
+              <input value="@Model.Id" asp-for=@Model.Id class="form-control" readonly />
+              <span asp-validation-for="@Model.Id" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Kullanıcı ID: </label>
+              <input value="@Model.UserId" asp-for=@Model.UserId class="form-control" readonly />
+              <span asp-validation-for="@Model.UserId" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Ayar Adı: </label>
+              <input value="@Model.Name" asp-for=@Model.Name class="form-control" readonly/>
+              <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Ayar Değeri: </label>
+              <input value="@Model.Value" asp-for=@Model.Value class="form-control" />
+              <span asp-validation-for="@Model.Value" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group" style="margin-top:10px">
+              <button type="submit" asp-area="Admin" asp-controller="Setting" asp-action="Edit" class="btn btn-success">Düzenle</button>
+              <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="btn btn-danger">Geri Dön</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

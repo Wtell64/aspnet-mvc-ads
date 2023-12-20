@@ -35,7 +35,7 @@ namespace Ads.Business.Concrete
       {
         var entity = _mapper.Map<TDto, Setting>(dto);
         _settingDal.Add(entity);
-        return new SuccessDataResult<TDto>(dto, Messages.CategoryAdded);
+        return new SuccessDataResult<TDto>(dto, Messages.SettingAdded);
       }
       catch (Exception e)
       {
@@ -49,7 +49,7 @@ namespace Ads.Business.Concrete
       {
         var entity = _mapper.Map<TDto, Setting>(dto);
         await _settingDal.AddAsync(entity);
-        return new SuccessDataResult<TDto>(dto, Messages.CategoryAdded);
+        return new SuccessDataResult<TDto>(dto, Messages.SettingAdded);
       }
       catch (Exception e)
       {
@@ -119,7 +119,7 @@ namespace Ads.Business.Concrete
       try
       {
         _settingDal.DeleteById(id);
-        return new SuccessDataResult<Category>(Messages.CategoryDeleted);
+        return new SuccessDataResult<Category>(Messages.SettingDeleted);
       }
       catch (Exception e)
       {
@@ -135,12 +135,12 @@ namespace Ads.Business.Concrete
 
         if (entity == null)
         {
-          return new ErrorDataResult<TDto>("Kayıt bulunamadı");
+          return new ErrorDataResult<TDto>(Messages.SettingNotFound);
         }
 
         var dto = _mapper.Map<Setting, TDto>(entity);
 
-        return new SuccessDataResult<TDto>(dto, "Kayıt bulundu");
+        return new SuccessDataResult<TDto>(dto, Messages.SettingFound);
       }
       catch (Exception e)
       {
@@ -156,12 +156,12 @@ namespace Ads.Business.Concrete
 
         if (entity == null)
         {
-          return new ErrorDataResult<TDto>("Kayıt bulunamadı");
+          return new ErrorDataResult<TDto>(Messages.SettingNotFound);
         }
 
         var dto = _mapper.Map<Setting, TDto>(entity);
 
-        return new SuccessDataResult<TDto>(dto, "Kayıt bulundu");
+        return new SuccessDataResult<TDto>(dto, Messages.SettingFound);
       }
       catch (Exception e)
       {
@@ -212,9 +212,9 @@ namespace Ads.Business.Concrete
         var dto = settingList.Select(e => _mapper.Map<Setting, TDto>(e)).ToList();
         if (dto == null)
         {
-          return new ErrorDataResult<IEnumerable<TDto>>("Gösterilecek birşey yok");
+          return new ErrorDataResult<IEnumerable<TDto>>(Messages.SettingNotFound);
         }
-        return new SuccessDataResult<IEnumerable<TDto>>(dto);
+        return new SuccessDataResult<IEnumerable<TDto>>(dto, Messages.SettingFound);
       }
       catch (Exception e)
       {
@@ -230,7 +230,7 @@ namespace Ads.Business.Concrete
         var dto = settingList.Select(e => _mapper.Map<Setting, TDto>(e)).ToList();
         if (dto == null)
         {
-          return new ErrorDataResult<IEnumerable<TDto>>("Gösterilecek birşey yok.");
+          return new ErrorDataResult<IEnumerable<TDto>>(Messages.SettingNotFound);
         }
         return new SuccessDataResult<IEnumerable<TDto>>(dto);
       }

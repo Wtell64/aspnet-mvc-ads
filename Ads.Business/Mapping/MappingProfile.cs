@@ -1,5 +1,6 @@
 
 
+using Ads.Business.Dtos.AdressDtos;
 using Ads.Business.Dtos.Advert;
 using Ads.Business.Dtos.AdvertComment;
 using Ads.Business.Dtos.AdvertImage;
@@ -18,7 +19,7 @@ namespace Ads.Business.Mapping
     {
       CreateMap<Category, CategoryViewDto>().ReverseMap();
 
-      CreateMap<Setting, SettingViewDto>().ReverseMap();
+      CreateMap<Setting, SettingCRUDDto>().ReverseMap();
       
       CreateMap<Advert, AdvertViewDto>().ReverseMap();
       CreateMap<Advert, AdvertSearchDto>().ReverseMap();
@@ -30,6 +31,7 @@ namespace Ads.Business.Mapping
       CreateMap<AdvertImage, AdvertAddDto>().ReverseMap();
       CreateMap<AdvertImage,AdvertImageAdminAddDto>().ReverseMap();
 
+      CreateMap<Address,AddressCRUDDto>().ReverseMap();
 
       CreateMap<SubcategoryAdvert, SubcategoryAdvertViewDto>().ReverseMap();
 

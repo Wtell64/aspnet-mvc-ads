@@ -1,5 +1,80 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model IEnumerable<Ads.Business.Dtos.Category.CategoryViewDto>
+
+
+<div class="container">
+
+  <h1>Kategori Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Category" asp-action="Create" >Kategori Ekle</a>
+  <table class="table table-striped" id='myTable'>
+    <thead>
+      <tr>
+        <th>İşlem</th>
+
+        <th>Kategori Adı</th>
+        <th>Açıklama</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @foreach (var category in Model)
+      {
+        <tr>
+          <td>
+            <form method="post">
+              <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-primary">Düzenle</a> |
+
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id">Sil</button> |
+
+            </form>
+          </td>
+          <td>@category.Name</td>
+          <td>@category.Description</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>
+
+
+
+@section Scripts {
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+  @* 	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
+  <script>
+
+    $(document).ready(function () {
+      $('#myTable').DataTable(
+        {
+          pagingType: 'full_numbers',
+          language: {
+            info: '_PAGES_ sayfa arasından _PAGE_. sayfa gösteriliyor',
+            infoEmpty: 'Hiç kayıt bulunamadı',
+            infoFiltered: '(Toplam _MAX_ kayıt arasından filtrelendi.)',
+            lengthMenu: 'Sayfa başına _MENU_ kayıt göster',
+            zeroRecords: 'Aramaya uygun kayıt bulunamadı.',
+            search: "Ara",
+            paginate: {
+              "first": "İlk",
+              "last": "Son",
+              "next": "Sonraki",
+              "previous": "Önceki"
+            }
+          },
+
+          lengthMenu: [
+            [10, 20, 50, -1],
+            [10, 20, 50, 'Hepsi']
+          ]
+        }
+      );
+    });
+  </script>
+  <style type="text/css">
+    #tbllist_filter {
+      margin-bottom: 1%;
+    }
+  </style>
+
 }

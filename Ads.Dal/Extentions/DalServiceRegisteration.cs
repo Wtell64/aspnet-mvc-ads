@@ -8,12 +8,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Ads.Dal.Extentions
 {
 
+
   public static class DalServiceRegisteration
   {
     public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration configuration)
     {
 
-      services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DBConStr-ISMAIL")));
+      services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DBConStr-ARAS")));
 
       services.AddScoped<ICategoryDal, EFCategoryDal>();
       services.AddScoped<IAdvertDal, EfAdvertDal>();
@@ -26,6 +27,7 @@ namespace Ads.Dal.Extentions
       services.AddScoped<ISubcategoryAdvertDal, EfSubcategoryAdvertDal>();
       services.AddScoped<ISubcategoryDal, EfSubcategoryDal>();
       services.AddScoped<ISettingDal, EfSettingDal>();
+
 
 
       return services;

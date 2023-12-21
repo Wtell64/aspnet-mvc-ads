@@ -1,38 +1,41 @@
-﻿@using Ads.Business.Dtos.Users
+﻿
+@model IEnumerable<Ads.Business.Dtos.Subcategory.SubcategoryViewDto>
 
-@model IEnumerable<UserViewDto>
 
 <div class="container">
 
-  <h1>Kullanıcı Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Blog" asp-action="Add">Yeni Şehir Ekle</a>
+  <h1>AltKategori Listesi</h1>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Subcategory" asp-action="Create">AltKategori Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
-        <th>Action</th>
-
-        <th>Kullanıcı Adı Soyadı</th>
-        <th>E-mail Adresi</th>
+        <th>İşlem</th>
+        <th>AltKategori Adı</th>
+        <th>Kategori Adı</th>
       </tr>
     </thead>
 
     <tbody>
-      @foreach (var user in Model)
+      @foreach (var subcategory in Model)
       {
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a> |
+              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Edit" asp-route-id="@subcategory.Id" class="btn btn-primary">Düzenle</a> |
 
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Blog" asp-action="Remove" asp-route-id="@user.Id">Delete</button> |
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@subcategory.Id">Sil</button> |
+              
 
-              <button type="submit" class="btn btn-warning" asp-area="Admin" asp-controller="Blog" asp-action="ImageIndex" asp-route-id="@user.Id">Images</button> |
 
-              <button type="submit" class="btn btn-success " asp-area="Admin" asp-controller="Blog" asp-action="CommentIndex" asp-route-id="@user.Id">Comments</button>
             </form>
           </td>
-          <td>@user.FullName</td>
-          <td>@user.Email</td>
+          <td>@subcategory.Name</td>
+          <td>
+            @if (subcategory.Category != null)
+            {
+              @subcategory.Category.Name
+            }
+          </td>
         </tr>
       }
     </tbody>

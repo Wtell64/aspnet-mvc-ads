@@ -1,0 +1,40 @@
+﻿@using Ads.Business.Dtos.District
+
+@model DistrictCreateOrEditDto
+
+<div class="container">
+
+  <div class="row mb-2">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h5>İlçe Oluştur</h5>
+        </div>
+
+        <div class="card-body">
+          <form asp-area="Admin" asp-controller="District" asp-action="Create" asp-route-cityId="@Model.CityId" method="post" class="d-flex align-items-center">
+            <div class="container">
+
+              @* <input type="text" asp-for="CityId" class="form-control" placeholder="Şehir" hidden/> *@
+
+              <div class="row mb-4">
+                <div class="col">
+                  <label asp-for="Name" class="mb-2"></label>
+                  <input type="text" asp-for="Name" class="form-control" placeholder="Ad" />
+                  <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col">
+                  <button type="submit" class="btn btn-warning" style="width:150px">Oluştur</button>
+                  <a asp-area="Admin" asp-controller="District" asp-action="Index" asp-route-cityId="@Model.CityId" class="btn btn-primary" style="width:150px">Listeye Dön</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

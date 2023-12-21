@@ -48,6 +48,12 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       var subcategoryList = await SetCategoryViewDataAsync();
       ViewBag.Subcategories = new SelectList(subcategoryList, "Value", "Text");
 
+      var users = _userManager.Users.ToList();
+      var usersSelectList = users
+          .Select(users => new SelectListItem { Value = users.Id.ToString(), Text = users.FirstName + " " + users.LastName })
+          .ToList();
+      ViewBag.Users = usersSelectList;
+
       return View();
     }
 
@@ -57,7 +63,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       try
       {
-        //TODO: Session gelince degistir
+        
         var result = await _advertService.AddAndSaveAsync(dto);
         var advertId = result.Data.Id;
 
@@ -103,7 +109,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       try
       {
         var advertId = dto.Id;
-        //TODO: Session gelince degistir
+
         var advert =  _advertService.Update(dto);
 
         var subcategories = await _advertService.GetSubcategoryListAsync<SubcategoryAdvert>(filter: x => x.AdvertId == advertId);
@@ -287,7 +293,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       try
       {
         
-        //TODO: Session gelince degistir
+
         var advert = _advertCommentService.Update(dto);
         await _advertCommentService.SaveAsync();
 

@@ -29,6 +29,8 @@ namespace Ads.Business.Dtos.Advert
     public int ClickCount = 0;
     public bool AgreeToTerms { get; set; }
 
+    public int UserId = 0;
+
     //public virtual ICollection<Ads.Entities.Concrete.AdvertImage> AdvertImages { get; set; }
 
 

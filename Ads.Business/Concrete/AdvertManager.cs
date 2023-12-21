@@ -2,10 +2,12 @@
 using Ads.Business.Constants;
 using Ads.Dal.Abstract;
 using Ads.Entities.Concrete;
+using Ads.Entities.Concrete.Identity;
 using App.Core.Utilities.Results;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Identity;
 using System.Linq.Expressions;
 
 namespace Ads.Business.Concrete
@@ -16,22 +18,22 @@ namespace Ads.Business.Concrete
     private readonly IValidator<Advert> _validator;
     private readonly IAdvertDal _advertDal;
     private readonly ISubcategoryAdvertDal _subcategoryAdvertDal;
+    private readonly UserManager<AppUser> _userManager;
 
-
-    public AdvertManager(IAdvertDal advertDal, IMapper mapper, IValidator<Advert> validator, ISubcategoryAdvertDal categoryAdvertDal)
+    public AdvertManager(IAdvertDal advertDal, IMapper mapper, IValidator<Advert> validator, ISubcategoryAdvertDal categoryAdvertDal, UserManager<AppUser> userManager)
     {
       _advertDal = advertDal;
       _mapper = mapper;
       _validator = validator;
 			_subcategoryAdvertDal = categoryAdvertDal;
+      _userManager = userManager;
     }
     public IDataResult<TDto> Add<TDto>(TDto dto)
     {
       try
       {
         var entity = _mapper.Map<Advert>(dto);
-        //TODO: sil
-        entity.UserId = 3;
+
 
 
         var validationResult = _validator.Validate(entity);
@@ -109,8 +111,8 @@ namespace Ads.Business.Concrete
       try
       {
         var entity = _mapper.Map<Advert>(dto);
-        //TODO: sil
-        entity.UserId = 3;
+
+
 
 
         var validationResult = _validator.Validate(entity);
@@ -140,8 +142,7 @@ namespace Ads.Business.Concrete
       {
         var entity = _mapper.Map<Advert>(dto);
 
-        //TODO: sil
-        entity.UserId = 3;
+
         
         var validationResult = await _validator.ValidateAsync(entity);
         if (!validationResult.IsValid)
@@ -170,8 +171,7 @@ namespace Ads.Business.Concrete
       {
         var entity = _mapper.Map<Advert>(dto);
 
-        //TODO: sil
-        entity.UserId = 3;
+
 
         var validationResult = await _validator.ValidateAsync(entity);
         if (!validationResult.IsValid)

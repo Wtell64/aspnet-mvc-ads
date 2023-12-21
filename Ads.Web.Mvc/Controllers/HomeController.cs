@@ -5,8 +5,10 @@ using Ads.Business.Dtos.AdvertImage;
 using Ads.Business.Dtos.Category;
 using Ads.Core.Utilities.Images;
 using Ads.Entities.Concrete;
+using Ads.Entities.Concrete.Identity;
 using Ads.Web.Mvc.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
@@ -23,6 +25,7 @@ namespace Ads.Web.Mvc.Controllers
     private readonly IWebHostEnvironment _environment;
     private readonly IImageProcessor _imageProcessor;
     private readonly ISubcategoryService _subcategoryService;
+    private readonly UserManager<AppUser> _userManager;
 
 
 
@@ -32,7 +35,8 @@ namespace Ads.Web.Mvc.Controllers
     IWebHostEnvironment environment,
     IAdvertImageService advertImageService,
     IImageProcessor imageProcessor,
-    ISubcategoryService subcategoryService
+    ISubcategoryService subcategoryService,
+    UserManager<AppUser> userManager
     )
     {
       _logger = logger;
@@ -42,6 +46,7 @@ namespace Ads.Web.Mvc.Controllers
       _advertImageService = advertImageService;
       _imageProcessor = imageProcessor;
       _subcategoryService = subcategoryService;
+      _userManager = userManager;
     }
 
     public IActionResult Index()
@@ -71,14 +76,18 @@ namespace Ads.Web.Mvc.Controllers
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> AdListing([FromForm] AdvertAddDto dto)
     {
-      //TODO: Take userid from cache once its done
+
       //TODO: make it create the path if it does not exist
-      //TODO: Make code better
+
 
       //var fileName = "";
       try
       {
-
+        if (User.Identity.IsAuthenticated)
+        {
+          var hasUser = await _userManager.FindByNameAsync(User.Identity.Name);
+          dto.UserId = hasUser.Id;
+        }
         var result = await _advertService.AddAndSaveAsync(dto);
         
         var advertId = result.Data.Id;

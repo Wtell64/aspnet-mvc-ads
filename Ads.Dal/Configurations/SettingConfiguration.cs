@@ -18,10 +18,10 @@ namespace Ads.Dal.Configurations
 			builder.Property(c => c.Value).IsRequired().HasColumnType("nvarchar(400)");
 
 			builder.HasData(
-				new Setting { Id = 1, UserId = 1, Name = "MaxPostPerPage", Value = "50" },
-				new Setting { Id = 2, UserId = 2, Name = "MaxPostPerPage", Value = "20" },
-				new Setting { Id = 3, UserId = 3, Name = "MaxPostPerPage", Value = "10" },
-				new Setting { Id = 4, UserId = 1, Name = "DarkMode", Value = "0" });
+				new Setting { Id = 1, UserId = 1, Name = "Sayfa Başına İlan Sayısı", Value = "50" },
+				new Setting { Id = 2, UserId = 2, Name = "Sayfa Başına İlan Sayısı", Value = "20" },
+				new Setting { Id = 3, UserId = 3, Name = "Sayfa Başına İlan Sayısı", Value = "10" },
+				new Setting { Id = 4, UserId = 1, Name = "Karanlı Mod", Value = "Açık" });
 		}
 	}
 

@@ -16,6 +16,8 @@
 		public static string SuccessfullySaved = "Başarıyla Kaydedildi.";
 		public static string SettingDeleted = "Ayarlar Silindi.";
 		public static string SettingNotFound = "Ayarlar bulunamadı";
+		public static string SettingAdded = "Ayarlar eklendi";
+		public static string SettingFound = "Ayar kaydı bulundu";
 
 
 		public static string CategoryUpdated = "Kategori Güncellendi.";

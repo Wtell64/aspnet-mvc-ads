@@ -1,0 +1,126 @@
+﻿@model Ads.Business.Dtos.AdressDtos.AddressCRUDDto
+<div class="container-fluid">
+
+	<div class="card">
+		<div class="row">
+			<div class="card-body">
+				<h2>Adresi Düzenle</h2>
+				<div asp-validation-summary="All" class="text-danger"></div>
+				@if (TempData.ContainsKey("SuccessMessage"))
+				{
+					<div class=" col-8 alert alert-success">
+						@TempData["SuccessMessage"]
+					</div>
+				}
+				@if (TempData.ContainsKey("ErrorMessage"))
+				{
+					<div class="col-8 alert alert-danger">
+						@TempData["ErrorMessage"]
+					</div>
+				}
+			</div>
+		</div>
+		<div class="card-body">
+			<form method="post">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Kullanıcı ID: </label>
+							<input value="@Model.UserId" asp-for=@Model.UserId class="form-control" readonly />
+							<span asp-validation-for="@Model.UserId" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Adres ID: </label>
+							<input value="@Model.Id" asp-for=@Model.Id class="form-control" readonly />
+							<span asp-validation-for="@Model.Id" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Ülke :</label>
+							<input value="Türkiye" asp-for=@Model.Country class="form-control" readonly />
+							<span asp-validation-for="@Model.Country" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="floatingSelect">Şehir: </label>
+							<select asp-for="CityId" id="citiesId" for="CityId" class="form-select" aria-label="City" asp-items="@ViewBag.Cities">
+							</select>
+							<span asp-validation-for="CityId" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>İlçe: </label>
+							<select asp-for="DistrictId" id="districtId" for="DistrictId" class="form-select" aria-label="District">
+							</select>
+							<span asp-validation-for="DistrictId" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Posta Kodu :</label>
+							<input value="@Model.PostCode" asp-for=@Model.PostCode class="form-control"/>
+							<span asp-validation-for="@Model.PostCode" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Detaylı Adres :</label>
+							<textarea value="@Model.DetailedAddress" asp-for=@Model.DetailedAddress class="form-control" id="floatingTextarea2"></textarea>
+							<span asp-validation-for="@Model.DetailedAddress" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group" style="margin-top:10px">
+							<button type="submit" asp-area="Admin" asp-controller="Address" asp-action="Edit" class="btn btn-success">Düzenle</button>
+							<a asp-area="Admin" asp-controller="Address" asp-action="Index" class="btn btn-danger">Geri Dön</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	$(document).ready(function () {
+		getDistrictsByCityId();
+	});
+
+	$("#citiesId").change(function () {
+		getDistrictsByCityId();
+	});
+
+	function getDistrictsByCityId() {
+		$.ajax({
+			url: '@Url.Action("GetDistrictsByCityId", "Address")',
+			type: 'GET',
+			data: {
+				cityId: $('#citiesId').val(),
+			},
+			success: function (data) {
+				$('#districtId').find('option').remove();
+				$(data).each(function (index, item) {
+					$('#districtId').append('<option value="' + item.id + '">' + item.name + '</option>');
+				});
+			}
+		});
+	}
+</script>

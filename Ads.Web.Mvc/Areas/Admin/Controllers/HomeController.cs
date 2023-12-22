@@ -1,39 +1,81 @@
-﻿using Ads.Business.Dtos.Users;
+﻿using Ads.Business.Abstract;
+using Ads.Business.Dtos.Admin;
+using Ads.Business.Dtos.Users;
+using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
-	[Area("Admin")]
-	public class HomeController : Controller
-	{
+  [Area("Admin")]
+  public class HomeController : Controller
+  {
 
-		private readonly UserManager<AppUser> _userManager;
+    private readonly UserManager<AppUser> _userManager;
+    private readonly ICategoryService _categoryService;
+    public HomeController(UserManager<AppUser> userManager, ICategoryService categoryService)
+    {
+      _userManager = userManager;
+      _categoryService = categoryService;
+    }
 
-		public HomeController(UserManager<AppUser> userManager)
-		{
-			_userManager = userManager;
-		}
+    [HttpGet]
+    public IActionResult Index()
+    {
+      HomeIndexDto homeIndexDto = new HomeIndexDto() { PieDtos = CreatePopularCategoriesData() };
 
-		[HttpGet]
-		public IActionResult Index() => View();
+      return View(homeIndexDto);
+    }
 
-		[HttpGet]
-		public async Task<IActionResult> UserList()
-		{
-			var userList = await _userManager.GetUsersInRoleAsync("user");
+    public IActionResult PopularCategoriesPie()
+    {
+      return Json(new { Dto = CreatePopularCategoriesData() });
+    }
 
-			var userVieModelList = userList.Select(uvd => new UserViewDto()
-			{
-				Id = uvd.Id,
-				FirstName = uvd.FirstName,
-				LastName = uvd.LastName,
-				Email = uvd.Email,
-			}).ToList();
+    [HttpGet]
+    public async Task<IActionResult> UserList()
+    {
+      var userList = await _userManager.GetUsersInRoleAsync("user");
 
-			return View(userVieModelList);
-		}
+      var userVieModelList = userList.Select(uvd => new UserViewDto()
+      {
+        Id = uvd.Id,
+        FirstName = uvd.FirstName,
+        LastName = uvd.LastName,
+        Email = uvd.Email,
+      }).ToList();
 
-	}
+      return View(userVieModelList);
+    }
+
+    private List<PieDto> CreatePopularCategoriesData()
+    {
+      var dto = new List<PieDto>();
+
+      string[] colorList = new string[] { "#4e73df", "#1cc88a", "#36b9cc", "#f3e600", "#ff4444" };
+
+
+      var categories = _categoryService.GetList<Category>(null, null, "Subcategories.SubcategoryAdverts.Advert");
+
+      var popularCategories = categories.Data
+        .OrderByDescending(category => category.Subcategories
+            .SelectMany(subcategory => subcategory.SubcategoryAdverts)
+            .Sum(subcategoryAdvert => subcategoryAdvert.Advert.ClickCount ?? 0))
+        .Take(5)
+        .ToList();
+
+      foreach (var category in popularCategories)
+      {
+        dto.Add(new PieDto
+        {
+          CategoryLabel = category.Name,
+          AdvertCount = category.Subcategories.SelectMany(x => x.SubcategoryAdverts).Select(x => x.Advert).Count(),
+          Color = colorList[popularCategories.IndexOf(category)]
+        });
+      }
+
+      return dto;
+    }
+  }
 }

@@ -1,0 +1,123 @@
+﻿@model Ads.Business.Dtos.Users.EditProfileDto
+
+<body class="body-wrapper">
+
+	<!--==================================
+	=            User Profile            =
+	===================================-->
+
+	<section class="user-profile section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+					<div class="sidebar">
+						<!-- User Widget -->
+						<div class="widget user">
+							<!-- User Image -->
+							<div class="image d-flex justify-content-center">
+								<img src="~/userProfile/@Model.PersonalInformation.Image" alt="" class="">
+							</div>
+							<!-- User Name -->
+							<h5 class="text-center">@Model.PersonalInformation.FirstName @Model.PersonalInformation.LastName</h5>
+						</div>					
+					</div>
+				</div>
+				<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
+					<!-- Edit Profile Welcome Text -->
+					<div class="widget welcome-message">
+						<h2>Edit profile</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+					</div>
+					<!-- Edit Personal Info -->
+					<div class="row">
+						<div class="col-lg-6 col-md-6">
+							<div class="widget personal-info">
+								<h3 class="widget-header user">Kişisel Bilgileri Düzenle</h3>
+								<div asp-validation-summary="ModelOnly" class="alert alert-danger fw-bold" role="alert"></div>
+								<form asp-controller="User" asp-action="EditPersonelInformation" enctype="multipart/form-data" method="post">
+
+									<!-- First Name -->
+									<div class="form-group">
+										<label asp-for="PersonalInformation.FirstName" for="first-name">Adın</label>
+										<input asp-for="PersonalInformation.FirstName" value="@string.Empty" placeholder="@Model.PersonalInformation.FirstName" type="text" class="form-control" id="first-name">
+
+									</div>
+									<!-- Last Name -->
+									<div class="form-group">
+										<label asp-for="PersonalInformation.LastName" for="last-name">Soyadın</label>
+										<input asp-for="PersonalInformation.LastName" placeholder="@Model.PersonalInformation.LastName" value="@string.Empty" type="text" class="form-control" id="last-name">
+									</div>
+									<!-- File chooser -->
+									<div class="form-group">
+										<div class="choose-file text-center my-4 py-4 rounded">
+											<label for="file-upload">
+
+												<span id="upload-status" style="color:#333" class="d-block font-weight-bold">Ürünün resimlerini buraya taşıyın</span>
+												<span class="d-block">veya</span>
+												<span class="d-block btn bg-primary text-white my-3 select-files">Resim Yükleyin</span>
+												<span class="d-block">Maximum dosya sınırı: 1000 KB</span>
+
+												<input type="file" asp-for="@Model.PersonalInformation.File" class="form-control-file d-none" multiple id="file-upload">
+
+											</label>
+										</div>
+									</div>
+									<!-- Submit button -->
+									<button class="btn btn-transparent">Değişiklerimi Kaydet</button>
+								</form>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<!-- Change Password -->
+							<div class="widget change-password">
+								<h3 class="widget-header user">Şifremi Değiştir</h3>
+								<form asp-controller="User" asp-action="EditPassword" method="post">
+									<!-- Current Password -->
+									<div class="form-group">
+										<label asp-for="PasswordEdit.CurrentPassword" for="current-password">Mevcut Şifren</label>
+										<input asp-for="PasswordEdit.CurrentPassword" type="password" class="form-control" id="current-password">
+									</div>
+									<!-- New Password -->
+									<div class="form-group">
+										<label asp-for="PasswordEdit.NewPassword" for="new-password">Yeni Şifren</label>
+										<input asp-for="PasswordEdit.NewPassword" type="password" class="form-control" id="new-password">
+									</div>
+									<!-- Confirm New Password -->
+									<div class="form-group">
+										<label asp-for="PasswordEdit.ConfirmNewPassword" for="confirm-password">Tekrar Yeni Şifren</label>
+										<input asp-for="PasswordEdit.ConfirmNewPassword" type="password" class="form-control" id="confirm-password">
+									</div>
+									<!-- Submit Button -->
+									<button class="btn btn-transparent">Şifremi Değiştir</button>
+								</form>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<!-- Change Email Address -->
+							<div class="widget change-email mb-0">
+								<h3 class="widget-header user">Email Değiştir</h3>
+
+								<form asp-controller="User" asp-action="EditEmail" method="post">
+									<!-- Current Email -->
+									<div class="form-group">
+										<label asp-for="EmailEdit.CurrentEmail" for="current-email">Mevcut Email Adresin</label>
+										<input asp-for="EmailEdit.CurrentEmail" placeholder="@Model.EmailEdit.CurrentEmail" type="email" class="form-control" id="current-email">
+									</div>
+									<!-- New email -->
+									<div class="form-group">
+										<label asp-for="EmailEdit.NewEmail" for="new-email">Yeni Email Adresin</label>
+										<input asp-for="EmailEdit.NewEmail" type="email" class="form-control" id="new-email">
+									</div>
+									<!-- Submit Button -->
+									<button class="btn btn-transparent">Emailimi Değiştir</button>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>

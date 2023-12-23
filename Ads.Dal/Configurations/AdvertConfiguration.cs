@@ -1,9 +1,7 @@
 ﻿using Ads.Entities.Concrete;
+using Ads.Entities.Concrete.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using Bogus;
-using Ads.Entities.Concrete.Enums;
 
 namespace Ads.Dal.Configurations
 {
@@ -19,6 +17,7 @@ namespace Ads.Dal.Configurations
 			builder.Property(a => a.Price).IsRequired();
 			builder.HasKey(c => c.Id);
 
+			builder.HasMany(a => a.AdvertComments).WithOne(ac => ac.Advert).HasForeignKey(ac => ac.AdvertId).OnDelete(DeleteBehavior.Cascade);
 
 			builder.HasData(
 					new Advert { Id = 1, Title = "Siyah Laptop", Price = 140, UserId = 3, Description = "Siyah az kullanılmıs laptop", ConditionEnum = AdvertConditionEnum.FactoryNew },

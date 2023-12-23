@@ -19,13 +19,10 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\SuperAdmin\Controllers\" />
-    <Folder Include="Areas\SuperAdmin\Data\" />
-    <Folder Include="Areas\SuperAdmin\Models\" />
-    <Folder Include="Areas\SuperAdmin\Views\" />
     <Folder Include="Models\" />
     <Folder Include="Filters\" />
     <Folder Include="wwwroot\images\seedImages\" />
+    <Folder Include="wwwroot\userProfile\" />
   </ItemGroup>
 
   <ItemGroup>

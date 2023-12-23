@@ -1,5 +1,4 @@
-﻿using Ads.Business.Dtos.Users;
-using Ads.Entities.Concrete.Identity;
+﻿using Ads.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +7,6 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 	[Area("Admin")]
 	public class HomeController : Controller
 	{
-
 		private readonly UserManager<AppUser> _userManager;
 
 		public HomeController(UserManager<AppUser> userManager)
@@ -17,23 +15,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Index() => View();
-
-		[HttpGet]
-		public async Task<IActionResult> UserList()
+		public async Task<IActionResult> Index()
 		{
-			var userList = await _userManager.GetUsersInRoleAsync("user");
-
-			var userVieModelList = userList.Select(uvd => new UserViewDto()
+			if (User.Identity.IsAuthenticated)
 			{
-				Id = uvd.Id,
-				FirstName = uvd.FirstName,
-				LastName = uvd.LastName,
-				Email = uvd.Email,
-			}).ToList();
+				var hasUser = await _userManager.FindByNameAsync(User.Identity.Name);
+				TempData["User"] = $"{hasUser.FirstName} {hasUser.LastName}";
+			}
 
-			return View(userVieModelList);
+			return View();
 		}
-
 	}
 }

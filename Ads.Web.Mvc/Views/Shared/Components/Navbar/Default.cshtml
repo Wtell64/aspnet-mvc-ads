@@ -1,58 +1,73 @@
 ﻿@model Ads.Business.Dtos.Navbar.NavbarViewDto
 
 <nav class="navbar navbar-expand-lg navbar-light navigation">
-  <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-    <img src="~/template/images/logo.png" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto main-nav ">
-      <li class="nav-item active">
-        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-      </li>
-      <!--Categories -->
-      <li class="nav-item dropdown dropdown-slide">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
-          Kategoriler<span><i class="fa fa-angle-down"></i></span>
-        </a>
-        <div class="dropdown-menu">
-          @if (Model != null && Model.Categories.Count() > 0)
-          {
-            @foreach (var category in Model.Categories)
-            {
-              <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index" asp-route-category-slug="@category.Name" asp-route-id="@category.Id">@category.Name</a>
-            }
-          }
-        </div>
-      </li>
+	<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+		<img src="~/template/images/logo.png" alt="">
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto main-nav ">
+			<li class="nav-item active">
+				<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+			</li>
+			<!--Categories -->
+			<li class="nav-item dropdown dropdown-slide">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
+					Kategoriler<span><i class="fa fa-angle-down"></i></span>
+				</a>
+				<div class="dropdown-menu">
+					@if (Model != null && Model.Categories.Count() > 0)
+					{
+						@foreach (var category in Model.Categories)
+						{
+							<a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index" asp-route-category-slug="@category.Name" asp-route-id="@category.Id">@category.Name</a>
+						}
+					}
+				</div>
+			</li>
 
-      <!--Pages -->
-      <li class="nav-item dropdown dropdown-slide">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
-          Sayfalar<span><i class="fa fa-angle-down"></i></span>
-        </a>
-        <div class="dropdown-menu">
-          @if (Model != null && Model.Pages.Count() > 0)
-          {
-            @foreach (var pageM in Model.Pages)
-            {
-              <a class="dropdown-item" asp-area="" asp-controller="Page" asp-action="Detail" asp-route-title-slug="@pageM.Title" asp-route-id="@pageM.Id">@pageM.Title</a>
-            }
-          }
-        </div>
-      </li>
+			<!--Pages -->
+			<li class="nav-item dropdown dropdown-slide">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
+					Sayfalar<span><i class="fa fa-angle-down"></i></span>
+				</a>
+				<div class="dropdown-menu">
+					@if (Model != null && Model.Pages.Count() > 0)
+					{
+						@foreach (var pageM in Model.Pages)
+						{
+							<a class="dropdown-item" asp-area="" asp-controller="Page" asp-action="Detail" asp-route-title-slug="@pageM.Title" asp-route-id="@pageM.Id">@pageM.Title</a>
+						}
+					}
+				</div>
+			</li>
 
-    </ul>
-    <ul class="navbar-nav ml-auto mt-10">
-      <li class="nav-item">
-        <a class="nav-link login-button" asp-controller="Auth" asp-action="Login">Giriş Yap</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add Listing</a>
-      </li>
-    </ul>
-  </div>
+		</ul>
+
+
+		<ul class="navbar-nav ml-auto mt-10">
+
+
+			@if (User.Identity.IsAuthenticated)
+			{
+						<li class="nav-item"><a class="nav-link text-white add-button mr-4" href="ad-listing.html"><i class="fa fa-plus-circle mr-2"></i>Add Listing</a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						@TempData["User"]
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" asp-controller="User" asp-action="Index">Ayarlar</a></li>
+						<li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Çıkış Yap</a></li>
+					</ul>
+				</li>
+			}
+			else
+			{
+				<li class="nav-item"><a class="nav-link login-button" asp-controller="Auth" asp-action="Login">Giriş Yap</a></li>
+			}
+		</ul>
+	</div>
 </nav>

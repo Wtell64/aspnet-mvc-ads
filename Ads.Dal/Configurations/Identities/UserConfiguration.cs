@@ -57,7 +57,6 @@ namespace Ads.Dal.Configurations.Identities
 				EmailConfirmed = true,
 				SecurityStamp = Guid.NewGuid().ToString(),
 				ImagePath = "deneme"
-
 			};
 			superadmin.PasswordHash = CreatePasswordHash(superadmin, "123456");
 

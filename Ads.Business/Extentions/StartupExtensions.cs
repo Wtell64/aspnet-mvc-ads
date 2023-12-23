@@ -1,6 +1,4 @@
-﻿
-using Ads.Business.ValidationRules.CustomValidations;
-using Ads.Business.ValidationRules.CustomValidations.Localizations;
+﻿using Ads.Business.ValidationRules.CustomValidations.Localizations;
 using Ads.Dal.Concrete.EntityFramework.Context;
 using Ads.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -38,9 +36,7 @@ namespace Ads.Business.Extentions
 
 				options.SignIn.RequireConfirmedEmail = true; // Uygulamaya kayıt olan bir kullanıcı email onaylaması gerekir.
 
-			}).AddPasswordValidator<PasswordValidator>()
-				.AddUserValidator<UserValidator>()
-				.AddErrorDescriber<LocalizationIdentityErrorDescriber>()
+			}).AddErrorDescriber<LocalizationIdentityErrorDescriber>()
 				.AddDefaultTokenProviders()
 				.AddEntityFrameworkStores<DataContext>();
 

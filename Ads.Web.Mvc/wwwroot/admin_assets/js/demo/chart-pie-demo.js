@@ -7,11 +7,10 @@ var categoryLabels = [];
 var advertCounts = [];
 
 $.ajax({
-  url: 'Home/PopularCategoriesPie',
+  url: 'Admin/Home/PopularCategoriesPie',
   type: 'GET',
   dataType: 'json',
   success: function (data) {
-    // Handle the received data  
     
     for (var i = 0; i < data.dto.length; i++)
     {
@@ -19,7 +18,7 @@ $.ajax({
       advertCounts.push(data.dto[i].advertCount);
     }
     //console.log(data.dto);
-    // You can now update the view with the received data
+   
     var ctx = document.getElementById("myPieChart");
     var myPieChart = new Chart(ctx, {
       type: 'doughnut',

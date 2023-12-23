@@ -14,23 +14,42 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
     private readonly UserManager<AppUser> _userManager;
     private readonly ICategoryService _categoryService;
-    public HomeController(UserManager<AppUser> userManager, ICategoryService categoryService)
+    private readonly IAdvertService _advertService;
+    private readonly ICityService _cityService;
+    public HomeController(UserManager<AppUser> userManager, ICategoryService categoryService, IAdvertService advertService, ICityService cityService)
     {
       _userManager = userManager;
       _categoryService = categoryService;
+      _advertService = advertService;
+      _cityService = cityService;
     }
 
     [HttpGet]
     public IActionResult Index()
     {
-      HomeIndexDto homeIndexDto = new HomeIndexDto() { PieDtos = CreatePopularCategoriesData() };
+      var adverts = _advertService.GetList<Advert>().Data;
+      var advertWithHighestPrice = adverts.OrderByDescending(a => a.Price).FirstOrDefault();
 
+      HomeIndexDto homeIndexDto = new HomeIndexDto()
+      {
+        PieDtos = CreatePopularCategoriesData(),
+        UserCount = _userManager.Users.Count(),
+        TotalAdvertCount = adverts.Count(),
+        CityAvailablePercentage = _cityService.GetList<City>().Data.Count() * 100 / 81,
+        HighestAdvertPrice = advertWithHighestPrice.Price,
+        HighestAdvertTitle = advertWithHighestPrice.Title
+      };
       return View(homeIndexDto);
     }
 
     public IActionResult PopularCategoriesPie()
     {
       return Json(new { Dto = CreatePopularCategoriesData() });
+    }
+
+    public IActionResult AdvertsByMonth()
+    {
+      return Json(new { Dto = CreateAdvertsByMonthData() });
     }
 
     [HttpGet]
@@ -49,9 +68,22 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(userVieModelList);
     }
 
-    private List<PieDto> CreatePopularCategoriesData()
+    private AdvertsByMonthAreaDto CreateAdvertsByMonthData()
     {
-      var dto = new List<PieDto>();
+      AdvertsByMonthAreaDto dto = new AdvertsByMonthAreaDto();
+      var adverts = _advertService.GetList<Advert>();
+
+      foreach (var advert in adverts.Data)
+      {
+        dto.AdvertCountPerMonth[advert.CreatedDate.Month - 1]++;
+      }
+
+      return dto;
+    }
+
+    private List<PopularCategoriesPieDto> CreatePopularCategoriesData()
+    {
+      var dto = new List<PopularCategoriesPieDto>();
 
       string[] colorList = new string[] { "#4e73df", "#1cc88a", "#36b9cc", "#f3e600", "#ff4444" };
 
@@ -67,7 +99,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       foreach (var category in popularCategories)
       {
-        dto.Add(new PieDto
+        dto.Add(new PopularCategoriesPieDto
         {
           CategoryLabel = category.Name,
           AdvertCount = category.Subcategories.SelectMany(x => x.SubcategoryAdverts).Select(x => x.Advert).Count(),

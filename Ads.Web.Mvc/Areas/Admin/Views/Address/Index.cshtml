@@ -1,34 +1,40 @@
-﻿@model IEnumerable<Ads.Entities.Concrete.Setting>
+﻿@model IEnumerable<Ads.Entities.Concrete.Address>
 
 <div class="container-fluid">
 
   <h1>Kullanıcı Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Setting" asp-action="Add">Ayar Ekle</a>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Address" asp-action="Add">Adres Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
         <th>İşlemler</th>
-        <th>Düzenlenme Tarihi</th>
-        <th>Ayar Sahibi</th>
-        <th>Ayar Adı</th>
-        <th>Ayar Değeri</th>
+        <th>Oluşturma Tarihi</th>
+        <th>Adres Sahibi</th>
+        <th>Posta Kodu</th>
+        <th>Ülke</th>
+        <th>Şehir</th>
+        <th>İlçe</th>
+        <th>Detaylı Adres</th>
       </tr>
     </thead>
 
     <tbody>
-      @foreach (var setting in Model)
+      @foreach (var address in Model)
       {
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Setting" asp-action="Edit" asp-route-id="@setting.Id" class="btn btn-primary">Düzenle</a> |
-              <a asp-area="Admin" asp-controller="Setting" asp-action="Delete" asp-route-id="@setting.Id" class="btn btn-danger">Sil</a> |
+              <a asp-area="Admin" asp-controller="Address" asp-action="Edit" asp-route-id="@address.Id" class="btn btn-primary">Düzenle</a> |
+              <a asp-area="Admin" asp-controller="Address" asp-action="Delete" asp-route-id="@address.Id" class="btn btn-danger">Sil</a> |
             </form>
           </td>
-          <td>@setting.UpdatedDate</td>
-          <td>@setting.User.FirstName @setting.User.LastName</td>
-          <td>@setting.Name</td>
-          <td>@setting.Value</td>
+          <td>@address.CreatedDate</td>
+          <td>@address.User.FirstName @address.User.LastName</td>
+          <td>@address.PostCode</td>
+          <td>@address.Country</td>
+          <td>@address.City.Name</td>
+          <td>@address.District.Name</td>
+          <td>@address.DetailedAddress</td>
         </tr>
       }
     </tbody>

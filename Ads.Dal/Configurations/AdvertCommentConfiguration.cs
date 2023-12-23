@@ -15,7 +15,7 @@ namespace Ads.Dal.Configurations
 			.HasOne(ac => ac.User)
 			.WithMany(u => u.AdvertComments)
 			.HasForeignKey(ac => ac.UserId)
-			.OnDelete(DeleteBehavior.Restrict);
+			.OnDelete(DeleteBehavior.NoAction);
 
 			builder.HasData(
 		new AdvertComment { Id = 1, Comment = "Kargo hızlı geldi. Çok memnun kaldım", AdvertId = 1, UserId = 3, StarCount = 5 },

@@ -1,6 +1,8 @@
 ﻿using Ads.Business.Abstract;
 using Ads.Business.Dtos.Navbar;
 using Ads.Entities.Concrete;
+using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Web.Mvc.ViewComponents
@@ -9,10 +11,13 @@ namespace Ads.Web.Mvc.ViewComponents
 	{
 		IPageService _pageService;
 		ICategoryService _categoryService;
-		public NavbarViewComponent(IPageService pageService, ICategoryService categoryService)
+		private readonly UserManager<AppUser> _userManager;
+
+		public NavbarViewComponent(IPageService pageService, ICategoryService categoryService, UserManager<AppUser> userManager)
 		{
 			_pageService = pageService;
 			_categoryService = categoryService;
+			_userManager = userManager;
 		}
 
 		public IViewComponentResult Invoke()

@@ -1,0 +1,146 @@
+﻿@using Ads.Business.Dtos.Users
+
+@model RegisterDto
+
+@section Scripts{
+	@await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+
+<section class="login border-top-1 p-5" style="height:100vh; display:flex; align-items:center; justify-content:center">
+	<div class="container">
+
+		<div class="row justify-content-center">
+
+			<div class="col-lg-6 col-md-10 ">
+				<div class="border border">
+
+					<div class="bg-gray p-4 d-flex justify-content-between align-items-center">
+						<h3>Kullanıcı Oluştur</h3>
+					</div>
+
+					@if (TempData["RegisterSuccessMessage"] is not null)
+					{
+						<div class="alert alert-info p-2" role="alert">
+							@TempData["RegisterSuccessMessage"]
+						</div>
+					}
+
+					<div asp-validation-summary="ModelOnly" class="alert alert-danger fw-bold" role="alert"></div>
+
+					<form asp-area="Admin" asp-controller="User" asp-action="Create" method="post" class="p-4">
+
+						<div class="row ">
+							<div class="form-floating col-md-6">
+								<input asp-for="FirstName" type="text" class="form-control" id="floatingInput" placeholder="Adın">
+								<label asp-for="FirstName" class="mx-3 mb-3" for="floatingInput">Adın</label>
+								<span asp-validation-for="FirstName" class="text-danger fw-bold"></span>
+							</div>
+
+							<div class="form-floating col-md-6 mb-3 ">
+								<input asp-for="LastName" type="text" class="form-control" id="floatingInput" placeholder="Soyadın">
+								<label asp-for="LastName" class="mx-3" for="floatingInput">Soyadın</label>
+								<span asp-validation-for="LastName" class="text-danger fw-bold"></span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-floating col-md-12 mb-3 ">
+								<input asp-for="Email" type="email" class="form-control" id="floatingInput" placeholder="E-mail">
+								<label asp-for="Email" class="mx-3" for="floatingInput">E-mail</label>
+								<span asp-validation-for="Email" class="text-danger fw-bold"></span>
+							</div>
+
+							<div class="form-floating col-md-12 mb-3 ">
+								<input asp-for="Password" type="password" class="form-control" id="floatingInput" placeholder="Şifre">
+								<label asp-for="Password" class="mx-3" for="floatingInput">Şifre</label>
+								<span asp-validation-for="Password" class="text-danger fw-bold"></span>
+							</div>
+
+							<div class="form-floating col-md-12 mb-3 ">
+								<input asp-for="PasswordConfirm" type="password" class="form-control" id="floatingInput" placeholder="Şifre Tekrar">
+								<label asp-for="PasswordConfirm" class="mx-3" for="floatingInput">Şifre Tekrar</label>
+								<span asp-validation-for="PasswordConfirm" class="text-danger fw-bold"></span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-floating col mb-3">
+								<select class="form-select" id="floatingSelect" aria-label="Country">
+									<option disabled selected value="1">Türkiye</option>
+								</select>
+								<label class="mx-3" for="floatingSelect">Ülke</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-floating col-md-6 mb-3">
+								<select asp-for="CityId" id="citiesId" for="CityId" class="form-select" aria-label="City" asp-items="@ViewBag.City">
+								</select>
+								<label class="mx-3" for="floatingSelect">Şehir</label>
+							</div>
+
+							<div class="form-floating col-md-6 mb-3">
+								<select asp-for="DistrictId" id="districtId" for="DistrictId" class="form-select" aria-label="District">
+								</select>
+								<label class="mx-3" for="floatingSelect">İlçe</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-floating col mb-3 ">
+								<textarea asp-for="DetailedAddress" class="form-control" id="floatingTextarea2"
+													style="height: 90px"></textarea>
+								<label class="mx-3" for="floatingTextarea2">Açık Adres</label>
+								<span asp-validation-for="DetailedAddress" class="text-danger fw-bold"></span>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<button type="submit" class="btn btn-primary">Kaydet</button>
+							<button type="submit" class="btn btn-warning">Geri Dön</button>
+						</div>
+
+
+						<div hidden class="col mb-3">
+							<div class="form-check">
+								<input asp-for="TermAndCondition" checked class="form-check-input" type="checkbox" id="gridCheck">
+								<label class="form-check-label" for="gridCheck">Kayıt olarak kabul etmiş olursunuz <a class="text-primary font-weight-bold" asp-controller="Auth" asp-action="TermCondition">Şartlar & Koşullar</a></label>
+							</div>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+	      $(document).ready(function () {
+	          getDistrictsByCityId();
+	      });
+
+			$("#citiesId").change(function () {
+	          getDistrictsByCityId();
+	      });
+
+	      function getDistrictsByCityId() {
+	          $.ajax({
+	              url: '@Url.Action("GetDistrictsByCityId", "User")',
+	              type: 'GET',
+	              data: {
+								cityId: $('#citiesId').val(),
+	              },
+	              success: function (data) {
+									$('#districtId').find('option').remove();
+	                  $(data).each(function (index, item) {
+										$('#districtId').append('<option value="' + item.id + '">' + item.name + '</option>');
+	                  });
+	              }
+	          });
+	      }
+	</script>
+</section>

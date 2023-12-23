@@ -1,0 +1,53 @@
+﻿@using Ads.Business.Dtos.Users
+
+@model UserViewDto
+
+<div class="container">
+
+	<div class="row mb-2">
+		<div class="col">
+			<div class="card">
+
+				<div class="card-header">
+					<h5>Rol Değiştir</h5>
+				</div>
+
+				<div class="card-body">
+
+					<form asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-userId="@Model.Id" method="post" class="d-flex align-items-center">
+
+						<div class="container">
+
+							<div class="row mb-3">
+								<label asp-for="FullName" for="exampleFormControlInput1" class="form-label">Adı Soyadı</label>
+								<input asp-for="FullName" class="form-control" type="text" value="@Model.FullName"
+											 aria-label="Disabled input example" disabled>
+							</div>
+
+							<div class="row mb-3">
+								<label asp-for="Role" for="exampleFormControlInput1" class="form-label">Mevcut Rolü</label>
+								<input asp-for="Role" class="form-control" type="text" value="@Model.Role" disabled>
+							</div>
+
+
+							<div class="row mb-4">
+								<label asp-for="Role" for="exampleFormControlInput1" class="form-label">Roller</label>
+								<select asp-for="Role" class="form-select" id="floatingSelect" aria-label="Roller">
+									<option selected value="Admin">Admin</option>
+									<option value="User">User</option>
+								</select>
+							</div>
+
+							<button type="submit" class="btn btn-primary ">Değiştir</button>
+							<button type="submit" class="btn btn-warning">Geri Dön</button>
+						</div>
+
+					</form>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

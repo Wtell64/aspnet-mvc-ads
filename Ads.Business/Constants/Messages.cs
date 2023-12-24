@@ -23,9 +23,10 @@
 		public static string CategoryNotFound = "Kategori Bulunamadı";
 		public static string CategoryListed = "Kategoriler Listelendi";
 		public static string CategoryFound = "Kategori bulundu";
+    public static string CategoryNotAdded = "Kategori eklenemedi";
 
 
-		public static string SubCategoryUpdated = "Alt Kategori Güncellendi.";
+    public static string SubCategoryUpdated = "Alt Kategori Güncellendi.";
 		public static string SubCategoryDeleted = "Alt Kategori Silindi";
 		public static string SubCategoryNotFound = "Alt Kategori Bulunamadı";
 		public static string SubCategoryListed = "Alt Kategoriler Listelendi";

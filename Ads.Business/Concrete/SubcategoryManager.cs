@@ -314,12 +314,12 @@ namespace Ads.Business.Concrete
 			{
 				var entity = _mapper.Map<TDto, Subcategory>(dto);
 
-				var validationResult = _validator.Validate(entity);
+				//var validationResult = _validator.Validate(entity);
 
-				if (!validationResult.IsValid)
-				{
-					return new ErrorResult(Messages.ValidationResultNull);
-				}
+				//if (!validationResult.IsValid)
+				//{
+				//	return new ErrorResult(Messages.ValidationResultNull);
+				//}
 
 				_subcategoryDal.Update(entity);
 

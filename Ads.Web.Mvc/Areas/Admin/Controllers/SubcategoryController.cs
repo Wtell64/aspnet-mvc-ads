@@ -1,4 +1,5 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.Category;
 using Ads.Business.Dtos.Subcategory;
 using Ads.Entities.Concrete;
@@ -47,23 +48,32 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     [HttpPost]
     public async Task<IActionResult> Create(SubcategoryViewDto subdto)
     {
-      if (subdto==null) { return RedirectToAction("Index"); }
+      try
+      {
+        if (subdto == null) { return RedirectToAction("Index"); }
 
-      var validateResult= _subcategoryService.Validate(subdto);
-      if (validateResult.Data.IsValid==false) 
-      { 
-      validateResult.Data.AddToModelState(this.ModelState);
-      var categories = await _categoryService.GetListAsync<Category>();
-      var categorySelectList = new SelectList(categories.Data, "Id", "Name");
-      ViewBag.Categories = categorySelectList;
-        return View(subdto);
+        var validateResult = _subcategoryService.Validate(subdto);
+        if (validateResult.Data.IsValid == false)
+        {
+          validateResult.Data.AddToModelState(this.ModelState);
+          var categories = await _categoryService.GetListAsync<Category>();
+          //var categorySelectList = new SelectList(categories.Data, "Id", "Name");
+          //ViewBag.Categories = categorySelectList;
+          return View(subdto);
+        }
+
+        await _subcategoryService.AddAsync(subdto);
+        await _subcategoryService.SaveAsync();
+        TempData["successMessage"] = Messages.SubCategoryAdded;
+
+       
       }
-     
-       await _subcategoryService.AddAsync(subdto);
-       await _subcategoryService.SaveAsync();
-
+      catch (Exception)
+      {
+        ModelState.AddModelError("Error", "Ekleme sırasında bir hata oluştu");
+        TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+      }
        return RedirectToAction("Index");
-      
     }
     [HttpGet]
     public async Task<IActionResult> EditAsync(int id) 
@@ -81,22 +91,36 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     [HttpPost]
     public async Task<IActionResult> EditAsync(SubcategoryViewDto subcategorydto)
     {
-      if (subcategorydto == null) { return RedirectToAction("Index"); }
+      try
+      {
+        if (subcategorydto == null) { return RedirectToAction("Index"); }
+
+
+        var validationResult = _subcategoryService.Validate(subcategorydto);
+        if (validationResult.Data.IsValid == false)
+        {
+          validationResult.Data.AddToModelState(this.ModelState);
+          return View(subcategorydto);
+        }
+        var categories = await _categoryService.GetListAsync<CategoryViewDto>();
+        var categorySelectList = new SelectList(categories.Data, "Id", "Name");
+        ViewBag.Categories = categorySelectList;
+
+        _subcategoryService.Update(subcategorydto);
+        await _subcategoryService.SaveAsync();
+        TempData["successMessage"] = Messages.SubcategoryUpdated;
+
+
+      }
+      catch (Exception)
+      {
+
+        ModelState.AddModelError("Error", "Düzenleme sırasında bir hata oluştu");
+        TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+      }
+      return RedirectToAction("Index");
 
      
-      var validationResult = _subcategoryService.Validate(subcategorydto);
-      if (validationResult.Data.IsValid == false)
-      {
-        validationResult.Data.AddToModelState(this.ModelState);
-        return View(subcategorydto);
-      }
-      var categories = await _categoryService.GetListAsync<Category>();
-      var categorySelectList = new SelectList(categories.Data, "Id", "Name");
-      ViewBag.Categories = categorySelectList;
-      _subcategoryService.Update(subcategorydto);
-      await _subcategoryService.SaveAsync();
-
-      return RedirectToAction("Index");
     }
   
     [HttpGet]
@@ -115,6 +139,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       _subcategoryService.DeleteById(id);
       await _subcategoryService.SaveAsync();
+      TempData["successMessage"] = Messages.SubcategoryDeleted;
 
       return RedirectToAction("Index");
     }

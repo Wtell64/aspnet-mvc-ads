@@ -12,7 +12,7 @@ namespace Ads.Business.ValidationRules.FluentValidation
 	{
 		public SubcategoryValidator()
 		{
-			RuleFor(n => n.Name).NotEmpty().WithMessage("Name cannot be empty");
+			RuleFor(n => n.Name).NotEmpty().WithMessage("Altkategori adı boş geçilemez");
 			RuleFor(n => n.Name).MaximumLength(100).WithMessage("Name can be a maximum of 100 characters.");
 
 		}

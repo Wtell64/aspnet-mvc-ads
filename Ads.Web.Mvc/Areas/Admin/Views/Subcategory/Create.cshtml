@@ -1,5 +1,8 @@
 ﻿@model Ads.Business.Dtos.Subcategory.SubcategoryViewDto
-
+@{
+  var successMessage = TempData["successMessage"]?.ToString();
+  var errorMessage = TempData["errorMessage"]?.ToString();
+}
 <div class="row">
   <div class="col-xxl-6">
     <div class="card card-xxl-strecth mb-3 mb-xl-8">
@@ -8,6 +11,14 @@
       </div>
 
       <div class="card-body">
+        @if (!string.IsNullOrWhiteSpace(errorMessage))
+        {
+          <div class="alert alert-danger">
+            <strong>Error!</strong>@errorMessage
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+          </div>
+
+        }
         <form asp-area="Admin" asp-controller="Subcategory" asp-action="Create" method="post">
           <div class="mb-3">
             <label asp-for="Name" class="form-label"></label>
@@ -15,7 +26,7 @@
             <span asp-validation-for="Name" class="text-danger"></span>
           </div>
           <div class="mb-3">
-            <label asp-for="Category" class="form-label">Kategori</label>
+            <label asp-for="CategoryId" class="form-label">Kategori</label>
             <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-select">
               <option value="">-- Kategori Seç --</option>
             </select>

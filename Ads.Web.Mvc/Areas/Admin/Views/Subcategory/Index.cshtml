@@ -1,10 +1,32 @@
 ﻿
 @model IEnumerable<Ads.Business.Dtos.Subcategory.SubcategoryViewDto>
+@{
 
+  var successMessage = TempData["successMessage"]?.ToString();
+  var errorMessage = TempData["errorMessage"]?.ToString();
+}
 
 <div class="container">
 
   <h1>AltKategori Listesi</h1>
+  @if (!string.IsNullOrWhiteSpace(successMessage))
+  {
+    <div class="alert alert-success">
+      <strong>Success!</strong>
+      @successMessage
+      <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+    </div>
+
+  }
+  else if (!string.IsNullOrWhiteSpace(errorMessage))
+  {
+    <div class="alert alert-danger">
+      <strong>Error!</strong>
+      @errorMessage
+      <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+    </div>
+
+  }
   <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Subcategory" asp-action="Create">AltKategori Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
@@ -22,9 +44,9 @@
           <td>
             <form method="post">
               <a asp-area="Admin" asp-controller="Subcategory" asp-action="Edit" asp-route-id="@subcategory.Id" class="btn btn-primary">Düzenle</a> |
-
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@subcategory.Id">Sil</button> |
-              
+@*
+              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Subcategory" asp-action="Delete" asp-route-id="@subcategory.Id">Sil</button> |*@
+              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Delete" asp-route-id="@subcategory.Id" class="btn btn-danger">Sil</a> |
 
 
             </form>

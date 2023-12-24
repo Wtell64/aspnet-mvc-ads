@@ -1,11 +1,21 @@
 ﻿@using Ads.Business.Dtos.Category
 @model CategoryViewDto
-
+@{
+  var errorMessage = TempData["errorMessage"]?.ToString();
+}
 <div class="row">
   <div class="col-xxl-6">
     <div class="card card-xxl-strecth mb-3 mb-xl-8">
       <div class="card-header">
         <h3>Kategori Düzenle</h3>
+        @if (!string.IsNullOrWhiteSpace(errorMessage))
+        {
+          <div class="alert alert-danger">
+            <strong>Error!</strong>@errorMessage
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+          </div>
+
+        }
       </div>
 
       <div class="card-body">

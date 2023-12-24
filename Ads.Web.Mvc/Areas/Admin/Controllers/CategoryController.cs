@@ -46,15 +46,26 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     [HttpPost]
     public async Task<IActionResult> Create(CategoryViewDto dto)
     {
-      if (dto == null) { return RedirectToAction("Index"); }
-      var validationResult = _categoryService.Validate(dto);
-      if (validationResult.Data.IsValid == false)
+      try
       {
-        validationResult.Data.AddToModelState(this.ModelState);
-        return View(dto);
+        if (dto == null) { return RedirectToAction("Index"); }
+        var validationResult = _categoryService.Validate(dto);
+        if (validationResult.Data.IsValid == false)
+        {
+          validationResult.Data.AddToModelState(this.ModelState);
+          return View(dto);
+        }
+        await _categoryService.AddAsync<CategoryViewDto>(dto);
+        await _categoryService.SaveAsync();
+        TempData["successMessage"] = Messages.CategoryAdded;
+        
       }
-      await _categoryService.AddAsync<CategoryViewDto>(dto);
-      await _categoryService.SaveAsync();
+      catch (Exception)
+      {
+
+        ModelState.AddModelError("Error", "Ekleme sırasında bir hata oluştu");
+        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+      }
       return RedirectToAction("Index");
     }
     //if (ModelState.IsValid) 
@@ -86,14 +97,25 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     [HttpPost]
     public async Task<IActionResult> Edit(CategoryViewDto dto)
     {
-     if(dto == null ) { return RedirectToAction("Index"); }
-     var validationResult = _categoryService.Validate(dto);
-     if (validationResult.Data.IsValid==false) 
-     { validationResult.Data.AddToModelState(this.ModelState); return View(dto); }
+      try
+      {
+        if (dto == null) { return RedirectToAction("Index"); }
+        var validationResult = _categoryService.Validate(dto);
+        if (validationResult.Data.IsValid == false)
+        { validationResult.Data.AddToModelState(this.ModelState); return View(dto); }
 
-     _categoryService.Update(dto);
-     await _categoryService.SaveAsync();
+        _categoryService.Update(dto);
+        await _categoryService.SaveAsync();
+        TempData["successMessage"] = Messages.CategoryUpdated;
 
+        
+      }
+      catch (Exception)
+      {
+
+        ModelState.AddModelError("Error", "Düzenleme sırasında bir hata oluştu");
+        TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+      }
       return RedirectToAction("Index");
     }
 
@@ -117,6 +139,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       _categoryService.DeleteById(id);
       await _categoryService.SaveAsync();
+      TempData["successMessage"] = Messages.CategoryDeleted;
 
       return RedirectToAction("Index");
     }

@@ -153,6 +153,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       //  _advertService.DeleteSubcategory(subcategory);
       //}
 
+      var advert = _advertService.Get<Advert>(filter: x => x.Id == id, includeProperties: "AdvertImages").Data;
+      var images = advert.AdvertImages;
+      
+      foreach (var image in images)
+      {
+        var imagePath = image.ImagePath;
+        bool result = await _imageProcessor.DeleteImageAsync(imagePath, "uploads");
+      }
+
       _advertService.DeleteById(id);
       await _advertService.SaveAsync();
 
@@ -180,8 +189,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     {
       try{ 
       int advertId = dto.AdvertId;
-
-      if (dto.Files != null && dto.Files.Count > 0)
+      ViewBag.AdvertId = advertId;
+        if (dto.Files != null && dto.Files.Count > 0)
       {
         foreach (var file in dto.Files)
         {

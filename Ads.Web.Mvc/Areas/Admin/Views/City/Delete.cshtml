@@ -1,6 +1,7 @@
 ﻿@using Ads.Business.Dtos.City
 
 @model CityViewDto
+<div class="container-fluid">
 
   <div class="row mb-2">
     <div class="col">
@@ -9,7 +10,7 @@
           <h5>Şehir Silme</h5>
         </div>
         <div class="card-body">
-        <form asp-area="Admin" asp-controller="City" asp-action="Delete" method="post" class="d-flex align-items-center">
+          <form asp-area="Admin" asp-controller="City" asp-action="Delete" method="post" class="d-flex align-items-center">
             <div class="container">
               <div class="row mb-4">
                 <div class="col">
@@ -20,7 +21,7 @@
               <div class="row mb-2">
                 <div class="col">
                   <button type="submit" class="btn btn-danger" style="width:150px">Sil</button>
-                <a asp-area="Admin" asp-controller="City" asp-action="Index" class="btn btn-primary" style="width:150px">Listeye Dön</a>
+                  <a asp-area="Admin" asp-controller="City" asp-action="Index" class="btn btn-primary" style="width:150px">Listeye Dön</a>
                 </div>
               </div>
             </div>
@@ -29,3 +30,4 @@
       </div>
     </div>
   </div>
+</div>

@@ -51,7 +51,7 @@
 		<ul class="navbar-nav ml-auto mt-10">
 
 
-			@if (User.Identity.IsAuthenticated)
+			@if (User.Identity != null && User.Identity.IsAuthenticated)
 			{
 				<li class="nav-item"><a class="nav-link text-white add-button mr-4" asp-area="" asp-controller="Home" asp-action="AdListing"><i class="fa fa-plus-circle mr-2"></i>Add Listing</a></li>
 				<li class="nav-item dropdown">

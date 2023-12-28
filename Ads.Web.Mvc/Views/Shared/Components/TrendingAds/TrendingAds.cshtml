@@ -33,7 +33,7 @@
 										<ul class="list-inline product-meta">
 											<li class="list-inline-item">
 												<a href="single.html">
-													<i class="fa fa-folder-open-o"></i>@if (advert.SubcategoryAdverts.Count > 0)
+													<i class="fa fa-folder-open-o"></i>@if (advert.SubcategoryAdverts != null && advert.SubcategoryAdverts.Count > 0)
 													{
 														@String.Join(", ", advert.SubcategoryAdverts.Select(p => p.Subcategory.Name).ToArray())
 													}

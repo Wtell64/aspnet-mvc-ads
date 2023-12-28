@@ -22,7 +22,7 @@ namespace Ads.Web.Mvc.Controllers
 		}
 		public IActionResult Search(string query, string category, string location, int page = 1, decimal minPrice = 0, decimal maxPrice = 5000, int condition = 999)
 		{
-			var adverts = _advertService.GetList<Advert>(filter: a => a.Price >= minPrice && a.Price <= maxPrice, includeProperties: "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments").Data;
+			var adverts = _advertService.GetList<Advert>(filter: a => a.Price >= minPrice && a.Price <= maxPrice, includeProperties: "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments,AdvertImages").Data;
 
 			if (condition != 999)
 			{

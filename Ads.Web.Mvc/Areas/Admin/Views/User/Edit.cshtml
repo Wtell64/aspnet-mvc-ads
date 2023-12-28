@@ -2,7 +2,7 @@
 
 @model UserViewDto
 
-<div class="container">
+<div class="container-fluid">
 
 	<div class="row mb-2">
 		<div class="col">
@@ -16,7 +16,7 @@
 
 					<form asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-userId="@Model.Id" method="post" class="d-flex align-items-center">
 
-						<div class="container">
+						<div class="container-fluid">
 
 							<div class="row mb-3">
 								<label asp-for="FullName" for="exampleFormControlInput1" class="form-label">Adı Soyadı</label>

@@ -31,17 +31,17 @@ namespace Ads.Web.Mvc.Controllers
 
 			if (!string.IsNullOrEmpty(query))
 			{
-				adverts = adverts.Where(a => a.Title.Contains(query) || a.Description.Contains(query));
+				adverts = adverts.Where(a => a.Title.Contains(query, StringComparison.OrdinalIgnoreCase) || a.Description.Contains(query, StringComparison.OrdinalIgnoreCase));
 			}
 
 			if (!string.IsNullOrEmpty(category))
 			{
-				adverts = adverts.Where(a => a.SubcategoryAdverts.Any(ca => ca.Subcategory.Category.Name == category || ca.Subcategory.Name == category));
+				adverts = adverts.Where(a => a.SubcategoryAdverts.Any(ca => ca.Subcategory.Category.Name.ToLower() == category.ToLower() || ca.Subcategory.Name.ToLower() == category.ToLower()));
 			}
 
 			if (!string.IsNullOrEmpty(location))
 			{
-				adverts = adverts.Where(a => a.User.Address != null && (a.User.Address.City.Name == location || a.User.Address.Country == location));
+				adverts = adverts.Where(a => a.User.Address != null && (a.User.Address.City.Name.ToLower() == location.ToLower() || a.User.Address.Country.ToLower() == location.ToLower()));
 			}
 
 			var totalPostCount = adverts.Count();

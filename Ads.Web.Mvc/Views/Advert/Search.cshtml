@@ -118,7 +118,7 @@
                     <div class="card">
                       <div class="thumb-content">
                         <a href="@Url.Action("Detail", new { id = advert.Id  })">
-                          <img class="card-img-top img-fluid" src="~/template/images/products/products-1.jpg" alt="Card image cap">
+                          <img class="card-img-top img-fluid" src="@advert.AdvertImages.FirstOrDefault().ImagePath" alt="Card image cap">
                         </a>
                       </div>
                       <div class="card-body">

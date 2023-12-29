@@ -1,6 +1,8 @@
 using Ads.Business.Abstract;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Enums;
+using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
@@ -8,18 +10,22 @@ using Microsoft.CodeAnalysis;
 namespace Ads.Web.Mvc.Controllers
 {
 
+
+
 	public class AdvertController : Controller
 	{
-		private readonly IAdvertService _advertService;
-		private readonly IAdvertCommentService _advertCommentService;
-		private readonly IAdvertImageService _advertImageService;
+    private readonly IAdvertService _advertService;
+    private readonly IAdvertCommentService _advertCommentService;
+    private readonly IAdvertImageService _advertImageService;
+    private readonly UserManager<AppUser> _userManager;
 
-		public AdvertController(IAdvertService advertService, IAdvertCommentService advertCommentService, IAdvertImageService advertImageService)
-		{
-			_advertService = advertService;
-			_advertCommentService = advertCommentService;
-			_advertImageService = advertImageService;
-		}
+    public AdvertController(IAdvertService advertService, IAdvertCommentService advertCommentService, IAdvertImageService advertImageService, UserManager<AppUser> userManager)
+    {
+      _advertService = advertService;
+      _advertCommentService = advertCommentService;
+      _advertImageService = advertImageService;
+      _userManager = userManager;
+    }
 		public IActionResult Search(string query, string category, string location, int page = 1, decimal minPrice = 0, decimal maxPrice = 5000, int condition = 999)
 		{
 			var adverts = _advertService.GetList<Advert>(filter: a => a.Price >= minPrice && a.Price <= maxPrice, includeProperties: "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments,AdvertImages").Data;
@@ -108,28 +114,39 @@ namespace Ads.Web.Mvc.Controllers
 
 		public IActionResult ChangePage(int page, string query, string category, string location, decimal minPrice, decimal maxPrice, int condition)
 		{
-      ViewBag.AdvertCount = 4;
-      ViewBag.Query = query;
-      ViewBag.Category = category;
-      ViewBag.Location = location;
-      ViewBag.MinPrice = minPrice;
-      ViewBag.MaxPrice = maxPrice;
-      ViewBag.Condition = condition;
-      // Redirect to the Search action with the specified category
-      return RedirectToAction("Search", new { query, location, category, page, minPrice, maxPrice, condition });
-		}
+     return RedirectToAction("Search", new { query, location, category, page, minPrice, maxPrice, condition });
+    }
 
-		[Route("/advert/title-slug")]
-		public IActionResult Detail(int id)
-		{
-			var advert = _advertService.Get<Advert>(a => a.Id == id, "User.Address.City,User.Address.District,AdvertComments.User,AdvertImages,SubcategoryAdverts.Subcategory");
-			advert.Data.ClickCount = advert.Data.ClickCount + 1;
-			_advertService.Update(advert.Data);
-			_advertService.Save();
-			return View(advert.Data);
-		}
+    [Route("/advert/title-slug")]
+    public async Task<IActionResult> Detail(int id)
+    {
+      var advert = _advertService.Get<Advert>(a => a.Id == id, "User.Address.City,User.Address.District,AdvertComments.User,AdvertImages,SubcategoryAdverts.Subcategory");
+      var user = User.Identity.Name != null ? await _userManager.FindByEmailAsync(User.Identity.Name) : null;
+      ViewBag.userName = user != null ? user.FirstName + " " + user.LastName : "Misafir";
+      advert.Data.ClickCount = advert.Data.ClickCount + 1;
+      _advertService.Update(advert.Data);
+      _advertService.Save();
+      return View(advert.Data);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> SubmitComment(int advId, string review, int starCount)
+    {
+      if (starCount == 0) starCount = 3;
+
+      var user = User.Identity.Name != null ? await _userManager.FindByEmailAsync(User.Identity.Name) : null;
+      if (user == null) return RedirectToAction("Detail", "Advert", new { id = advId });
+
+      var advert = _advertService.Get<Advert>(a => a.Id == advId, "AdvertComments");
+      if (advert == null) return RedirectToAction("Detail", "Advert", new { id = advId });
+
+      advert.Data.AdvertComments.Add(new AdvertComment { UserId = user.Id, Comment = review, StarCount = starCount });
+      _advertService.Update(advert.Data);
+      await _advertService.SaveAsync();
+
+      return RedirectToAction("Detail", "Advert", new { id = advId });
+    }
 
 
-
-	}
+  }
 }

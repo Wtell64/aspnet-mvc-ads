@@ -25,7 +25,18 @@
 									<div class="thumb-content">
 										<!-- <div class="price">$200</div> -->
 										<a asp-controller="Advert" asp-action="Detail" asp-area="" asp-route-title-slug="@imagePath" asp-route-id="@advert.Id">
-											<img class="card-img-top img-fluid" src="@imagePath" alt="Card image cap">
+											@if (Uri.IsWellFormedUriString(imagePath, UriKind.Absolute))
+											{
+												<!-- If ImagePath is a URL -->
+												<img class="card-img-top img-fluid" src="@imagePath" alt="Card image cap" />
+											}
+											else
+											{
+												<!-- If ImagePath is a local path -->
+												var localImagePath = Url.Content($"~/uploads/{imagePath}");
+												<img class="card-img-top img-fluid" src="@localImagePath" alt="Card image cap" width="40" height="40" />
+											}
+
 										</a>
 									</div>
 									<div class="card-body">
@@ -64,3 +75,10 @@
 	</div>
 </div>
 
+<style>
+	.card-img-top {
+		width: 100%;
+		height: 12vw;
+		object-fit: cover;
+	}
+</style>

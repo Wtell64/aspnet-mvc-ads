@@ -108,8 +108,15 @@ namespace Ads.Web.Mvc.Controllers
 
 		public IActionResult ChangePage(int page, string query, string category, string location, decimal minPrice, decimal maxPrice, int condition)
 		{
-			// Redirect to the Search action with the specified category
-			return RedirectToAction("Search", new { query, location, category, page, minPrice, maxPrice, condition });
+      ViewBag.AdvertCount = 4;
+      ViewBag.Query = query;
+      ViewBag.Category = category;
+      ViewBag.Location = location;
+      ViewBag.MinPrice = minPrice;
+      ViewBag.MaxPrice = maxPrice;
+      ViewBag.Condition = condition;
+      // Redirect to the Search action with the specified category
+      return RedirectToAction("Search", new { query, location, category, page, minPrice, maxPrice, condition });
 		}
 
 		[Route("/advert/title-slug")]

@@ -18,10 +18,10 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     private readonly IAdvertImageService _advertImageService;
     private readonly IAdvertCommentService _advertCommentService;
     private readonly ISubcategoryService _subcategoryService;
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<AdvertController> _logger;
     private readonly IImageProcessor _imageProcessor;
     private readonly UserManager<AppUser> _userManager; 
-    public AdvertController(IAdvertService advertService, IAdvertImageService advertImageService, IAdvertCommentService advertCommentService, ISubcategoryService subcategoryService, ILogger<HomeController> logger, IImageProcessor imageProcessor,
+    public AdvertController(IAdvertService advertService, IAdvertImageService advertImageService, IAdvertCommentService advertCommentService, ISubcategoryService subcategoryService, ILogger<AdvertController> logger, IImageProcessor imageProcessor,
     UserManager<AppUser> userManager
     )
     {
@@ -80,13 +80,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-        }
+					_logger.LogInformation("Admin tarafından bir reklam eklendi.");
+				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-      }
+				_logger.LogInformation("Admin tarafından bir reklam eklenirken bir hata oluştu.");
+			}
       return View();
     }
 
@@ -131,13 +133,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla güncellendi.";
-        }
+					_logger.LogInformation("Admin tarafından bir reklam üzerinde değişiklik yapıldı.");
+				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Güncelleme sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-      }
+				_logger.LogInformation("Admin tarafından bir reklam üzerinde değişiklik yapılırken bir hata oluştu.");
+			}
       return View(dto);
     }
 
@@ -165,7 +169,9 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       _advertService.DeleteById(id);
       await _advertService.SaveAsync();
 
-      return RedirectToAction("Index", "Advert", new { area = "Admin" });
+			_logger.LogInformation("Admin tarafından bir reklam silindi.");
+
+			return RedirectToAction("Index", "Advert", new { area = "Admin" });
     }
 
 
@@ -202,13 +208,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-        }
+					_logger.LogInformation("Admin tarafından bir reklama resim eklendi.");
+				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-      }
+				_logger.LogInformation("Admin tarafından bir reklama resim eklenirken bir hata oluştu.");
+			}
       return View();
     }
     
@@ -224,8 +232,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         {
           _advertImageService.DeleteById(id);
           await _advertImageService.SaveAsync();
-
-        }
+				_logger.LogInformation("Admin tarafından bir reklamın resim silindi.");
+			}
 
       return RedirectToAction("ImageIndex", "Advert", new { area = "Admin" , id = advertId });
     }
@@ -251,7 +259,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
           .ToList();
       ViewBag.Users = usersSelectList;
       ViewBag.AdvertId = id;
-      return View();
+
+			return View();
     }
     [HttpPost]
     public async Task<IActionResult> CommentAdd(AdvertCommentAdminAddDto dto)
@@ -272,13 +281,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-        }
+					_logger.LogInformation("Admin tarafından bir reklama yorum eklendi.");
+				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-      }
+				_logger.LogInformation("Admin tarafından bir reklama yorum eklenirken hata oluştu.");
+			}
       
       return View();
     }
@@ -316,13 +327,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla güncellendi.";
-        }
+					_logger.LogInformation("Admin tarafından bir reklamın yorumu değiştirildi.");
+				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Güncelleme sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-      }
+				_logger.LogInformation("Admin tarafından bir reklamın yorumu değiştirilirken bir hata oluştu.");
+			}
       return View(dto);
     }
     [HttpPost]
@@ -334,11 +347,12 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       {
         _advertCommentService.DeleteById(id);
         await _advertCommentService.SaveAsync();
-      }
+				_logger.LogInformation("Admin tarafından bir reklamın yorumu silindi.");
+			}
       catch (Exception)
       {
-
-        throw;
+				_logger.LogInformation("Admin tarafından bir reklamın yorumu silinirken bir hata oluştu.");
+				throw;
       }
       return RedirectToAction("CommentIndex", "Advert", new { area = "Admin", id = advertId });
     }

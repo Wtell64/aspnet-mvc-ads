@@ -65,7 +65,7 @@ namespace Ads.Web.Mvc.Controllers
 			}
 			catch (Exception ex)
 			{
-				_logger.LogInformation("Index de hat olustu");
+				_logger.LogInformation("Index de hata olustu");
 				throw;
 			}
 		}
@@ -125,6 +125,7 @@ namespace Ads.Web.Mvc.Controllers
 				if (ModelState.IsValid)
 				{
 					TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
+					_logger.LogInformation("Kullanıcı tarafından bir reklam eklendi.");
 				}
 
 
@@ -137,6 +138,7 @@ namespace Ads.Web.Mvc.Controllers
 
 				// Error message
 				TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+				_logger.LogInformation("Kullanıcı tarafından bir reklam eklenirken bir hata oluştu.");
 			}
 			return View(dto);
 

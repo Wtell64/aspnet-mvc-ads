@@ -18,14 +18,16 @@ namespace Ads.Web.Mvc.Controllers
     private readonly IAdvertCommentService _advertCommentService;
     private readonly IAdvertImageService _advertImageService;
     private readonly UserManager<AppUser> _userManager;
+		private readonly ILogger<AdvertController> _logger;	
 
-    public AdvertController(IAdvertService advertService, IAdvertCommentService advertCommentService, IAdvertImageService advertImageService, UserManager<AppUser> userManager)
+		public AdvertController(IAdvertService advertService, IAdvertCommentService advertCommentService, IAdvertImageService advertImageService, UserManager<AppUser> userManager, ILogger<AdvertController> logger)
     {
       _advertService = advertService;
       _advertCommentService = advertCommentService;
       _advertImageService = advertImageService;
       _userManager = userManager;
-    }
+			_logger = logger;
+		}
 		public IActionResult Search(string query, string category, string location, int page = 1, decimal minPrice = 0, decimal maxPrice = 5000, int condition = 999)
 		{
 			var adverts = _advertService.GetList<Advert>(filter: a => a.Price >= minPrice && a.Price <= maxPrice, includeProperties: "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments,AdvertImages").Data;

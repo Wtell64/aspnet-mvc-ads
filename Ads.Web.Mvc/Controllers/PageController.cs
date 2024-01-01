@@ -1,16 +1,20 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Abstract.Identity;
 using Ads.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Web.Mvc.Controllers
 {
+
   public class PageController : Controller
   {
     private readonly IPageService _pageManager;
+    private readonly IEmailService _emailService;
 
-    public PageController(IPageService pageManager)
+    public PageController(IPageService pageManager, IEmailService emailService)
     {
       _pageManager = pageManager;
+      _emailService = emailService;
     }
 
     [Route("/page/{title-slug}-{id}")]
@@ -20,10 +24,10 @@ namespace Ads.Web.Mvc.Controllers
       return View(pageDetail.Data);
     }
     [HttpPost]
-    public IActionResult ContactUs() 
+    public async Task<IActionResult> SubmitForm(string message, string userName, string userEmail)
     {
-
-      return View();
+      await _emailService.RecieveEmailAsync(message, userName, userEmail);
+      return RedirectToAction("Detail", "Page", new { id = 2 });
     }
   }
 }

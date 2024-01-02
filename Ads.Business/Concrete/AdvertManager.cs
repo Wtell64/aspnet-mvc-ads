@@ -25,7 +25,7 @@ namespace Ads.Business.Concrete
       _advertDal = advertDal;
       _mapper = mapper;
       _validator = validator;
-			_subcategoryAdvertDal = categoryAdvertDal;
+      _subcategoryAdvertDal = categoryAdvertDal;
       _userManager = userManager;
     }
     public IDataResult<TDto> Add<TDto>(TDto dto)
@@ -61,7 +61,7 @@ namespace Ads.Business.Concrete
       {
         var entity = _mapper.Map<SubcategoryAdvert>(dto);
 
-				_subcategoryAdvertDal.Add(entity);
+        _subcategoryAdvertDal.Add(entity);
 
         return new SuccessDataResult<TDto>(dto, Messages.SubcategoryAdvertAdded);
       }
@@ -89,7 +89,7 @@ namespace Ads.Business.Concrete
       }
     }
 
-    public  IDataResult<TDto> DeleteAdvertSubcategory<TDto>(TDto dto)
+    public IDataResult<TDto> DeleteAdvertSubcategory<TDto>(TDto dto)
     {
       try
       {
@@ -143,7 +143,7 @@ namespace Ads.Business.Concrete
         var entity = _mapper.Map<Advert>(dto);
 
 
-        
+
         var validationResult = await _validator.ValidateAsync(entity);
         if (!validationResult.IsValid)
         {

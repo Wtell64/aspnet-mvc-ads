@@ -6,8 +6,6 @@ using Ads.Business.Dtos.Category;
 using Ads.Core.Utilities.Images;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
-using Ads.Web.Mvc.ViewModels;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,7 +15,7 @@ namespace Ads.Web.Mvc.Controllers
 {
 
 
-		
+
 
   public class HomeController : Controller
   {
@@ -53,32 +51,34 @@ namespace Ads.Web.Mvc.Controllers
     }
 
     public async Task<IActionResult> Index()
-		{
-			try
-			{
-				if (User.Identity.IsAuthenticated)
-				{
-					var hasUser = await _userManager.FindByNameAsync(User.Identity.Name);
-					TempData["User"] = $"{hasUser.FirstName} {hasUser.LastName}";
-				}
-				return View();
-			}
-			catch (Exception ex)
-			{
-				_logger.LogInformation("Index de hata olustu");
-				throw;
-			}
-		}
+    {
+
+      try
+      {
+        throw new Exception("asdfasd");
+        if (User.Identity.IsAuthenticated)
+        {
+
+          var hasUser = await _userManager.FindByNameAsync(User.Identity.Name);
+          TempData["User"] = $"{hasUser.FirstName} {hasUser.LastName}";
+        }
+        return View();
+      }
+      catch (Exception ex)
+      {
+        _logger.LogInformation("Index de hata olustu");
+        throw;
+      }
+    }
     [HttpGet]
     public async Task<IActionResult> AdListing()
     {
       var subcategoryList = await SetCategoryViewDataAsync();
 
+      ViewBag.Subcategories = new SelectList(subcategoryList, "Value", "Text");
 
-			ViewBag.Subcategories = new SelectList(subcategoryList, "Value", "Text");
-
-			return View();
-		}
+      return View();
+    }
 
 
     [HttpPost]
@@ -98,75 +98,75 @@ namespace Ads.Web.Mvc.Controllers
           dto.UserId = hasUser.Id;
         }
         var result = await _advertService.AddAndSaveAsync(dto);
-        
-				var advertId = result.Data.Id;
 
-				//Add Advert Categories
+        var advertId = result.Data.Id;
 
-				foreach (var subategory in dto.SelectedSubategoryIds)
-				{
-					await _advertService.AddAdvertSubcategoryAsync(new SubcategoryAdvertViewDto() { AdvertId = advertId, SubcategoryId = subategory });
-				}
-				await _advertService.SaveAsync();
+        //Add Advert Categories
 
-				if (dto.Files != null && dto.Files.Count > 0)
-				{
-					foreach (var file in dto.Files)
-					{
-						string fileName = await _imageProcessor.SaveImageAsync(file, advertId, "uploads");
-						_advertImageService.Add(new AdvertImageViewDto() { AdvertId = advertId, ImagePath = fileName });
-						_advertImageService.Save();
-					}
-				}
-				var subcategoryList = await SetCategoryViewDataAsync();
+        foreach (var subategory in dto.SelectedSubategoryIds)
+        {
+          await _advertService.AddAdvertSubcategoryAsync(new SubcategoryAdvertViewDto() { AdvertId = advertId, SubcategoryId = subategory });
+        }
+        await _advertService.SaveAsync();
 
-				ViewBag.Subcategories = new SelectList(subcategoryList, "Value", "Text");
+        if (dto.Files != null && dto.Files.Count > 0)
+        {
+          foreach (var file in dto.Files)
+          {
+            string fileName = await _imageProcessor.SaveImageAsync(file, advertId, "uploads");
+            _advertImageService.Add(new AdvertImageViewDto() { AdvertId = advertId, ImagePath = fileName });
+            _advertImageService.Save();
+          }
+        }
+        var subcategoryList = await SetCategoryViewDataAsync();
 
-				if (ModelState.IsValid)
-				{
-					TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					_logger.LogInformation("Kullanıcı tarafından bir reklam eklendi.");
-				}
+        ViewBag.Subcategories = new SelectList(subcategoryList, "Value", "Text");
+
+        if (ModelState.IsValid)
+        {
+          TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
+          _logger.LogInformation("Kullanıcı tarafından bir reklam eklendi.");
+        }
 
 
-			}
-			catch (Exception ex)
-			{
+      }
+      catch (Exception ex)
+      {
 
-				// Log the exception or handle it as needed
-				ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
+        // Log the exception or handle it as needed
+        ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
 
-				// Error message
-				TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				_logger.LogInformation("Kullanıcı tarafından bir reklam eklenirken bir hata oluştu.");
-			}
-			return View(dto);
+        // Error message
+        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+        _logger.LogInformation("Kullanıcı tarafından bir reklam eklenirken bir hata oluştu.");
+      }
+      return View(dto);
 
-		}
+    }
 
-		private async Task<List<SelectListItem>> SetCategoryViewDataAsync()
-		{
-			var subcategories = await _subcategoryService.GetListAsync<Subcategory>();
-			var subcategoriesTitles = subcategories.Data.Select(subcategory => subcategory).ToList();
-			var categorySelectList = subcategoriesTitles
-					.Select(subcategory => new SelectListItem { Value = subcategory.Id.ToString(), Text = subcategory.Name })
-					.ToList();
+    private async Task<List<SelectListItem>> SetCategoryViewDataAsync()
+    {
+      var subcategories = await _subcategoryService.GetListAsync<Subcategory>();
+      var subcategoriesTitles = subcategories.Data.Select(subcategory => subcategory).ToList();
+      var categorySelectList = subcategoriesTitles
+          .Select(subcategory => new SelectListItem { Value = subcategory.Id.ToString(), Text = subcategory.Name })
+          .ToList();
 
-			return categorySelectList;
-		}
+      return categorySelectList;
+    }
 
-		private void HandleSuccessMessage()
-		{
-			if (ModelState.IsValid)
-			{
-				TempData["SuccessMessage"] = "Ad posted successfully!";
-			}
-		}
+    private void HandleSuccessMessage()
+    {
+      if (ModelState.IsValid)
+      {
+        TempData["SuccessMessage"] = "Ad posted successfully!";
+      }
+    }
 
-		private void HandleError()
-		{
-			ModelState.AddModelError("Error", "An error occurred while processing the form.");
-			TempData["ErrorMessage"] = "An error occurred. Please try again.";
-		}
-	}
+    private void HandleError()
+    {
+      ModelState.AddModelError("Error", "An error occurred while processing the form.");
+      TempData["ErrorMessage"] = "An error occurred. Please try again.";
+    }
+  }
 }

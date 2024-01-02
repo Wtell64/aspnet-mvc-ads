@@ -31,7 +31,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 	var cookieBuilder = new CookieBuilder();
 	cookieBuilder.Name = "AspNetMvcAds.Web";
 
-	options.LoginPath = new PathString("/Home/Signin"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
+	options.LoginPath = new PathString("/Auth/Login"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
+
 
 	options.Cookie = cookieBuilder;
 	options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie saklama ömrü.

@@ -55,7 +55,7 @@ namespace Ads.Web.Mvc.Controllers
 
       try
       {
-        throw new Exception("asdfasd");
+
         if (User.Identity.IsAuthenticated)
         {
 

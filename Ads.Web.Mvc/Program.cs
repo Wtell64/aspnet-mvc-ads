@@ -34,11 +34,13 @@ builder.Services.ConfigureApplicationCookie(options =>
   var cookieBuilder = new CookieBuilder();
   cookieBuilder.Name = "AspNetMvcAds.Web";
 
-  options.LoginPath = new PathString("/Home/Signin"); // Kullanıcılar üye olmadan kullanıcı sayfalarına gitmeye kalkarsa yönlendireceği sayfa.
+
+	options.LoginPath = new PathString("/Auth/Login"); // KullanÃ½cÃ½lar Ã¼ye olmadan kullanÃ½cÃ½ sayfalarÃ½na gitmeye kalkarsa yÃ¶nlendireceÃ°i sayfa.
+
 
   options.Cookie = cookieBuilder;
-  options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie saklama ömrü.
-  options.SlidingExpiration = true; // Kullanıcı cookie ömrü bitmeden giriş yaparsa üzerine eklemesini sağlar.
+  options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie saklama Ã¶mrÃ¼.
+  options.SlidingExpiration = true; // KullanÃ½cÃ½ cookie Ã¶mrÃ¼ bitmeden giriÃ¾ yaparsa Ã¼zerine eklemesini saÃ°lar.
 
 });
 #endregion

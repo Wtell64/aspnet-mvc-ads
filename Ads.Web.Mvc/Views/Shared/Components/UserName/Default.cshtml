@@ -1,0 +1,36 @@
+﻿<ul class="navbar-nav ml-auto mt-10">
+	@if (User.Identity != null && User.Identity.IsAuthenticated)
+	{
+
+		@if (User.IsInRole("Admin"))
+		{
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					@Model
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Paneline Git</a></li>
+					<li><a class="dropdown-item" asp-controller="User" asp-action="Index">Ayarlar</a></li>
+					<li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Çıkış Yap</a></li>
+				</ul>
+			</li>
+		}
+		else
+		{
+			<li class="nav-item"><a class="nav-link text-white add-button mr-4" asp-area="" asp-controller="Home" asp-action="AdListing"><i class="fa fa-plus-circle mr-2"></i>Add Listing</a></li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					@Model
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" asp-controller="User" asp-action="Index">Ayarlar</a></li>
+					<li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Çıkış Yap</a></li>
+				</ul>
+			</li>
+		}
+	}
+	else
+	{
+		<li class="nav-item"><a class="nav-link login-button" asp-controller="Auth" asp-action="Login">Giriş Yap</a></li>
+	}
+</ul>

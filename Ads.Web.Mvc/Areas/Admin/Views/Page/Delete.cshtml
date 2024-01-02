@@ -1,0 +1,54 @@
+﻿@model Ads.Business.Dtos.Page.PageCRUDDto
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="row">
+      <div class="card-body">
+        <h2>Sayfa Ekle</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (TempData.ContainsKey("SuccessMessage"))
+        {
+          <div class=" col-8 alert alert-success">
+            @TempData["SuccessMessage"]
+          </div>
+        }
+        @if (TempData.ContainsKey("ErrorMessage"))
+        {
+          <div class="col-8 alert alert-danger">
+            @TempData["ErrorMessage"]
+          </div>
+        }
+      </div>
+    </div>
+    <div class="card-body">
+      <form method="post">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Sayfa Başlığı: </label>
+              <input value="@Model.Title" asp-for=@Model.Title class="form-control" readonly />
+              <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Sayfa İçeriği: </label>
+              <textarea rows="5" value="" asp-for=@Model.Content class="form-control" id="editor" readonly>@Model.Content</textarea>
+              <span asp-validation-for="@Model.Content" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group" style="margin-top:10px">
+              <button type="submit" asp-area="Admin" asp-controller="Page" asp-action="Delete" class="btn btn-success">Sil</button>
+              <a asp-area="Admin" asp-controller="Page" asp-action="Index" class="btn btn-danger">Geri Dön</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

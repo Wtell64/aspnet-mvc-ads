@@ -9,36 +9,57 @@ namespace Ads.Business.Concrete.Identity;
 public class EmailService : IEmailService
 {
 
-	private readonly EmailSenderDto _emailSenderDto;
+  private readonly EmailSenderDto _emailSenderDto;
 
-	public EmailService(IOptions<EmailSenderDto> options)
-	{
-		_emailSenderDto = options.Value;
-	}
+  public EmailService(IOptions<EmailSenderDto> options)
+  {
+    _emailSenderDto = options.Value;
+  }
 
-	public async Task SendEmailAsync(string approvalEmailLink, string toEMail, string subject, string content)
-	{
-		var smptClient = new SmtpClient();
+  public async Task SendEmailAsync(string approvalEmailLink, string toEMail, string subject, string content)
+  {
+    var smptClient = new SmtpClient();
 
-		smptClient.Host = _emailSenderDto.Host;
-		smptClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-		smptClient.UseDefaultCredentials = false;
-		smptClient.Port = 587;
-		smptClient.Credentials = new NetworkCredential(_emailSenderDto.Email, _emailSenderDto.Password);
-		smptClient.EnableSsl = true;
+    smptClient.Host = _emailSenderDto.Host;
+    smptClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+    smptClient.UseDefaultCredentials = false;
+    smptClient.Port = 587;
+    smptClient.Credentials = new NetworkCredential(_emailSenderDto.Email, _emailSenderDto.Password);
+    smptClient.EnableSsl = true;
 
-		var mailMessage = new MailMessage();
+    var mailMessage = new MailMessage();
 
-		mailMessage.From = new MailAddress(_emailSenderDto.Email);
-		mailMessage.To.Add(toEMail);
-		mailMessage.Subject = $"LocalHost | {subject}";
-		mailMessage.IsBodyHtml = true;
-		mailMessage.Body = $@"
+    mailMessage.From = new MailAddress(_emailSenderDto.Email);
+    mailMessage.To.Add(toEMail);
+    mailMessage.Subject = $"LocalHost | {subject}";
+    mailMessage.IsBodyHtml = true;
+    mailMessage.Body = $@"
 											 <h5>{content} için aşağıdaki linke tıklayınız.</h5>
 											 <p><a href='https://localhost:7175{approvalEmailLink}'>{subject} </a></p>";
 
-		await smptClient.SendMailAsync(mailMessage);
+    await smptClient.SendMailAsync(mailMessage);
 
-	}
+  }
+  public async Task RecieveEmailAsync(string message, string userName, string userEmail)
+  {
+    var smptClient = new SmtpClient();
 
+    smptClient.Host = _emailSenderDto.Host;
+    smptClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+    smptClient.UseDefaultCredentials = false;
+    smptClient.Port = 587;
+    smptClient.Credentials = new NetworkCredential(_emailSenderDto.Email, _emailSenderDto.Password);
+    smptClient.EnableSsl = true;
+
+    var mailMessage = new MailMessage();
+
+    mailMessage.From = new MailAddress(userEmail);
+    mailMessage.To.Add(_emailSenderDto.Email);
+    mailMessage.Subject = $"Bize ulaşan: {userName} - ({userEmail})";
+    mailMessage.IsBodyHtml = true;
+    mailMessage.Body = message;
+
+    await smptClient.SendMailAsync(mailMessage);
+
+  }
 }

@@ -43,6 +43,7 @@ public class UserController : Controller
 			FirstName = uvd.FirstName,
 			LastName = uvd.LastName,
 			Email = uvd.Email,
+			CreatedDate = uvd.CreatedDate,
 			Role = "User"
 		});
 
@@ -52,6 +53,7 @@ public class UserController : Controller
 			FirstName = uvd.FirstName,
 			LastName = uvd.LastName,
 			Email = uvd.Email,
+			CreatedDate = uvd.CreatedDate,
 			Role = "Admin"
 		});
 

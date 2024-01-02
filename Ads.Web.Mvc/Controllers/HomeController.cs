@@ -46,6 +46,7 @@ namespace Ads.Web.Mvc.Controllers
 			_userManager = userManager;
 		}
 
+
 		public async Task<IActionResult> Index()
 		{
 			try
@@ -64,10 +65,10 @@ namespace Ads.Web.Mvc.Controllers
 			var subcategoryList = await SetCategoryViewDataAsync();
 
 
-			ViewBag.Subcategories = new SelectList(subcategoryList, "Value", "Text");
+      ViewBag.Subcategories = new SelectList(subcategoryList, "Value", "Text");
 
-			return View();
-		}
+      return View();
+    }
 
 
 		[HttpPost]
@@ -87,6 +88,7 @@ namespace Ads.Web.Mvc.Controllers
 					dto.UserId = hasUser.Id;
 				}
 				var result = await _advertService.AddAndSaveAsync(dto);
+
 
 				var advertId = result.Data.Id;
 

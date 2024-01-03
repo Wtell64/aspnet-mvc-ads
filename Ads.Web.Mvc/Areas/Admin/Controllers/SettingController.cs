@@ -4,6 +4,7 @@ using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
@@ -30,11 +31,21 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     [HttpGet]
     public async Task<IActionResult> Add()
     {
+      var users = _userManager.Users.ToList();
+      var usersSelectList = users
+          .Select(users => new SelectListItem { Value = users.Id.ToString(), Text = users.FirstName + " " + users.LastName })
+          .ToList();
+      ViewBag.Users = usersSelectList;
       return View();
     }
     [HttpPost]
     public async Task<IActionResult> Add(SettingCRUDDto dto)
     {
+      var users = _userManager.Users.ToList();
+      var usersSelectList = users
+          .Select(users => new SelectListItem { Value = users.Id.ToString(), Text = users.FirstName + " " + users.LastName })
+          .ToList();
+      ViewBag.Users = usersSelectList;
       try
       {
         if (ModelState.IsValid)
@@ -62,6 +73,9 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         Value = settings.Data.Value,
         UserId = settings.Data.UserId
       };
+      var user = await _userManager.FindByIdAsync(settings.Data.UserId.ToString());
+      string userName = user.FirstName + " " + user.LastName;
+      ViewBag.userName = userName;
       return View(dto);
     }
     [HttpPost]
@@ -81,6 +95,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
       }
+      var user = await _userManager.FindByIdAsync(dto.UserId.ToString());
+      ViewBag.UserName = user.FirstName + " " + user.LastName;
       return View(dto);
     }
     [HttpGet]
@@ -94,6 +110,9 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         Value = settings.Data.Value,
         UserId = settings.Data.UserId,
       };
+      var user = await _userManager.FindByIdAsync(settings.Data.UserId.ToString());
+      string userName = user.FirstName + " " + user.LastName;
+      ViewBag.userName = userName;
       return View(dto);
     }
     [HttpPost]

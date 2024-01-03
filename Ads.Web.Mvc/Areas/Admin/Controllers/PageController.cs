@@ -52,8 +52,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-      var page = await _pageService.FindByIdAsync<PageCRUDDto>(id);
-      return View(page.Data);
+      var page = await _pageService.FindByIdAsync<Page>(id);
+      var pageView = new PageCRUDDto() 
+      {
+        Id = id,
+        Title = page.Data.Title,
+        Content = page.Data.Content
+      };
+
+      return View(pageView);
     }
     [HttpPost]
     public async Task<IActionResult> Edit(PageCRUDDto page)

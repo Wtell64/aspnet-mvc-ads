@@ -7,7 +7,7 @@
   <div class="col-xxl-6">
     <div class="card card-xxl-strecth mb-3 mb-xl-8">
       <div class="card-header">
-        <h3>AltKategori Sil</h3>
+        <h3>Alt Kategori Sil</h3>
         @if (!string.IsNullOrWhiteSpace(successMessage))
         {
           <div class="alert alert-danger">
@@ -25,7 +25,7 @@
             <span asp-validation-for="Name" class="text-danger"></span>
           </div>
 
-          <a class="btn btn-secondary" asp-controller="Subcategory" asp-action="Index">Listeye Geri Dön</a>
+          <a class="btn btn-secondary" asp-controller="Subcategory" asp-action="Index1" asp-route-categoryId="@Model.CategoryId">Listeye Geri Dön</a>
           <button type="submit" class="btn btn-danger">Sil</button>
         </form>
       </div>

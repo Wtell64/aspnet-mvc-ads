@@ -1,32 +1,47 @@
-﻿
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
 }
 @model IEnumerable<Ads.Entities.Concrete.Advert>
 
-  @{
+@{
   var categoryName = ViewBag.CategoryName;
-  }
-<section class="page-title">
-  <!-- Container Start -->
+}
+<section class="page-search">
   <div class="container">
     <div class="row">
-      <div class="col-md-8 offset-md-2 text-center">
-        <!-- Title text -->
-        <h3>Kategorideki Ürünler</h3>
+      <div class="col-md-12">
+        <!-- Advance Search -->
+        <div class="advance-search">
+          <form asp-area="" asp-controller="category" asp-action="index" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <input name="query" type="text" class="form-control my-2 my-lg-0" id="inputtext4" placeholder="Aramak istediğiniz?">
+              </div>
+              <div class="form-group col-md-3">
+                <input name="category" type="text" class="form-control my-2 my-lg-0" id="inputCategory4" placeholder="Kategori">
+              </div>
+              <div class="form-group col-md-3">
+                <input name="location" type="text" class="form-control my-2 my-lg-0" id="inputLocation4" placeholder="Şehir">
+              </div>
+              <div class="form-group col-md-2">
+
+                <button type="submit" class="btn btn-primary">Arama Yap!</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  <!-- Container End -->
 </section>
 <section class="section-sm">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="search-result bg-gray">
-          @* <h2>@ViewBag.categoryName kategorisinde listelenenler</h2> *@
-
-          <h2>@ViewBag.CategoryTitleName listelenenler</h2>
-          
+          <h2>@ViewBag.categoryName kategorisinde listelenenler</h2>
           <p>@ViewBag.AdvertCount tane reklam bulundu - @DateTime.Now.ToString("dd MMMM, yyyy")</p>
         </div>
       </div>
@@ -34,23 +49,57 @@
     <div class="row">
       <div class="col-md-3">
         <div class="category-sidebar">
-          @foreach (var sideCategory in ViewBag.SideBarCategories)
-          {
-          <div class="widget category-list">            
-              <h4 class="widget-header">@sideCategory.Name</h4>
-            <ul class="category-list">             
+          <div class="widget category-list">
+            <h4 class="widget-header">@ViewBag.categoryName</h4>
+            <ul class="category-list">
+              @foreach (var subcategory in ViewBag.Subcategories)
+              {
                 <li>
-                  @foreach (var sideSubcategory in @sideCategory.Subcategories)
-                  {
-                    <a asp-area="" asp-controller="Category" asp-action="Index" asp-route-categoryId="@sideCategory.Id" asp-route-category-slug="@sideCategory.Name" asp-route-subcategoryId="@sideSubcategory.Id" asp-route-subcategory-slug="@sideSubcategory.Name">@sideSubcategory.Name<span>@sideSubcategory.SubcategoryAdverts.Count</span></a>
-                  }
-                  
-                </li>             
-            </ul>             
+                  <a href="@Url.Action("ChangePage", new { page = ViewBag.Page, ViewBag.Query, category = subcategory.Subcategory, location = ViewBag.Country, ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })">@subcategory.Subcategory <span>@subcategory.Count</span></a>
+                </li>
+              }
+            </ul>
           </div>
-          }
-       
-        <!-- rest of your HTML code -->
+          <div class="widget category-list">
+            <h4 class="widget-header">Şehir</h4>
+            <ul class="category-list">
+              @foreach (var country in ViewBag.Countries)
+              {
+                <li><a href="@Url.Action("ChangePage", new { page = ViewBag.Page, ViewBag.Query, ViewBag.Category, location = country.Country, ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })">@country.Country <span>@country.Count</span></a></li>
+              }
+            </ul>
+          </div>
+          <div class="widget price-range w-100 d-flex flex-column align-items-center">
+            <h4 class="widget-header">Fiyat Aralığı</h4>
+            <div class="block">
+              <div id="priceSlider"></div>
+              <div class="d-flex justify-content-between mt-2">
+                <span class="value py-2" id="priceRangeDisplay">$10 - $5000</span>
+              </div>
+              <button class="btn btn-primary mt-2" id="searchButton">Arama Yap!</button>
+            </div>
+          </div>
+          <div class="widget category-list">
+            <h4 class="widget-header">Reklamın Durumu</h4>
+            <ul class="category-list">
+
+              <li>
+                <a href="@Url.Action("ChangePage", new {  page = ViewBag.Page, ViewBag.Query, ViewBag.Category, ViewBag.Location, ViewBag.MinPrice, ViewBag.MaxPrice, condition = 0 })">Belirtilmedi</a>
+              </li>
+              <li>
+                <a href="@Url.Action("ChangePage", new {  page = ViewBag.Page, ViewBag.Query, ViewBag.Category, ViewBag.Location, ViewBag.MinPrice, ViewBag.MaxPrice, condition = 1 })">Yeni</a>
+              </li>
+              <li>
+                <a href="@Url.Action("ChangePage", new {  page = ViewBag.Page, ViewBag.Query, ViewBag.Category, ViewBag.Location, ViewBag.MinPrice, ViewBag.MaxPrice, condition = 2 })">Az Kullanılmış</a>
+              </li>
+              <li>
+                <a href="@Url.Action("ChangePage", new {  page = ViewBag.Page, ViewBag.Query, ViewBag.Category, ViewBag.Location, ViewBag.MinPrice, ViewBag.MaxPrice, condition = 3 })">Kullanılmış</a>
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- rest of your HTML code -->
 
 
         </div>
@@ -84,7 +133,6 @@
                               {
                                 <span>@subcategory.Subcategory.Name</span>
                               }
-                            
                             </a>
                           </li>
                           <li class="list-inline-item">
@@ -150,8 +198,8 @@
                   </div>
                 </div>
               }
-            
-            <!-- product card son -->
+
+              <!-- product card son -->
             </div>
           </div>
           <div class="pagination justify-content-center">
@@ -169,7 +217,7 @@
                 {
                   <li class="list-inline-item">
 
-                    <a class="page-link" href="@Url.Action("ChangePage","Advert", new {  page = @prevPage, ViewBag.Query, ViewBag.Category, ViewBag.Location, ViewBag.MinPrice, ViewBag.MaxPrice, ViewBag.Condition })" aria-label="Previous">
+                    <a class="page-link" href="@Url.Action("ChangePage", new {  page = @prevPage, ViewBag.Query, ViewBag.Category, ViewBag.Location, ViewBag.MinPrice, ViewBag.MaxPrice, ViewBag.Condition })" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                       <span class="sr-only">Previous</span>
                     </a>
@@ -205,7 +253,39 @@
         </div>
       </div>
     </div>
-  </div>
 </section>
 
+@section scripts {
+
+  <script>
+    $(document).ready(function () {
+      // Initialize the price range slider
+      var priceSlider = new Slider("#priceSlider", {
+        range: true,
+        min: 0,
+        max: 5000,
+        step: 5,
+        value: [0, 5000],
+      });
+
+      // Update the price range display on slider change
+      priceSlider.on("change", function (sliderValue) {
+        $("#priceRangeDisplay").text("$" + sliderValue.newValue[0] + " - $" + sliderValue.newValue[1]);
+      });
+
+      // Attach click event to the search button
+      $("#searchButton").click(function () {
+        var sliderValues = priceSlider.getValue();
+        var minPrice = sliderValues[0];
+        var maxPrice = sliderValues[1];
+
+        // Redirect to the FilterByPrice action with the selected price range
+        window.location.href = "/Advert/ChangePage?minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&page=" + @ViewBag.Page + "&query=" + @ViewBag.Query + "&category=" + @ViewBag.Category + "&location=" + @ViewBag.Location + "&condition=" + @ViewBag.Condition;
+      });
+    });
+  </script>
+
+
+
+}
 

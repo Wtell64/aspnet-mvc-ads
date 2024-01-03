@@ -7,86 +7,70 @@ using Microsoft.CodeAnalysis;
 
 namespace Ads.Web.Mvc.Controllers
 {
-	public class CategoryController : Controller
-	{
-		private readonly IAdvertService _advertService;
-		private readonly ISubcategoryService _subcategoryService;
+  public class CategoryController : Controller
+  {
+    private readonly IAdvertService _advertService;
+    private readonly ISubcategoryService _subcategoryService;
+    private readonly ICategoryService _categoryService;
 
-		public CategoryController(ISubcategoryService subcategoryService, IAdvertService advertService)
-		{
-			_subcategoryService = subcategoryService;
-			_advertService = advertService;
-		}
+    public CategoryController(ISubcategoryService subcategoryService, IAdvertService advertService, ICategoryService categoryService)
+    {
+      _subcategoryService = subcategoryService;
+      _advertService = advertService;
+      _categoryService = categoryService;
+    }
 
-		[Route("/Category/{category-slug}/{categoryId}/{subcategory-slug?}/{subcategoryId?}")]
-		public async Task<IActionResult> Index(int categoryId, int subcategoryId, int page) //id = category id, page = sayfalanma
-		{
+    [Route("/Category/{category-slug}/{categoryId}/{subcategory-slug?}/{subcategoryId?}")]
+    public async Task<IActionResult> Index(int categoryId, int subcategoryId, int page = 1) //id = category id, page = sayfalanma
+    {
 
-			var subcategory = await _subcategoryService.FindByIdAsync<Subcategory>(subcategoryId);
-			if (subcategory == null && subcategoryId != 0) return RedirectToAction("Index", "Home");
+      var subcategory = await _subcategoryService.FindByIdAsync<Subcategory>(subcategoryId);
+      if (subcategory == null && subcategoryId != 0) return RedirectToAction("Index", "Home");
 
+      var category = await _categoryService.FindByIdAsync<Category>(categoryId);
+      var categoryName = category?.Data?.Name;
+      ViewBag.CategoryName = categoryName;
 
-			var adverts = subcategoryId != 0 ?
-				await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Any(x => x.SubcategoryId == subcategory.Data.Id), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments")
-				:
-				await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Select(a => a.Subcategory).Any(x => x.CategoryId == categoryId), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments");
+      var adverts = subcategoryId != 0 ?
+        await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Any(x => x.SubcategoryId == subcategory.Data.Id), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments")
+        :
+        await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Select(a => a.Subcategory).Any(x => x.CategoryId == categoryId), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments");
 
-			var totalPostCount = adverts.Data.Count();
-			var postCountPerPage = 9; //10
-			var pageCount = Math.Ceiling((double)totalPostCount / postCountPerPage);
-			if (page <= 0) page = 1;
-			if (page > pageCount) page = (int)pageCount;
+      var totalPostCount = adverts.Data.Count();
+      var postCountPerPage = 9; //10
+      var pageCount = Math.Ceiling((double)totalPostCount / postCountPerPage);
+      if (page <= 0) page = 1;
+      if (page > pageCount) page = (int)pageCount;
 
-			ViewBag.PageCount = pageCount;
+      ViewBag.PageCount = pageCount;
 
-			//Setting up the viewbags for the data filtering on the sidebar
+      //Setting up the viewbags for the data filtering on the sidebar
 
-			var subcategoryCounts = adverts.Data
-					.SelectMany(a => a.SubcategoryAdverts.Select(ca => ca.Subcategory.Category.Name))
-					.GroupBy(name => name)
-					.Select(group => new { Subcategory = group.Key, Count = group.Count() })
-					.ToList();
+      
 
-			ViewBag.Subcategories = subcategoryCounts;
+      var sideBarCategories = _categoryService.GetListAsync<Category>(null, null, "Subcategories.SubcategoryAdverts");
 
-			var countryCounts = adverts.Data
-				.Where(a => a.User != null && a.User.Address != null && a.User.Address.City != null)
-				.GroupBy(a => a.User.Address.City.Name)
-				.Select(group => new { Country = group.Key, Count = group.Count() })
-				.ToList();
+      ViewBag.SideBarCategories = sideBarCategories.Result.Data.ToList().Take(5);
 
-			ViewBag.Countries = countryCounts;
+      if (category.Data != null )
+      {
+        ViewBag.CategoryTitleName = subcategoryId != 0 ? subcategory.Data.Name + " alt kategorisinde" : category.Data.Name + " kategorisinde";
+      }
 
-			var conditions = adverts.Data
-					.SelectMany(a => a.SubcategoryAdverts.Select(ca => ca.Subcategory.Category.Name))
-					.GroupBy(name => name)
-					.Select(group => new { Subcategory = group.Key, Count = group.Count() })
-					.ToList();
+      var advertsPageified = adverts.Data
+      .Skip((page - 1) * postCountPerPage).Take(postCountPerPage);
 
-			ViewBag.ConditionEnumValues = Enum.GetValues(typeof(AdvertConditionEnum))
-																	.Cast<AdvertConditionEnum>()
-																	.Select(e => new SelectListItem
-																	{
-																		Value = ((int)e).ToString(),
-																		Text = e.ToString()
-																	})
-			.ToList();
-
-			var advertsPageified = adverts.Data
-			.Skip((page - 1) * postCountPerPage).Take(postCountPerPage);
-
-			ViewBag.AdvertCount = totalPostCount;
-			/* ViewBag.Query = query;
-       ViewBag.Category = category;
-       ViewBag.Location = location;
-       ViewBag.MinPrice = minPrice;
-       ViewBag.MaxPrice = maxPrice;
-       ViewBag.Condition = condition;*/
+      ViewBag.AdvertCount = totalPostCount;
 
 
-			return View(advertsPageified);
-		}
-	}
+
+
+
+      return View(advertsPageified);
+
+    }
+
+  }
 }
 
 

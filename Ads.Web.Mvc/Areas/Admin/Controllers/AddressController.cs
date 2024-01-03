@@ -28,56 +28,63 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpGet]
-    public async Task <IActionResult> Index()
+    public async Task <IActionResult> Index(int id)
 		{
-			var addresses = await _addressService.GetListAsync<Address>(includeProperties: "User,City,District");
+			var addresses = await _addressService.GetListAsync<Address>(a=>a.UserId==id,includeProperties: "User,City,District");
 			return View(addresses.Data);
 		}
-		[HttpGet]
-		public async Task<IActionResult> Add()
-		{
-			var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-			var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
+		#region Add
+		//[HttpGet]
+		//public async Task<IActionResult> Add()
+		//{
+		//	var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
+		//	var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
 
-			ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-			ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+		//	ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
+		//	ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
 
-			return View();
-    }
-		[HttpPost]
-		public async Task<IActionResult> Add (AddressCRUDDto dto)
-		{
-      var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-      var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
+		//	return View();
+		//  }
+		//[HttpPost]
+		//public async Task<IActionResult> Add (AddressCRUDDto dto)
+		//{
+		//    var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
+		//    var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
 
-      ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-      ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+		//    ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
+		//    ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
 
-      try
-			{
-				if (ModelState.IsValid)
-				{
-          await _addressService.AddAsync(dto);
-          await _addressService.SaveAsync();
-          TempData["SuccessMessage"] = "Ayarlar başarıyla keydedildi.";
-        }
-			}
-			catch(Exception) 
-			{
-        ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-      }
-			return  View();
-		}
+		//    try
+		//	{
+		//		if (ModelState.IsValid)
+		//		{
+		//        await _addressService.AddAsync(dto);
+		//        await _addressService.SaveAsync();
+		//        TempData["SuccessMessage"] = "Ayarlar başarıyla keydedildi.";
+		//      }
+		//	}
+		//	catch(Exception) 
+		//	{
+		//      ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
+		//      TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+		//    }
+		//	return  View();
+		//}
+		#endregion
+		#region Edit
 		[HttpGet]
 		public async Task<IActionResult> Edit(int id)
 		{
 			var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
 			var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
-      var address = await _addressService.GetAsync<Address>(i => i.Id == id);
-      
+			var address = await _addressService.GetAsync<Address>(i => i.Id == id);
+
 			ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
 			ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+
+			var user = await _userManager.FindByIdAsync(address.Data.UserId.ToString());
+			string userName = user.FirstName + " " + user.LastName;
+			ViewBag.userName = userName;
 
 			AddressCRUDDto dto = new AddressCRUDDto()
 			{
@@ -94,47 +101,55 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Edit(AddressCRUDDto dto)
 		{
-      var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-      var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
+			var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
+			var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
 
-      ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-      ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+			ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
+			ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
 
-      try
-      {
-        if (ModelState.IsValid)
-        {
-          _addressService.Update(dto);
-          await _addressService.SaveAsync();
-          TempData["SuccessMessage"] = "Adres başarıyla güncellendi.";
-        }
-      }
-      catch (Exception)
-      {
-        ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-      }
-      return View(dto);
-    }
-		[HttpGet]
-		public async Task<IActionResult> Delete (int id)
-		{
-      var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-      var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
-      var address = await _addressService.GetAsync<Address>(i => i.Id == id);
+			var user = await _userManager.FindByIdAsync(dto.UserId.ToString());
+			string userName = user.FirstName + " " + user.LastName;
+			ViewBag.userName = userName;
 
-      ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-      ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
-
-      return View(address.Data);
-    }
-		[HttpPost]
-		public async Task<IActionResult> Delete (Address address)
-		{
-			_addressService.Delete(address);
-			await _addressService.SaveAsync();
-			return RedirectToAction("Index", "Address", new { area = "Admin" });
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					_addressService.Update(dto);
+					await _addressService.SaveAsync();
+					TempData["SuccessMessage"] = "Adres başarıyla güncellendi.";
+				}
+			}
+			catch (Exception)
+			{
+				ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
+				TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+			}
+			return View(dto);
 		}
+		#endregion
+		#region Delete
+		//[HttpGet]
+		//public async Task<IActionResult> Delete (int id)
+		//{
+		//    var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
+		//    var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
+		//    var address = await _addressService.GetAsync<Address>(i => i.Id == id);
+
+		//    ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
+		//    ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+
+		//    return View(address.Data);
+		//  }
+		//[HttpPost]
+		//public async Task<IActionResult> Delete (Address address)
+		//{
+		//	_addressService.Delete(address);
+		//	await _addressService.SaveAsync();
+		//	return RedirectToAction("Index", "Address", new { area = "Admin" });
+		//}
+		#endregion
+
 
 		[HttpGet]
 		public JsonResult GetDistrictsByCityId(int cityId)

@@ -119,7 +119,7 @@ namespace Ads.Web.Mvc.Controllers
      return RedirectToAction("Search", new { query, location, category, page, minPrice, maxPrice, condition });
     }
 
-    [Route("/advert/title-slug")]
+    [Route("/advert/{title-slug}-{id}")]
     public async Task<IActionResult> Detail(int id)
     {
       var advert = _advertService.Get<Advert>(a => a.Id == id, "User.Address.City,User.Address.District,AdvertComments.User,AdvertImages,SubcategoryAdverts.Subcategory");

@@ -9,7 +9,7 @@
 	<table class="table table-striped" id='myTable'>
 		<thead>
 			<tr>
-				<th>Action</th>
+				<th>İşlemler</th>
 				<th>Rol</th>
 				<th>Kayıt Tarihi</th>
 				<th>Adı Soyadı</th>
@@ -25,7 +25,8 @@
 						<form asp-area="Admin" asp-controller="User" asp-action="Delete" method="post" onsubmit="return confirm('Silmek istediğinizden emin misini?')" style="display:inline-block">
 							<button type="submit" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-userId="@user.Id" class="btn btn-danger">Sil</button> |
 						</form>
-						<a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-userId="@user.Id" class="btn btn-info">Rol Değiştir</a>
+						<a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-userId="@user.Id" class="btn btn-info">Rol Değiştir</a> |
+						<a asp-area="Admin" asp-controller="Address" asp-action="Index" asp-route-Id="@user.Id" class="btn btn-primary">Adres Bilgisi</a>
 					</td>
 					<td>@user.Role</td>
 					<td>@user.CreatedDate</td>

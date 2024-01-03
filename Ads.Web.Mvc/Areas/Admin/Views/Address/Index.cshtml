@@ -3,7 +3,7 @@
 <div class="container-fluid">
 
   <h1>Kullanıcı Listesi</h1>
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Address" asp-action="Add">Adres Ekle</a>
+@*   <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Address" asp-action="Add">Adres Ekle</a> *@
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
@@ -24,11 +24,12 @@
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Address" asp-action="Edit" asp-route-id="@address.Id" class="btn btn-primary">Düzenle</a> |
-              <a asp-area="Admin" asp-controller="Address" asp-action="Delete" asp-route-id="@address.Id" class="btn btn-danger">Sil</a> |
+              <a asp-area="Admin" asp-controller="Address" asp-action="Edit" asp-route-id="@address.Id" class="btn btn-primary">Düzenle</a>
+@*               <a asp-area="Admin" asp-controller="Address" asp-action="Delete" asp-route-id="@address.Id" class="btn btn-danger">Sil</a> | *@
             </form>
           </td>
           <td>@address.CreatedDate</td>
+          <td>@address.UpdatedDate</td>
           <td>@address.User.FirstName @address.User.LastName</td>
           <td>@address.PostCode</td>
           <td>@address.Country</td>
@@ -39,6 +40,7 @@
       }
     </tbody>
   </table>
+  <a asp-area="Admin" asp-controller="User" asp-action="Index" class="btn btn-danger">Kullanıcılar</a>
 </div>
 @section Scripts {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />

@@ -34,8 +34,9 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
-              <label>Kullanıcı ID: </label>
-              <input value="@Model.UserId" asp-for=@Model.UserId class="form-control" readonly />
+              <label>Kullanıcı Adı - Soyadı: </label>
+              <input value="@ViewBag.userName" class="form-control" readonly />
+              <input value="@Model.UserId" name="UserId" type="hidden" />
               <span asp-validation-for="@Model.UserId" class="text-danger"></span>
             </div>
           </div>

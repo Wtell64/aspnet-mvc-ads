@@ -80,14 +80,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					_logger.LogInformation("Admin tarafından bir reklam eklendi.");
+					
 				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				_logger.LogInformation("Admin tarafından bir reklam eklenirken bir hata oluştu.");
+				
 			}
       return View();
     }
@@ -133,14 +133,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla güncellendi.";
-					_logger.LogInformation("Admin tarafından bir reklam üzerinde değişiklik yapıldı.");
+					
 				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Güncelleme sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				_logger.LogInformation("Admin tarafından bir reklam üzerinde değişiklik yapılırken bir hata oluştu.");
+				
 			}
       return View(dto);
     }
@@ -169,7 +169,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       _advertService.DeleteById(id);
       await _advertService.SaveAsync();
 
-			_logger.LogInformation("Admin tarafından bir reklam silindi.");
+			
 
 			return RedirectToAction("Index", "Advert", new { area = "Admin" });
     }
@@ -208,14 +208,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					_logger.LogInformation("Admin tarafından bir reklama resim eklendi.");
+					
 				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				_logger.LogInformation("Admin tarafından bir reklama resim eklenirken bir hata oluştu.");
+				
 			}
       return View();
     }
@@ -232,7 +232,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         {
           _advertImageService.DeleteById(id);
           await _advertImageService.SaveAsync();
-				_logger.LogInformation("Admin tarafından bir reklamın resim silindi.");
+				
 			}
 
       return RedirectToAction("ImageIndex", "Advert", new { area = "Admin" , id = advertId });
@@ -281,14 +281,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					_logger.LogInformation("Admin tarafından bir reklama yorum eklendi.");
+					
 				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				_logger.LogInformation("Admin tarafından bir reklama yorum eklenirken hata oluştu.");
+				
 			}
       
       return View();
@@ -327,14 +327,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         if (ModelState.IsValid)
         {
           TempData["SuccessMessage"] = "Reklam başarıyla güncellendi.";
-					_logger.LogInformation("Admin tarafından bir reklamın yorumu değiştirildi.");
+					
 				}
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Güncelleme sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				_logger.LogInformation("Admin tarafından bir reklamın yorumu değiştirilirken bir hata oluştu.");
+				
 			}
       return View(dto);
     }
@@ -347,11 +347,11 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       {
         _advertCommentService.DeleteById(id);
         await _advertCommentService.SaveAsync();
-				_logger.LogInformation("Admin tarafından bir reklamın yorumu silindi.");
+				
 			}
       catch (Exception)
       {
-				_logger.LogInformation("Admin tarafından bir reklamın yorumu silinirken bir hata oluştu.");
+				
 				throw;
       }
       return RedirectToAction("CommentIndex", "Advert", new { area = "Admin", id = advertId });

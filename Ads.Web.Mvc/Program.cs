@@ -3,6 +3,7 @@ using Ads.Core.Extensions;
 using Ads.Dal.Extentions;
 using Ads.Web.Mvc.Middlewares;
 using Ads.Web.Mvc.Sinks;
+using NToastNotify;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,18 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddBusinessServices(builder.Configuration);
 builder.Services.AddCoreServices();
+
+builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+{
+  ProgressBar = false,
+  PositionClass = ToastPositions.BottomCenter
+});
+builder.Services.AddMvc().AddNToastNotifyNoty(new NotyOptions
+{
+  ProgressBar = true,
+  Timeout = 5000,
+  Theme = "mint"
+});
 
 var logger = new LoggerConfiguration()
 .ReadFrom.Configuration(builder.Configuration)
@@ -35,7 +48,7 @@ builder.Services.ConfigureApplicationCookie(options =>
   cookieBuilder.Name = "AspNetMvcAds.Web";
 
 
-	options.LoginPath = new PathString("/Auth/Login"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
+  options.LoginPath = new PathString("/Auth/Login"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
 
 
   options.Cookie = cookieBuilder;
@@ -55,15 +68,19 @@ if (!app.Environment.IsDevelopment())
   app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
 
+
 app.UseRouting();
 
 app.UseAuthentication();// identity
 app.UseAuthorization();
+
+app.UseNToastNotify();
 
 app.MapControllerRoute(
     name: "areas",

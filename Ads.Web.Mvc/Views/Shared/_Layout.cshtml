@@ -65,7 +65,7 @@
   <script src="~/template/js/script.js"></script>
 
 
-
+  @await Component.InvokeAsync("NToastNotify")
   @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

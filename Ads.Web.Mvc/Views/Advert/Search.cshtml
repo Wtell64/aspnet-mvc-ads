@@ -50,9 +50,9 @@
             {
               <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = ViewBag.Page,category = "", location = ViewBag.Country,minPrice = ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })"><span>Reklam Kategorisi: @ViewBag.Category <i class="fa-solid fa-xmark"></i></span></a> </button>
             }
-            @if (ViewBag.Country != null)
+            @if (ViewBag.Location != null)
             {
-              <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = ViewBag.Page,category = ViewBag.Category, location = "",minPrice = ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })"><span>Reklam Lokasyonu: @ViewBag.Country <i class="fa-solid fa-xmark"></i></span></a> </button>
+              <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = ViewBag.Page,category = ViewBag.Category, location = "",minPrice = ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })"><span>Reklam Lokasyonu: @ViewBag.Location <i class="fa-solid fa-xmark"></i></span></a> </button>
             }
             @if (ViewBag.MinPrice != null && ViewBag.MinPrice != 0)
             {
@@ -166,7 +166,7 @@
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="#"><i class="fa fa-calendar"></i>@advert.CreatedDate.ToUniversalTime().ToLongDateString()</a>
+                            <a href="@Url.Action("Detail", new { id = advert.Id  })"><i class="fa fa-calendar"></i>@advert.CreatedDate.ToUniversalTime().ToLongDateString()</a>
                           </li>
                         </ul>
                         @if (advert.Description.Length > 26)

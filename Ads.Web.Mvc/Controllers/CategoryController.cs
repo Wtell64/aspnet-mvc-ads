@@ -1,8 +1,6 @@
 ﻿using Ads.Business.Abstract;
 using Ads.Entities.Concrete;
-using Ads.Entities.Concrete.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 
 namespace Ads.Web.Mvc.Controllers
@@ -32,9 +30,9 @@ namespace Ads.Web.Mvc.Controllers
       ViewBag.CategoryName = categoryName;
 
       var adverts = subcategoryId != 0 ?
-        await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Any(x => x.SubcategoryId == subcategory.Data.Id), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments")
+        await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Any(x => x.SubcategoryId == subcategory.Data.Id), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments,AdvertImages")
         :
-        await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Select(a => a.Subcategory).Any(x => x.CategoryId == categoryId), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments");
+        await _advertService.GetListAsync<Advert>(a => a.SubcategoryAdverts.Select(a => a.Subcategory).Any(x => x.CategoryId == categoryId), null, "SubcategoryAdverts.Subcategory.Category,User.Address.City,User.AdvertComments,AdvertImages");
 
       var totalPostCount = adverts.Data.Count();
       var postCountPerPage = 9; //10
@@ -46,13 +44,13 @@ namespace Ads.Web.Mvc.Controllers
 
       //Setting up the viewbags for the data filtering on the sidebar
 
-      
+
 
       var sideBarCategories = _categoryService.GetListAsync<Category>(null, null, "Subcategories.SubcategoryAdverts");
 
       ViewBag.SideBarCategories = sideBarCategories.Result.Data.ToList().Take(5);
 
-      if (category.Data != null )
+      if (category.Data != null)
       {
         ViewBag.CategoryTitleName = subcategoryId != 0 ? subcategory.Data.Name + " alt kategorisinde" : category.Data.Name + " kategorisinde";
       }

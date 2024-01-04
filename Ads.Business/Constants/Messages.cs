@@ -3,13 +3,16 @@
   public static class Messages
   {
     public static string CategoryAdded = "Kategori Eklendi";
-    public static string AdvertAdded = "Advert Eklendi";
-    public static string AdvertFound = "Advert Data Tabaninda Bulundu";
-    public static string AdvertNotFound = "Advert Data Tabaninda Bulunamadi";
-    public static string AdvertDeleted = "Advert Silindi";
-    public static string AdvertNotDeleted = "Advert Silinirken Bir Hata Oluştu";
-    public static string AdvertSaved = "Advert Kaydedildi";
-    public static string AdvertNotSaved = "Advert Kayit Edilemedi";
+    public static string AdvertAdded = "Reklam Eklendi";
+    public static string AdvertNotAdded = "Reklam Eklenirken Bir Hata Oluştu";
+    public static string AdvertFound = "Reklam Veri Tabaninda Bulundu";
+    public static string AdvertEdited = "Reklam Değiştirildi";
+    public static string AdvertNotEdited = "Reklam Değiştirilirken Bir Hata Oluştu";
+    public static string AdvertNotFound = "Reklam Veri Tabaninda Bulunamadi";
+    public static string AdvertDeleted = "Reklam Silindi";
+    public static string AdvertNotDeleted = "Reklam Silinirken Bir Hata Oluştu";
+    public static string AdvertSaved = "Reklam Kaydedildi";
+    public static string AdvertNotSaved = "Reklam Kayit Edilemedi";
     public static string ValidationResultNull = "Doğrulama işlemi gerçekleştirilemedi";
 
     public static string SettingUpdated = "Ayarlar Güncellendi.";
@@ -51,24 +54,24 @@
     public static string AdvertNotUpdated = "Advert Güncellenemedi";
     public static string AdvertUpdated = "Advert Güncellendi";
 
-    public static string AdvertCommentAdded = "Advert Comment Eklendi";
-    public static string AdvertCommentFound = "Advert Comment Data Tabaninda Bulundu";
-    public static string AdvertCommentNotFound = "Advert Comment Data Tabaninda Bulunamadı";
-    public static string AdvertCommentDeleted = "Advert Comment Silindi";
-    public static string AdvertCommentNotDeleted = "Advert Comment Silinirken Bir Hata Oluştu";
-    public static string AdvertCommentSaved = "Advert Comment Kaydedildi";
-    public static string AdvertCommentNotSaved = "Advert Comment Kayit Edilemedi";
-    public static string AdvertCommentNotUpdated = "Advert Comment Güncellenemedi";
-    public static string AdvertCommentUpdated = "Advert Comment Güncellendi";
-    public static string AdvertImageAdded = "Advert Image Eklendi";
-    public static string AdvertImageFound = "Advert Image Data Tabaninda Bulundu";
-    public static string AdvertImageNotFound = "Advert Image Data Tabaninda Bulunamadı";
-    public static string AdvertImageDeleted = "Advert Image Silindi";
-    public static string AdvertImageNotDeleted = "Advert Image Silinirken Bir Hata Oluştu";
-    public static string AdvertImageSaved = "Advert Image Kaydedildi";
-    public static string AdvertImageNotSaved = "Advert Image Kayit Edilemedi";
-    public static string AdvertImageNotUpdated = "Advert Image Güncellenemedi";
-    public static string AdvertImageUpdated = "Advert Image Güncellendi";
+    public static string AdvertCommentAdded = "Reklam Yorumu Eklendi";
+    public static string AdvertCommentFound = "Reklam Yorumu Veri Tabaninda Bulundu";
+    public static string AdvertCommentNotFound = "Reklam Yorumu Veri Tabaninda Bulunamadı";
+    public static string AdvertCommentDeleted = "Reklam Yorumu Silindi";
+    public static string AdvertCommentNotDeleted = "Reklam Yorumu Silinirken Bir Hata Oluştu";
+    public static string AdvertCommentSaved = "Reklam Yorumu Kaydedildi";
+    public static string AdvertCommentNotSaved = "Reklam Yorumu Kayit Edilemedi";
+    public static string AdvertCommentNotUpdated = "Reklam Yorumu Güncellenemedi";
+    public static string AdvertCommentUpdated = "Reklam Yorumu Güncellendi";
+    public static string AdvertImageAdded = "Reklam Resmi Eklendi";
+    public static string AdvertImageFound = "Reklam Resmi Veri Tabaninda Bulundu";
+    public static string AdvertImageNotFound = "Reklam Resmi Veri Tabaninda Bulunamadı";
+    public static string AdvertImageDeleted = "Reklam Resmi Silindi";
+    public static string AdvertImageNotDeleted = "Reklam Resmi Silinirken Bir Hata Oluştu";
+    public static string AdvertImageSaved = "Reklam Resmi Kaydedildi";
+    public static string AdvertImageNotSaved = "Reklam Resmi Kayit Edilemedi";
+    public static string AdvertImageNotUpdated = "Reklam Resmi Güncellenemedi";
+    public static string AdvertImageUpdated = " Güncellendi";
 
     public static string AddressAdded = "Adres Eklendi";
     public static string AddressDeleted = "Adres Silindi";

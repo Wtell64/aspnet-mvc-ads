@@ -84,14 +84,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(page);
     }
     [HttpGet]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> Delete(int id)
     {
       var page = await _pageService.FindByIdAsync<PageCRUDDto>(id);
       return View(page.Data);
     }
     [HttpPost]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> Delete(PageCRUDDto page)
     {
       _pageService.DeleteById(page.Id);

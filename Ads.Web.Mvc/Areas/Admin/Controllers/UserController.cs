@@ -66,7 +66,7 @@ public class UserController : Controller
 	}
 
 	[HttpPost]
-	[Authorize("Superadmin")]
+	[Authorize(Roles = "Superadmin")]
   public async Task<IActionResult> Delete(int userId)
 	{
 		if (userId.Equals(0))

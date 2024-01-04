@@ -1,5 +1,6 @@
 ﻿
 using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.Advert;
 using Ads.Business.Dtos.AdvertImage;
 using Ads.Business.Dtos.Category;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 
 
 namespace Ads.Web.Mvc.Controllers
@@ -24,18 +26,19 @@ namespace Ads.Web.Mvc.Controllers
 		private readonly IImageProcessor _imageProcessor;
 		private readonly ISubcategoryService _subcategoryService;
 		private readonly UserManager<AppUser> _userManager;
+    private readonly IToastNotification _toastNotification;
 
 
-
-		public HomeController(ILogger<HomeController> logger,
+    public HomeController(ILogger<HomeController> logger,
 		IAdvertService advertService,
 		ICategoryService categoryService,
 		IWebHostEnvironment environment,
 		IAdvertImageService advertImageService,
 		IImageProcessor imageProcessor,
 		ISubcategoryService subcategoryService,
-		UserManager<AppUser> userManager
-		)
+		UserManager<AppUser> userManager,
+    IToastNotification toastNotification
+    )
 		{
 			_logger = logger;
 			_environment = environment;
@@ -45,7 +48,8 @@ namespace Ads.Web.Mvc.Controllers
 			_imageProcessor = imageProcessor;
 			_subcategoryService = subcategoryService;
 			_userManager = userManager;
-		}
+      _toastNotification = toastNotification;
+    }
 
 		public IActionResult Index()
 		{
@@ -104,10 +108,8 @@ namespace Ads.Web.Mvc.Controllers
 
 				if (ModelState.IsValid)
 				{
-					TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					
-
-				}
+          _toastNotification.AddSuccessToastMessage(Messages.AdvertAdded);
+        }
 
 
 			}
@@ -117,10 +119,10 @@ namespace Ads.Web.Mvc.Controllers
 				// Log the exception or handle it as needed
 				ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
 
-				// Error message
-				TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				
-			}
+        // Error message
+        _toastNotification.AddErrorToastMessage(Messages.AdvertNotAdded);
+
+      }
 			return View(dto);
 
 		}

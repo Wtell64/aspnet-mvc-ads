@@ -122,7 +122,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpGet]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> Delete(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
@@ -136,7 +136,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> DeletePost(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }

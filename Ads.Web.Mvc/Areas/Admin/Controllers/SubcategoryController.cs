@@ -130,7 +130,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
   
     [HttpGet]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> DeleteAsync(int id)
     {
       if (id==0) { return RedirectToAction("Index"); }
@@ -140,7 +140,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         return View(subcategory.Data);
     }
     [HttpPost, ActionName("Delete")]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> DeletePostAsync(int id)
     {
       var subcategorydto = await _subcategoryService.FindByIdAsync<SubcategoryViewDto>(id);

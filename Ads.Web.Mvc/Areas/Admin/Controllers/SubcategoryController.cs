@@ -4,13 +4,15 @@ using Ads.Business.Dtos.Category;
 using Ads.Business.Dtos.Subcategory;
 using Ads.Entities.Concrete;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-  public class SubcategoryController : Controller
+	[Authorize(Roles = "Admin,Superadmin")]
+	public class SubcategoryController : Controller
   {
   private readonly ISubcategoryService _subcategoryService;
   private readonly ICategoryService _categoryService;
@@ -80,7 +82,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
        return RedirectToAction("Index1",new {categoryId= subcategorydto.CategoryId});
     }
     [HttpGet]
-    public async Task<IActionResult> EditAsync(int id) 
+		public async Task<IActionResult> EditAsync(int id) 
     {
       if (id == 0) { return RedirectToAction("Index1"); }
       var subcategory = await _subcategoryService.FindByIdAsync<SubcategoryViewDto>(id);
@@ -93,7 +95,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View( subcategory.Data);
     }
     [HttpPost]
-    public async Task<IActionResult> EditAsync(SubcategoryViewDto subcategorydto)
+		public async Task<IActionResult> EditAsync(SubcategoryViewDto subcategorydto)
     {
       try
       {
@@ -128,7 +130,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
   
     [HttpGet]
-    public async Task<IActionResult> DeleteAsync(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> DeleteAsync(int id)
     {
       if (id==0) { return RedirectToAction("Index"); }
       var subcategory = await _subcategoryService.FindByIdAsync<SubcategoryViewDto>(id);
@@ -137,7 +140,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         return View(subcategory.Data);
     }
     [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeletePostAsync(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> DeletePostAsync(int id)
     {
       var subcategorydto = await _subcategoryService.FindByIdAsync<SubcategoryViewDto>(id);
 

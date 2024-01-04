@@ -2,6 +2,7 @@
 using Ads.Business.Dtos.Setting;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,7 +12,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   //ToDo : Same with AddressController
   [Area("Admin")]
-  public class SettingController : Controller
+	[Authorize(Roles = "Admin,Superadmin")]
+	public class SettingController : Controller
   {
     private readonly ISettingService _settingService;
     private readonly UserManager<AppUser> _userManager;
@@ -100,7 +102,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(dto);
     }
     [HttpGet]
-    public async Task<IActionResult> Delete(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> Delete(int id)
     {
       var settings = await _settingService.GetAsync<Setting>(a => a.Id == id);
       SettingCRUDDto dto = new SettingCRUDDto()
@@ -116,7 +119,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(dto);
     }
     [HttpPost]
-    public async Task<IActionResult> Delete(SettingCRUDDto dto)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> Delete(SettingCRUDDto dto)
     {
       if (ModelState.IsValid)
       {

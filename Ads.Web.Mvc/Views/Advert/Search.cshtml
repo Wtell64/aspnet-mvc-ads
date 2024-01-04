@@ -316,7 +316,6 @@
 
   <script>
     $(document).ready(function () {
-      // Initialize the price range slider
       var priceSlider = new Slider("#priceSlider", {
         range: true,
         min: 0,
@@ -325,18 +324,15 @@
         value: [@ViewBag.MinPrice, @ViewBag.MaxPrice],
       });
 
-      // Update the price range display on slider change
       priceSlider.on("change", function (sliderValue) {
         $("#priceRangeDisplay").text("$" + sliderValue.newValue[0] + " - $" + sliderValue.newValue[1]);
       });
 
-      // Attach click event to the search button
       $("#searchButton").click(function () {
         var sliderValues = priceSlider.getValue();
         var minPrice = sliderValues[0];
         var maxPrice = sliderValues[1];
 
-        // Redirect to the FilterByPrice action with the selected price range
         window.location.href = "/Advert/ChangePage?minPrice=" + minPrice +
           "&maxPrice=" + maxPrice +
           "&page=" + '@Html.Raw(ViewBag.Page)' +

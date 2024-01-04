@@ -49,9 +49,10 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
   options.LoginPath = new PathString("/Auth/Login"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
+  options.AccessDeniedPath = new PathString("/Home/Index");
 
 
-  options.Cookie = cookieBuilder;
+	options.Cookie = cookieBuilder;
   options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie saklama ömrü.
   options.SlidingExpiration = true; // Kullanýcý cookie ömrü bitmeden giriþ yaparsa üzerine eklemesini saðlar.
 

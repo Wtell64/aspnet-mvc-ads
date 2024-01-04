@@ -5,6 +5,7 @@ using Ads.Business.Dtos.Category;
 using Ads.Core.Utilities.Images;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,7 +13,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-  public class AdvertController : Controller
+	[Authorize(Roles = "Admin,Superadmin")]
+	public class AdvertController : Controller
   {
     private readonly IAdvertService _advertService;
     private readonly IAdvertImageService _advertImageService;
@@ -146,7 +148,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost]
-    public async  Task<IActionResult> Remove(int id)
+		[Authorize("Superadmin")]
+		public async  Task<IActionResult> Remove(int id)
     {
       //var advert = await _advertService.GetAsync<Advert>(filter: x => x.Id == id);
       //var advertId = advert.Data.Id;
@@ -221,7 +224,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
     
     [HttpPost]
-    public async Task<IActionResult> ImageRemove(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> ImageRemove(int id)
     {
 
         var image = _advertImageService.Get<AdvertImage>(filter: x => x.Id == id);
@@ -339,7 +343,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(dto);
     }
     [HttpPost]
-    public async Task<IActionResult> CommentRemove(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> CommentRemove(int id)
     {
       var comment = await _advertCommentService.FindByIdAsync<AdvertCommentAdminAddDto>(id);
       var advertId = comment.Data.AdvertId;

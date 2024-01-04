@@ -1,12 +1,14 @@
 ﻿using Ads.Business.Abstract;
 using Ads.Business.Dtos.District;
 using FutureCafe.Core.Utilities.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-  public class DistrictController : Controller
+	[Authorize(Roles = "Admin,Superadmin")]
+	public class DistrictController : Controller
   {
 
     IDistrictService _districtService;
@@ -91,7 +93,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     //DELETE
 
     [HttpGet]
-    public async Task<IActionResult> Delete(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> Delete(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 
@@ -104,7 +107,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeletePost(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> DeletePost(int id)
     {
       var districtDto = await _districtService.FindByIdAsync<DistrictViewDto>(id);
 

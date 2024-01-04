@@ -6,6 +6,7 @@ using Ads.Business.Dtos.Category;
 using Ads.Core.Utilities.Images;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -46,20 +47,13 @@ namespace Ads.Web.Mvc.Controllers
 			_userManager = userManager;
 		}
 
-
-		public async Task<IActionResult> Index()
+		public IActionResult Index()
 		{
-			try
-			{
 				return View();
-			}
-			catch (Exception ex)
-			{
-				
-				throw;
-			}
 		}
+
 		[HttpGet]
+		[Authorize(Roles = "Admin,Superadmin,User")]
 		public async Task<IActionResult> AdListing()
 		{
 			var subcategoryList = await SetCategoryViewDataAsync();
@@ -70,16 +64,11 @@ namespace Ads.Web.Mvc.Controllers
       return View();
     }
 
-
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin,Superadmin,User")]
 		public async Task<IActionResult> AdListing([FromForm] AdvertAddDto dto)
 		{
-
-			//TODO: make it create the path if it does not exist
-
-
-			//var fileName = "";
 			try
 			{
 				if (User.Identity.IsAuthenticated)

@@ -3,6 +3,7 @@ using Ads.Business.Dtos.Users;
 using Ads.Business.Extentions;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Ads.Web.Mvc.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles ="Admin,Superadmin")]
 public class UserController : Controller
 {
 	private readonly UserManager<AppUser> _userManager;
@@ -64,7 +66,8 @@ public class UserController : Controller
 	}
 
 	[HttpPost]
-	public async Task<IActionResult> Delete(int userId)
+	[Authorize("Superadmin")]
+  public async Task<IActionResult> Delete(int userId)
 	{
 		if (userId.Equals(0))
 			return RedirectToAction("Index");

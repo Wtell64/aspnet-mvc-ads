@@ -6,12 +6,14 @@ using Ads.Entities.Concrete;
 using App.Core.Utilities.Results;
 using AutoMapper;
 using FutureCafe.Core.Utilities.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-  public class CategoryController : Controller
+	[Authorize(Roles = "Admin,Superadmin")]
+	public class CategoryController : Controller
   {
     private readonly ICategoryService _categoryService;
 
@@ -120,7 +122,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpGet]
-    public async Task<IActionResult> Delete(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> Delete(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 
@@ -133,7 +136,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeletePost(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> DeletePost(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 

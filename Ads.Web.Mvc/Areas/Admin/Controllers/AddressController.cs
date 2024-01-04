@@ -3,6 +3,7 @@ using Ads.Business.Dtos;
 using Ads.Business.Dtos.AdressDtos;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
 	//ToDo : Ask about UserId validation error message !!
 	[Area("Admin")]
+	[Authorize(Roles = "Admin,Superadmin")]
 	public class AddressController : Controller
 	{
 		private readonly IAddressService _addressService;

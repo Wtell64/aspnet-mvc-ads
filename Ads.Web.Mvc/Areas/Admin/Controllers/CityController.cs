@@ -9,8 +9,8 @@ using NToastNotify;
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-	[Authorize(Roles = "Admin,Superadmin")]
-	public class CityController : Controller
+  [Authorize(Roles = "Admin,Superadmin")]
+  public class CityController : Controller
   {
     private readonly ICityService _cityService;
     private readonly IToastNotification _toastNotification;
@@ -106,8 +106,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     //DELETE
 
     [HttpGet]
-		[Authorize("Superadmin")]
-		public async Task<IActionResult> Delete(int id)
+    [Authorize("Superadmin")]
+    public async Task<IActionResult> Delete(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 
@@ -120,8 +120,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-		[Authorize("Superadmin")]
-		public async Task<IActionResult> DeletePost(int id)
+    [Authorize("Superadmin")]
+    public async Task<IActionResult> DeletePost(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 

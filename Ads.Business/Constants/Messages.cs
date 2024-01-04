@@ -103,6 +103,8 @@
     public static string SubcategoryFound = "Alt Kategori bulundu";
     public static string SubcategoryAdded = "Alt Kategori Eklendi";
 
+    public static string MessageRecieved = "Mesajınız alınmıştır,teşekkürler.";
+
   }
 
 }

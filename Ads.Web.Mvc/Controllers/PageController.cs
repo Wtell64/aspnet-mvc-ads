@@ -1,7 +1,9 @@
 ﻿using Ads.Business.Abstract;
 using Ads.Business.Abstract.Identity;
+using Ads.Business.Constants;
 using Ads.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Controllers
 {
@@ -10,14 +12,15 @@ namespace Ads.Web.Mvc.Controllers
   {
     private readonly IPageService _pageManager;
     private readonly IEmailService _emailService;
-
-    public PageController(IPageService pageManager, IEmailService emailService)
+    private readonly IToastNotification _toastNotification;
+    public PageController(IPageService pageManager, IEmailService emailService, IToastNotification toastNotification)
     {
       _pageManager = pageManager;
       _emailService = emailService;
+      _toastNotification = toastNotification;
     }
 
-    [Route("/page/{title-slug}-{id}")]
+    [Route("/page/{titleSlug}-{id}")]
     public IActionResult Detail(int id)
     {
       var pageDetail = _pageManager.FindById<Page>(id);
@@ -27,7 +30,8 @@ namespace Ads.Web.Mvc.Controllers
     public async Task<IActionResult> SubmitForm(string message, string userName, string userEmail)
     {
       await _emailService.RecieveEmailAsync(message, userName, userEmail);
-      return RedirectToAction("Detail", "Page", new { id = 2 });
+      _toastNotification.AddSuccessToastMessage(Messages.MessageRecieved);
+      return RedirectToAction("Detail", "Page", new { id = 2, titleSlug = "Bize Ulaşın" });
     }
   }
 }

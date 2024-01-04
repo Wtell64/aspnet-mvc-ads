@@ -39,7 +39,7 @@
 					{
 						@foreach (var pageM in Model.Pages)
 						{
-							<a class="dropdown-item" asp-area="" asp-controller="Page" asp-action="Detail" asp-route-title-slug="@pageM.Title" asp-route-id="@pageM.Id">@pageM.Title</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Page" asp-action="Detail" asp-route-titleSlug="@pageM.Title" asp-route-id="@pageM.Id">@pageM.Title</a>
 						}
 					}
 				</div>

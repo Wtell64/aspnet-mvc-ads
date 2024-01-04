@@ -82,6 +82,7 @@
     public static string NoCity = "Şehir yok";
 
     public static string DistrictAdded = "İlçe Eklendi";
+    public static string DistrictEdited = "İlçe Değiştirildi";
     public static string DistrictDeleted = "İlçe Silindi";
     public static string DistrictNotFound = "İlçe bulunamadı";
     public static string NoDistrict = "İlçe yok";

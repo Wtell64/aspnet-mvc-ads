@@ -2,13 +2,15 @@
 using Ads.Business.Dtos.Page;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-  public class PageController : Controller
+	[Authorize(Roles = "Admin,Superadmin")]
+	public class PageController : Controller
   {
     private readonly IPageService _pageService;
     private readonly UserManager<AppUser> _userManager;
@@ -82,13 +84,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(page);
     }
     [HttpGet]
-    public async Task<IActionResult> Delete(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> Delete(int id)
     {
       var page = await _pageService.FindByIdAsync<PageCRUDDto>(id);
       return View(page.Data);
     }
     [HttpPost]
-    public async Task<IActionResult> Delete(PageCRUDDto page)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> Delete(PageCRUDDto page)
     {
       _pageService.DeleteById(page.Id);
       await _pageService.SaveAsync();

@@ -2,15 +2,17 @@
 using Ads.Business.Constants;
 using Ads.Business.Dtos.City;
 using FutureCafe.Core.Utilities.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-  public class CityController : Controller
+	[Authorize(Roles = "Admin,Superadmin")]
+	public class CityController : Controller
   {
-    ICityService _cityService;
+    private readonly ICityService _cityService;
     private readonly IToastNotification _toastNotification;
 
     public CityController(ICityService cityService, IToastNotification toastNotification)
@@ -104,7 +106,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     //DELETE
 
     [HttpGet]
-    public async Task<IActionResult> Delete(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> Delete(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 
@@ -117,14 +120,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeletePost(int id)
+		[Authorize("Superadmin")]
+		public async Task<IActionResult> DeletePost(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 
       _cityService.DeleteById(id);
       await _cityService.SaveAsync();
 
-      _toastNotification.AddWarningToastMessage(Messages.CityDeleted);
+      _toastNotification.AddErrorToastMessage(Messages.CityDeleted);
 
       return RedirectToAction("Index");
     }

@@ -102,6 +102,8 @@
     public static string SubcategoryListed = "Alt Kategoriler Listelendi";
     public static string SubcategoryFound = "Alt Kategori bulundu";
     public static string SubcategoryAdded = "Alt Kategori Eklendi";
+    public static string SubcategoryNotAdded = "Alt Kategori Eklenirken bir hata oluştu.";
+    public static string SubcategoryNotUpdated = "Alt Kategori Düzenlerken bir hata oluştu";
 
     public static string MessageRecieved = "Mesajınız alınmıştır,teşekkürler.";
 

@@ -102,7 +102,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(dto);
     }
     [HttpGet]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> Delete(int id)
     {
       var settings = await _settingService.GetAsync<Setting>(a => a.Id == id);
@@ -119,7 +119,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(dto);
     }
     [HttpPost]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> Delete(SettingCRUDDto dto)
     {
       if (ModelState.IsValid)

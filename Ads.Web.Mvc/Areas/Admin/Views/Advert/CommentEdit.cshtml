@@ -15,19 +15,6 @@
 
         <h2>Reklam Yorumunu Düzelt</h2>
         <div asp-validation-summary="All" class="text-danger"></div>
-        @if (TempData.ContainsKey("SuccessMessage"))
-        {
-          <div class=" col-8 alert alert-success">
-            @TempData["SuccessMessage"]
-          </div>
-        }
-
-        @if (TempData.ContainsKey("ErrorMessage"))
-        {
-          <div class="col-8 alert alert-danger">
-            @TempData["ErrorMessage"]
-          </div>
-        }
       </div>
 
     </div>

@@ -23,10 +23,15 @@
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Advert" asp-action="CommentEdit" asp-route-id="@comment.Id" class="btn btn-primary">Düzelt</a> |
-
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="CommentRemove" asp-route-id="@comment.Id">Sil</button>
-
+              <a asp-area="Admin" asp-controller="Advert" asp-action="CommentEdit" asp-route-id="@comment.Id" class="btn btn-primary">Düzelt</a> 
+              @if(User.Identity != null && User.Identity.IsAuthenticated)
+              {
+                @if(User.IsInRole("Superadmin"))
+                {
+                  <p style="margin:0px;display:inline">|</p>
+                  <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="CommentRemove" asp-route-id="@comment.Id">Sil</button>
+                }
+              }
             </form>
           </td>
           <td>@comment.Advert.User.FirstName @comment.Advert.User.LastName</td>

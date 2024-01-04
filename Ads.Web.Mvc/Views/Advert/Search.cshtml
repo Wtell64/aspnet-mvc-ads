@@ -140,7 +140,7 @@
                   <div class="product-item bg-light" data-price="@advert.Price">
                     <div class="card">
                       <div class="thumb-content">
-                        <a href="@Url.Action("Detail", new { id = advert.Id })">
+                        <a href="@Url.Action("Detail", new { id = advert.Id,titleSlug=advert.Title })">
                           @if (Uri.IsWellFormedUriString(advert.AdvertImages.First().ImagePath, UriKind.Absolute))
                           {
                             <img class="card-img-top img-fluid" src="@advert.AdvertImages.FirstOrDefault().ImagePath" alt="Card image cap">
@@ -155,10 +155,10 @@
 
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title"><a href="@Url.Action("Detail", new { id = advert.Id  })">@advert.Title</a></h4>
+                        <h4 class="card-title"><a href="@Url.Action("Detail", new { id = advert.Id,titleSlug=advert.Title  })">@advert.Title</a></h4>
                         <ul class="list-inline product-meta">
                           <li class="list-inline-item">
-                            <a href="@Url.Action("Detail", new { id = advert.Id  })">
+                            <a href="@Url.Action("Detail", new { id = advert.Id ,titleSlug=advert.Title })">
                               <i class="fa fa-folder-open-o"></i>@foreach (var subcategory in advert.SubcategoryAdverts)
                               {
                                 <span>@subcategory.Subcategory.Name</span>
@@ -166,7 +166,7 @@
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="@Url.Action("Detail", new { id = advert.Id  })"><i class="fa fa-calendar"></i>@advert.CreatedDate.ToUniversalTime().ToLongDateString()</a>
+                            <a href="@Url.Action("Detail", new { id = advert.Id ,titleSlug=advert.Title })"><i class="fa fa-calendar"></i>@advert.CreatedDate.ToUniversalTime().ToLongDateString()</a>
                           </li>
                         </ul>
                         @if (advert.Description.Length > 26)

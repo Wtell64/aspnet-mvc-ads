@@ -70,15 +70,24 @@
                   <div class="product-item bg-light" data-price="@advert.Price">
                     <div class="card">
                       <div class="thumb-content">
-                        <a href="@Url.Action("Detail","Advert", new { id = advert.Id  })">
-                          <img class="card-img-top img-fluid" src="~/template/images/products/products-1.jpg" alt="Card image cap">
+                        <a href="@Url.Action("Detail","Advert", new { id = advert.Id,titleSlug=advert.Title  })">
+                          @if (Uri.IsWellFormedUriString(advert.AdvertImages.First().ImagePath, UriKind.Absolute))
+                          {
+                            <img class="card-img-top img-fluid" src="@advert.AdvertImages.FirstOrDefault().ImagePath" alt="Card image cap">
+                          }
+                          else
+                          {
+                            <img class="card-img-top img-fluid"
+                                 src="@((advert.AdvertImages != null && advert.AdvertImages.Any()) ? Url.Content($"~/uploads/{advert.AdvertImages.First().ImagePath}") : "~/template/images/products/products-1.jpg")"
+                                 alt="Card image cap" />
+                          }
                         </a>
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title"><a href="@Url.Action("Detail","Advert", new { id = advert.Id  })">@advert.Title</a></h4>
+                        <h4 class="card-title"><a href="@Url.Action("Detail","Advert", new { id = advert.Id,titleSlug = advert.Title  })">@advert.Title</a></h4>
                         <ul class="list-inline product-meta">
                           <li class="list-inline-item">
-                            <a href="@Url.Action("Detail","Advert" , new { id = advert.Id  })">
+                            <a href="@Url.Action("Detail","Advert" , new { id = advert.Id,titleSlug=advert.Title  })">
                               <i class="fa fa-folder-open-o"></i>
                               @foreach (var subcategory in advert.SubcategoryAdverts)
                               {

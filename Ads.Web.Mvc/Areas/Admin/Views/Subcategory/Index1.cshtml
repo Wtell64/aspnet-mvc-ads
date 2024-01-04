@@ -43,11 +43,15 @@
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Edit" asp-route-id="@subcategory.Id" class="btn btn-primary">Düzenle</a> |
-              
-              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Delete" asp-route-id="@subcategory.Id" class="btn btn-danger">Sil</a> |
-
-
+              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Edit" asp-route-id="@subcategory.Id" class="btn btn-primary">Düzenle</a> 
+              @if (User.Identity != null && User.Identity.IsAuthenticated)
+              {
+                @if (User.IsInRole("Superadmin"))
+                {
+                  <p style="margin:0;display:inline">|</p>
+                  <a asp-area="Admin" asp-controller="Subcategory" asp-action="Delete" asp-route-id="@subcategory.Id" class="btn btn-danger">Sil</a>
+                }
+              }
             </form>
           </td>
           <td>@subcategory.Name</td>

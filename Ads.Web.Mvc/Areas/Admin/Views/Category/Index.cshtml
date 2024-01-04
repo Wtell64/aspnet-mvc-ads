@@ -47,7 +47,14 @@
               <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-primary">Düzenle</a> |
 
              @* <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id">Sil</button> |*@
-              <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Sil</a>
+              @if (User.Identity != null && User.Identity.IsAuthenticated)
+              {
+                @if (User.IsInRole("Superadmin"))
+                {
+                   <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Sil</a>
+                  <p style="margin:0;display:inline">|</p>
+                }
+              }
               <a asp-area="Admin" asp-controller="Subcategory" asp-action="Index1" asp-route-categoryId="@category.Id" class="btn btn-warning">Alt Kategoriler</a>
             </form>
           </td>

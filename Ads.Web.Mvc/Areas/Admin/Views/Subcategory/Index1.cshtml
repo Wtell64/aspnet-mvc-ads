@@ -1,14 +1,14 @@
-﻿@using Ads.Business.Dtos.Category
-@model IEnumerable<Ads.Business.Dtos.Category.CategoryViewDto>
+﻿@using Ads.Business.Dtos.Subcategory
+@model IEnumerable<Ads.Business.Dtos.Subcategory.SubcategoryViewDto>
 @{
-  
+
   var successMessage = TempData["successMessage"]?.ToString();
   var errorMessage = TempData["errorMessage"]?.ToString();
 }
 
-<div class="container-fluid">
+<div class="container">
 
-  <h1>Kategori Listesi</h1>
+  <h1>Alt Kategori Listesi</h1>
   @if (!string.IsNullOrWhiteSpace(successMessage))
   {
     <div class="alert alert-success">
@@ -27,37 +27,52 @@
     </div>
 
   }
-  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Category" asp-action="Create" >Kategori Ekle</a>
+  <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Subcategory" asp-action="Create" asp-route-categoryId="@ViewBag.CategoryId">Alt Kategori Ekle</a>
   <table class="table table-striped" id='myTable'>
     <thead>
       <tr>
         <th>İşlem</th>
-
+        <th>Alt Kategori Adı</th>
         <th>Kategori Adı</th>
-        <th>Açıklama</th>
       </tr>
     </thead>
 
     <tbody>
-      @foreach (var category in Model)
+      @foreach (var subcategory in Model)
       {
         <tr>
           <td>
             <form method="post">
-              <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-primary">Düzenle</a> |
+              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Edit" asp-route-id="@subcategory.Id" class="btn btn-primary">Düzenle</a> |
+              
+              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Delete" asp-route-id="@subcategory.Id" class="btn btn-danger">Sil</a> |
 
-             @* <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id">Sil</button> |*@
-              <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Sil</a>
-              <a asp-area="Admin" asp-controller="Subcategory" asp-action="Index1" asp-route-categoryId="@category.Id" class="btn btn-warning">Alt Kategoriler</a>
+
             </form>
           </td>
-          <td>@category.Name</td>
-          <td>@category.Description</td>
+          <td>@subcategory.Name</td>
+          <td>
+            @* @if (subcategory.Category != null)
+          {
+          @subcategory.Category.Name
+          }*@
+            @*@{
+              var categoryName = Model.FirstOrDefault(c => c.Id == subcategory.CategoryId)?.Category?.Name;
+            }
+
+            @if (!string.IsNullOrEmpty(categoryName))
+            {
+              @categoryName
+            }*@
+            @subcategory.Category?.Name
+          </td>
         </tr>
       }
     </tbody>
   </table>
-  
+  <div class="d-flex mt-4 justify-content-end">
+    <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="btn btn-primary" style="width:150px">Listeye Geri Dön</a>
+  </div>
 </div>
 
 

@@ -24,7 +24,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     public async Task<IActionResult> Index()
     {
 
-      var subcategories = await _subcategoryService.GetListAsync<SubcategoryViewDto>(includeProperties:"Category");
+
+      var subcategories = await _subcategoryService.GetListAsync<SubcategoryViewDto>(includeProperties: "Category");
 
       if (subcategories == null) { return RedirectToAction("Index", "Home"); }
 
@@ -32,37 +33,40 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
 
     }
-    [HttpGet]
-    public async Task<IActionResult> Create() 
+    public async Task<IActionResult> Index1(int categoryId)
     {
-      var categoriesResult = await _categoryService.GetListAsync<CategoryViewDto>();
-      if (categoriesResult.Success)
-      {
-        var categories = categoriesResult.Data;
-        ViewBag.Categories = new SelectList(categories, "Id", "Name");
-      }
+
+      var subcategories = await _subcategoryService.GetListAsync<SubcategoryViewDto>(a => a.CategoryId == categoryId, includeProperties: "Category");
       
-      return View();
+      if (subcategories == null) { return RedirectToAction("Index", "Home"); }
+      ViewBag.CategoryId = categoryId;
+      return View(subcategories.Data);
+
+    }
+    [HttpGet]
+    public IActionResult Create(int categoryId) 
+    {
+       SubcategoryViewDto subdto = new SubcategoryViewDto(){ CategoryId=categoryId};
+      
+      return View(subdto);
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create(SubcategoryViewDto subdto)
+    public async Task<IActionResult> Create(SubcategoryViewDto subcategorydto)
     {
       try
       {
-        if (subdto == null) { return RedirectToAction("Index"); }
+        if (subcategorydto == null) { return RedirectToAction("Index1"); }
 
-        var validateResult = _subcategoryService.Validate(subdto);
+        var validateResult = _subcategoryService.Validate(subcategorydto);
         if (validateResult.Data.IsValid == false)
         {
           validateResult.Data.AddToModelState(this.ModelState);
-          var categories = await _categoryService.GetListAsync<Category>();
-          //var categorySelectList = new SelectList(categories.Data, "Id", "Name");
-          //ViewBag.Categories = categorySelectList;
-          return View(subdto);
+         
+          return View(subcategorydto);
         }
 
-        await _subcategoryService.AddAsync(subdto);
+        await _subcategoryService.AddAsync<SubcategoryViewDto>(subcategorydto);
         await _subcategoryService.SaveAsync();
         TempData["successMessage"] = Messages.SubCategoryAdded;
 
@@ -73,15 +77,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         ModelState.AddModelError("Error", "Ekleme sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
       }
-       return RedirectToAction("Index");
+       return RedirectToAction("Index1",new {categoryId= subcategorydto.CategoryId});
     }
     [HttpGet]
     public async Task<IActionResult> EditAsync(int id) 
     {
-      if (id == 0) { return RedirectToAction("Index"); }
+      if (id == 0) { return RedirectToAction("Index1"); }
       var subcategory = await _subcategoryService.FindByIdAsync<SubcategoryViewDto>(id);
       
-      if (subcategory==null) { return RedirectToAction("Index"); }
+      if (subcategory==null) { return RedirectToAction("Index1"); }
       var categories = await _categoryService.GetListAsync<Category>();
       var categorySelectList = new SelectList(categories.Data, "Id", "Name");
       ViewBag.Categories = categorySelectList;
@@ -93,7 +97,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     {
       try
       {
-        if (subcategorydto == null) { return RedirectToAction("Index"); }
+        if (subcategorydto == null) { return RedirectToAction("Index1"); }
 
 
         var validationResult = _subcategoryService.Validate(subcategorydto);
@@ -118,7 +122,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         ModelState.AddModelError("Error", "Düzenleme sırasında bir hata oluştu");
         TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
       }
-      return RedirectToAction("Index");
+      return RedirectToAction("Index1", new { categoryId = subcategorydto.CategoryId });
 
      
     }
@@ -135,13 +139,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     [HttpPost, ActionName("Delete")]
     public async Task<IActionResult> DeletePostAsync(int id)
     {
-      if (id == 0) { return RedirectToAction("Index"); }
+      var subcategorydto = await _subcategoryService.FindByIdAsync<SubcategoryViewDto>(id);
+
+			if (id == 0) { return RedirectToAction("Index"); }
 
       _subcategoryService.DeleteById(id);
       await _subcategoryService.SaveAsync();
       TempData["successMessage"] = Messages.SubcategoryDeleted;
 
-      return RedirectToAction("Index");
+      return RedirectToAction("Index1",new { categoryId = subcategorydto.Data.CategoryId });
     }
   }
 }

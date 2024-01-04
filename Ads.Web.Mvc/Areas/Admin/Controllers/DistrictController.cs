@@ -1,21 +1,24 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.District;
 using FutureCafe.Core.Utilities.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
   [Area("Admin")]
-	[Authorize(Roles = "Admin,Superadmin")]
-	public class DistrictController : Controller
+  [Authorize(Roles = "Admin,Superadmin")]
+  public class DistrictController : Controller
   {
 
-    IDistrictService _districtService;
-
-    public DistrictController(IDistrictService districtService)
+    private readonly IDistrictService _districtService;
+    private readonly IToastNotification _toastNotification;
+    public DistrictController(IDistrictService districtService, IToastNotification toastNotification)
     {
       _districtService = districtService;
+      _toastNotification = toastNotification;
     }
 
     public async Task<IActionResult> Index(int cityId)
@@ -54,6 +57,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       await _districtService.AddAsync<DistrictCreateOrEditDto>(districtDto);
       await _districtService.SaveAsync();
 
+      _toastNotification.AddSuccessToastMessage(Messages.DistrictAdded);
+
       return RedirectToAction("Index", new { cityId = districtDto.CityId });
     }
 
@@ -87,14 +92,16 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       _districtService.Update(districtDto);
       await _districtService.SaveAsync();
 
+      _toastNotification.AddWarningToastMessage(Messages.DistrictEdited);
+
       return RedirectToAction("Index", new { cityId = districtDto.CityId });
     }
 
     //DELETE
 
     [HttpGet]
-		[Authorize("Superadmin")]
-		public async Task<IActionResult> Delete(int id)
+    [Authorize("Superadmin")]
+    public async Task<IActionResult> Delete(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 
@@ -107,8 +114,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-		[Authorize("Superadmin")]
-		public async Task<IActionResult> DeletePost(int id)
+    [Authorize("Superadmin")]
+    public async Task<IActionResult> DeletePost(int id)
     {
       var districtDto = await _districtService.FindByIdAsync<DistrictViewDto>(id);
 
@@ -116,6 +123,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       _districtService.DeleteById(id);
       await _districtService.SaveAsync();
+
+      _toastNotification.AddWarningToastMessage(Messages.DistrictDeleted);
 
       return RedirectToAction("Index", new { cityId = districtDto.Data.CityId });
     }

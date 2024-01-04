@@ -1,7 +1,9 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.City;
 using FutureCafe.Core.Utilities.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
@@ -9,11 +11,12 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
   public class CityController : Controller
   {
     ICityService _cityService;
+    private readonly IToastNotification _toastNotification;
 
-
-    public CityController(ICityService cityService)
+    public CityController(ICityService cityService, IToastNotification toastNotification)
     {
       _cityService = cityService;
+      _toastNotification = toastNotification;
     }
 
     public async Task<IActionResult> Index()
@@ -49,6 +52,18 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       await _cityService.AddAsync<CityCreateOrEditDto>(cityDto);
       await _cityService.SaveAsync();
 
+      //Success
+      _toastNotification.AddSuccessToastMessage(Messages.CityAdded);
+
+      //Info
+      //_toastNotification.AddInfoToastMessage();
+
+      //Warning
+      //_toastNotification.AddWarningToastMessage();
+
+      //Error
+      //_toastNotification.AddErrorToastMessage();
+
       return RedirectToAction("Index");
     }
     //EDIT
@@ -81,6 +96,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       _cityService.Update(cityDto);
       await _cityService.SaveAsync();
 
+      _toastNotification.AddSuccessToastMessage(Messages.CityEdited);
+
       return RedirectToAction("Index");
     }
 
@@ -106,6 +123,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       _cityService.DeleteById(id);
       await _cityService.SaveAsync();
+
+      _toastNotification.AddWarningToastMessage(Messages.CityDeleted);
 
       return RedirectToAction("Index");
     }

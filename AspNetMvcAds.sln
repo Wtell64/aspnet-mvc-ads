@@ -5,13 +5,13 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads.Web.Mvc", "Ads.Web.Mvc\Ads.Web.Mvc.csproj", "{B2BECA7B-11E5-4C2D-89E3-7017D50B7268}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads.Entities", "Ads.Entities\Ads.Entities.csproj", "{CC296155-04D9-4E46-A46E-277FE2AA3C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads.Entities", "Ads.Entities\Ads.Entities.csproj", "{CC296155-04D9-4E46-A46E-277FE2AA3C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads.Core", "Ads.Core\Ads.Core.csproj", "{A0B09EED-D0E7-4CFD-B408-DC8C8C439C91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads.Core", "Ads.Core\Ads.Core.csproj", "{A0B09EED-D0E7-4CFD-B408-DC8C8C439C91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads.Dal", "Ads.Dal\Ads.Dal.csproj", "{BDDEE30F-5BAF-4E03-BC40-0D1F90B2DFA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads.Dal", "Ads.Dal\Ads.Dal.csproj", "{BDDEE30F-5BAF-4E03-BC40-0D1F90B2DFA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads.Business", "Ads.Business\Ads.Business.csproj", "{98F6EFC4-C78B-4636-AE70-C99B79CBBBC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ads.Business", "Ads.Business\Ads.Business.csproj", "{98F6EFC4-C78B-4636-AE70-C99B79CBBBC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

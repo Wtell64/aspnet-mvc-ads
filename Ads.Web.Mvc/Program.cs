@@ -1,6 +1,9 @@
 using Ads.Business.Extentions;
 using Ads.Core.Extensions;
 using Ads.Dal.Extentions;
+using Ads.Web.Mvc.Middlewares;
+using Ads.Web.Mvc.Sinks;
+using NToastNotify;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,14 +15,27 @@ builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddBusinessServices(builder.Configuration);
 builder.Services.AddCoreServices();
 
+builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+{
+  ProgressBar = false,
+  PositionClass = ToastPositions.BottomCenter
+});
+builder.Services.AddMvc().AddNToastNotifyNoty(new NotyOptions
+{
+  ProgressBar = true,
+  Timeout = 5000,
+  Theme = "mint"
+});
+
 var logger = new LoggerConfiguration()
-.ReadFrom.Configuration(builder.Configuration)   //loglamaya nerden baslicam
-.Enrich.FromLogContext()
+.ReadFrom.Configuration(builder.Configuration)
+.WriteTo.CustomSink()
+.Enrich.FromLogContext()//loglamaya nerden baslicam
 .CreateLogger();
 
 builder.Logging.ClearProviders(); //loglamanin sahibi degilsin
 builder.Logging.AddSerilog(logger); //bu isi logger yapicak
-																		// builder.Logging.AddConsole();
+                                    // builder.Logging.AddConsole();
 
 #region Identity
 
@@ -28,14 +44,16 @@ builder.Services.AddIdentityWithExtensions();
 builder.Services.ConfigureApplicationCookie(options =>
 {
 
-	var cookieBuilder = new CookieBuilder();
-	cookieBuilder.Name = "AspNetMvcAds.Web";
+  var cookieBuilder = new CookieBuilder();
+  cookieBuilder.Name = "AspNetMvcAds.Web";
 
-	options.LoginPath = new PathString("/Home/Signin"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
 
-	options.Cookie = cookieBuilder;
-	options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie saklama ömrü.
-	options.SlidingExpiration = true; // Kullanýcý cookie ömrü bitmeden giriþ yaparsa üzerine eklemesini saðlar.
+  options.LoginPath = new PathString("/Auth/Login"); // KullanÃ½cÃ½lar Ã¼ye olmadan kullanÃ½cÃ½ sayfalarÃ½na gitmeye kalkarsa yÃ¶nlendireceÃ°i sayfa.
+
+
+  options.Cookie = cookieBuilder;
+  options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie saklama Ã¶mrÃ¼.
+  options.SlidingExpiration = true; // KullanÃ½cÃ½ cookie Ã¶mrÃ¼ bitmeden giriÃ¾ yaparsa Ã¼zerine eklemesini saÃ°lar.
 
 });
 #endregion
@@ -45,25 +63,31 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Home/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-	app.UseHsts();
+  app.UseExceptionHandler("/Home/Error");
+  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+  app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
+
 
 app.UseRouting();
 
 app.UseAuthentication();// identity
 app.UseAuthorization();
 
-app.MapControllerRoute(
-		name: "areas",
-		pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+app.UseNToastNotify();
 
 app.MapControllerRoute(
-		name: "default",
-		pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

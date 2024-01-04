@@ -1,11 +1,9 @@
 
-﻿using Ads.Entities.Concrete.Identity;
-﻿using Ads.Business.Abstract;
+using Ads.Business.Abstract;
 using Ads.Business.Dtos.Admin;
 using Ads.Business.Dtos.Users;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +18,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     private readonly ICategoryService _categoryService;
     private readonly IAdvertService _advertService;
     private readonly ICityService _cityService;
+
     public HomeController(UserManager<AppUser> userManager, ICategoryService categoryService, IAdvertService advertService, ICityService cityService)
     {
       _userManager = userManager;
@@ -28,19 +27,18 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       _cityService = cityService;
     }
 
-
     [HttpGet]
-    public  async Task<IActionResult> Index()
+    public async Task<IActionResult> Index()
     {
       var adverts = _advertService.GetList<Advert>().Data;
       var advertWithHighestPrice = adverts.OrderByDescending(a => a.Price).FirstOrDefault();
 
 
-			if (User.Identity.IsAuthenticated)
-			{
-				var hasUser = await _userManager.FindByNameAsync(User.Identity.Name);
-				TempData["User"] = $"{hasUser.FirstName} {hasUser.LastName}";
-			}
+      if (User.Identity.IsAuthenticated)
+      {
+        var hasUser = await _userManager.FindByNameAsync(User.Identity.Name);
+        TempData["User"] = $"{hasUser.FirstName} {hasUser.LastName}";
+      }
 
       HomeIndexDto homeIndexDto = new HomeIndexDto()
       {

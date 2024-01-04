@@ -7,6 +7,7 @@ using Ads.Business.Dtos.AdvertImage;
 using Ads.Business.Dtos.Category;
 using Ads.Business.Dtos.City;
 using Ads.Business.Dtos.District;
+using Ads.Business.Dtos.Page;
 using Ads.Business.Dtos.Setting;
 using Ads.Business.Dtos.Subcategory;
 using Ads.Entities.Concrete;
@@ -44,6 +45,8 @@ namespace Ads.Business.Mapping
 
       CreateMap<District, DistrictViewDto>().ReverseMap();
       CreateMap<District, DistrictCreateOrEditDto>().ReverseMap();
+
+      CreateMap<Page,PageCRUDDto>().ReverseMap();
     }
   }
 }

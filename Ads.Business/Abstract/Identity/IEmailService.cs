@@ -2,5 +2,6 @@
 
 public interface IEmailService
 {
-	Task SendEmailAsync(string approvalEmailLink, string toEMail, string subject, string content);
+  Task SendEmailAsync(string approvalEmailLink, string toEMail, string subject, string content);
+  Task RecieveEmailAsync(string message, string userName, string userEmail);
 }

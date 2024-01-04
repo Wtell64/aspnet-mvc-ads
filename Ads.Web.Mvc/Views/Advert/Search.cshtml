@@ -4,7 +4,7 @@
 @{
 }
 @model IEnumerable<Ads.Entities.Concrete.Advert>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <section class="page-search">
   <div class="container">
@@ -41,6 +41,29 @@
         <div class="search-result bg-gray">
           <h2>Arama Sonuçları @ViewBag.Query</h2>
           <p>@ViewBag.AdvertCount tane reklam bulundu - @DateTime.Now.ToString("dd MMMM, yyyy")</p>
+          <div class="py-3 ">
+            @if (ViewBag.Query != null)
+            {
+              <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = "",category = ViewBag.Category, location = ViewBag.Country,minPrice = ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })"><span>Reklam Adı: @ViewBag.Query  <i class="fa-solid fa-xmark"></i></span></a> </button>
+            }
+            @if (ViewBag.Category != null)
+            {
+              <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = ViewBag.Page,category = "", location = ViewBag.Country,minPrice = ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })"><span>Reklam Kategorisi: @ViewBag.Category <i class="fa-solid fa-xmark"></i></span></a> </button>
+            }
+            @if (ViewBag.Location != null)
+            {
+              <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = ViewBag.Page,category = ViewBag.Category, location = "",minPrice = ViewBag.MinPrice, ViewBag.MaxPrice, condition = ViewBag.Condition })"><span>Reklam Lokasyonu: @ViewBag.Location <i class="fa-solid fa-xmark"></i></span></a> </button>
+            }
+            @if (ViewBag.MinPrice != null && ViewBag.MinPrice != 0)
+            {
+              <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = ViewBag.Page,category = ViewBag.Category, location = ViewBag.Country,minPrice = 0, ViewBag.MaxPrice, condition = ViewBag.Condition })"><span>Alt Limit: @ViewBag.MinPrice <i class="fa-solid fa-xmark"></i></span></a> </button>
+            }
+            @if (ViewBag.MaxPrice != null && ViewBag.MaxPrice != 5000)
+            {
+              <button class="cancel-btn "><a href="@Url.Action("ChangePage", new { page = 1, query = ViewBag.Page,category = ViewBag.Category, location = ViewBag.Country,minPrice = ViewBag.MinPrice,maxPrice = 5000, condition = ViewBag.Condition })"><span>Üst Limit: @ViewBag.MaxPrice <i class="fa-solid fa-xmark"></i></span></a> </button>
+            }
+          </div>
+
         </div>
       </div>
     </div>
@@ -48,7 +71,7 @@
       <div class="col-md-3">
         <div class="category-sidebar">
           <div class="widget category-list">
-            <h4 class="widget-header">Şehir</h4>
+            <h4 class="widget-header">Kategoriler</h4>
             <ul class="category-list">
               @foreach (var subcategory in ViewBag.Subcategories)
               {
@@ -59,7 +82,7 @@
             </ul>
           </div>
           <div class="widget category-list">
-            <h4 class="widget-header">Country</h4>
+            <h4 class="widget-header">Lokasyonlar</h4>
             <ul class="category-list">
               @foreach (var country in ViewBag.Countries)
               {
@@ -72,7 +95,7 @@
             <div class="block">
               <div id="priceSlider"></div>
               <div class="d-flex justify-content-between mt-2">
-                <span class="value py-2" id="priceRangeDisplay">$10 - $5000</span>
+                <span class="value py-2" id="priceRangeDisplay">$@ViewBag.MinPrice - $@ViewBag.MaxPrice</span>
               </div>
               <button class="btn btn-primary mt-2" id="searchButton">Arama Yap!</button>
             </div>
@@ -117,9 +140,19 @@
                   <div class="product-item bg-light" data-price="@advert.Price">
                     <div class="card">
                       <div class="thumb-content">
-                        <a href="@Url.Action("Detail", new { id = advert.Id  })">
-                          <img class="card-img-top img-fluid" src="~/template/images/products/products-1.jpg" alt="Card image cap">
+                        <a href="@Url.Action("Detail", new { id = advert.Id })">
+                          @if (Uri.IsWellFormedUriString(advert.AdvertImages.First().ImagePath, UriKind.Absolute))
+                          {
+                            <img class="card-img-top img-fluid" src="@advert.AdvertImages.FirstOrDefault().ImagePath" alt="Card image cap">
+                          }
+                          else
+                          {
+                            <img class="card-img-top img-fluid"
+                                 src="@((advert.AdvertImages != null && advert.AdvertImages.Any()) ? Url.Content($"~/uploads/{advert.AdvertImages.First().ImagePath}") : "~/template/images/products/products-1.jpg")"
+                                 alt="Card image cap" />
+                          }
                         </a>
+
                       </div>
                       <div class="card-body">
                         <h4 class="card-title"><a href="@Url.Action("Detail", new { id = advert.Id  })">@advert.Title</a></h4>
@@ -133,7 +166,7 @@
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a href="#"><i class="fa fa-calendar"></i>@advert.CreatedDate.ToUniversalTime().ToLongDateString()</a>
+                            <a href="@Url.Action("Detail", new { id = advert.Id  })"><i class="fa fa-calendar"></i>@advert.CreatedDate.ToUniversalTime().ToLongDateString()</a>
                           </li>
                         </ul>
                         @if (advert.Description.Length > 26)
@@ -250,7 +283,34 @@
         </div>
       </div>
     </div>
+  </div>
 </section>
+
+<style>
+  .card-img-top {
+    width: 100%;
+    height: 12vw;
+    object-fit: cover;
+  }
+
+  .cancel-btn {
+    border: none;
+    border-radius: 10%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: black;
+  }
+
+    .cancel-btn:hover {
+      background-color: #007bff;
+      color: white;
+    }
+</style>
 
 @section scripts {
 
@@ -262,7 +322,7 @@
         min: 0,
         max: 5000,
         step: 5,
-        value: [0, 5000],
+        value: [@ViewBag.MinPrice, @ViewBag.MaxPrice],
       });
 
       // Update the price range display on slider change
@@ -277,7 +337,14 @@
         var maxPrice = sliderValues[1];
 
         // Redirect to the FilterByPrice action with the selected price range
-        window.location.href = "/Advert/ChangePage?minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&page=" + @ViewBag.Page + "&query=" + @ViewBag.Query + "&category=" + @ViewBag.Category + "&location=" + @ViewBag.Location + "&condition=" + @ViewBag.Condition;
+        window.location.href = "/Advert/ChangePage?minPrice=" + minPrice +
+          "&maxPrice=" + maxPrice +
+          "&page=" + '@Html.Raw(ViewBag.Page)' +
+          "&query=" + '@Html.Raw(ViewBag.Query)' +
+          "&category=" + '@Html.Raw(ViewBag.Category)' +
+          "&location=" + '@Html.Raw(ViewBag.Location)' +
+          "&condition=" + '@Html.Raw(ViewBag.Condition)';
+
       });
     });
   </script>

@@ -10,6 +10,7 @@ namespace Ads.Dal.Extentions
 
 
 
+
   public static class DalServiceRegisteration
   {
     public static IServiceCollection AddDataServices(this IServiceCollection services, IConfiguration configuration)
@@ -30,7 +31,8 @@ namespace Ads.Dal.Extentions
       services.AddScoped<ISettingDal, EfSettingDal>();
 
 
-			return services;
-		}
-	}
+      return services;
+    }
+  }
+
 }

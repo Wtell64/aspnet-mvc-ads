@@ -22,10 +22,10 @@
 								<form asp-area="" asp-controller="advert" asp-action="search">
 									<div class="form-row">
 										<div class="form-group col-md-4">
-											<input type="text" name="query" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="What are you looking for">
+											<input type="text" name="query" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="Reklam Adý">
 										</div>
 										<div class="form-group col-md-3">
-											<input type="text" name="category" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="Category">
+											<input type="text" name="category" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="Kategori">
 										</div>
 @* 										<div class="form-group col-md-3">
 											<select class="w-100 form-control mt-lg-1 mt-md-2">
@@ -36,10 +36,10 @@
 											</select>
 										</div> *@
 										<div class="form-group col-md-3">
-											<input type="text" name="location" class="form-control my-2 my-lg-1" id="inputLocation4" placeholder="Location">
+											<input type="text" name="location" class="form-control my-2 my-lg-1" id="inputLocation4" placeholder="Lokasyon">
 										</div>
 										<div class="form-group col-md-2 align-self-center">
-											<button type="submit" class="btn btn-primary">Search Now</button>
+											<button type="submit" class="btn btn-primary">Arama Yap</button>
 										</div>
 									</div>
 								</form>
@@ -225,12 +225,11 @@
 			<div class="col-md-8">
 				<div class="content-holder">
 					<h2>
-						Start today to get more exposure and
-						grow your business
+						Ýþinizi büyütmek ve daha fazla görünürlük elde etmek için bugün baþlayýn.
 					</h2>
 					<ul class="list-inline mt-30">
-						<li class="list-inline-item"><a class="btn btn-main" asp-area ="" asp-controller="Home" asp-action="AdListing">Add Listing</a></li>
-						<li class="list-inline-item"><a class="btn btn-secondary" href="category.html">Browser Listing</a></li>
+						<li class="list-inline-item"><a class="btn btn-main" asp-area ="" asp-controller="Home" asp-action="AdListing">Reklam Ekle</a></li>
+						<li class="list-inline-item"><a class="btn btn-secondary" asp-area="" asp-controller="Advert" asp-action="Search">Reklamlarý Listele</a></li>
 					</ul>
 				</div>
 			</div>

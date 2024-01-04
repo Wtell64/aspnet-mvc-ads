@@ -1,41 +1,43 @@
-﻿@using Ads.Business.Dtos.Subcategory
 @model Ads.Business.Dtos.Subcategory.SubcategoryViewDto
 @{
-	var successMessage = TempData["successMessage"]?.ToString();
-	var errorMessage = TempData["errorMessage"]?.ToString();
+  var successMessage = TempData["successMessage"]?.ToString();
+  var errorMessage = TempData["errorMessage"]?.ToString();
 }
+<div class="container-fluid">
 <div class="row">
-	<div class="col-xxl-6">
-		<div class="card card-xxl-strecth mb-3 mb-xl-8">
-			<div class="card-header">
-				<h3>Alt Kategori Ekle</h3>
-			</div>
+  <div class="col-xxl-6">
+    <div class="card card-xxl-strecth mb-3 mb-xl-8">
+      <div class="card-header">
+        <h3>AltKategori Ekle</h3>
+      </div>
 
-			<div class="card-body">
-				@if (!string.IsNullOrWhiteSpace(errorMessage))
-				{
-					<div class="alert alert-danger">
-						<strong>Error!</strong>@errorMessage
-						<button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
-					</div>
+      <div class="card-body">
+        @if (!string.IsNullOrWhiteSpace(errorMessage))
+        {
+          <div class="alert alert-danger">
+            <strong>Error!</strong>@errorMessage
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+          </div>
 
-				}
-				<form asp-area="Admin" asp-controller="Subcategory" asp-action="Create" method="post">
-					<div class="mb-3">
-						<label asp-for="Name" class="form-label">Adı</label>
-						<input asp-for="Name" class="form-control" />
-						<span asp-validation-for="Name" class="text-danger"></span>
-					</div>
-					<div class="mb-3">
-						<input asp-for="CategoryId" type="hidden" class="form-control" />
-						<span asp-validation-for="CategoryId" class="text-danger"></span>
-					</div>
-				
-
-					<a class="btn btn-secondary" asp-area="Admin" asp-controller="Subcategory" asp-action="Index1" asp-route-categoryId="@Model.CategoryId">Listeye Geri Dön</a>
-					<button type="submit" class="btn btn-success">Kaydet</button>
-				</form>
-			</div>
-		</div>
-	</div>
+        }
+        <form asp-area="Admin" asp-controller="Subcategory" asp-action="Create" method="post">
+          <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label asp-for="CategoryId" class="form-label">Kategori</label>
+            <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-select">
+              <option value="">-- Kategori Seç --</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+          </div>
+          <a class="btn btn-secondary" asp-controller="Subcategory" asp-action="Index">Listeye Geri Dön</a>
+          <button type="submit" class="btn btn-success">Kaydet</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

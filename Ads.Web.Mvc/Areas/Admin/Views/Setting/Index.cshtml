@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th>İşlemler</th>
+        <th>Oluşturulma Tarihi</th>
         <th>Düzenlenme Tarihi</th>
         <th>Ayar Sahibi</th>
         <th>Ayar Adı</th>
@@ -22,9 +23,10 @@
           <td>
             <form method="post">
               <a asp-area="Admin" asp-controller="Setting" asp-action="Edit" asp-route-id="@setting.Id" class="btn btn-primary">Düzenle</a> |
-              <a asp-area="Admin" asp-controller="Setting" asp-action="Delete" asp-route-id="@setting.Id" class="btn btn-danger">Sil</a> |
+              <a asp-area="Admin" asp-controller="Setting" asp-action="Delete" asp-route-id="@setting.Id" class="btn btn-danger">Sil</a> 
             </form>
           </td>
+          <td>@setting.CreatedDate</td>
           <td>@setting.UpdatedDate</td>
           <td>@setting.User.FirstName @setting.User.LastName</td>
           <td>@setting.Name</td>

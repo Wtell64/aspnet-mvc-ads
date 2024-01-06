@@ -55,13 +55,6 @@
 							<h3>Giriş Yap</h3>
 						</div>
 
-						@if (TempData["tokenMessage"] is not null)
-						{
-							<div class="alert alert-warning fw-bold">
-								@TempData["tokenMessage"]
-							</div>
-						}
-
 						<div asp-validation-summary="ModelOnly" class="alert alert-danger fw-bold" role="alert"></div>
 
 						<form asp-controller="Auth" asp-action="Login" asp-route-returUrl="@Context.Request.Query["redirectUrl"]" method="post" class="p-4">

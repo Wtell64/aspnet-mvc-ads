@@ -35,7 +35,7 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label>Sayfa İçeriği: </label>
-              <textarea rows="5" value="" asp-for=@Model.Content class="form-control" id="editor"> </textarea>
+              <textarea  rows="5" value="" asp-for=@Model.Content class="form-control" id="editor"> </textarea>
               <span asp-validation-for="@Model.Content" class="text-danger"></span>
             </div>
           </div>
@@ -52,3 +52,14 @@
     </div>
   </div>
 </div>
+@section Scripts {
+  <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#editor'))
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+}

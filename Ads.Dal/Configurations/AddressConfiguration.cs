@@ -26,7 +26,9 @@ namespace Ads.Dal.Configurations
       new Address { Id = 2, UserId = 4, CityId = 2, DistrictId = 3, PostCode = "25123", Country = "Türkiye", DetailedAddress = "Kerem Sokak Kus Apartmani" },
       new Address { Id = 3, UserId = 5, CityId = 4, DistrictId = 7, PostCode = "26120", Country = "Türkiye", DetailedAddress = "Reşadiye cami üstü" },
       new Address { Id = 4, UserId = 6, CityId = 5, DistrictId = 10, PostCode = "01240", Country = "Türkiye", DetailedAddress = "Akşemsettin Mahallesi" },
-      new Address { Id = 5, UserId = 7, CityId = 3, DistrictId = 6, Country = "Türkiye", PostCode = "06810", DetailedAddress = "Odabaşı Cd." }
+      new Address { Id = 5, UserId = 7, CityId = 3, DistrictId = 6, Country = "Türkiye", PostCode = "06810", DetailedAddress = "Odabaşı Cd." },
+      new Address { Id = 6, UserId = 1, CityId = 3, DistrictId = 6, Country = "Türkiye", PostCode = "06810", DetailedAddress = "Odabaşı Cd." },
+      new Address { Id = 7, UserId = 2, CityId = 3, DistrictId = 6, Country = "Türkiye", PostCode = "06810", DetailedAddress = "Odabaşı Cd." }
       );
     }
   }

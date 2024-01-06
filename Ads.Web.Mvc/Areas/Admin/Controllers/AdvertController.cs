@@ -96,6 +96,13 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         //TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
 				
 			}
+
+      var users = _userManager.Users.ToList();
+      var usersSelectList = users
+          .Select(users => new SelectListItem { Value = users.Id.ToString(), Text = users.FirstName + " " + users.LastName })
+          .ToList();
+      ViewBag.Users = usersSelectList;
+
       return View();
     }
 

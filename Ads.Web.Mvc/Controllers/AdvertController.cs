@@ -146,7 +146,7 @@ namespace Ads.Web.Mvc.Controllers
       _advertService.Update(advert.Data);
       await _advertService.SaveAsync();
 
-      return RedirectToAction("Detail", "Advert", new { id = advId });
+      return RedirectToAction("Detail", "Advert", new { id = advId, titleSlug = advert.Data.Title});
     }
 
 

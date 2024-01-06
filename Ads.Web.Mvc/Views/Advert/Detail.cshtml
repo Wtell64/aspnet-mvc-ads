@@ -50,10 +50,11 @@
               </li>
               <li class="list-inline-item">
                 <i class="fa fa-location-arrow"></i> Konum<a href="">
-                  @if (Model.User.Address.City != null)
+                  @if (Model.User.Address != null){
                     @Model.User.Address.City.Name
-                  , @if (Model.User.Address.District != null)
+                  <span>,</span> 
                     @Model.User.Address.District.Name
+                  }
                 </a>
               </li>
             </ul>
@@ -126,14 +127,14 @@
                     <tr>
                       <td>Ülke</td>
                       <td>
-                        @if (@Model.User.Address.Country != null)
+                        @if (@Model.User.Address != null)
                           @Model.User.Address.Country
                       </td>
                     </tr>
                     <tr>
                       <td>Şehir</td>
                       <td>
-                        @if (Model.User.Address.City != null)
+                        @if (Model.User.Address != null)
                           @Model.User.Address.City.Name
                       </td>
                     </tr>

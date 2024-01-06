@@ -7,6 +7,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
@@ -16,11 +17,13 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
   {
   private readonly ISubcategoryService _subcategoryService;
   private readonly ICategoryService _categoryService;
+    private readonly IToastNotification _toastNotification;
 
-    public SubcategoryController(ISubcategoryService subcategoryService, ICategoryService categoryService)
+    public SubcategoryController(ISubcategoryService subcategoryService, ICategoryService categoryService, IToastNotification toastNotification)
     {
       _subcategoryService = subcategoryService;
       _categoryService = categoryService;
+      _toastNotification = toastNotification;
     }
 
     public async Task<IActionResult> Index()
@@ -70,14 +73,16 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
         await _subcategoryService.AddAsync<SubcategoryViewDto>(subcategorydto);
         await _subcategoryService.SaveAsync();
-        TempData["successMessage"] = Messages.SubCategoryAdded;
+        //TempData["successMessage"] = Messages.SubCategoryAdded;
+        _toastNotification.AddSuccessToastMessage(Messages.SubcategoryAdded);
 
        
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Ekleme sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+        //TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+        _toastNotification.AddSuccessToastMessage(Messages.SubcategoryNotAdded);
       }
        return RedirectToAction("Index1",new {categoryId= subcategorydto.CategoryId});
     }
@@ -114,7 +119,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
         _subcategoryService.Update(subcategorydto);
         await _subcategoryService.SaveAsync();
-        TempData["successMessage"] = Messages.SubcategoryUpdated;
+        //TempData["successMessage"] = Messages.SubcategoryUpdated;
+        _toastNotification.AddWarningToastMessage(Messages.SubcategoryUpdated);
 
 
       }
@@ -122,7 +128,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       {
 
         ModelState.AddModelError("Error", "Düzenleme sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+        //TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+        _toastNotification.AddWarningToastMessage(Messages.SubcategoryNotUpdated);
       }
       return RedirectToAction("Index1", new { categoryId = subcategorydto.CategoryId });
 
@@ -130,7 +137,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
   
     [HttpGet]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> DeleteAsync(int id)
     {
       if (id==0) { return RedirectToAction("Index"); }
@@ -140,7 +147,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         return View(subcategory.Data);
     }
     [HttpPost, ActionName("Delete")]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> DeletePostAsync(int id)
     {
       var subcategorydto = await _subcategoryService.FindByIdAsync<SubcategoryViewDto>(id);
@@ -149,7 +156,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       _subcategoryService.DeleteById(id);
       await _subcategoryService.SaveAsync();
-      TempData["successMessage"] = Messages.SubcategoryDeleted;
+      //TempData["successMessage"] = Messages.SubcategoryDeleted;
+      _toastNotification.AddErrorToastMessage(Messages.SubcategoryDeleted);
 
       return RedirectToAction("Index1",new { categoryId = subcategorydto.Data.CategoryId });
     }

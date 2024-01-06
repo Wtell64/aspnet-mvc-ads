@@ -20,9 +20,16 @@
       {
         <tr>
           <td>
-            <form method="post">
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="ImageRemove" asp-route-id="@image.Id">Sil</button>
-            </form>
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+              @if (User.IsInRole("Superadmin"))
+              {
+                <form method="post">
+                  <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="ImageRemove" asp-route-id="@image.Id">Sil</button>
+                </form>
+              }
+            }
           </td>
           <td>@image.CreatedDate</td>
           <td>

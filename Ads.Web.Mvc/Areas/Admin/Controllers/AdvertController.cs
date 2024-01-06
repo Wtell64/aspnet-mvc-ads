@@ -1,4 +1,5 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.Advert;
 using Ads.Business.Dtos.AdvertImage;
 using Ads.Business.Dtos.Category;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
@@ -22,9 +24,10 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     private readonly ISubcategoryService _subcategoryService;
     private readonly ILogger<AdvertController> _logger;
     private readonly IImageProcessor _imageProcessor;
-    private readonly UserManager<AppUser> _userManager; 
+    private readonly UserManager<AppUser> _userManager;
+    private readonly IToastNotification _toastNotification;
     public AdvertController(IAdvertService advertService, IAdvertImageService advertImageService, IAdvertCommentService advertCommentService, ISubcategoryService subcategoryService, ILogger<AdvertController> logger, IImageProcessor imageProcessor,
-    UserManager<AppUser> userManager
+    UserManager<AppUser> userManager, IToastNotification toastNotification
     )
     {
       _advertService = advertService;
@@ -34,6 +37,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       _logger = logger;
       _imageProcessor = imageProcessor;
       _userManager = userManager;
+      _toastNotification = toastNotification;
     }
 
     [HttpGet]
@@ -81,14 +85,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
         if (ModelState.IsValid)
         {
-          TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					
-				}
+          //TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
+          _toastNotification.AddSuccessToastMessage(Messages.AdvertAdded);
+        }
       }
       catch (Exception)
       {
+        _toastNotification.AddSuccessToastMessage(Messages.AdvertNotAdded);
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+        //TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
 				
 			}
       return View();
@@ -134,21 +139,22 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
         if (ModelState.IsValid)
         {
-          TempData["SuccessMessage"] = "Reklam başarıyla güncellendi.";
-					
-				}
+          _toastNotification.AddWarningToastMessage(Messages.AdvertEdited);
+
+        }
       }
       catch (Exception)
       {
+        _toastNotification.AddWarningToastMessage(Messages.AdvertNotEdited);
         ModelState.AddModelError("Error", "Güncelleme sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				
-			}
+        
+
+      }
       return View(dto);
     }
 
     [HttpPost]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async  Task<IActionResult> Remove(int id)
     {
       //var advert = await _advertService.GetAsync<Advert>(filter: x => x.Id == id);
@@ -171,10 +177,10 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
       _advertService.DeleteById(id);
       await _advertService.SaveAsync();
+      _toastNotification.AddErrorToastMessage(Messages.AdvertDeleted);
 
-			
 
-			return RedirectToAction("Index", "Advert", new { area = "Admin" });
+      return RedirectToAction("Index", "Advert", new { area = "Admin" });
     }
 
 
@@ -210,21 +216,21 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       }
         if (ModelState.IsValid)
         {
-          TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					
-				}
+          _toastNotification.AddSuccessToastMessage(Messages.AdvertImageAdded);
+
+        }
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				
-			}
+        _toastNotification.AddSuccessToastMessage(Messages.AdvertImageNotSaved);
+
+      }
       return View();
     }
     
     [HttpPost]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> ImageRemove(int id)
     {
 
@@ -236,8 +242,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         {
           _advertImageService.DeleteById(id);
           await _advertImageService.SaveAsync();
-				
-			}
+          _toastNotification.AddErrorToastMessage(Messages.AdvertImageDeleted);
+      }
 
       return RedirectToAction("ImageIndex", "Advert", new { area = "Admin" , id = advertId });
     }
@@ -284,16 +290,16 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
         if (ModelState.IsValid)
         {
-          TempData["SuccessMessage"] = "Reklam başarıyla keydedildi.";
-					
-				}
+          _toastNotification.AddSuccessToastMessage(Messages.AdvertCommentAdded);
+
+        }
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				
-			}
+        _toastNotification.AddSuccessToastMessage(Messages.AdvertCommentNotSaved);
+
+      }
       
       return View();
     }
@@ -330,20 +336,20 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
         if (ModelState.IsValid)
         {
-          TempData["SuccessMessage"] = "Reklam başarıyla güncellendi.";
-					
-				}
+          _toastNotification.AddWarningToastMessage(Messages.AdvertCommentUpdated);
+
+        }
       }
       catch (Exception)
       {
         ModelState.AddModelError("Error", "Güncelleme sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-				
-			}
+        _toastNotification.AddWarningToastMessage(Messages.AdvertCommentNotUpdated);
+
+      }
       return View(dto);
     }
     [HttpPost]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> CommentRemove(int id)
     {
       var comment = await _advertCommentService.FindByIdAsync<AdvertCommentAdminAddDto>(id);
@@ -352,12 +358,12 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       {
         _advertCommentService.DeleteById(id);
         await _advertCommentService.SaveAsync();
-				
-			}
+        _toastNotification.AddErrorToastMessage(Messages.AdvertCommentDeleted);
+      }
       catch (Exception)
       {
-				
-				throw;
+
+        _toastNotification.AddErrorToastMessage(Messages.AdvertCommentNotDeleted);
       }
       return RedirectToAction("CommentIndex", "Advert", new { area = "Admin", id = advertId });
     }

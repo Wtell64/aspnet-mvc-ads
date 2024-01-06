@@ -8,6 +8,7 @@ using AutoMapper;
 using FutureCafe.Core.Utilities.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
@@ -16,12 +17,13 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 	public class CategoryController : Controller
   {
     private readonly ICategoryService _categoryService;
+    private readonly IToastNotification _toastNotification;
 
 
-    public CategoryController(ICategoryService categoryService)
+    public CategoryController(ICategoryService categoryService, IToastNotification toastNotification)
     {
       _categoryService = categoryService;
-
+      _toastNotification = toastNotification;
     }
 
     public async Task<IActionResult> Index()
@@ -59,14 +61,16 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         }
         await _categoryService.AddAsync<CategoryViewDto>(dto);
         await _categoryService.SaveAsync();
-        TempData["successMessage"] = Messages.CategoryAdded;
+        //TempData["successMessage"] = Messages.CategoryAdded;
+        _toastNotification.AddSuccessToastMessage(Messages.CategoryAdded);
         
       }
       catch (Exception)
       {
 
         ModelState.AddModelError("Error", "Ekleme sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+        _toastNotification.AddSuccessToastMessage(Messages.CategoryNotAdded);
+        //TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
       }
       return RedirectToAction("Index");
     }
@@ -108,7 +112,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 
         _categoryService.Update(dto);
         await _categoryService.SaveAsync();
-        TempData["successMessage"] = Messages.CategoryUpdated;
+        //TempData["successMessage"] = Messages.CategoryUpdated;
+        _toastNotification.AddWarningToastMessage(Messages.CategoryUpdated);
 
         
       }
@@ -116,13 +121,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       {
 
         ModelState.AddModelError("Error", "Düzenleme sırasında bir hata oluştu");
-        TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+        //TempData["ErrorMessage"] = "Bir hata oluştu. Lütfen tekrar deneyin.";
+        _toastNotification.AddWarningToastMessage(Messages.CategoryNotAdded);
       }
       return RedirectToAction("Index");
     }
 
     [HttpGet]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> Delete(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
@@ -136,15 +142,15 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
     }
 
     [HttpPost, ActionName("Delete")]
-		[Authorize("Superadmin")]
+		[Authorize(Roles = "Superadmin")]
 		public async Task<IActionResult> DeletePost(int id)
     {
       if (id == 0) { return RedirectToAction("Index"); }
 
       _categoryService.DeleteById(id);
       await _categoryService.SaveAsync();
-      TempData["successMessage"] = Messages.CategoryDeleted;
-
+      //TempData["successMessage"] = Messages.CategoryDeleted;
+      _toastNotification.AddErrorToastMessage(Messages.CategoryDeleted);
       return RedirectToAction("Index");
     }
   }

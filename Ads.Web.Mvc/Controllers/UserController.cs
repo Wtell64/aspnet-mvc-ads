@@ -1,8 +1,10 @@
-﻿using Ads.Business.Dtos.Users;
+﻿using Ads.Business.Constants;
+using Ads.Business.Dtos.Users;
 using Ads.Core.Utilities.Images;
 using Ads.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Controllers;
 
@@ -10,11 +12,14 @@ public class UserController : Controller
 {
 	private readonly UserManager<AppUser> _userManager;
 	private readonly IImageProcessor _imageProcessor;
+	private readonly IToastNotification _toastNotification;
 
-	public UserController(UserManager<AppUser> userManager, IImageProcessor imageProcessor)
+
+	public UserController(UserManager<AppUser> userManager, IImageProcessor imageProcessor, IToastNotification toastNotification)
 	{
 		_userManager = userManager;
 		_imageProcessor = imageProcessor;
+		_toastNotification = toastNotification;
 	}
 
 	[HttpGet]
@@ -53,6 +58,7 @@ public class UserController : Controller
 		}
 
 		await _userManager.UpdateAsync(hasUser);
+		_toastNotification.AddWarningToastMessage(Messages.UserUpdated);
 
 		return RedirectToAction("Index", "User");
 	}
@@ -76,6 +82,7 @@ public class UserController : Controller
 
 		await _userManager.ChangePasswordAsync(hasUser, passwordEdit.CurrentPassword, passwordEdit.ConfirmNewPassword);
 		await _userManager.UpdateAsync(hasUser);
+		_toastNotification.AddWarningToastMessage(Messages.PasswordUpdated);
 
 		return RedirectToAction("Index", "User");
 	}
@@ -95,6 +102,7 @@ public class UserController : Controller
 
 		await _userManager.ChangeEmailAsync(hasUser, emailEdit.NewEmail, token);
 		await _userManager.UpdateAsync(hasUser);
+		_toastNotification.AddWarningToastMessage(Messages.MailUpdated);
 
 		return RedirectToAction("Index", "User");
 	}

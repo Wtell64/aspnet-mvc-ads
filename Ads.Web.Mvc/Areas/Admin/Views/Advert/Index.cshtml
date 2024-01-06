@@ -26,8 +26,17 @@
             <form method="post">
               <a asp-area="Admin" asp-controller="Advert" asp-action="Edit" asp-route-id="@advert.Id" class="btn btn-primary">Düzenle</a> |
 
-              <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="Remove" asp-route-id="@advert.Id">Sil</button> |
-
+              
+              @if (User.Identity != null && User.Identity.IsAuthenticated)
+              {
+                @if (User.IsInRole("Superadmin"))
+                {
+                  <button type="submit" class="btn btn-danger" asp-area="Admin" asp-controller="Advert" asp-action="Remove" asp-route-id="@advert.Id">Sil</button>
+                  <p style="margin:0px;display:inline">|</p>
+                  
+                }
+              }
+              
               <button type="submit" class="btn btn-warning" asp-area="Admin" asp-controller="Advert" asp-action="ImageIndex" asp-route-id="@advert.Id">Resimler</button> |
 
               <button type="submit" class="btn btn-success " asp-area="Admin" asp-controller="Advert" asp-action="CommentIndex" asp-route-id="@advert.Id">Yorumlar</button>

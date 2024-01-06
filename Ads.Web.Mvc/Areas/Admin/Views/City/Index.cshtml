@@ -19,7 +19,14 @@
         <tr>
           <td>
             <a asp-area="Admin" asp-controller="City" asp-action="Edit" asp-route-id="@city.Id" class="btn btn-primary">Değiştir</a> |
-            <a asp-area="Admin" asp-controller="City" asp-action="Delete" asp-route-id="@city.Id" class="btn btn-danger">Sil</a> |
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+              @if (User.IsInRole("Superadmin"))
+              {
+                <a asp-area="Admin" asp-controller="City" asp-action="Delete" asp-route-id="@city.Id" class="btn btn-danger">Sil</a>
+                <p style="margin:0;display:inline">|</p>
+              }
+            }
             <a asp-area="Admin" asp-controller="District" asp-action="Index" asp-route-cityId="@city.Id" class="btn btn-warning">İlçeler</a>
           </td>
           <td>@city.Name</td>

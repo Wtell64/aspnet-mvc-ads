@@ -1,5 +1,6 @@
 ﻿using Ads.Business.Abstract;
 using Ads.Business.Abstract.Identity;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.Users;
 using Ads.Business.Extentions;
 using Ads.Entities.Concrete;
@@ -7,6 +8,7 @@ using Ads.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 
 
 namespace Ads.Web.Mvc.Controllers;
@@ -20,8 +22,10 @@ public class AuthController : Controller
 	private readonly ICityService _cityService;
 	private readonly IDistrictService _districtService;
 	private readonly IAddressService _addressService;
+	private readonly IToastNotification _toastNotification;
 
-	public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICityService cityService, IDistrictService districtService, IAddressService addressService, IEmailService emailService)
+
+	public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ICityService cityService, IDistrictService districtService, IAddressService addressService, IEmailService emailService, IToastNotification toastNotification)
 	{
 		_userManager = userManager;
 		_signInManager = signInManager;
@@ -29,6 +33,7 @@ public class AuthController : Controller
 		_districtService = districtService;
 		_addressService = addressService;
 		_emailService = emailService;
+		_toastNotification = toastNotification;
 	}
 
 	[HttpGet]
@@ -85,8 +90,7 @@ public class AuthController : Controller
 
 		if (identityResult.Succeeded)
 		{
-			TempData["RegisterSuccessMessage"] = "Üyelik kayıt işlemi başarıyla gerçekleşmiştir. Lütfen mail adresinizi onaylayın!";
-
+			_toastNotification.AddSuccessToastMessage(Messages.RegisterSuccessMessage);
 			var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
 
 
@@ -190,7 +194,7 @@ public class AuthController : Controller
 
 		await _emailService.SendEmailAsync(passwordResetLink, forgotPasswordDto.Email, "Şifre Yenileme", "Şifrenizi yenilemek");
 
-		TempData["SuccessResetPassword"] = "Şifre yenileme linki e-mail adresinize gönderilmiştir.";
+		_toastNotification.AddSuccessToastMessage(Messages.SuccessResetPassword);
 
 		return RedirectToAction(nameof(ForgotPassword), "Auth");
 
@@ -215,7 +219,7 @@ public class AuthController : Controller
 		var userId = TempData["userId"];
 		var token = TempData["token"];
 
-		if (userId is null || token is null) { throw new Exception("Bir hata meydana geldi!"); }
+		if (userId is null || token is null) { _toastNotification.AddErrorToastMessage(Messages.CheckTokenOrMailAdress); }
 
 		var hasUser = await _userManager.FindByIdAsync(userId.ToString()!);
 
@@ -228,7 +232,7 @@ public class AuthController : Controller
 		var result = await _userManager.ResetPasswordAsync(hasUser, token.ToString()!, updatePasswordDto.Password);
 
 		if (result.Succeeded)
-			TempData["UpdatePasswordSuccessMessage"] = "Şifre başarıyla yenilenmiştir!";
+			_toastNotification.AddWarningToastMessage(Messages.PasswordUpdated);
 		else
 			ModelState.AddModelErrorList(result.Errors.Select(x => x.Description).ToList());
 
@@ -244,7 +248,7 @@ public class AuthController : Controller
 
 		if (token is null)
 		{
-			TempData["tokenMessage"] = "Hesap bilgilerinizi veya token bilgilerinizi kontrol edin!";
+			_toastNotification.AddInfoToastMessage(Messages.CheckTokenOrMailAdress);
 			return View();
 		}
 
@@ -255,12 +259,12 @@ public class AuthController : Controller
 
 			if (result.Succeeded)
 			{
-				TempData["tokenMessage"] = "Hesabınız onaylandı!";
+				_toastNotification.AddSuccessToastMessage(Messages.AccountApproved);
 				return RedirectToAction(nameof(Login), "Auth");
 			}
 		}
 
-		TempData["tokenMessage"] = "Kullanıcı bulunamadı!";
+		_toastNotification.AddErrorToastMessage(Messages.UserNotFound);
 		return View();
 	}
 

@@ -1,4 +1,5 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.Users;
 using Ads.Business.Extentions;
 using Ads.Entities.Concrete;
@@ -7,11 +8,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles ="Admin,Superadmin")]
+[Authorize(Roles = "Admin,Superadmin")]
 public class UserController : Controller
 {
 	private readonly UserManager<AppUser> _userManager;
@@ -20,8 +22,10 @@ public class UserController : Controller
 	private readonly ICityService _cityService;
 	private readonly IDistrictService _districtService;
 	private readonly IAddressService _addressService;
+	private readonly IToastNotification _toastNotification;
 
-	public UserController(UserManager<AppUser> userManager, IAdvertCommentService advertCommentService, IAdvertService advertService, ICityService cityService, IDistrictService districtService, IAddressService addressService)
+
+	public UserController(UserManager<AppUser> userManager, IAdvertCommentService advertCommentService, IAdvertService advertService, ICityService cityService, IDistrictService districtService, IAddressService addressService, IToastNotification toastNotification)
 	{
 		_userManager = userManager;
 		_advertCommentService = advertCommentService;
@@ -29,6 +33,7 @@ public class UserController : Controller
 		_cityService = cityService;
 		_districtService = districtService;
 		_addressService = addressService;
+		_toastNotification = toastNotification;
 	}
 
 	[HttpGet]
@@ -67,7 +72,7 @@ public class UserController : Controller
 
 	[HttpPost]
 	[Authorize(Roles = "Superadmin")]
-  public async Task<IActionResult> Delete(int userId)
+	public async Task<IActionResult> Delete(int userId)
 	{
 		if (userId.Equals(0))
 			return RedirectToAction("Index");
@@ -83,6 +88,8 @@ public class UserController : Controller
 
 		var user = await _userManager.FindByIdAsync(userId.ToString());
 		await _userManager.DeleteAsync(user);
+
+		_toastNotification.AddErrorToastMessage(Messages.UserDeleted);
 
 		return RedirectToAction("Index");
 	}
@@ -120,6 +127,8 @@ public class UserController : Controller
 
 		await _userManager.RemoveFromRoleAsync(hasUser, role.FirstOrDefault());
 		await _userManager.AddToRoleAsync(hasUser, userViewDto.Role);
+
+		_toastNotification.AddWarningToastMessage(Messages.UserUpdated);
 
 		return RedirectToAction("Index");
 	}
@@ -178,6 +187,7 @@ public class UserController : Controller
 		var identityResult = await _userManager.CreateAsync(newUser, request.PasswordConfirm);
 
 		await _userManager.AddToRoleAsync(newUser, "user");
+		_toastNotification.AddSuccessToastMessage(Messages.UserAdded);
 
 		ModelState.AddModelErrorList(identityResult.Errors.Select(x => x.Description).ToList());
 

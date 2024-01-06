@@ -55,13 +55,6 @@
 							<h3>Kayıt Ol</h3>
 						</div>
 
-						@if (TempData["RegisterSuccessMessage"] is not null)
-						{
-							<div class="alert alert-info p-2" role="alert">
-								@TempData["RegisterSuccessMessage"]
-							</div>
-						}
-
 						<div asp-validation-summary="ModelOnly" class="alert alert-danger fw-bold" role="alert"></div>
 
 						<form asp-controller="Auth" asp-action="Register" method="post" class="p-4">

@@ -1,5 +1,6 @@
 ﻿namespace Ads.Business.Constants
 {
+
 	public static class Messages
 	{
 		public static string CategoryAdded = "Kategori Eklendi";
@@ -43,11 +44,12 @@
 
 
 
-		public static string PageAdded = "Sayfa Eklendi";
-		public static string PageDeleted = "Sayfa Silindi";
-		public static string ListEmpty = "Liste Boş";
-		public static string PageNotFound = "Sayfa bulunamadı";
-		public static string NoPage = "Sayfa yok";
+    public static string PageAdded = "Sayfa başarıyla eklendi.";
+    public static string PageDeleted = "Sayfa başarıyla silindi";
+    public static string ListEmpty = "Liste Boş";
+    public static string PageNotFound = "Sayfa bulunamadı";
+    public static string PageUpdated = "Sayfa başarıyla güncellendi.";
+    public static string NoPage = "Sayfa yok";
 
 		public static string CountFound = "Sayim Tamamlandi";
 		public static string CountNotFound = "Sayim Yapilirken Bir Hata Oluştu";
@@ -73,10 +75,11 @@
 		public static string AdvertImageNotUpdated = "Reklam Resmi Güncellenemedi";
 		public static string AdvertImageUpdated = " Güncellendi";
 
-		public static string AddressAdded = "Adres Eklendi";
-		public static string AddressDeleted = "Adres Silindi";
-		public static string AddressNotFound = "Adres bulunamadı";
-		public static string NoAddress = "Adres yok";
+    public static string AddressAdded = "Adres Başarıyla Eklendi";
+    public static string AddressDeleted = "Adres Başarıyla Silindi";
+    public static string AddressNotFound = "Adres Bulunamadı";
+    public static string NoAddress = "Sistemde Kayıtlı böyle bir adres yok";
+    public static string AddressUpdated = "Adres başarıyla güncellendi";
 
 		public static string CityAdded = "Şehir Eklendi";
 		public static string CityEdited = "Şehir Değiştirildi";
@@ -121,4 +124,5 @@
 		public static string UserNotFound = "Kullanıcı Bulunamadı";
 		public static string RegisterSuccessMessage = "Üyelik Kayıt Işlemi Başarıyla Gerçekleşmiştir. Lütfen Mail Adresinizi Onaylayın!";
 	}
+
 }

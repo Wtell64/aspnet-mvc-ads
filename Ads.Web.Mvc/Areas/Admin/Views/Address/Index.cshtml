@@ -1,88 +1,97 @@
-﻿@model IEnumerable<Ads.Entities.Concrete.Address>
+﻿@model Ads.Entities.Concrete.Address
 
 <div class="container-fluid">
 
-  <h1>Kullanıcı Listesi</h1>
-@*   <a class="btn btn-success my-2" asp-area="Admin" asp-controller="Address" asp-action="Add">Adres Ekle</a> *@
-  <table class="table table-striped" id='myTable'>
-    <thead>
-      <tr>
-        <th>İşlemler</th>
-        <th>Oluşturma Tarihi</th>
-        <th>Adres Sahibi</th>
-        <th>Posta Kodu</th>
-        <th>Ülke</th>
-        <th>Şehir</th>
-        <th>İlçe</th>
-        <th>Detaylı Adres</th>
-      </tr>
-    </thead>
+	<h1>Kullanıcı Adres Listesi</h1>
+	@if(Model == null)
+	{
+		<a class="btn btn-success my-2" asp-area="Admin" asp-controller="Address" asp-action="Add" asp-route-userId="@ViewBag.UserId">Adres Ekle</a>
+	}
+	<table class="table table-striped" id='myTable'>
+		<thead>
+			<tr>
+				<th>İşlemler</th>
+				<th>Oluşturma Tarihi</th>
+				<th>Düzenlenme Tarihi</th>
+				<th>Adres Sahibi</th>
+				<th>Posta Kodu</th>
+				<th>Ülke</th>
+				<th>Şehir</th>
+				<th>İlçe</th>
+				<th>Detaylı Adres</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if(Model != null)
+			{
+				<tr>
+					<td>
+						@if (User.Identity.IsAuthenticated && User.Identity != null)
+						{
+							<a asp-area="Admin" asp-controller="Address" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+							if (User.IsInRole("Superadmin"))
+							{
+								<span> | </span>
 
-    <tbody>
-      @foreach (var address in Model)
-      {
-        <tr>
-          <td>
-            <form method="post">
-              <a asp-area="Admin" asp-controller="Address" asp-action="Edit" asp-route-id="@address.Id" class="btn btn-primary">Düzenle</a>
-@*               <a asp-area="Admin" asp-controller="Address" asp-action="Delete" asp-route-id="@address.Id" class="btn btn-danger">Sil</a> | *@
-            </form>
-          </td>
-          <td>@address.CreatedDate</td>
-          <td>@address.UpdatedDate</td>
-          <td>@address.User.FirstName @address.User.LastName</td>
-          <td>@address.PostCode</td>
-          <td>@address.Country</td>
-          <td>@address.City.Name</td>
-          <td>@address.District.Name</td>
-          <td>@address.DetailedAddress</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-  <a asp-area="Admin" asp-controller="User" asp-action="Index" class="btn btn-danger">Kullanıcılar</a>
+								<a asp-area="Admin" asp-controller="Address" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Sil</a>
+							}
+						}
+					</td>
+					<td>@Model.CreatedDate</td>
+					<td>@Model.UpdatedDate</td>
+					<td>@Model.User.FirstName @Model.User.LastName</td>
+					<td>@Model.PostCode</td>
+					<td>@Model.Country</td>
+					<td>@Model.City.Name</td>
+					<td>@Model.District.Name</td>
+					<td>@Model.DetailedAddress</td>
+				</tr>
+			}	
+		</tbody>
+	</table>
+	<a asp-area="Admin" asp-controller="User" asp-action="Index" class="btn btn-danger">Kullanıcılar</a>
 </div>
 @section Scripts {
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 
-  @* 	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
-  <script>
+	@* 	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> *@
+	<script>
 
-    $(document).ready(function () {
-      $('#myTable').DataTable(
-        {
-          pagingType: 'full_numbers',
-          language: {
-            info: '_PAGES_ sayfa arasından _PAGE_. sayfa gösteriliyor',
-            infoEmpty: 'Hiç kayıt bulunamadı',
-            infoFiltered: '(Toplam _MAX_ kayıt arasından filtrelendi.)',
-            lengthMenu: 'Sayfa başına _MENU_ kayıt göster',
-            zeroRecords: 'Aramaya uygun kayıt bulunamadı.',
-            search: "Ara",
-            paginate: {
-              "first": "İlk",
-              "last": "Son",
-              "next": "Sonraki",
-              "previous": "Önceki"
-            }
-          },
+		$(document).ready(function () {
+			$('#myTable').DataTable(
+				{
+					pagingType: 'full_numbers',
+					language: {
+						info: '_PAGES_ sayfa arasından _PAGE_. sayfa gösteriliyor',
+						infoEmpty: 'Hiç kayıt bulunamadı',
+						infoFiltered: '(Toplam _MAX_ kayıt arasından filtrelendi.)',
+						lengthMenu: 'Sayfa başına _MENU_ kayıt göster',
+						zeroRecords: 'Aramaya uygun kayıt bulunamadı.',
+						search: "Ara",
+						paginate: {
+							"first": "İlk",
+							"last": "Son",
+							"next": "Sonraki",
+							"previous": "Önceki"
+						}
+					},
 
-          lengthMenu: [
-            [10, 20, 50, -1],
-            [10, 20, 50, 'Hepsi']
-          ]
-        }
-      );
-    });
-  </script>
-  <style type="text/css">
-    #tbllist_filter {
-      margin-bottom: 1%;
-    }
+					lengthMenu: [
+						[10, 20, 50, -1],
+						[10, 20, 50, 'Hepsi']
+					]
+				}
+			);
+		});
+	</script>
+	<style type="text/css">
+		#tbllist_filter {
+			margin-bottom: 1%;
+		}
 
-    #myTable td:first-child {
-      white-space: nowrap; /* Prevents wrapping to a new line */
-    }
-  </style>
+		#myTable td:first-child {
+			white-space: nowrap; /* Prevents wrapping to a new line */
+		}
+	</style>
 
 }

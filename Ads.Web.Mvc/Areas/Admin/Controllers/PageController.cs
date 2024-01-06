@@ -1,10 +1,12 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.Page;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
@@ -14,11 +16,13 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
   {
     private readonly IPageService _pageService;
     private readonly UserManager<AppUser> _userManager;
+    private readonly IToastNotification _toastNotification;
 
-    public PageController(IPageService pageService, UserManager<AppUser> userManager)
+    public PageController(IPageService pageService, UserManager<AppUser> userManager,IToastNotification toastNotification)
     {
       _pageService = pageService;
       _userManager = userManager;
+      _toastNotification = toastNotification;
     }
 
     [HttpGet]
@@ -41,7 +45,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         {
           await _pageService.AddAsync(page);
           await _pageService.SaveAsync();
-          TempData["SuccessMessage"] = "Sayfa başarıyla keydedildi.";
+          _toastNotification.AddSuccessToastMessage(Messages.PageAdded);
+          return RedirectToAction("Index");
         }
       }
       catch (Exception)
@@ -73,8 +78,9 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         {
           _pageService.Update(page);
           await _pageService.SaveAsync();
-          TempData["SuccessMessage"] = "Sayfa başarıyla güncellendi.";
-        }
+					_toastNotification.AddWarningToastMessage(Messages.PageUpdated);
+					return RedirectToAction("Index", "Page", new { area = "Admin" });
+				}
       }
       catch (Exception)
       {
@@ -84,18 +90,23 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(page);
     }
     [HttpGet]
+
 		[Authorize(Roles = "Superadmin")]
+
 		public async Task<IActionResult> Delete(int id)
     {
       var page = await _pageService.FindByIdAsync<PageCRUDDto>(id);
       return View(page.Data);
     }
     [HttpPost]
+
 		[Authorize(Roles = "Superadmin")]
+
 		public async Task<IActionResult> Delete(PageCRUDDto page)
     {
       _pageService.DeleteById(page.Id);
       await _pageService.SaveAsync();
+      _toastNotification.AddErrorToastMessage(Messages.PageDeleted);
       return RedirectToAction("Index", "Page", new { area = "Admin" });
     }
   }

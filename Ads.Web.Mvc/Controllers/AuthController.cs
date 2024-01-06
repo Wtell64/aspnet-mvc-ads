@@ -267,5 +267,9 @@ public class AuthController : Controller
 		_toastNotification.AddErrorToastMessage(Messages.UserNotFound);
 		return View();
 	}
+	public async Task<IActionResult> AccessDenied()
+	{
+		return View();
+	}
 
 }

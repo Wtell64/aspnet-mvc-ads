@@ -1,4 +1,5 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos.Setting;
 using Ads.Entities.Concrete;
 using Ads.Entities.Concrete.Identity;
@@ -7,24 +8,26 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Tokens;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
-  //ToDo : Same with AddressController
   [Area("Admin")]
-	[Authorize(Roles = "Admin,Superadmin")]
-	public class SettingController : Controller
+  [Authorize(Roles = "Admin,Superadmin")]
+  public class SettingController : Controller
   {
     private readonly ISettingService _settingService;
     private readonly UserManager<AppUser> _userManager;
+    private readonly IToastNotification _toastNotification;
 
-    public SettingController(ISettingService settingService, UserManager<AppUser> userManager)
-    {
-      _settingService = settingService;
-      _userManager = userManager;
-    }
+		public SettingController(ISettingService settingService, UserManager<AppUser> userManager, IToastNotification toastNotification)
+		{
+			_settingService = settingService;
+			_userManager = userManager;
+			_toastNotification = toastNotification;
+		}
 
-    [HttpGet]
+		[HttpGet]
     public async Task<IActionResult> Index()
     {
       var settings = await _settingService.GetListAsync<Setting>(includeProperties: "User");
@@ -54,7 +57,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         {
           await _settingService.AddAsync(dto);
           await _settingService.SaveAsync();
-          TempData["SuccessMessage"] = "Ayarlar başarıyla keydedildi.";
+          _toastNotification.AddSuccessToastMessage(Messages.SettingAdded);
+          return RedirectToAction("Index");
         }
       }
       catch (Exception)
@@ -89,7 +93,8 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         {
           _settingService.Update(dto);
           await _settingService.SaveAsync();
-          TempData["SuccessMessage"] = "Ayarlar başarıyla güncellendi.";
+          _toastNotification.AddWarningToastMessage(Messages.SettingUpdated);
+          return RedirectToAction("Index");
         }
       }
       catch (Exception)
@@ -102,7 +107,9 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(dto);
     }
     [HttpGet]
+
 		[Authorize(Roles = "Superadmin")]
+
 		public async Task<IActionResult> Delete(int id)
     {
       var settings = await _settingService.GetAsync<Setting>(a => a.Id == id);
@@ -119,7 +126,9 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
       return View(dto);
     }
     [HttpPost]
+
 		[Authorize(Roles = "Superadmin")]
+
 		public async Task<IActionResult> Delete(SettingCRUDDto dto)
     {
       if (ModelState.IsValid)
@@ -127,6 +136,7 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
         _settingService.Delete(dto);
         await _settingService.SaveAsync();
       }
+      _toastNotification.AddErrorToastMessage(Messages.SettingDeleted);
       return RedirectToAction("Index", "Setting", new { area = "Admin" });
     }
   }

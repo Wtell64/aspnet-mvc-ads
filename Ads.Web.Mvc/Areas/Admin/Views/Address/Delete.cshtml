@@ -25,8 +25,9 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label>Kullanıcı ID: </label>
-							<input value="@Model.UserId" asp-for=@Model.UserId class="form-control" readonly />
+							<label>Kullanıcı Adı - Soyadı: </label>
+							<input value="@ViewBag.UserName" class="form-control" readonly />
+							<input value="@Model.UserId" name="UserId" type="hidden" />
 							<span asp-validation-for="@Model.UserId" class="text-danger"></span>
 						</div>
 					</div>
@@ -89,7 +90,7 @@
 					<div class="col-lg-6">
 						<div class="form-group" style="margin-top:10px">
 							<button type="submit" asp-area="Admin" asp-controller="Address" asp-action="Delete" class="btn btn-success">Sil</button>
-							<a asp-area="Admin" asp-controller="Address" asp-action="Index" class="btn btn-danger">Geri Dön</a>
+							<a asp-area="Admin" asp-controller="Address" asp-action="Index" asp-route-userId="@Model.UserId" class="btn btn-danger">Geri Dön</a>
 						</div>
 					</div>
 				</div>

@@ -15,7 +15,7 @@ namespace Ads.Web.Mvc.ViewComponents
 
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			var adverts = _advertService.GetList<Advert>(null,null, "SubcategoryAdverts.Subcategory,AdvertImages");
+			var adverts = _advertService.GetList<Advert>(null,null, "SubcategoryAdverts.Subcategory,AdvertImages,AdvertComments");
 			var trendingAdverts =  adverts.Data.OrderByDescending(a => a.ClickCount).Take(6).ToList();
 			return View("TrendingAds", trendingAdverts);
 		}

@@ -1,0 +1,32 @@
+﻿<section class="section bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center mx-auto">
+        <div class="404-content">
+          <h1 class="display-1 pt-1 pb-2">Erişim Yetkiniz Yok</h1>
+          <p class="px-3 pb-2 text-dark">Ulaşmak istediğiniz sayfaya erişiminiz, yetkiniz olmadığı için reddedildi.</p>
+          <p class="px-3 pb-2 text-dark" id="redirectTimer"></p>
+          <p class="px-3 pb-2 text-dark">Otomatik yönlendirme çalışmazsa aşağıdaki bağlantıyı kullanarak Anasayfa'ya dönebilirsiniz.</p>
+          <a asp-controller="Home" asp-action="index" class="btn btn-info">ANASAYFA'YA DÖN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  var redirectTime = 5; // Yönlendirme için varsayılan süre (saniye cinsinden)
+  var redirectURL = '/Home/Index'; // Yönlendirilecek sayfa URL'si
+  var display = document.querySelector('#redirectTimer');
+
+  function countdown() {
+    display.textContent = redirectTime + ' saniye içerisinde Anasayfa\'ya yönlendirileceksiniz.';
+
+    if (redirectTime === 0) {
+      window.location.href = redirectURL;
+    } else {
+      redirectTime--;
+      setTimeout(countdown, 1000); // 1 saniye bekletme
+    }
+  }
+  countdown();
+</script>

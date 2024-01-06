@@ -49,7 +49,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
   options.LoginPath = new PathString("/Auth/Login"); // Kullanýcýlar üye olmadan kullanýcý sayfalarýna gitmeye kalkarsa yönlendireceði sayfa.
-  options.AccessDeniedPath = new PathString("/Home/Index");
+  options.AccessDeniedPath = new PathString("/Auth/AccessDenied");
 
 
 	options.Cookie = cookieBuilder;

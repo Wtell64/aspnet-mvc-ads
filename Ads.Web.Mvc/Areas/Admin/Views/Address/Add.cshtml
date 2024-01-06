@@ -21,12 +21,13 @@
 			</div>
 		</div>
 		<div class="card-body">
-			<form method="post">
+			<form asp-controller="Address" asp-action="Add" method="post">
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label>Kullanıcı ID: </label>
-							<input value="" asp-for=@Model.UserId class="form-control" />
+							<label>Kullanıcı Adı - Soyadı: </label>
+							<input value="@ViewBag.userName" class="form-control" readonly />
+							<input value="@Model.UserId" name="UserId" type="hidden" />
 							<span asp-validation-for="@Model.UserId" class="text-danger"></span>
 						</div>
 					</div>
@@ -49,6 +50,8 @@
 							<span asp-validation-for="CityId" class="text-danger"></span>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label>İlçe: </label>
@@ -71,7 +74,7 @@
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label>Detaylı Adres :</label>
-							<textarea value="" asp-for=@Model.DetailedAddress class="form-control" id="floatingTextarea2" ></textarea>
+							<textarea value="" asp-for=@Model.DetailedAddress class="form-control" id="floatingTextarea2"></textarea>
 							<span asp-validation-for="@Model.DetailedAddress" class="text-danger"></span>
 						</div>
 					</div>
@@ -80,7 +83,7 @@
 					<div class="col-lg-6">
 						<div class="form-group" style="margin-top:10px">
 							<button type="submit" asp-area="Admin" asp-controller="Address" asp-action="Add" class="btn btn-success">Ekle</button>
-							<a asp-area="Admin" asp-controller="Address" asp-action="Index" class="btn btn-danger">Geri Dön</a>
+							<a asp-area="Admin" asp-controller="Address" asp-action="Index" asp-route-userId="@Model.UserId" class="btn btn-danger">Geri Dön</a>
 						</div>
 					</div>
 				</div>

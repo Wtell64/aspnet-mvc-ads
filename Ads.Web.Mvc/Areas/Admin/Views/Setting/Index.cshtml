@@ -20,11 +20,15 @@
       @foreach (var setting in Model)
       {
         <tr>
-          <td>
-            <form method="post">
-              <a asp-area="Admin" asp-controller="Setting" asp-action="Edit" asp-route-id="@setting.Id" class="btn btn-primary">Düzenle</a> |
-              <a asp-area="Admin" asp-controller="Setting" asp-action="Delete" asp-route-id="@setting.Id" class="btn btn-danger">Sil</a> 
-            </form>
+          <td>         
+              @if (User.Identity.IsAuthenticated && User.Identity != null)
+              {
+                <a asp-area="Admin" asp-controller="Setting" asp-action="Edit" asp-route-id="@setting.Id" class="btn btn-primary">Düzenle</a>
+                if (User.IsInRole("Superadmin"))
+                {
+                   <span> | </span><a asp-area="Admin" asp-controller="Setting" asp-action="Delete" asp-route-id="@setting.Id" class="btn btn-danger">Sil</a>
+                }
+              }            
           </td>
           <td>@setting.CreatedDate</td>
           <td>@setting.UpdatedDate</td>

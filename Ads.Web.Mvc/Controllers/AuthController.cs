@@ -263,5 +263,9 @@ public class AuthController : Controller
 		TempData["tokenMessage"] = "Kullanıcı bulunamadı!";
 		return View();
 	}
+	public async Task<IActionResult> AccessDenied()
+	{
+		return View();
+	}
 
 }

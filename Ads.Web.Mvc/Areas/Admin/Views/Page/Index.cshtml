@@ -19,10 +19,18 @@
 			{
 				<tr>
 					<td>
-						<form method="post">
-							<a asp-area="Admin" asp-controller="Page" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Düzenle</a> |
-							<a asp-area="Admin" asp-controller="Page" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Sil</a> |
-						</form>
+						@if (User.Identity.IsAuthenticated && User.Identity != null)
+						{
+							<form method="post">
+								<a asp-area="Admin" asp-controller="Page" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Düzenle</a>
+								@if (User.IsInRole("Superadmin"))
+								{
+									<span> | </span>
+
+									<a asp-area="Admin" asp-controller="Page" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Sil</a>
+								}
+							</form>
+						}
 					</td>
 					<td>@item.CreatedDate</td>
 					<td>@item.UpdatedDate</td>

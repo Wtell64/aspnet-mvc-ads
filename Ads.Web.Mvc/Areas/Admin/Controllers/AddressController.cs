@@ -1,4 +1,5 @@
 ﻿using Ads.Business.Abstract;
+using Ads.Business.Constants;
 using Ads.Business.Dtos;
 using Ads.Business.Dtos.AdressDtos;
 using Ads.Entities.Concrete;
@@ -8,10 +9,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 
 namespace Ads.Web.Mvc.Areas.Admin.Controllers
 {
-	//ToDo : Ask about UserId validation error message !!
 	[Area("Admin")]
 	[Authorize(Roles = "Admin,Superadmin")]
 	public class AddressController : Controller
@@ -20,73 +21,84 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 		private readonly ICityService _cityService;
 		private readonly IDistrictService _districtService;
 		private readonly UserManager<AppUser> _userManager;
-
-    public AddressController(IAddressService addressService, ICityService cityService, IDistrictService districtService, UserManager<AppUser> userManager)
-    {
-      _addressService = addressService;
-      _cityService = cityService;
-      _districtService = districtService;
-      _userManager = userManager;
-    }
-
-    [HttpGet]
-    public async Task <IActionResult> Index(int id)
+		private readonly IToastNotification _toastNotification;
+		public AddressController(IAddressService addressService, ICityService cityService, IDistrictService districtService, UserManager<AppUser> userManager, IToastNotification toastNotification)
 		{
-			var addresses = await _addressService.GetListAsync<Address>(a=>a.UserId==id,includeProperties: "User,City,District");
-			return View(addresses.Data);
+			_addressService = addressService;
+			_cityService = cityService;
+			_districtService = districtService;
+			_userManager = userManager;
+			_toastNotification = toastNotification;
+		}
+		[HttpGet]
+		public async Task<IActionResult> Index(int userId)
+		{
+			var address = await _addressService.GetAsync<Address>(a => a.UserId == userId, includeProperties: "User,City,District");
+			ViewBag.UserId = userId;
+			return View(address.Data);
 		}
 		#region Add
-		//[HttpGet]
-		//public async Task<IActionResult> Add()
-		//{
-		//	var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-		//	var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
+		[HttpGet]
+		public async Task<IActionResult> Add(int userId)
+		{
+			var address = await _addressService.GetAsync<Address>(a => a.UserId == userId);
+			if (address.Data != null) 
+			{
+				_toastNotification.AddErrorToastMessage("Kullanıcının bir adresi zaten mevcut");
+				return RedirectToAction("Index","Address",new {userId=userId});
+			}
+			AddressCRUDDto dto = new AddressCRUDDto()
+			{
+				UserId = userId
+			};
+			var (cities, districts, userName) = await PrepareSelectListsAndUserName(userId);
 
-		//	ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-		//	ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+			ViewBag.Cities = cities;
+			ViewBag.Districts = districts;
+			ViewBag.UserName = userName;
 
-		//	return View();
-		//  }
-		//[HttpPost]
-		//public async Task<IActionResult> Add (AddressCRUDDto dto)
-		//{
-		//    var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-		//    var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
+			return View(dto);
+		}
+		[HttpPost]
+		public async Task<IActionResult> Add(AddressCRUDDto dto)
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					await _addressService.AddAsync(dto);
+					await _addressService.SaveAsync();
+					_toastNotification.AddSuccessToastMessage(Messages.AddressAdded);
+					return RedirectToAction("Index", "Address", new { userId = dto.UserId });
+				}
+			}
+			catch (Exception)
+			{
+				ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
+				TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
+			}
 
-		//    ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-		//    ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+			int userId = dto.UserId;
+			var (cities, districts, userName) = await PrepareSelectListsAndUserName(userId);
 
-		//    try
-		//	{
-		//		if (ModelState.IsValid)
-		//		{
-		//        await _addressService.AddAsync(dto);
-		//        await _addressService.SaveAsync();
-		//        TempData["SuccessMessage"] = "Ayarlar başarıyla keydedildi.";
-		//      }
-		//	}
-		//	catch(Exception) 
-		//	{
-		//      ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
-		//      TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
-		//    }
-		//	return  View();
-		//}
+			ViewBag.Cities = cities;
+			ViewBag.Districts = districts;
+			ViewBag.UserName = userName;
+
+			return View(dto);
+		}
 		#endregion
 		#region Edit
 		[HttpGet]
 		public async Task<IActionResult> Edit(int id)
 		{
-			var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-			var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
 			var address = await _addressService.GetAsync<Address>(i => i.Id == id);
+			int userId = address.Data.UserId;
+			var (cities, districts, userName) = await PrepareSelectListsAndUserName(userId);
 
-			ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-			ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
-
-			var user = await _userManager.FindByIdAsync(address.Data.UserId.ToString());
-			string userName = user.FirstName + " " + user.LastName;
-			ViewBag.userName = userName;
+			ViewBag.Cities = cities;
+			ViewBag.Districts = districts;
+			ViewBag.UserName = userName;
 
 			AddressCRUDDto dto = new AddressCRUDDto()
 			{
@@ -103,23 +115,14 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Edit(AddressCRUDDto dto)
 		{
-			var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-			var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
-
-			ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-			ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
-
-			var user = await _userManager.FindByIdAsync(dto.UserId.ToString());
-			string userName = user.FirstName + " " + user.LastName;
-			ViewBag.userName = userName;
-
 			try
 			{
 				if (ModelState.IsValid)
 				{
 					_addressService.Update(dto);
 					await _addressService.SaveAsync();
-					TempData["SuccessMessage"] = "Adres başarıyla güncellendi.";
+					_toastNotification.AddWarningToastMessage(Messages.AddressUpdated);
+					return RedirectToAction("Index","Address",new {userId=dto.UserId});
 				}
 			}
 			catch (Exception)
@@ -127,36 +130,56 @@ namespace Ads.Web.Mvc.Areas.Admin.Controllers
 				ModelState.AddModelError("Error", "Kayıt sırasında bir hata oluştu");
 				TempData["ErrorMessage"] = "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.";
 			}
+			int userId = dto.UserId;
+			var (cities, districts, userName) = await PrepareSelectListsAndUserName(userId);
+
+			ViewBag.Cities = cities;
+			ViewBag.Districts = districts;
+			ViewBag.UserName = userName;
+
 			return View(dto);
 		}
 		#endregion
 		#region Delete
-		//[HttpGet]
-		//public async Task<IActionResult> Delete (int id)
-		//{
-		//    var cities = _cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name));
-		//    var districts = _districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name));
-		//    var address = await _addressService.GetAsync<Address>(i => i.Id == id);
+		[HttpGet]
+		[Authorize(Roles = "Superadmin")]
+		public async Task<IActionResult> Delete(int id)
+		{
+			var address = await _addressService.GetAsync<Address>(i => i.Id == id);
+			int userId = address.Data.UserId;
+			var (cities, districts, userName) = await PrepareSelectListsAndUserName(userId);
 
-		//    ViewBag.Cities = new SelectList(cities.Data, "Id", "Name");
-		//    ViewBag.Districts = new SelectList(districts.Data, "Id", "Name");
+			ViewBag.Cities = cities;
+			ViewBag.Districts = districts;
+			ViewBag.UserName = userName;
 
-		//    return View(address.Data);
-		//  }
-		//[HttpPost]
-		//public async Task<IActionResult> Delete (Address address)
-		//{
-		//	_addressService.Delete(address);
-		//	await _addressService.SaveAsync();
-		//	return RedirectToAction("Index", "Address", new { area = "Admin" });
-		//}
+			return View(address.Data);
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Superadmin")]
+		public async Task<IActionResult> Delete(Address address)
+		{
+			_addressService.Delete(address);
+			await _addressService.SaveAsync();
+			_toastNotification.AddErrorToastMessage(Messages.AddressDeleted);
+			return RedirectToAction("Index", "User", new { area = "Admin" });
+		}
 		#endregion
-
 
 		[HttpGet]
 		public JsonResult GetDistrictsByCityId(int cityId)
 		{
 			return Json(_districtService.GetList<District>(d => d.CityId.Equals(cityId)).Data);
+		}
+
+		private async Task<(SelectList cities, SelectList districts, string userName)> PrepareSelectListsAndUserName(int userId)
+		{
+			var cities = new SelectList(_cityService.GetList<City>(orderBy: q => q.OrderBy(x => x.Name)).Data, "Id", "Name");
+			var districts = new SelectList(_districtService.GetList<District>(orderBy: q => q.OrderBy(x => x.Name)).Data, "Id", "Name");
+			var user = await _userManager.FindByIdAsync(userId.ToString());
+
+			return (cities, districts, $"{user.FirstName} {user.LastName}");
 		}
 	}
 }

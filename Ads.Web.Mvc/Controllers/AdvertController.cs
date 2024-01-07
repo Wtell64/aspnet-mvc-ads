@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace Ads.Web.Mvc.Controllers
 {
@@ -126,6 +128,7 @@ namespace Ads.Web.Mvc.Controllers
       var user = User.Identity.Name != null ? await _userManager.FindByEmailAsync(User.Identity.Name) : null;
       ViewBag.userName = user != null ? user.FirstName + " " + user.LastName : "Misafir";
       advert.Data.ClickCount = advert.Data.ClickCount + 1;
+      ViewBag.enumDescription = GetEnumDescription(advert.Data.ConditionEnum);
       _advertService.Update(advert.Data);
       _advertService.Save();
       return View(advert.Data);
@@ -149,6 +152,15 @@ namespace Ads.Web.Mvc.Controllers
       return RedirectToAction("Detail", "Advert", new { id = advId, titleSlug = advert.Data.Title});
     }
 
+		private string GetEnumDescription(Enum value)
+		{
+			FieldInfo field = value.GetType().GetField(value.ToString());
+			if (field == null) return value.ToString();
 
-  }
+			DescriptionAttribute attribute = field.GetCustomAttribute<DescriptionAttribute>();
+			return attribute == null ? value.ToString() : attribute.Description;
+		}
+
+
+	}
 }

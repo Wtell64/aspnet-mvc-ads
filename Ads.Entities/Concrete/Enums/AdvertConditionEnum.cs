@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,9 @@ namespace Ads.Entities.Concrete.Enums
 {
 	public enum AdvertConditionEnum
 	{
-	None = 0,
-	FactoryNew = 1,
-	MinimalUsed =2,
-	WellWorn=3
+		[Description("Belirtilmemiş")] None = 0,
+		[Description("Fabrikadan Yeni Çıkmış")] FactoryNew = 1,
+		[Description("Az Kullanılmış")] MinimalUsed = 2,
+		[Description("Eskimiş")] WellWorn = 3
 	}
 }

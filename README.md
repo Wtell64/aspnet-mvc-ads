@@ -29,7 +29,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/Wtell64/aspnet-mvc-ads">
     <img src="github-img/logo.png" alt="Logo" width="120" height="100">
   </a>
 
@@ -72,7 +72,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="github-img/anasayfa.png" alt="Logo">
+<img src="github-img/comment.png" alt="Logo">
+<img src="github-img/search.png" alt="Logo">
+<img src="github-img/admin.png" alt="Logo">
 
 
 We developed an online advert publishing project where users can search and create advert that they are looking for or want to publish. Our website consist of many features such as search functionality, and an easy-to-use advert creation tool. With our user-friendly platform, individuals can effortlessly navigate through various categories and subcategories to find the specific advertisements they need or showcase their own. Whether you're searching for a job, selling items, or promoting services, our online advert publishing project provides a convenient and efficient solution for all your advertising needs.
@@ -89,7 +92,7 @@ Some other main functionalities are:
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section lists some of the main frameworks and technologies we used for this project.
 
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
@@ -99,8 +102,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <!-- CONTRIBUTING -->
 ## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
@@ -127,21 +128,14 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Aras Menteşe - https://www.linkedin.com/in/aras-mentese-24847b175/ - LinkedIn
-Elif Sakçı Tuncer - N/A - LinkedIn
-İsmail Yücer - https://www.linkedin.com/in/ismailycer/ - LinkedIn
-Muratcan Agiç - https://www.linkedin.com/in/muratcan-agiç-974b04219/ - LinkedIn
-Rıdvan Kesken - https://www.linkedin.com/in/rıdvan-kesken-4a208b155/ - LinkedIn
+<p>Aras Menteşe - https://www.linkedin.com/in/aras-mentese-24847b175/ - LinkedIn </p>
+<p>Elif Sakçı Tuncer - N/A - LinkedIn </p>
+<p>İsmail Yücer - https://www.linkedin.com/in/ismailycer/ - LinkedIn</p>
+<p>Muratcan Agiç - https://www.linkedin.com/in/muratcan-agiç-974b04219/ - LinkedIn</p>
+<p>Rıdvan Kesken - https://www.linkedin.com/in/rıdvan-kesken-4a208b155/ - LinkedIn</p>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -156,7 +150,7 @@ Rıdvan Kesken - https://www.linkedin.com/in/rıdvan-kesken-4a208b155/ - LinkedI
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/aras-mentese-24847b175/
 [product-screenshot]: images/screenshot.png
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB

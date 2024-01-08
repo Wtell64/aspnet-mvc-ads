@@ -38,7 +38,7 @@
   <p align="center">
     A protfolio project that uses .Net Core 7.0.14 MVC template.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Wtell64/aspnet-mvc-ads/blob/master/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
@@ -107,9 +107,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/Breadcrumbsaspnet-mvc-ads`)
-3. Commit your Changes (`git commit -m 'Add some Breadcrumbsaspnet-mvc-ads'`)
-4. Push to the Branch (`git push origin feature/Breadcrumbsaspnet-mvc-ads`)
+2. Create your Feature Branch (`git checkout -b feature/aspnet-mvc-ads`)
+3. Commit your Changes (`git commit -m 'Add some aspnet-mvc-ads'`)
+4. Push to the Branch (`git push origin feature/aspnet-mvc-ads`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

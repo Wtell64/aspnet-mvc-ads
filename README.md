@@ -59,11 +59,13 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#user-information">User Information</a></li>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    
   </ol>
 </details>
 
@@ -100,7 +102,17 @@ This section lists some of the main frameworks and technologies we used for this
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### User Information
+
+Below are some example users you can use to test the website.
+
+* Username: user1@gmail.com Password: 123456 (Role: User)
+* Username: admin@gmail.com Password: 123456 (Role: Admin)
+* Username: superadmin@gmail.com Password: 123456 (Role: Superadmin)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".

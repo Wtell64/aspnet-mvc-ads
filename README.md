@@ -140,11 +140,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-<p>Aras Menteşe - https://www.linkedin.com/in/aras-mentese-24847b175/ - LinkedIn </p>
+<p>Aras Menteşe - www.linkedin.com/in/arasmentese - LinkedIn </p>
 <p>Elif Sakçı Tuncer - N/A - LinkedIn </p>
 <p>İsmail Yücer - https://www.linkedin.com/in/ismailycer/ - LinkedIn</p>
-<p>Muratcan Agiç - https://www.linkedin.com/in/muratcan-agiç-974b04219/ - LinkedIn</p>
-<p>Rıdvan Kesken - https://www.linkedin.com/in/rıdvan-kesken-4a208b155/ - LinkedIn</p>
+<p>Muratcan Agiç - https://www.linkedin.com/in/muratcanagic/ - LinkedIn</p>
+<p>Rıdvan Kesken - https://www.linkedin.com/in/ridvankesken/ - LinkedIn</p>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
